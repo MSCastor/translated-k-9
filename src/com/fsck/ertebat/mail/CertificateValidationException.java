@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.security.cert.CertPathValidatorException;
 import java.security.cert.CertificateException;

@@ -1,9 +1,9 @@
-package com.fsck.ertebat.net.ssl;
+package com.fsck.Ertebat.net.ssl;
 
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.mail.MessagingException;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.SSLContext;
@@ -90,7 +90,7 @@ public class TrustedSocketFactory {
              */
             supportedProtocols = sock.getSupportedProtocols();
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Error getting information about available SSL/TLS ciphers and " +
+            Log.e(Ertebat.LOG_TAG, "Error getting information about available SSL/TLS ciphers and " +
                     "protocols", e);
         }
 
@@ -139,7 +139,7 @@ public class TrustedSocketFactory {
         TrustManager[] trustManagers = new TrustManager[] { TrustManagerFactory.get(host, port) };
         KeyManager[] keyManagers = null;
         if (clientCertificateAlias != null && !clientCertificateAlias.isEmpty()) {
-            keyManagers = new KeyManager[] { new KeyChainKeyManager(ertebat.app, clientCertificateAlias) };
+            keyManagers = new KeyManager[] { new KeyChainKeyManager(Ertebat.app, clientCertificateAlias) };
         }
 
         SSLContext context = SSLContext.getInstance("TLS");

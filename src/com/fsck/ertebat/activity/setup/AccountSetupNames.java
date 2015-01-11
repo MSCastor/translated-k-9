@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,13 +13,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.fsck.ertebat.*;
-import com.fsck.ertebat.activity.Accounts;
-import com.fsck.ertebat.activity.ertebatActivity;
-import com.fsck.ertebat.helper.Utility;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.*;
+import com.fsck.Ertebat.activity.Accounts;
+import com.fsck.Ertebat.activity.ErtebatActivity;
+import com.fsck.Ertebat.helper.Utility;
+import com.top.Ertebat.mail.R;
 
-public class AccountSetupNames extends ertebatActivity implements OnClickListener {
+public class AccountSetupNames extends ErtebatActivity implements OnClickListener {
     private static final String EXTRA_ACCOUNT = "account";
 
     private EditText mDescription;

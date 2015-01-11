@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -7,18 +7,18 @@ import android.view.MotionEvent;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.activity.ertebatActivityCommon.ertebatActivityMagic;
-import com.fsck.ertebat.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.activity.ErtebatActivityCommon.ErtebatActivityMagic;
+import com.fsck.Ertebat.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
 
 
-public class ertebatListActivity extends ListActivity implements ertebatActivityMagic {
+public class ErtebatListActivity extends ListActivity implements ErtebatActivityMagic {
 
-    private ertebatActivityCommon mBase;
+    private ErtebatActivityCommon mBase;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mBase = ertebatActivityCommon.newInstance(this);
+        mBase = ErtebatActivityCommon.newInstance(this);
         super.onCreate(savedInstanceState);
     }
 
@@ -41,7 +41,7 @@ public class ertebatListActivity extends ListActivity implements ertebatActivity
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // Shortcuts that work no matter what is selected
-        if (ertebat.useVolumeKeysForListNavigationEnabled() &&
+        if (Ertebat.useVolumeKeysForListNavigationEnabled() &&
                 (keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
                 keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
 
@@ -68,7 +68,7 @@ public class ertebatListActivity extends ListActivity implements ertebatActivity
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         // Swallow these events too to avoid the audible notification of a volume change
-        if (ertebat.useVolumeKeysForListNavigationEnabled() &&
+        if (Ertebat.useVolumeKeysForListNavigationEnabled() &&
                 (keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
                 keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
             return true;

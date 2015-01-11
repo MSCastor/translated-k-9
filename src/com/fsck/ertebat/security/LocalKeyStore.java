@@ -1,4 +1,4 @@
-package com.fsck.ertebat.security;
+package com.fsck.Ertebat.security;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +15,7 @@ import org.apache.commons.io.IOUtils;
 
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 public class LocalKeyStore {
     private static final int KEY_STORE_FILE_VERSION = 1;
@@ -50,7 +50,7 @@ public class LocalKeyStore {
              * error, presuming setKeyStoreFile(File) is called next with a
              * non-null File.
              */
-            Log.w(ertebat.LOG_TAG, "Local key store has not been initialized");
+            Log.w(Ertebat.LOG_TAG, "Local key store has not been initialized");
         }
     }
 
@@ -92,7 +92,7 @@ public class LocalKeyStore {
             mKeyStore = store;
             mKeyStoreFile = file;
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Failed to initialize local key store", e);
+            Log.e(Ertebat.LOG_TAG, "Failed to initialize local key store", e);
             // Use of the local key store is effectively disabled.
             mKeyStore = null;
             mKeyStoreFile = null;
@@ -169,7 +169,7 @@ public class LocalKeyStore {
         } catch (KeyStoreException e) {
             // Ignore: most likely there was no cert. found
         } catch (CertificateException e) {
-            Log.e(ertebat.LOG_TAG, "Error updating the local key store file", e);
+            Log.e(Ertebat.LOG_TAG, "Error updating the local key store file", e);
         }
     }
 

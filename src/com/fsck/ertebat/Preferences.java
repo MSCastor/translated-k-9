@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,9 +12,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.preferences.Editor;
-import com.fsck.ertebat.preferences.Storage;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.preferences.Editor;
+import com.fsck.Ertebat.preferences.Storage;
 
 public class Preferences {
 
@@ -44,7 +44,7 @@ public class Preferences {
         mStorage = Storage.getStorage(context);
         mContext = context;
         if (mStorage.size() == 0) {
-            Log.i(ertebat.LOG_TAG, "Preferences storage is zero-size, importing from Android-style preferences");
+            Log.i(Ertebat.LOG_TAG, "Preferences storage is zero-size, importing from Android-style preferences");
             Editor editor = mStorage.edit();
             editor.copy(context.getSharedPreferences("AndroidMail.Main", Context.MODE_PRIVATE));
             editor.commit();
@@ -110,7 +110,7 @@ public class Preferences {
     }
 
     public synchronized Account newAccount() {
-        newAccount = new Account(ertebat.app);
+        newAccount = new Account(Ertebat.app);
         accounts.put(newAccount.getUuid(), newAccount);
         accountsInOrder.add(newAccount);
 

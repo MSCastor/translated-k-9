@@ -1,10 +1,10 @@
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.helper.power.TracingPowerManager.TracingWakeLock;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
@@ -13,8 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SleepService extends CoreService {
 
-    private static String ALARM_FIRED = "com.fsck.ertebat.service.SleepService.ALARM_FIRED";
-    private static String LATCH_ID = "com.fsck.ertebat.service.SleepService.LATCH_ID_EXTRA";
+    private static String ALARM_FIRED = "com.fsck.Ertebat.service.SleepService.ALARM_FIRED";
+    private static String LATCH_ID = "com.fsck.Ertebat.service.SleepService.LATCH_ID_EXTRA";
 
 
     private static ConcurrentHashMap<Integer, SleepDatum> sleepData = new ConcurrentHashMap<Integer, SleepDatum>();
@@ -23,8 +23,8 @@ public class SleepService extends CoreService {
 
     public static void sleep(Context context, long sleepTime, TracingWakeLock wakeLock, long wakeLockTimeout) {
         Integer id = latchId.getAndIncrement();
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "SleepService Preparing CountDownLatch with id = " + id + ", thread " + Thread.currentThread().getName());
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "SleepService Preparing CountDownLatch with id = " + id + ", thread " + Thread.currentThread().getName());
         SleepDatum sleepDatum = new SleepDatum();
         CountDownLatch latch = new CountDownLatch(1);
         sleepDatum.latch = latch;
@@ -32,7 +32,7 @@ public class SleepService extends CoreService {
         sleepData.put(id, sleepDatum);
 
         Intent i = new Intent();
-        i.setClassName(context.getPackageName(), "com.fsck.ertebat.service.SleepService");
+        i.setClassName(context.getPackageName(), "com.fsck.Ertebat.service.SleepService");
         i.putExtra(LATCH_ID, id);
         i.setAction(ALARM_FIRED + "." + id);
         long startTime = System.currentTimeMillis();
@@ -46,23 +46,23 @@ public class SleepService extends CoreService {
         try {
             boolean countedDown = latch.await(sleepTime, TimeUnit.MILLISECONDS);
             if (!countedDown) {
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "SleepService latch timed out for id = " + id + ", thread " + Thread.currentThread().getName());
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "SleepService latch timed out for id = " + id + ", thread " + Thread.currentThread().getName());
             }
         } catch (InterruptedException ie) {
-            Log.e(ertebat.LOG_TAG, "SleepService Interrupted while awaiting latch", ie);
+            Log.e(Ertebat.LOG_TAG, "SleepService Interrupted while awaiting latch", ie);
         }
         SleepDatum releaseDatum = sleepData.remove(id);
         if (releaseDatum == null) {
             try {
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "SleepService waiting for reacquireLatch for id = " + id + ", thread " + Thread.currentThread().getName());
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "SleepService waiting for reacquireLatch for id = " + id + ", thread " + Thread.currentThread().getName());
                 if (!sleepDatum.reacquireLatch.await(5000, TimeUnit.MILLISECONDS)) {
-                    Log.w(ertebat.LOG_TAG, "SleepService reacquireLatch timed out for id = " + id + ", thread " + Thread.currentThread().getName());
-                } else if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "SleepService reacquireLatch finished for id = " + id + ", thread " + Thread.currentThread().getName());
+                    Log.w(Ertebat.LOG_TAG, "SleepService reacquireLatch timed out for id = " + id + ", thread " + Thread.currentThread().getName());
+                } else if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "SleepService reacquireLatch finished for id = " + id + ", thread " + Thread.currentThread().getName());
             } catch (InterruptedException ie) {
-                Log.e(ertebat.LOG_TAG, "SleepService Interrupted while awaiting reacquireLatch", ie);
+                Log.e(Ertebat.LOG_TAG, "SleepService Interrupted while awaiting reacquireLatch", ie);
             }
         } else {
             reacquireWakeLock(releaseDatum);
@@ -72,10 +72,10 @@ public class SleepService extends CoreService {
         long actualSleep = endTime - startTime;
 
         if (actualSleep < sleepTime) {
-            Log.w(ertebat.LOG_TAG, "SleepService sleep time too short: requested was " + sleepTime + ", actual was " + actualSleep);
+            Log.w(Ertebat.LOG_TAG, "SleepService sleep time too short: requested was " + sleepTime + ", actual was " + actualSleep);
         } else {
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "SleepService requested sleep time was " + sleepTime + ", actual was " + actualSleep);
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "SleepService requested sleep time was " + sleepTime + ", actual was " + actualSleep);
         }
     }
 
@@ -85,17 +85,17 @@ public class SleepService extends CoreService {
             if (sleepDatum != null) {
                 CountDownLatch latch = sleepDatum.latch;
                 if (latch == null) {
-                    Log.e(ertebat.LOG_TAG, "SleepService No CountDownLatch available with id = " + id);
+                    Log.e(Ertebat.LOG_TAG, "SleepService No CountDownLatch available with id = " + id);
                 } else {
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "SleepService Counting down CountDownLatch with id = " + id);
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "SleepService Counting down CountDownLatch with id = " + id);
                     latch.countDown();
                 }
                 reacquireWakeLock(sleepDatum);
                 sleepDatum.reacquireLatch.countDown();
             } else {
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "SleepService Sleep for id " + id + " already finished");
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "SleepService Sleep for id " + id + " already finished");
             }
         }
     }
@@ -105,8 +105,8 @@ public class SleepService extends CoreService {
         if (wakeLock != null) {
             synchronized (wakeLock) {
                 long timeout = sleepDatum.timeout;
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "SleepService Acquiring wakeLock for " + timeout + "ms");
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "SleepService Acquiring wakeLock for " + timeout + "ms");
                 wakeLock.acquire(timeout);
             }
         }

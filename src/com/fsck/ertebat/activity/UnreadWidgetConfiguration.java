@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -7,9 +7,9 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 
-import com.fsck.ertebat.BaseAccount;
-import com.fsck.ertebat.provider.UnreadWidgetProvider;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.BaseAccount;
+import com.fsck.Ertebat.provider.UnreadWidgetProvider;
+import com.top.Ertebat.mail.R;
 
 
 /**

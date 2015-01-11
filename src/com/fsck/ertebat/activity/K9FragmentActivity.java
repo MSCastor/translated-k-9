@@ -1,21 +1,21 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
-import com.fsck.ertebat.activity.ertebatActivityCommon.ertebatActivityMagic;
-import com.fsck.ertebat.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
+import com.fsck.Ertebat.activity.ErtebatActivityCommon.ErtebatActivityMagic;
+import com.fsck.Ertebat.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
 
 
-public class ertebatFragmentActivity extends Activity implements ertebatActivityMagic {
+public class ErtebatFragmentActivity extends Activity implements ErtebatActivityMagic {
 
-    private ertebatActivityCommon mBase;
+    private ErtebatActivityCommon mBase;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mBase = ertebatActivityCommon.newInstance(this);
+        mBase = ErtebatActivityCommon.newInstance(this);
         super.onCreate(savedInstanceState);
     }
 

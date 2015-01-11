@@ -1,4 +1,4 @@
-package com.fsck.ertebat.provider;
+package com.fsck.Ertebat.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -10,14 +10,14 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.LocalStore.AttachmentInfo;
-import com.fsck.ertebat.mail.store.StorageManager;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.LocalStore.AttachmentInfo;
+import com.fsck.Ertebat.mail.store.StorageManager;
 
 import java.io.*;
 import java.util.List;
@@ -31,7 +31,7 @@ import java.util.List;
  * </p>
  */
 public class AttachmentProvider extends ContentProvider {
-    public static final Uri CONTENT_URI = Uri.parse("content://com.fsck.ertebat.attachmentprovider");
+    public static final Uri CONTENT_URI = Uri.parse("content://com.fsck.Ertebat.attachmentprovider");
 
     private static final String FORMAT_RAW = "RAW";
     private static final String FORMAT_VIEW = "VIEW";
@@ -84,8 +84,8 @@ public class AttachmentProvider extends ContentProvider {
         File[] files = context.getCacheDir().listFiles();
         for (File file : files) {
             try {
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "Deleting file " + file.getCanonicalPath());
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "Deleting file " + file.getCanonicalPath());
                 }
             } catch (IOException ioe) { /* No need to log failure to log */ }
             file.delete();
@@ -212,15 +212,15 @@ public class AttachmentProvider extends ContentProvider {
         final AttachmentInfo attachmentInfo;
         try {
             final Account account = Preferences.getPreferences(getContext()).getAccount(dbName);
-            attachmentInfo = LocalStore.getLocalInstance(account, ertebat.app).getAttachmentInfo(id);
+            attachmentInfo = LocalStore.getLocalInstance(account, Ertebat.app).getAttachmentInfo(id);
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Unable to retrieve attachment info from local store for ID: " + id, e);
+            Log.e(Ertebat.LOG_TAG, "Unable to retrieve attachment info from local store for ID: " + id, e);
             return null;
         }
 
         if (attachmentInfo == null) {
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "No attachment info for ID: " + id);
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "No attachment info for ID: " + id);
             }
             return null;
         }
@@ -266,7 +266,7 @@ public class AttachmentProvider extends ContentProvider {
             final Account account = Preferences.getPreferences(getContext()).getAccount(dbName);
 
             try {
-                final LocalStore localStore = LocalStore.getLocalInstance(account, ertebat.app);
+                final LocalStore localStore = LocalStore.getLocalInstance(account, Ertebat.app);
 
                 AttachmentInfo attachmentInfo = localStore.getAttachmentInfo(id);
                 if (FORMAT_VIEW.equals(format)) {
@@ -276,7 +276,7 @@ public class AttachmentProvider extends ContentProvider {
                     type = attachmentInfo.type;
                 }
             } catch (MessagingException e) {
-                Log.e(ertebat.LOG_TAG, "Unable to retrieve LocalStore for " + account, e);
+                Log.e(Ertebat.LOG_TAG, "Unable to retrieve LocalStore for " + account, e);
                 type = null;
             }
         }
@@ -287,7 +287,7 @@ public class AttachmentProvider extends ContentProvider {
     private File getFile(String dbName, String id) throws FileNotFoundException {
         Account account = Preferences.getPreferences(getContext()).getAccount(dbName);
 
-        File attachmentsDir = StorageManager.getInstance(ertebat.app).getAttachmentDirectory(dbName,
+        File attachmentsDir = StorageManager.getInstance(Ertebat.app).getAttachmentDirectory(dbName,
                 account.getLocalStorageProviderId());
 
         File file = new File(attachmentsDir, id);

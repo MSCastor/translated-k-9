@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -23,29 +23,29 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
 
-import com.fsck.ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
-import com.fsck.ertebat.crypto.Apg;
-import com.fsck.ertebat.crypto.CryptoProvider;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.Folder.FolderClass;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.StorageManager;
-import com.fsck.ertebat.mail.store.StorageManager.StorageProvider;
-import com.fsck.ertebat.provider.EmailProvider;
-import com.fsck.ertebat.provider.EmailProvider.StatsColumns;
-import com.fsck.ertebat.search.ConditionsTreeNode;
-import com.fsck.ertebat.search.LocalSearch;
-import com.fsck.ertebat.search.SqlQueryBuilder;
-import com.fsck.ertebat.search.SearchSpecification.Attribute;
-import com.fsck.ertebat.search.SearchSpecification.SearchCondition;
-import com.fsck.ertebat.search.SearchSpecification.Searchfield;
-import com.fsck.ertebat.security.LocalKeyStore;
-import com.fsck.ertebat.view.ColorChip;
+import com.fsck.Ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
+import com.fsck.Ertebat.crypto.Apg;
+import com.fsck.Ertebat.crypto.CryptoProvider;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.Folder.FolderClass;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.StorageManager;
+import com.fsck.Ertebat.mail.store.StorageManager.StorageProvider;
+import com.fsck.Ertebat.provider.EmailProvider;
+import com.fsck.Ertebat.provider.EmailProvider.StatsColumns;
+import com.fsck.Ertebat.search.ConditionsTreeNode;
+import com.fsck.Ertebat.search.LocalSearch;
+import com.fsck.Ertebat.search.SqlQueryBuilder;
+import com.fsck.Ertebat.search.SearchSpecification.Attribute;
+import com.fsck.Ertebat.search.SearchSpecification.SearchCondition;
+import com.fsck.Ertebat.search.SearchSpecification.Searchfield;
+import com.fsck.Ertebat.security.LocalKeyStore;
+import com.fsck.Ertebat.view.ColorChip;
 import com.larswerkman.colorpicker.ColorPicker;
-import com.top.ertebat.mail.R;
+import com.top.Ertebat.mail.R;
 
 /**
  * Account stores all of the settings for a single account defined by the user. It is able to save
@@ -60,7 +60,7 @@ public class Account implements BaseAccount {
     /**
      * This local folder is used to store messages to be sent.
      */
-    public static final String OUTBOX = "ertebatMAIL_INTERNAL_OUTBOX";
+    public static final String OUTBOX = "ErtebatMAIL_INTERNAL_OUTBOX";
 
     public static final String EXPUNGE_IMMEDIATELY = "EXPUNGE_IMMEDIATELY";
     public static final String EXPUNGE_MANUALLY = "EXPUNGE_MANUALLY";
@@ -269,11 +269,11 @@ public class Account implements BaseAccount {
 
     protected Account(Context context) {
         mUuid = UUID.randomUUID().toString();
-        mLocalStorageProviderId = StorageManager.getInstance(ertebat.app).getDefaultProviderId();
+        mLocalStorageProviderId = StorageManager.getInstance(Ertebat.app).getDefaultProviderId();
         mAutomaticCheckIntervalMinutes = -1;
         mIdleRefreshMinutes = 24;
         mPushPollOnConnect = true;
-        mDisplayCount = ertebat.DEFAULT_VISIBLE_LIMIT;
+        mDisplayCount = Ertebat.DEFAULT_VISIBLE_LIMIT;
         mAccountNumber = -1;
         mNotifyNewMail = true;
         mFolderNotifyNewMailMode = FolderMode.ALL;
@@ -371,16 +371,16 @@ public class Account implements BaseAccount {
         SharedPreferences prefs = preferences.getPreferences();
 
         mStoreUri = Utility.base64Decode(prefs.getString(mUuid + ".storeUri", null));
-        mLocalStorageProviderId = prefs.getString(mUuid + ".localStorageProvider", StorageManager.getInstance(ertebat.app).getDefaultProviderId());
+        mLocalStorageProviderId = prefs.getString(mUuid + ".localStorageProvider", StorageManager.getInstance(Ertebat.app).getDefaultProviderId());
         mTransportUri = Utility.base64Decode(prefs.getString(mUuid + ".transportUri", null));
         mDescription = prefs.getString(mUuid + ".description", null);
         mAlwaysBcc = prefs.getString(mUuid + ".alwaysBcc", mAlwaysBcc);
         mAutomaticCheckIntervalMinutes = prefs.getInt(mUuid + ".automaticCheckIntervalMinutes", -1);
         mIdleRefreshMinutes = prefs.getInt(mUuid + ".idleRefreshMinutes", 24);
         mPushPollOnConnect = prefs.getBoolean(mUuid + ".pushPollOnConnect", true);
-        mDisplayCount = prefs.getInt(mUuid + ".displayCount", ertebat.DEFAULT_VISIBLE_LIMIT);
+        mDisplayCount = prefs.getInt(mUuid + ".displayCount", Ertebat.DEFAULT_VISIBLE_LIMIT);
         if (mDisplayCount < 0) {
-            mDisplayCount = ertebat.DEFAULT_VISIBLE_LIMIT;
+            mDisplayCount = Ertebat.DEFAULT_VISIBLE_LIMIT;
         }
         mLastAutomaticCheckTime = prefs.getLong(mUuid + ".lastAutomaticCheckTime", 0);
         mLatestOldMessageSeenTime = prefs.getLong(mUuid + ".latestOldMessageSeenTime", 0);
@@ -791,7 +791,7 @@ public class Account implements BaseAccount {
         try {
             getLocalStore().resetVisibleLimits(getDisplayCount());
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Unable to reset visible limits", e);
+            Log.e(Ertebat.LOG_TAG, "Unable to reset visible limits", e);
         }
 
     }
@@ -845,7 +845,7 @@ public class Account implements BaseAccount {
         }
 
         LocalStore localStore = getLocalStore();
-        if (ertebat.measureAccounts()) {
+        if (Ertebat.measureAccounts()) {
             stats.size = localStore.getSize();
         }
 
@@ -999,7 +999,7 @@ public class Account implements BaseAccount {
                 switchLocalStorage(id);
                 successful = true;
             } catch (MessagingException e) {
-                Log.e(ertebat.LOG_TAG, "Switching local storage provider from " +
+                Log.e(Ertebat.LOG_TAG, "Switching local storage provider from " +
                       mLocalStorageProviderId + " to " + id + " failed.", e);
             } finally {
                 // if migration to/from SD-card failed once, it will fail again.
@@ -1038,7 +1038,7 @@ public class Account implements BaseAccount {
         if (displayCount != -1) {
             this.mDisplayCount = displayCount;
         } else {
-            this.mDisplayCount = ertebat.DEFAULT_VISIBLE_LIMIT;
+            this.mDisplayCount = Ertebat.DEFAULT_VISIBLE_LIMIT;
         }
         resetVisibleLimits();
     }
@@ -1107,7 +1107,7 @@ public class Account implements BaseAccount {
      * @return true if account has a drafts folder set.
      */
     public synchronized boolean hasDraftsFolder() {
-        return !ertebat.FOLDER_NONE.equalsIgnoreCase(mDraftsFolderName);
+        return !Ertebat.FOLDER_NONE.equalsIgnoreCase(mDraftsFolderName);
     }
 
     public synchronized String getSentFolderName() {
@@ -1115,7 +1115,7 @@ public class Account implements BaseAccount {
     }
 
     public synchronized String getErrorFolderName() {
-        return ertebat.ERROR_FOLDER_NAME;
+        return Ertebat.ERROR_FOLDER_NAME;
     }
 
     public synchronized void setSentFolderName(String sentFolderName) {
@@ -1127,7 +1127,7 @@ public class Account implements BaseAccount {
      * @return true if account has a sent folder set.
      */
     public synchronized boolean hasSentFolder() {
-        return !ertebat.FOLDER_NONE.equalsIgnoreCase(mSentFolderName);
+        return !Ertebat.FOLDER_NONE.equalsIgnoreCase(mSentFolderName);
     }
 
 
@@ -1144,7 +1144,7 @@ public class Account implements BaseAccount {
      * @return true if account has a trash folder set.
      */
     public synchronized boolean hasTrashFolder() {
-        return !ertebat.FOLDER_NONE.equalsIgnoreCase(mTrashFolderName);
+        return !Ertebat.FOLDER_NONE.equalsIgnoreCase(mTrashFolderName);
     }
 
     public synchronized String getArchiveFolderName() {
@@ -1160,7 +1160,7 @@ public class Account implements BaseAccount {
      * @return true if account has an archive folder set.
      */
     public synchronized boolean hasArchiveFolder() {
-        return !ertebat.FOLDER_NONE.equalsIgnoreCase(mArchiveFolderName);
+        return !Ertebat.FOLDER_NONE.equalsIgnoreCase(mArchiveFolderName);
     }
 
     public synchronized String getSpamFolderName() {
@@ -1176,7 +1176,7 @@ public class Account implements BaseAccount {
      * @return true if account has a spam folder set.
      */
     public synchronized boolean hasSpamFolder() {
-        return !ertebat.FOLDER_NONE.equalsIgnoreCase(mSpamFolderName);
+        return !Ertebat.FOLDER_NONE.equalsIgnoreCase(mSpamFolderName);
     }
 
     public synchronized String getOutboxFolderName() {
@@ -1311,7 +1311,7 @@ public class Account implements BaseAccount {
     }
 
     public LocalStore getLocalStore() throws MessagingException {
-        return Store.getLocalInstance(this, ertebat.app);
+        return Store.getLocalInstance(this, Ertebat.app);
     }
 
     public Store getRemoteStore() throws MessagingException {
@@ -1745,7 +1745,7 @@ public class Account implements BaseAccount {
         if (localStorageProviderId == null) {
             return true; // defaults to internal memory
         }
-        return StorageManager.getInstance(ertebat.app).isReady(localStorageProviderId);
+        return StorageManager.getInstance(Ertebat.app).isReady(localStorageProviderId);
     }
 
     public synchronized boolean isEnabled() {
@@ -1886,7 +1886,7 @@ public class Account implements BaseAccount {
     }
 
     private void excludeSpecialFolder(LocalSearch search, String folderName) {
-        if (!ertebat.FOLDER_NONE.equals(folderName)) {
+        if (!Ertebat.FOLDER_NONE.equals(folderName)) {
             search.and(Searchfield.FOLDER, folderName, Attribute.NOT_EQUALS);
         }
     }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fsck.ertebat.mail.filter;
+package com.fsck.Ertebat.mail.filter;
 
 /**
  * This code was copied from the Apache Commons project.

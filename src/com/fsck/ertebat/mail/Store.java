@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,14 +9,14 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.mail.store.ImapStore;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.Pop3Store;
-import com.fsck.ertebat.mail.store.StorageManager.StorageProvider;
-import com.fsck.ertebat.mail.store.UnavailableStorageException;
-import com.fsck.ertebat.mail.store.WebDavStore;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.mail.store.ImapStore;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.Pop3Store;
+import com.fsck.Ertebat.mail.store.StorageManager.StorageProvider;
+import com.fsck.Ertebat.mail.store.UnavailableStorageException;
+import com.fsck.Ertebat.mail.store.WebDavStore;
 
 /**
  * Store is the access point for an email message store. It's location can be
@@ -117,13 +117,13 @@ public abstract class Store {
         try {
             removeRemoteInstance(account);
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Failed to reset remote store for account " + account.getUuid(), e);
+            Log.e(Ertebat.LOG_TAG, "Failed to reset remote store for account " + account.getUuid(), e);
         }
 
         try {
             removeLocalInstance(account);
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Failed to reset local store for account " + account.getUuid(), e);
+            Log.e(Ertebat.LOG_TAG, "Failed to reset local store for account " + account.getUuid(), e);
         }
     }
 

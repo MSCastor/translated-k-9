@@ -1,13 +1,13 @@
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Identity;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Identity;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
 
 public class IdentityHelper {
 
@@ -22,7 +22,7 @@ public class IdentityHelper {
      * @return The identity the message was sent to, or the account's default identity if it
      *         couldn't be determined which identity this message was sent to.
      *
-     * @see Account#findIdentity(com.fsck.ertebat.mail.Address)
+     * @see Account#findIdentity(com.fsck.Ertebat.mail.Address)
      */
     public static Identity getRecipientIdentityFromMessage(Account account, Message message) {
         Identity recipient = null;
@@ -48,7 +48,7 @@ public class IdentityHelper {
                 }
             }
         } catch (MessagingException e) {
-            Log.w(ertebat.LOG_TAG, "Error finding the identity this message was sent to", e);
+            Log.w(Ertebat.LOG_TAG, "Error finding the identity this message was sent to", e);
         }
 
         if (recipient == null) {

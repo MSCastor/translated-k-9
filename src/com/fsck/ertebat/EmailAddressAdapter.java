@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
-import com.fsck.ertebat.helper.Contacts;
-import com.fsck.ertebat.mail.Address;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.helper.Contacts;
+import com.fsck.Ertebat.mail.Address;
+import com.top.Ertebat.mail.R;
 
 import android.content.Context;
 import android.database.Cursor;

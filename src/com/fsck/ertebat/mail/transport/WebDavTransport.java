@@ -1,15 +1,15 @@
 
-package com.fsck.ertebat.mail.transport;
+package com.fsck.Ertebat.mail.transport;
 
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.ServerSettings;
-import com.fsck.ertebat.mail.Transport;
-import com.fsck.ertebat.mail.store.WebDavStore;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.ServerSettings;
+import com.fsck.Ertebat.mail.Transport;
+import com.fsck.Ertebat.mail.store.WebDavStore;
 
 public class WebDavTransport extends Transport {
     public static final String TRANSPORT_TYPE = WebDavStore.STORE_TYPE;
@@ -48,14 +48,14 @@ public class WebDavTransport extends Transport {
             store = new WebDavStore(account);
         }
 
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, ">>> New WebDavTransport creation complete");
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, ">>> New WebDavTransport creation complete");
     }
 
     @Override
     public void open() throws MessagingException {
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, ">>> open called on WebDavTransport ");
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, ">>> open called on WebDavTransport ");
 
         store.getHttpClient();
     }

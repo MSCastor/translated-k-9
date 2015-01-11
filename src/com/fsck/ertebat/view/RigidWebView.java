@@ -15,17 +15,17 @@
  */
 
 
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.webkit.WebView;
 
-import com.fsck.ertebat.Clock;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Throttle;
-import com.fsck.ertebat.helper.Utility;
+import com.fsck.Ertebat.Clock;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Throttle;
+import com.fsck.Ertebat.helper.Utility;
 
 /**
  * A custom WebView that is robust to rapid resize events in sequence.
@@ -74,8 +74,8 @@ public class RigidWebView extends WebView {
         if (mIgnoreNext) {
             mIgnoreNext = false;
             if (recentlySized) {
-                if (ertebat.DEBUG) {
-                    Log.w(ertebat.LOG_TAG, "Supressing size change in RigidWebView");
+                if (Ertebat.DEBUG) {
+                    Log.w(Ertebat.LOG_TAG, "Supressing size change in RigidWebView");
                 }
                 return;
             }

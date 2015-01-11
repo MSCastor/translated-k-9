@@ -1,18 +1,18 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 
-public class ertebatPreferenceActivity extends PreferenceActivity {
+public class ErtebatPreferenceActivity extends PreferenceActivity {
     @Override
     public void onCreate(Bundle icicle) {
-        ertebatActivityCommon.setLanguage(this, ertebat.getertebatLanguage());
-        setTheme(ertebat.getertebatThemeResourceId());
+        ErtebatActivityCommon.setLanguage(this, Ertebat.getErtebatLanguage());
+        setTheme(Ertebat.getErtebatThemeResourceId());
         super.onCreate(icicle);
     }
 

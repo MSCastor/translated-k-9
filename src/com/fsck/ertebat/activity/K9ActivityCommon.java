@@ -1,11 +1,11 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.util.Locale;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.activity.misc.SwipeGestureDetector;
-import com.fsck.ertebat.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
-import com.fsck.ertebat.helper.StringUtils;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.activity.misc.SwipeGestureDetector;
+import com.fsck.Ertebat.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
+import com.fsck.Ertebat.helper.StringUtils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,22 +19,22 @@ import android.view.MotionEvent;
 /**
  * This class implements functionality common to most activities used in K-9 Mail.
  *
- * @see ertebatActivity
- * @see ertebatListActivity
- * @see ertebatFragmentActivity
+ * @see ErtebatActivity
+ * @see ErtebatListActivity
+ * @see ErtebatFragmentActivity
  */
-public class ertebatActivityCommon {
+public class ErtebatActivityCommon {
     /**
-     * Creates a new instance of {@link ertebatActivityCommon} bound to the specified activity.
+     * Creates a new instance of {@link ErtebatActivityCommon} bound to the specified activity.
      *
      * @param activity
-     *         The {@link Activity} the returned {@code ertebatActivityCommon} instance will be bound to.
+     *         The {@link Activity} the returned {@code ErtebatActivityCommon} instance will be bound to.
      *
-     * @return The {@link ertebatActivityCommon} instance that will provide the base functionality of the
-     *         "ertebat" activities.
+     * @return The {@link ErtebatActivityCommon} instance that will provide the base functionality of the
+     *         "Ertebat" activities.
      */
-    public static ertebatActivityCommon newInstance(Activity activity) {
-        return new ertebatActivityCommon(activity);
+    public static ErtebatActivityCommon newInstance(Activity activity) {
+        return new ErtebatActivityCommon(activity);
     }
 
     public static void setLanguage(Context context, String language) {
@@ -59,9 +59,9 @@ public class ertebatActivityCommon {
      * Base activities need to implement this interface.
      *
      * <p>The implementing class simply has to call through to the implementation of these methods
-     * in {@link ertebatActivityCommon}.</p>
+     * in {@link ErtebatActivityCommon}.</p>
      */
-    public interface ertebatActivityMagic {
+    public interface ErtebatActivityMagic {
         void setupGestureDetector(OnSwipeGestureListener listener);
     }
 
@@ -70,10 +70,10 @@ public class ertebatActivityCommon {
     private GestureDetector mGestureDetector;
 
 
-    private ertebatActivityCommon(Activity activity) {
+    private ErtebatActivityCommon(Activity activity) {
         mActivity = activity;
-        setLanguage(mActivity, ertebat.getertebatLanguage());
-        mActivity.setTheme(ertebat.getertebatThemeResourceId());
+        setLanguage(mActivity, Ertebat.getErtebatLanguage());
+        mActivity.setTheme(Ertebat.getErtebatThemeResourceId());
     }
 
     /**

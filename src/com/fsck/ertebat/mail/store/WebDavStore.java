@@ -1,14 +1,14 @@
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.controller.MessageRetrievalListener;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.*;
-import com.fsck.ertebat.mail.filter.EOLConvertingOutputStream;
-import com.fsck.ertebat.mail.internet.MimeMessage;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.controller.MessageRetrievalListener;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.*;
+import com.fsck.Ertebat.mail.filter.EOLConvertingOutputStream;
+import com.fsck.Ertebat.mail.internet.MimeMessage;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.*;
@@ -745,7 +745,7 @@ public class WebDavStore extends Store {
                 doFBA(null);
             }
         } catch (IOException ioe) {
-            Log.e(ertebat.LOG_TAG, "Error during authentication: " + ioe + "\nStack: " + processException(ioe));
+            Log.e(Ertebat.LOG_TAG, "Error during authentication: " + ioe + "\nStack: " + processException(ioe));
             throw new MessagingException("Error during authentication", ioe);
         }
 
@@ -815,7 +815,7 @@ public class WebDavStore extends Store {
         } catch (SSLException e) {
             throw new CertificateValidationException(e.getMessage(), e);
         } catch (IOException ioe) {
-            Log.e(ertebat.LOG_TAG, "IOException: " + ioe + "\nTrace: " + processException(ioe));
+            Log.e(Ertebat.LOG_TAG, "IOException: " + ioe + "\nTrace: " + processException(ioe));
             throw new MessagingException("IOException", ioe);
         }
 
@@ -917,7 +917,7 @@ public class WebDavStore extends Store {
                     response = httpClient.executeOverride(request, mContext);
                     authenticated = testAuthenticationResponse(response);
                 } catch (URISyntaxException e) {
-                    Log.e(ertebat.LOG_TAG, "URISyntaxException caught " + e + "\nTrace: " + processException(e));
+                    Log.e(Ertebat.LOG_TAG, "URISyntaxException caught " + e + "\nTrace: " + processException(e));
                     throw new MessagingException("URISyntaxException caught", e);
                 }
             } else {
@@ -1011,7 +1011,7 @@ public class WebDavStore extends Store {
                         }
                     }
                 } catch (URISyntaxException e) {
-                    Log.e(ertebat.LOG_TAG, "URISyntaxException caught " + e + "\nTrace: " + processException(e));
+                    Log.e(Ertebat.LOG_TAG, "URISyntaxException caught " + e + "\nTrace: " + processException(e));
                     throw new MessagingException("URISyntaxException caught", e);
                 }
             }
@@ -1048,10 +1048,10 @@ public class WebDavStore extends Store {
                 Scheme s = new Scheme("https", new WebDavSocketFactory(mHost, 443), 443);
                 reg.register(s);
             } catch (NoSuchAlgorithmException nsa) {
-                Log.e(ertebat.LOG_TAG, "NoSuchAlgorithmException in getHttpClient: " + nsa);
+                Log.e(Ertebat.LOG_TAG, "NoSuchAlgorithmException in getHttpClient: " + nsa);
                 throw new MessagingException("NoSuchAlgorithmException in getHttpClient: " + nsa);
             } catch (KeyManagementException kme) {
-                Log.e(ertebat.LOG_TAG, "KeyManagementException in getHttpClient: " + kme);
+                Log.e(Ertebat.LOG_TAG, "KeyManagementException in getHttpClient: " + kme);
                 throw new MessagingException("KeyManagementException in getHttpClient: " + kme);
             }
         }
@@ -1118,10 +1118,10 @@ public class WebDavStore extends Store {
                 istream = WebDavHttpClient.getUngzippedContent(entity);
             }
         } catch (UnsupportedEncodingException uee) {
-            Log.e(ertebat.LOG_TAG, "UnsupportedEncodingException: " + uee + "\nTrace: " + processException(uee));
+            Log.e(Ertebat.LOG_TAG, "UnsupportedEncodingException: " + uee + "\nTrace: " + processException(uee));
             throw new MessagingException("UnsupportedEncodingException", uee);
         } catch (IOException ioe) {
-            Log.e(ertebat.LOG_TAG, "IOException: " + ioe + "\nTrace: " + processException(ioe));
+            Log.e(Ertebat.LOG_TAG, "IOException: " + ioe + "\nTrace: " + processException(ioe));
             throw new MessagingException("IOException", ioe);
         }
 
@@ -1146,8 +1146,8 @@ public class WebDavStore extends Store {
                                    boolean needsParsing)
     throws MessagingException {
         DataSet dataset = new DataSet();
-        if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_WEBDAV) {
-            Log.v(ertebat.LOG_TAG, "processRequest url = '" + url + "', method = '" + method + "', messageBody = '"
+        if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_WEBDAV) {
+            Log.v(Ertebat.LOG_TAG, "processRequest url = '" + url + "', method = '" + method + "', messageBody = '"
                   + messageBody + "'");
         }
 
@@ -1179,10 +1179,10 @@ public class WebDavStore extends Store {
 
                     dataset = myHandler.getDataSet();
                 } catch (SAXException se) {
-                    Log.e(ertebat.LOG_TAG, "SAXException in processRequest() " + se + "\nTrace: " + processException(se));
+                    Log.e(Ertebat.LOG_TAG, "SAXException in processRequest() " + se + "\nTrace: " + processException(se));
                     throw new MessagingException("SAXException in processRequest() ", se);
                 } catch (ParserConfigurationException pce) {
-                    Log.e(ertebat.LOG_TAG, "ParserConfigurationException in processRequest() " + pce + "\nTrace: "
+                    Log.e(Ertebat.LOG_TAG, "ParserConfigurationException in processRequest() " + pce + "\nTrace: "
                           + processException(pce));
                     throw new MessagingException("ParserConfigurationException in processRequest() ", pce);
                 }
@@ -1190,10 +1190,10 @@ public class WebDavStore extends Store {
                 istream.close();
             }
         } catch (UnsupportedEncodingException uee) {
-            Log.e(ertebat.LOG_TAG, "UnsupportedEncodingException: " + uee + "\nTrace: " + processException(uee));
+            Log.e(Ertebat.LOG_TAG, "UnsupportedEncodingException: " + uee + "\nTrace: " + processException(uee));
             throw new MessagingException("UnsupportedEncodingException in processRequest() ", uee);
         } catch (IOException ioe) {
-            Log.e(ertebat.LOG_TAG, "IOException: " + ioe + "\nTrace: " + processException(ioe));
+            Log.e(Ertebat.LOG_TAG, "IOException: " + ioe + "\nTrace: " + processException(ioe));
             throw new MessagingException("IOException in processRequest() ", ioe);
         }
 
@@ -1270,7 +1270,7 @@ public class WebDavStore extends Store {
                 }
                 encodedName = url;
             } catch (UnsupportedEncodingException uee) {
-                Log.e(ertebat.LOG_TAG, "UnsupportedEncodingException URLEncoding folder name, skipping encoded");
+                Log.e(Ertebat.LOG_TAG, "UnsupportedEncodingException URLEncoding folder name, skipping encoded");
                 encodedName = name;
             }
 
@@ -1339,7 +1339,7 @@ public class WebDavStore extends Store {
             headers.put("Brief", "t");
             headers.put("If-Match", "*");
             String action = (isMove ? "BMOVE" : "BCOPY");
-            Log.i(ertebat.LOG_TAG, "Moving " + messages.length + " messages to " + destFolder.mFolderUrl);
+            Log.i(Ertebat.LOG_TAG, "Moving " + messages.length + " messages to " + destFolder.mFolderUrl);
 
             processRequest(mFolderUrl, action, messageBody, headers, false);
         }
@@ -1362,8 +1362,8 @@ public class WebDavStore extends Store {
             if (dataset != null) {
                 messageCount = dataset.getMessageCount();
             }
-            if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_WEBDAV) {
-                Log.v(ertebat.LOG_TAG, "Counted messages and webdav returned: "+messageCount);
+            if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_WEBDAV) {
+                Log.v(Ertebat.LOG_TAG, "Counted messages and webdav returned: "+messageCount);
             }
 
             return messageCount;
@@ -1590,7 +1590,7 @@ public class WebDavStore extends Store {
                  */
                 if (wdMessage.getUrl().equals("")) {
                     wdMessage.setUrl(getMessageUrls(new String[] { wdMessage.getUid() }).get(wdMessage.getUid()));
-                    Log.i(ertebat.LOG_TAG, "Fetching messages with UID = '" + wdMessage.getUid() + "', URL = '"
+                    Log.i(Ertebat.LOG_TAG, "Fetching messages with UID = '" + wdMessage.getUid() + "', URL = '"
                           + wdMessage.getUrl() + "'");
                     if (wdMessage.getUrl().equals("")) {
                         throw new MessagingException("Unable to get URL for message");
@@ -1598,7 +1598,7 @@ public class WebDavStore extends Store {
                 }
 
                 try {
-                    Log.i(ertebat.LOG_TAG, "Fetching message with UID = '" + wdMessage.getUid() + "', URL = '"
+                    Log.i(Ertebat.LOG_TAG, "Fetching message with UID = '" + wdMessage.getUid() + "', URL = '"
                           + wdMessage.getUrl() + "'");
                     HttpGet httpget = new HttpGet(new URI(wdMessage.getUrl()));
                     HttpResponse response;
@@ -1654,13 +1654,13 @@ public class WebDavStore extends Store {
                     }
 
                 } catch (IllegalArgumentException iae) {
-                    Log.e(ertebat.LOG_TAG, "IllegalArgumentException caught " + iae + "\nTrace: " + processException(iae));
+                    Log.e(Ertebat.LOG_TAG, "IllegalArgumentException caught " + iae + "\nTrace: " + processException(iae));
                     throw new MessagingException("IllegalArgumentException caught", iae);
                 } catch (URISyntaxException use) {
-                    Log.e(ertebat.LOG_TAG, "URISyntaxException caught " + use + "\nTrace: " + processException(use));
+                    Log.e(Ertebat.LOG_TAG, "URISyntaxException caught " + use + "\nTrace: " + processException(use));
                     throw new MessagingException("URISyntaxException caught", use);
                 } catch (IOException ioe) {
-                    Log.e(ertebat.LOG_TAG, "Non-success response code loading message, response code was " + statusCode
+                    Log.e(Ertebat.LOG_TAG, "Non-success response code loading message, response code was " + statusCode
                           + "\nURL: " + wdMessage.getUrl() + "\nError: " + ioe.getMessage() + "\nTrace: "
                           + processException(ioe));
                     throw new MessagingException("Failure code " + statusCode, ioe);
@@ -1731,7 +1731,7 @@ public class WebDavStore extends Store {
                 try {
                     wdMessage.setFlagInternal(Flag.SEEN, uidToReadStatus.get(wdMessage.getUid()));
                 } catch (NullPointerException e) {
-                    Log.v(ertebat.LOG_TAG,"Under some weird circumstances, setting the read status when syncing from webdav threw an NPE. Skipping.");
+                    Log.v(Ertebat.LOG_TAG,"Under some weird circumstances, setting the read status when syncing from webdav threw an NPE. Skipping.");
                 }
 
                 if (listener != null) {
@@ -1800,7 +1800,7 @@ public class WebDavStore extends Store {
                     wdMessage.setNewHeaders(envelope);
                     wdMessage.setFlagInternal(Flag.SEEN, envelope.getReadStatus());
                 } else {
-                    Log.e(ertebat.LOG_TAG,"Asked to get metadata for a non-existent message: "+wdMessage.getUid());
+                    Log.e(Ertebat.LOG_TAG,"Asked to get metadata for a non-existent message: "+wdMessage.getUid());
                 }
 
                 if (listener != null) {
@@ -1912,7 +1912,7 @@ public class WebDavStore extends Store {
                     }
                     messageURL += URLEncoder.encode(message.getUid() + ":" + System.currentTimeMillis() + ".eml", "UTF-8");
 
-                    Log.i(ertebat.LOG_TAG, "Uploading message as " + messageURL);
+                    Log.i(Ertebat.LOG_TAG, "Uploading message as " + messageURL);
 
                     httpmethod = new HttpGeneric(messageURL);
                     httpmethod.setMethod("PUT");
@@ -1951,7 +1951,7 @@ public class WebDavStore extends Store {
 
         @Override
         public String getUidFromMessageId(Message message) throws MessagingException {
-            Log.e(ertebat.LOG_TAG,
+            Log.e(Ertebat.LOG_TAG,
                   "Unimplemented method getUidFromMessageId in WebDavStore.WebDavFolder could lead to duplicate messages "
                   + " being uploaded to the Sent folder");
             return null;
@@ -1959,7 +1959,7 @@ public class WebDavStore extends Store {
 
         @Override
         public void setFlags(Flag[] flags, boolean value) throws MessagingException {
-            Log.e(ertebat.LOG_TAG,
+            Log.e(Ertebat.LOG_TAG,
                   "Unimplemented method setFlags(Flag[], boolean) breaks markAllMessagesAsRead and EmptyTrash");
             // Try to make this efficient by not retrieving all of the messages
         }
@@ -2001,10 +2001,10 @@ public class WebDavStore extends Store {
                 end = java.net.URLEncoder.encode(end, "UTF-8");
                 end = end.replaceAll("\\+", "%20");
             } catch (UnsupportedEncodingException uee) {
-                Log.e(ertebat.LOG_TAG, "UnsupportedEncodingException caught in setUrl: " + uee + "\nTrace: "
+                Log.e(Ertebat.LOG_TAG, "UnsupportedEncodingException caught in setUrl: " + uee + "\nTrace: "
                       + processException(uee));
             } catch (IllegalArgumentException iae) {
-                Log.e(ertebat.LOG_TAG, "IllegalArgumentException caught in setUrl: " + iae + "\nTrace: "
+                Log.e(Ertebat.LOG_TAG, "IllegalArgumentException caught in setUrl: " + iae + "\nTrace: "
                       + processException(iae));
             }
 
@@ -2059,7 +2059,7 @@ public class WebDavStore extends Store {
         @Override
         public void delete(String trashFolderName) throws MessagingException {
             WebDavFolder wdFolder = (WebDavFolder) getFolder();
-            Log.i(ertebat.LOG_TAG, "Deleting message by moving to " + trashFolderName);
+            Log.i(Ertebat.LOG_TAG, "Deleting message by moving to " + trashFolderName);
             wdFolder.moveMessages(new Message[] { this }, wdFolder.getStore().getFolder(trashFolderName));
         }
 
@@ -2357,7 +2357,7 @@ public class WebDavStore extends Store {
                                 Date parsedDate = dfInput.parse(date);
                                 tempDate = dfOutput.format(parsedDate);
                             } catch (java.text.ParseException pe) {
-                                Log.e(ertebat.LOG_TAG, "Error parsing date: " + pe + "\nTrace: " + processException(pe));
+                                Log.e(Ertebat.LOG_TAG, "Error parsing date: " + pe + "\nTrace: " + processException(pe));
                             }
                             envelope.addHeader(header, tempDate);
                         } else {
@@ -2396,8 +2396,8 @@ public class WebDavStore extends Store {
         public HttpGeneric(final String uri) {
             super();
 
-            if (ertebat.DEBUG) {
-                Log.v(ertebat.LOG_TAG, "Starting uri = '" + uri + "'");
+            if (Ertebat.DEBUG) {
+                Log.v(Ertebat.LOG_TAG, "Starting uri = '" + uri + "'");
             }
 
             String[] urlParts = uri.split("/");
@@ -2415,10 +2415,10 @@ public class WebDavStore extends Store {
                     end = end.replaceAll("\\+", "%20");
                 }
             } catch (UnsupportedEncodingException uee) {
-                Log.e(ertebat.LOG_TAG, "UnsupportedEncodingException caught in HttpGeneric(String uri): " + uee
+                Log.e(Ertebat.LOG_TAG, "UnsupportedEncodingException caught in HttpGeneric(String uri): " + uee
                       + "\nTrace: " + processException(uee));
             } catch (IllegalArgumentException iae) {
-                Log.e(ertebat.LOG_TAG, "IllegalArgumentException caught in HttpGeneric(String uri): " + iae + "\nTrace: "
+                Log.e(Ertebat.LOG_TAG, "IllegalArgumentException caught in HttpGeneric(String uri): " + iae + "\nTrace: "
                       + processException(iae));
             }
 
@@ -2429,13 +2429,13 @@ public class WebDavStore extends Store {
                     url = urlParts[i];
                 }
             }
-            if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_WEBDAV) {
-                Log.v(ertebat.LOG_TAG, "url = '" + url + "' length = " + url.length()
+            if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_WEBDAV) {
+                Log.v(Ertebat.LOG_TAG, "url = '" + url + "' length = " + url.length()
                       + ", end = '" + end + "' length = " + end.length());
             }
             url = url + "/" + end;
 
-            Log.i(ertebat.LOG_TAG, "url = " + url);
+            Log.i(Ertebat.LOG_TAG, "url = " + url);
             setURI(URI.create(url));
         }
 
@@ -2465,7 +2465,7 @@ public class WebDavStore extends Store {
          * the License for the specific language governing permissions and limitations under the License.
          */
         public static void modifyRequestToAcceptGzipResponse(HttpRequest request) {
-            Log.i(ertebat.LOG_TAG, "Requesting gzipped data");
+            Log.i(Ertebat.LOG_TAG, "Requesting gzipped data");
             request.addHeader("Accept-Encoding", "gzip");
         }
 
@@ -2481,7 +2481,7 @@ public class WebDavStore extends Store {
             if (contentEncoding == null)
                 return responseStream;
             if (contentEncoding.contains("gzip")) {
-                Log.i(ertebat.LOG_TAG, "Response is gzipped");
+                Log.i(Ertebat.LOG_TAG, "Response is gzipped");
                 responseStream = new GZIPInputStream(responseStream);
             }
             return responseStream;

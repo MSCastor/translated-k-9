@@ -1,12 +1,12 @@
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.activity.InsertableHtmlContent;
-import com.fsck.ertebat.helper.HtmlConverter;
-import com.fsck.ertebat.helper.StringUtils;
-import com.fsck.ertebat.mail.Body;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.activity.InsertableHtmlContent;
+import com.fsck.Ertebat.helper.HtmlConverter;
+import com.fsck.Ertebat.helper.StringUtils;
+import com.fsck.Ertebat.mail.Body;
 
 public class TextBodyBuilder {
     private boolean mIncludeQuotedText = true;
@@ -44,8 +44,8 @@ public class TextBodyBuilder {
         if (mIncludeQuotedText) {
             InsertableHtmlContent quotedHtmlContent = getQuotedTextHtml();
 
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "insertable: " + quotedHtmlContent.toDebugString());
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "insertable: " + quotedHtmlContent.toDebugString());
             }
 
             if (mAppendSignature) {

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,13 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.BaseAccount;
-import com.fsck.ertebat.FontSizes;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.search.SearchAccount;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.BaseAccount;
+import com.fsck.Ertebat.FontSizes;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.search.SearchAccount;
+import com.top.Ertebat.mail.R;
 
 
 /**
@@ -31,8 +31,8 @@ import com.top.ertebat.mail.R;
  * method to perform an action when an account is selected.
  * </p>
  */
-public abstract class AccountList extends ertebatListActivity implements OnItemClickListener {
-    private FontSizes mFontSizes = ertebat.getFontSizes();
+public abstract class AccountList extends ErtebatListActivity implements OnItemClickListener {
+    private FontSizes mFontSizes = Ertebat.getFontSizes();
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -71,7 +71,7 @@ public abstract class AccountList extends ertebatListActivity implements OnItemC
     public void populateListView(Account[] realAccounts) {
         List<BaseAccount> accounts = new ArrayList<BaseAccount>();
 
-        if (displaySpecialAccounts() && !ertebat.isHideSpecialAccounts()) {
+        if (displaySpecialAccounts() && !Ertebat.isHideSpecialAccounts()) {
             BaseAccount unifiedInboxAccount = SearchAccount.createUnifiedInboxAccount(this);
             BaseAccount allMessagesAccount = SearchAccount.createAllMessagesAccount(this);
 

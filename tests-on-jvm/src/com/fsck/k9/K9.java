@@ -1,5 +1,5 @@
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
-public class ertebat {
+public class Ertebat {
     public static boolean DEBUG = false;
 }

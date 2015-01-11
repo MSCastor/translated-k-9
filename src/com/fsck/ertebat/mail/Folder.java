@@ -1,14 +1,14 @@
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import android.util.Log;
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.controller.MessageRetrievalListener;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.controller.MessageRetrievalListener;
 
 
 public abstract class Folder {
@@ -154,8 +154,8 @@ public abstract class Folder {
         // This is causing trouble. Disabled for now. See issue 1733
         //throw new RuntimeException("fetchPart() not implemented.");
 
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "fetchPart() not implemented.");
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "fetchPart() not implemented.");
     }
 
     public abstract void delete(boolean recurse) throws MessagingException;

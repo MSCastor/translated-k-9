@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,24 +21,24 @@ import android.preference.PreferenceScreen;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.ertebat.NotificationHideSubject;
-import com.fsck.ertebat.ertebat.NotificationQuickDelete;
-import com.fsck.ertebat.ertebat.SplitViewMode;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.ColorPickerDialog;
-import com.fsck.ertebat.activity.ertebatPreferenceActivity;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.helper.FileBrowserHelper;
-import com.fsck.ertebat.helper.FileBrowserHelper.FileBrowserFailOverCallback;
-import com.fsck.ertebat.preferences.CheckBoxListPreference;
-import com.fsck.ertebat.preferences.TimePickerPreference;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Ertebat.NotificationHideSubject;
+import com.fsck.Ertebat.Ertebat.NotificationQuickDelete;
+import com.fsck.Ertebat.Ertebat.SplitViewMode;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.ColorPickerDialog;
+import com.fsck.Ertebat.activity.ErtebatPreferenceActivity;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.helper.FileBrowserHelper;
+import com.fsck.Ertebat.helper.FileBrowserHelper.FileBrowserFailOverCallback;
+import com.fsck.Ertebat.preferences.CheckBoxListPreference;
+import com.fsck.Ertebat.preferences.TimePickerPreference;
 
-import com.fsck.ertebat.service.MailService;
+import com.fsck.Ertebat.service.MailService;
 
 
-public class Prefs extends ertebatPreferenceActivity {
+public class Prefs extends ErtebatPreferenceActivity {
 
     /**
      * Immutable empty {@link CharSequence} array
@@ -141,8 +141,8 @@ public class Prefs extends ertebatPreferenceActivity {
     private CheckBoxListPreference mVisibleRefileActions;
 
     private CheckBoxPreference mQuietTimeEnabled;
-    private com.fsck.ertebat.preferences.TimePickerPreference mQuietTimeStarts;
-    private com.fsck.ertebat.preferences.TimePickerPreference mQuietTimeEnds;
+    private com.fsck.Ertebat.preferences.TimePickerPreference mQuietTimeStarts;
+    private com.fsck.Ertebat.preferences.TimePickerPreference mQuietTimeEnds;
     private ListPreference mNotificationQuickDelete;
 //    private Preference mAttachmentPathPreference;
 
@@ -173,17 +173,17 @@ public class Prefs extends ertebatPreferenceActivity {
                 entryValueVector.remove(i);
             }
         }
-        initListPreference(mLanguage, ertebat.getertebatLanguage(),
+        initListPreference(mLanguage, Ertebat.getErtebatLanguage(),
                            entryVector.toArray(EMPTY_CHAR_SEQUENCE_ARRAY),
                            entryValueVector.toArray(EMPTY_CHAR_SEQUENCE_ARRAY));
 
-        mTheme = setupListPreference(PREFERENCE_THEME, themeIdToName(ertebat.getertebatTheme()));
+        mTheme = setupListPreference(PREFERENCE_THEME, themeIdToName(Ertebat.getErtebatTheme()));
         mFixedMessageTheme = (CheckBoxPreference) findPreference(PREFERENCE_FIXED_MESSAGE_THEME);
-        mFixedMessageTheme.setChecked(ertebat.useFixedMessageViewTheme());
+        mFixedMessageTheme.setChecked(Ertebat.useFixedMessageViewTheme());
         mMessageTheme = setupListPreference(PREFERENCE_MESSAGE_VIEW_THEME,
-                themeIdToName(ertebat.getertebatMessageViewThemeSetting()));
+                themeIdToName(Ertebat.getErtebatMessageViewThemeSetting()));
         mComposerTheme = setupListPreference(PREFERENCE_COMPOSER_THEME,
-                themeIdToName(ertebat.getertebatComposerThemeSetting()));
+                themeIdToName(Ertebat.getErtebatComposerThemeSetting()));
 
         findPreference(PREFERENCE_FONT_SIZE).setOnPreferenceClickListener(
         new Preference.OnPreferenceClickListener() {
@@ -194,17 +194,17 @@ public class Prefs extends ertebatPreferenceActivity {
         });
 
 //        mAnimations = (CheckBoxPreference)findPreference(PREFERENCE_ANIMATIONS);
-//        mAnimations.setChecked(ertebat.showAnimations());
+//        mAnimations.setChecked(Ertebat.showAnimations());
 
 //        mGestures = (CheckBoxPreference)findPreference(PREFERENCE_GESTURES);
-//        mGestures.setChecked(ertebat.gesturesEnabled());
+//        mGestures.setChecked(Ertebat.gesturesEnabled());
 
 //        mVolumeNavigation = (CheckBoxListPreference)findPreference(PREFERENCE_VOLUME_NAVIGATION);
 //        mVolumeNavigation.setItems(new CharSequence[] {getString(R.string.volume_navigation_message), getString(R.string.volume_navigation_list)});
-//        mVolumeNavigation.setCheckedItems(new boolean[] {ertebat.useVolumeKeysForNavigationEnabled(), ertebat.useVolumeKeysForListNavigationEnabled()});
+//        mVolumeNavigation.setCheckedItems(new boolean[] {Ertebat.useVolumeKeysForNavigationEnabled(), Ertebat.useVolumeKeysForListNavigationEnabled()});
 
 //        mStartIntegratedInbox = (CheckBoxPreference)findPreference(PREFERENCE_START_INTEGRATED_INBOX);
-//        mStartIntegratedInbox.setChecked(ertebat.startIntegratedInbox());
+//        mStartIntegratedInbox.setChecked(Ertebat.startIntegratedInbox());
 
 //        mConfirmActions = (CheckBoxListPreference) findPreference(PREFERENCE_CONFIRM_ACTIONS);
 
@@ -214,66 +214,66 @@ public class Prefs extends ertebatPreferenceActivity {
         int index = 0;
 
         confirmActionEntries[index] = getString(R.string.global_settings_confirm_action_delete);
-        confirmActionValues[index++] = ertebat.confirmDelete();
+        confirmActionValues[index++] = Ertebat.confirmDelete();
         confirmActionEntries[index] = getString(R.string.global_settings_confirm_action_delete_starred);
-        confirmActionValues[index++] = ertebat.confirmDeleteStarred();
+        confirmActionValues[index++] = Ertebat.confirmDeleteStarred();
         if (canDeleteFromNotification) {
             confirmActionEntries[index] = getString(R.string.global_settings_confirm_action_delete_notif);
-            confirmActionValues[index++] = ertebat.confirmDeleteFromNotification();
+            confirmActionValues[index++] = Ertebat.confirmDeleteFromNotification();
         }
         confirmActionEntries[index] = getString(R.string.global_settings_confirm_action_spam);
-        confirmActionValues[index++] = ertebat.confirmSpam();
+        confirmActionValues[index++] = Ertebat.confirmSpam();
 
 //        mConfirmActions.setItems(confirmActionEntries);
 //        mConfirmActions.setCheckedItems(confirmActionValues);
 
 //        mNotificationHideSubject = setupListPreference(PREFERENCE_NOTIFICATION_HIDE_SUBJECT,
-//                ertebat.getNotificationHideSubject().toString());
+//                Ertebat.getNotificationHideSubject().toString());
 
         mMeasureAccounts = (CheckBoxPreference)findPreference(PREFERENCE_MEASURE_ACCOUNTS);
-        mMeasureAccounts.setChecked(ertebat.measureAccounts());
+        mMeasureAccounts.setChecked(Ertebat.measureAccounts());
 
         mCountSearch = (CheckBoxPreference)findPreference(PREFERENCE_COUNT_SEARCH);
-        mCountSearch.setChecked(ertebat.countSearchMessages());
+        mCountSearch.setChecked(Ertebat.countSearchMessages());
 
         mHideSpecialAccounts = (CheckBoxPreference)findPreference(PREFERENCE_HIDE_SPECIAL_ACCOUNTS);
-        mHideSpecialAccounts.setChecked(ertebat.isHideSpecialAccounts());
+        mHideSpecialAccounts.setChecked(Ertebat.isHideSpecialAccounts());
 
 
         mPreviewLines = setupListPreference(PREFERENCE_MESSAGELIST_PREVIEW_LINES,
-                                            Integer.toString(ertebat.messageListPreviewLines()));
+                                            Integer.toString(Ertebat.messageListPreviewLines()));
 
         mSenderAboveSubject = (CheckBoxPreference)findPreference(PREFERENCE_MESSAGELIST_SENDER_ABOVE_SUBJECT);
-        mSenderAboveSubject.setChecked(ertebat.messageListSenderAboveSubject());
+        mSenderAboveSubject.setChecked(Ertebat.messageListSenderAboveSubject());
         mCheckboxes = (CheckBoxPreference)findPreference(PREFERENCE_MESSAGELIST_CHECKBOXES);
-        mCheckboxes.setChecked(ertebat.messageListCheckboxes());
+        mCheckboxes.setChecked(Ertebat.messageListCheckboxes());
 
         mStars = (CheckBoxPreference)findPreference(PREFERENCE_MESSAGELIST_STARS);
-        mStars.setChecked(ertebat.messageListStars());
+        mStars.setChecked(Ertebat.messageListStars());
 
         mShowCorrespondentNames = (CheckBoxPreference)findPreference(PREFERENCE_MESSAGELIST_SHOW_CORRESPONDENT_NAMES);
-        mShowCorrespondentNames.setChecked(ertebat.showCorrespondentNames());
+        mShowCorrespondentNames.setChecked(Ertebat.showCorrespondentNames());
 
         mShowContactName = (CheckBoxPreference)findPreference(PREFERENCE_MESSAGELIST_SHOW_CONTACT_NAME);
-        mShowContactName.setChecked(ertebat.showContactName());
+        mShowContactName.setChecked(Ertebat.showContactName());
 
         mShowContactPicture = (CheckBoxPreference)findPreference(PREFERENCE_MESSAGELIST_SHOW_CONTACT_PICTURE);
-        mShowContactPicture.setChecked(ertebat.showContactPicture());
+        mShowContactPicture.setChecked(Ertebat.showContactPicture());
 
         mColorizeMissingContactPictures = (CheckBoxPreference)findPreference(
                 PREFERENCE_MESSAGELIST_COLORIZE_MISSING_CONTACT_PICTURES);
-        mColorizeMissingContactPictures.setChecked(ertebat.isColorizeMissingContactPictures());
+        mColorizeMissingContactPictures.setChecked(Ertebat.isColorizeMissingContactPictures());
 
         mBackgroundAsUnreadIndicator = (CheckBoxPreference)findPreference(PREFERENCE_BACKGROUND_AS_UNREAD_INDICATOR);
-        mBackgroundAsUnreadIndicator.setChecked(ertebat.useBackgroundAsUnreadIndicator());
+        mBackgroundAsUnreadIndicator.setChecked(Ertebat.useBackgroundAsUnreadIndicator());
 
         mChangeContactNameColor = (CheckBoxPreference)findPreference(PREFERENCE_MESSAGELIST_CONTACT_NAME_COLOR);
-        mChangeContactNameColor.setChecked(ertebat.changeContactNameColor());
+        mChangeContactNameColor.setChecked(Ertebat.changeContactNameColor());
 
 //        mThreadedView = (CheckBoxPreference) findPreference(PREFERENCE_THREADED_VIEW);
-//        mThreadedView.setChecked(ertebat.isThreadedViewEnabled());
+//        mThreadedView.setChecked(Ertebat.isThreadedViewEnabled());
 
-        if (ertebat.changeContactNameColor()) {
+        if (Ertebat.changeContactNameColor()) {
             mChangeContactNameColor.setSummary(R.string.global_settings_registered_name_color_changed);
         } else {
             mChangeContactNameColor.setSummary(R.string.global_settings_registered_name_color_default);
@@ -293,23 +293,23 @@ public class Prefs extends ertebatPreferenceActivity {
         });
 
         mFixedWidth = (CheckBoxPreference)findPreference(PREFERENCE_MESSAGEVIEW_FIXEDWIDTH);
-        mFixedWidth.setChecked(ertebat.messageViewFixedWidthFont());
+        mFixedWidth.setChecked(Ertebat.messageViewFixedWidthFont());
 
 //        mReturnToList = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGEVIEW_RETURN_TO_LIST);
-//        mReturnToList.setChecked(ertebat.messageViewReturnToList());
+//        mReturnToList.setChecked(Ertebat.messageViewReturnToList());
 
 //        mShowNext = (CheckBoxPreference) findPreference(PREFERENCE_MESSAGEVIEW_SHOW_NEXT);
-//        mShowNext.setChecked(ertebat.messageViewShowNext());
+//        mShowNext.setChecked(Ertebat.messageViewShowNext());
 
         mAutofitWidth = (CheckBoxPreference) findPreference(PREFERENCE_AUTOFIT_WIDTH);
-        mAutofitWidth.setChecked(ertebat.autofitWidth());
+        mAutofitWidth.setChecked(Ertebat.autofitWidth());
 
         mQuietTimeEnabled = (CheckBoxPreference) findPreference(PREFERENCE_QUIET_TIME_ENABLED);
-        mQuietTimeEnabled.setChecked(ertebat.getQuietTimeEnabled());
+        mQuietTimeEnabled.setChecked(Ertebat.getQuietTimeEnabled());
 
         mQuietTimeStarts = (TimePickerPreference) findPreference(PREFERENCE_QUIET_TIME_STARTS);
-        mQuietTimeStarts.setDefaultValue(ertebat.getQuietTimeStarts());
-        mQuietTimeStarts.setSummary(ertebat.getQuietTimeStarts());
+        mQuietTimeStarts.setDefaultValue(Ertebat.getQuietTimeStarts());
+        mQuietTimeStarts.setSummary(Ertebat.getQuietTimeStarts());
         mQuietTimeStarts.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 final String time = (String) newValue;
@@ -319,8 +319,8 @@ public class Prefs extends ertebatPreferenceActivity {
         });
 
         mQuietTimeEnds = (TimePickerPreference) findPreference(PREFERENCE_QUIET_TIME_ENDS);
-        mQuietTimeEnds.setSummary(ertebat.getQuietTimeEnds());
-        mQuietTimeEnds.setDefaultValue(ertebat.getQuietTimeEnds());
+        mQuietTimeEnds.setSummary(Ertebat.getQuietTimeEnds());
+        mQuietTimeEnds.setDefaultValue(Ertebat.getQuietTimeEnds());
         mQuietTimeEnds.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 final String time = (String) newValue;
@@ -330,27 +330,27 @@ public class Prefs extends ertebatPreferenceActivity {
         });
 
         mNotificationQuickDelete = setupListPreference(PREFERENCE_NOTIF_QUICK_DELETE,
-                ertebat.getNotificationQuickDeleteBehaviour().toString());
+                Ertebat.getNotificationQuickDeleteBehaviour().toString());
         if (!MessagingController.platformSupportsExtendedNotifications()) {
             PreferenceScreen prefs = (PreferenceScreen) findPreference("notification_preferences");
             prefs.removePreference(mNotificationQuickDelete);
             mNotificationQuickDelete = null;
         }
 
-//        mBackgroundOps = setupListPreference(PREFERENCE_BACKGROUND_OPS, ertebat.getBackgroundOps().name());
+//        mBackgroundOps = setupListPreference(PREFERENCE_BACKGROUND_OPS, Ertebat.getBackgroundOps().name());
 
 //        mDebugLogging = (CheckBoxPreference)findPreference(PREFERENCE_DEBUG_LOGGING);
 //        mSensitiveLogging = (CheckBoxPreference)findPreference(PREFERENCE_SENSITIVE_LOGGING);
 //        mHideUserAgent = (CheckBoxPreference)findPreference(PREFERENCE_HIDE_USERAGENT);
 //        mHideTimeZone = (CheckBoxPreference)findPreference(PREFERENCE_HIDE_TIMEZONE);
 
-//        mDebugLogging.setChecked(ertebat.DEBUG);
-//        mSensitiveLogging.setChecked(ertebat.DEBUG_SENSITIVE);
-//        mHideUserAgent.setChecked(ertebat.hideUserAgent());
-//        mHideTimeZone.setChecked(ertebat.hideTimeZone());
+//        mDebugLogging.setChecked(Ertebat.DEBUG);
+//        mSensitiveLogging.setChecked(Ertebat.DEBUG_SENSITIVE);
+//        mHideUserAgent.setChecked(Ertebat.hideUserAgent());
+//        mHideTimeZone.setChecked(Ertebat.hideTimeZone());
 
 //        mAttachmentPathPreference = findPreference(PREFERENCE_ATTACHMENT_DEF_PATH);
-//        mAttachmentPathPreference.setSummary(ertebat.getAttachmentDefaultPath());
+//        mAttachmentPathPreference.setSummary(Ertebat.getAttachmentDefaultPath());
 //        mAttachmentPathPreference
 //        .setOnPreferenceClickListener(new OnPreferenceClickListener() {
 //            @Override
@@ -358,7 +358,7 @@ public class Prefs extends ertebatPreferenceActivity {
 //                FileBrowserHelper
 //                .getInstance()
 //                .showFileBrowserActivity(Prefs.this,
-//                                         new File(ertebat.getAttachmentDefaultPath()),
+//                                         new File(Ertebat.getAttachmentDefaultPath()),
 //                                         ACTIVITY_CHOOSE_FOLDER, callback);
 //
 //                return true;
@@ -369,7 +369,7 @@ public class Prefs extends ertebatPreferenceActivity {
 //                @Override
 //                public void onPathEntered(String path) {
 //                    mAttachmentPathPreference.setSummary(path);
-//                    ertebat.setAttachmentDefaultPath(path);
+//                    Ertebat.setAttachmentDefaultPath(path);
 //                }
 //
 //                @Override
@@ -380,7 +380,7 @@ public class Prefs extends ertebatPreferenceActivity {
 //        });
 
         mWrapFolderNames = (CheckBoxPreference)findPreference(PREFERENCE_FOLDERLIST_WRAP_NAME);
-        mWrapFolderNames.setChecked(ertebat.wrapFolderNames());
+        mWrapFolderNames.setChecked(Ertebat.wrapFolderNames());
 
         mVisibleRefileActions = (CheckBoxListPreference) findPreference(PREFERENCE_MESSAGEVIEW_VISIBLE_REFILE_ACTIONS);
         CharSequence[] visibleRefileActionsEntries = new CharSequence[5];
@@ -391,21 +391,21 @@ public class Prefs extends ertebatPreferenceActivity {
         visibleRefileActionsEntries[VISIBLE_REFILE_ACTIONS_SPAM] = getString(R.string.spam_action);
 
         boolean[] visibleRefileActionsValues = new boolean[5];
-        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_DELETE] = ertebat.isMessageViewDeleteActionVisible();
-        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_ARCHIVE] = ertebat.isMessageViewArchiveActionVisible();
-        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_MOVE] = ertebat.isMessageViewMoveActionVisible();
-        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_COPY] = ertebat.isMessageViewCopyActionVisible();
-        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_SPAM] = ertebat.isMessageViewSpamActionVisible();
+        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_DELETE] = Ertebat.isMessageViewDeleteActionVisible();
+        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_ARCHIVE] = Ertebat.isMessageViewArchiveActionVisible();
+        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_MOVE] = Ertebat.isMessageViewMoveActionVisible();
+        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_COPY] = Ertebat.isMessageViewCopyActionVisible();
+        visibleRefileActionsValues[VISIBLE_REFILE_ACTIONS_SPAM] = Ertebat.isMessageViewSpamActionVisible();
 
         mVisibleRefileActions.setItems(visibleRefileActionsEntries);
         mVisibleRefileActions.setCheckedItems(visibleRefileActionsValues);
 
 //        mSplitViewMode = (ListPreference) findPreference(PREFERENCE_SPLITVIEW_MODE);
-//        initListPreference(mSplitViewMode, ertebat.getSplitViewMode().name(),
+//        initListPreference(mSplitViewMode, Ertebat.getSplitViewMode().name(),
 //                mSplitViewMode.getEntries(), mSplitViewMode.getEntryValues());
     }
 
-    private static String themeIdToName(ertebat.Theme theme) {
+    private static String themeIdToName(Ertebat.Theme theme) {
         switch (theme) {
             case DARK: return "dark";
             case USE_GLOBAL: return "global";
@@ -413,91 +413,91 @@ public class Prefs extends ertebatPreferenceActivity {
         }
     }
 
-    private static ertebat.Theme themeNameToId(String theme) {
+    private static Ertebat.Theme themeNameToId(String theme) {
         if (TextUtils.equals(theme, "dark")) {
-            return ertebat.Theme.DARK;
+            return Ertebat.Theme.DARK;
         } else if (TextUtils.equals(theme, "global")) {
-            return ertebat.Theme.USE_GLOBAL;
+            return Ertebat.Theme.USE_GLOBAL;
         } else {
-            return ertebat.Theme.LIGHT;
+            return Ertebat.Theme.LIGHT;
         }
     }
 
     private void saveSettings() {
         SharedPreferences preferences = Preferences.getPreferences(this).getPreferences();
 
-        ertebat.setertebatLanguage(mLanguage.getValue());
+        Ertebat.setErtebatLanguage(mLanguage.getValue());
 
-        ertebat.setertebatTheme(themeNameToId(mTheme.getValue()));
-        ertebat.setUseFixedMessageViewTheme(mFixedMessageTheme.isChecked());
-        ertebat.setertebatMessageViewThemeSetting(themeNameToId(mMessageTheme.getValue()));
-        ertebat.setertebatComposerThemeSetting(themeNameToId(mComposerTheme.getValue()));
+        Ertebat.setErtebatTheme(themeNameToId(mTheme.getValue()));
+        Ertebat.setUseFixedMessageViewTheme(mFixedMessageTheme.isChecked());
+        Ertebat.setErtebatMessageViewThemeSetting(themeNameToId(mMessageTheme.getValue()));
+        Ertebat.setErtebatComposerThemeSetting(themeNameToId(mComposerTheme.getValue()));
 
-//        ertebat.setAnimations(mAnimations.isChecked());
-//        ertebat.setGesturesEnabled(mGestures.isChecked());
-//        ertebat.setUseVolumeKeysForNavigation(mVolumeNavigation.getCheckedItems()[0]);
-//        ertebat.setUseVolumeKeysForListNavigation(mVolumeNavigation.getCheckedItems()[1]);
-//        ertebat.setStartIntegratedInbox(!mHideSpecialAccounts.isChecked() && mStartIntegratedInbox.isChecked());
-//        ertebat.setNotificationHideSubject(NotificationHideSubject.valueOf(mNotificationHideSubject.getValue()));
+//        Ertebat.setAnimations(mAnimations.isChecked());
+//        Ertebat.setGesturesEnabled(mGestures.isChecked());
+//        Ertebat.setUseVolumeKeysForNavigation(mVolumeNavigation.getCheckedItems()[0]);
+//        Ertebat.setUseVolumeKeysForListNavigation(mVolumeNavigation.getCheckedItems()[1]);
+//        Ertebat.setStartIntegratedInbox(!mHideSpecialAccounts.isChecked() && mStartIntegratedInbox.isChecked());
+//        Ertebat.setNotificationHideSubject(NotificationHideSubject.valueOf(mNotificationHideSubject.getValue()));
 
 //        int index = 0;
-//        ertebat.setConfirmDelete(mConfirmActions.getCheckedItems()[index++]);
-//        ertebat.setConfirmDeleteStarred(mConfirmActions.getCheckedItems()[index++]);
+//        Ertebat.setConfirmDelete(mConfirmActions.getCheckedItems()[index++]);
+//        Ertebat.setConfirmDeleteStarred(mConfirmActions.getCheckedItems()[index++]);
 //        if (MessagingController.platformSupportsExtendedNotifications()) {
-//            ertebat.setConfirmDeleteFromNotification(mConfirmActions.getCheckedItems()[index++]);
+//            Ertebat.setConfirmDeleteFromNotification(mConfirmActions.getCheckedItems()[index++]);
 //        }
-//        ertebat.setConfirmSpam(mConfirmActions.getCheckedItems()[index++]);
+//        Ertebat.setConfirmSpam(mConfirmActions.getCheckedItems()[index++]);
 
-        ertebat.setMeasureAccounts(mMeasureAccounts.isChecked());
-        ertebat.setCountSearchMessages(mCountSearch.isChecked());
-        ertebat.setHideSpecialAccounts(mHideSpecialAccounts.isChecked());
-        ertebat.setMessageListPreviewLines(Integer.parseInt(mPreviewLines.getValue()));
-        ertebat.setMessageListCheckboxes(mCheckboxes.isChecked());
-        ertebat.setMessageListStars(mStars.isChecked());
-        ertebat.setShowCorrespondentNames(mShowCorrespondentNames.isChecked());
-        ertebat.setMessageListSenderAboveSubject(mSenderAboveSubject.isChecked());
-        ertebat.setShowContactName(mShowContactName.isChecked());
-        ertebat.setShowContactPicture(mShowContactPicture.isChecked());
-        ertebat.setColorizeMissingContactPictures(mColorizeMissingContactPictures.isChecked());
-        ertebat.setUseBackgroundAsUnreadIndicator(mBackgroundAsUnreadIndicator.isChecked());
-//        ertebat.setThreadedViewEnabled(mThreadedView.isChecked());
-        ertebat.setChangeContactNameColor(mChangeContactNameColor.isChecked());
-        ertebat.setMessageViewFixedWidthFont(mFixedWidth.isChecked());
-//        ertebat.setMessageViewReturnToList(mReturnToList.isChecked());
-//        ertebat.setMessageViewShowNext(mShowNext.isChecked());
-        ertebat.setAutofitWidth(mAutofitWidth.isChecked());
-        ertebat.setQuietTimeEnabled(mQuietTimeEnabled.isChecked());
+        Ertebat.setMeasureAccounts(mMeasureAccounts.isChecked());
+        Ertebat.setCountSearchMessages(mCountSearch.isChecked());
+        Ertebat.setHideSpecialAccounts(mHideSpecialAccounts.isChecked());
+        Ertebat.setMessageListPreviewLines(Integer.parseInt(mPreviewLines.getValue()));
+        Ertebat.setMessageListCheckboxes(mCheckboxes.isChecked());
+        Ertebat.setMessageListStars(mStars.isChecked());
+        Ertebat.setShowCorrespondentNames(mShowCorrespondentNames.isChecked());
+        Ertebat.setMessageListSenderAboveSubject(mSenderAboveSubject.isChecked());
+        Ertebat.setShowContactName(mShowContactName.isChecked());
+        Ertebat.setShowContactPicture(mShowContactPicture.isChecked());
+        Ertebat.setColorizeMissingContactPictures(mColorizeMissingContactPictures.isChecked());
+        Ertebat.setUseBackgroundAsUnreadIndicator(mBackgroundAsUnreadIndicator.isChecked());
+//        Ertebat.setThreadedViewEnabled(mThreadedView.isChecked());
+        Ertebat.setChangeContactNameColor(mChangeContactNameColor.isChecked());
+        Ertebat.setMessageViewFixedWidthFont(mFixedWidth.isChecked());
+//        Ertebat.setMessageViewReturnToList(mReturnToList.isChecked());
+//        Ertebat.setMessageViewShowNext(mShowNext.isChecked());
+        Ertebat.setAutofitWidth(mAutofitWidth.isChecked());
+        Ertebat.setQuietTimeEnabled(mQuietTimeEnabled.isChecked());
 
         boolean[] enabledRefileActions = mVisibleRefileActions.getCheckedItems();
-        ertebat.setMessageViewDeleteActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_DELETE]);
-        ertebat.setMessageViewArchiveActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_ARCHIVE]);
-        ertebat.setMessageViewMoveActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_MOVE]);
-        ertebat.setMessageViewCopyActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_COPY]);
-        ertebat.setMessageViewSpamActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_SPAM]);
+        Ertebat.setMessageViewDeleteActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_DELETE]);
+        Ertebat.setMessageViewArchiveActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_ARCHIVE]);
+        Ertebat.setMessageViewMoveActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_MOVE]);
+        Ertebat.setMessageViewCopyActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_COPY]);
+        Ertebat.setMessageViewSpamActionVisible(enabledRefileActions[VISIBLE_REFILE_ACTIONS_SPAM]);
 
-        ertebat.setQuietTimeStarts(mQuietTimeStarts.getTime());
-        ertebat.setQuietTimeEnds(mQuietTimeEnds.getTime());
-        ertebat.setWrapFolderNames(mWrapFolderNames.isChecked());
+        Ertebat.setQuietTimeStarts(mQuietTimeStarts.getTime());
+        Ertebat.setQuietTimeEnds(mQuietTimeEnds.getTime());
+        Ertebat.setWrapFolderNames(mWrapFolderNames.isChecked());
 
         if (mNotificationQuickDelete != null) {
-            ertebat.setNotificationQuickDeleteBehaviour(
+            Ertebat.setNotificationQuickDeleteBehaviour(
                     NotificationQuickDelete.valueOf(mNotificationQuickDelete.getValue()));
         }
 
-//        ertebat.setSplitViewMode(SplitViewMode.valueOf(mSplitViewMode.getValue()));
-//        ertebat.setAttachmentDefaultPath(mAttachmentPathPreference.getSummary().toString());
-//        boolean needsRefresh = ertebat.setBackgroundOps(mBackgroundOps.getValue());
+//        Ertebat.setSplitViewMode(SplitViewMode.valueOf(mSplitViewMode.getValue()));
+//        Ertebat.setAttachmentDefaultPath(mAttachmentPathPreference.getSummary().toString());
+//        boolean needsRefresh = Ertebat.setBackgroundOps(mBackgroundOps.getValue());
 
-//        if (!ertebat.DEBUG && mDebugLogging.isChecked()) {
+//        if (!Ertebat.DEBUG && mDebugLogging.isChecked()) {
 //            Toast.makeText(this, R.string.debug_logging_enabled, Toast.LENGTH_LONG).show();
 //        }
-//        ertebat.DEBUG = mDebugLogging.isChecked();
-//        ertebat.DEBUG_SENSITIVE = mSensitiveLogging.isChecked();
-//        ertebat.setHideUserAgent(mHideUserAgent.isChecked());
-//        ertebat.setHideTimeZone(mHideTimeZone.isChecked());
+//        Ertebat.DEBUG = mDebugLogging.isChecked();
+//        Ertebat.DEBUG_SENSITIVE = mSensitiveLogging.isChecked();
+//        Ertebat.setHideUserAgent(mHideUserAgent.isChecked());
+//        Ertebat.setHideTimeZone(mHideTimeZone.isChecked());
 
         Editor editor = preferences.edit();
-        ertebat.save(editor);
+        Ertebat.save(editor);
         editor.commit();
 
 //        if (needsRefresh) {
@@ -518,10 +518,10 @@ public class Prefs extends ertebatPreferenceActivity {
     private void onChooseContactNameColor() {
         new ColorPickerDialog(this, new ColorPickerDialog.OnColorChangedListener() {
             public void colorChanged(int color) {
-                ertebat.setContactNameColor(color);
+                Ertebat.setContactNameColor(color);
             }
         },
-        ertebat.getContactNameColor()).show();
+        Ertebat.getContactNameColor()).show();
     }
 
     @Override
@@ -535,7 +535,7 @@ public class Prefs extends ertebatPreferenceActivity {
                     String filePath = fileUri.getPath();
                     if (filePath != null) {
 //                        mAttachmentPathPreference.setSummary(filePath.toString());
-                        ertebat.setAttachmentDefaultPath(filePath.toString());
+                        Ertebat.setAttachmentDefaultPath(filePath.toString());
                     }
                 }
             }

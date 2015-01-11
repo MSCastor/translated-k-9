@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,33 +15,33 @@ import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
-import com.fsck.ertebat.*;
-import com.fsck.ertebat.Account.FolderMode;
-import com.fsck.ertebat.activity.ertebatActivity;
-import com.fsck.ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.AuthType;
-import com.fsck.ertebat.mail.ConnectionSecurity;
-import com.fsck.ertebat.mail.ServerSettings;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.Transport;
-import com.fsck.ertebat.mail.store.ImapStore;
-import com.fsck.ertebat.mail.store.Pop3Store;
-import com.fsck.ertebat.mail.store.WebDavStore;
-import com.fsck.ertebat.mail.store.ImapStore.ImapStoreSettings;
-import com.fsck.ertebat.mail.store.WebDavStore.WebDavStoreSettings;
-import com.fsck.ertebat.mail.transport.SmtpTransport;
-import com.fsck.ertebat.service.MailService;
-import com.fsck.ertebat.view.ClientCertificateSpinner;
-import com.fsck.ertebat.view.ClientCertificateSpinner.OnClientCertificateChangedListener;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.*;
+import com.fsck.Ertebat.Account.FolderMode;
+import com.fsck.Ertebat.activity.ErtebatActivity;
+import com.fsck.Ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.AuthType;
+import com.fsck.Ertebat.mail.ConnectionSecurity;
+import com.fsck.Ertebat.mail.ServerSettings;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.Transport;
+import com.fsck.Ertebat.mail.store.ImapStore;
+import com.fsck.Ertebat.mail.store.Pop3Store;
+import com.fsck.Ertebat.mail.store.WebDavStore;
+import com.fsck.Ertebat.mail.store.ImapStore.ImapStoreSettings;
+import com.fsck.Ertebat.mail.store.WebDavStore.WebDavStoreSettings;
+import com.fsck.Ertebat.mail.transport.SmtpTransport;
+import com.fsck.Ertebat.service.MailService;
+import com.fsck.Ertebat.view.ClientCertificateSpinner;
+import com.fsck.Ertebat.view.ClientCertificateSpinner.OnClientCertificateChangedListener;
+import com.top.Ertebat.mail.R;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountSetupIncoming extends ertebatActivity implements OnClickListener {
+public class AccountSetupIncoming extends ErtebatActivity implements OnClickListener {
     private static final String EXTRA_ACCOUNT = "account";
     private static final String EXTRA_MAKE_DEFAULT = "makeDefault";
     private static final String STATE_SECURITY_TYPE_POSITION = "stateSecurityTypePosition";
@@ -505,7 +505,7 @@ public class AccountSetupIncoming extends ertebatActivity implements OnClickList
             port = mDefaultSslPort;
             break;
         default:
-            Log.e(ertebat.LOG_TAG, "Unhandled ConnectionSecurity type encountered");
+            Log.e(Ertebat.LOG_TAG, "Unhandled ConnectionSecurity type encountered");
             port = "";
         }
         return port;
@@ -530,7 +530,7 @@ public class AccountSetupIncoming extends ertebatActivity implements OnClickList
                     Store store = mAccount.getRemoteStore();
                     isPushCapable = store.isPushCapable();
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Could not get remote store", e);
+                    Log.e(Ertebat.LOG_TAG, "Could not get remote store", e);
                 }
                 if (isPushCapable && mAccount.getFolderPushMode() != FolderMode.NONE) {
                     MailService.actionRestartPushers(this, null);
@@ -638,7 +638,7 @@ public class AccountSetupIncoming extends ertebatActivity implements OnClickList
     }
 
     private void failure(Exception use) {
-        Log.e(ertebat.LOG_TAG, "Failure", use);
+        Log.e(Ertebat.LOG_TAG, "Failure", use);
         String toastText = getString(R.string.account_setup_bad_uri, use.getMessage());
 
         Toast toast = Toast.makeText(getApplication(), toastText, Toast.LENGTH_LONG);

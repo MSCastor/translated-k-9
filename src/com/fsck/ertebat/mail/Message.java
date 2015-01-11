@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.io.IOException;
 import java.util.Date;
@@ -8,11 +8,11 @@ import java.util.Set;
 
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.activity.MessageReference;
-import com.fsck.ertebat.mail.filter.CountingOutputStream;
-import com.fsck.ertebat.mail.filter.EOLConvertingOutputStream;
-import com.fsck.ertebat.mail.store.UnavailableStorageException;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.activity.MessageReference;
+import com.fsck.Ertebat.mail.filter.CountingOutputStream;
+import com.fsck.Ertebat.mail.filter.EOLConvertingOutputStream;
+import com.fsck.Ertebat.mail.store.UnavailableStorageException;
 
 
 public abstract class Message implements Part, CompositeBody {
@@ -259,9 +259,9 @@ public abstract class Message implements Part, CompositeBody {
             eolOut.flush();
             return out.getCount();
         } catch (IOException e) {
-            Log.e(ertebat.LOG_TAG, "Failed to calculate a message size", e);
+            Log.e(Ertebat.LOG_TAG, "Failed to calculate a message size", e);
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Failed to calculate a message size", e);
+            Log.e(Ertebat.LOG_TAG, "Failed to calculate a message size", e);
         }
         return 0;
     }
@@ -289,7 +289,7 @@ public abstract class Message implements Part, CompositeBody {
      * <strong>Note:</strong>
      * This method was introduced as a hack to prevent {@code ConcurrentModificationException}s. It
      * shouldn't be used unless absolutely necessary. See the comment in
-     * {@link com.fsck.ertebat.activity.MessageView.Listener#loadMessageForViewHeadersAvailable(com.fsck.ertebat.Account, String, String, Message)}
+     * {@link com.fsck.Ertebat.activity.MessageView.Listener#loadMessageForViewHeadersAvailable(com.fsck.Ertebat.Account, String, String, Message)}
      * for more information.
      * </p>
      */

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,14 +8,14 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import android.content.SharedPreferences;
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Account.SortType;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.Account.FolderMode;
-import com.fsck.ertebat.crypto.Apg;
-import com.fsck.ertebat.mail.store.StorageManager;
-import com.fsck.ertebat.preferences.Settings.*;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Account.SortType;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.Account.FolderMode;
+import com.fsck.Ertebat.crypto.Apg;
+import com.fsck.Ertebat.mail.store.StorageManager;
+import com.fsck.Ertebat.preferences.Settings.*;
 
 public class AccountSettings {
     public static final Map<String, TreeMap<Integer, SettingsDescription>> SETTINGS;
@@ -65,7 +65,7 @@ public class AccountSettings {
                 new V(1, new DeletePolicySetting(Account.DELETE_POLICY_NEVER))
             ));
         s.put("displayCount", Settings.versions(
-                new V(1, new IntegerResourceSetting(ertebat.DEFAULT_VISIBLE_LIMIT,
+                new V(1, new IntegerResourceSetting(Ertebat.DEFAULT_VISIBLE_LIMIT,
                         R.array.account_settings_display_count_values))
             ));
         s.put("draftsFolderName", Settings.versions(
@@ -272,7 +272,7 @@ public class AccountSettings {
             super(defaultValue);
 
             Map<Integer, String> mapping = new HashMap<Integer, String>();
-            String[] values = ertebat.app.getResources().getStringArray(resId);
+            String[] values = Ertebat.app.getResources().getStringArray(resId);
             for (String value : values) {
                 int intValue = Integer.parseInt(value);
                 mapping.put(intValue, value);
@@ -309,7 +309,7 @@ public class AccountSettings {
             super(defaultValue);
 
             Map<String, String> mapping = new HashMap<String, String>();
-            String[] values = ertebat.app.getResources().getStringArray(resId);
+            String[] values = Ertebat.app.getResources().getStringArray(resId);
             for (String value : values) {
                 mapping.put(value, value);
             }
@@ -355,12 +355,12 @@ public class AccountSettings {
 
         @Override
         public Object getDefaultValue() {
-            return StorageManager.getInstance(ertebat.app).getDefaultProviderId();
+            return StorageManager.getInstance(Ertebat.app).getDefaultProviderId();
         }
 
         @Override
         public Object fromString(String value) {
-            StorageManager storageManager = StorageManager.getInstance(ertebat.app);
+            StorageManager storageManager = StorageManager.getInstance(Ertebat.app);
             Map<String, String> providers = storageManager.getAvailableProviders();
             if (providers.containsKey(value)) {
                 return value;

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,9 +7,9 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.*;
 
-import com.fsck.ertebat.*;
-import com.fsck.ertebat.activity.ertebatPreferenceActivity;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.*;
+import com.fsck.Ertebat.activity.ErtebatPreferenceActivity;
+import com.top.Ertebat.mail.R;
 
 /**
  * Activity to configure the font size of the information displayed in the
@@ -17,7 +17,7 @@ import com.top.ertebat.mail.R;
  *
  * @see FontSizes
  */
-public class FontSizeSettings extends ertebatPreferenceActivity {
+public class FontSizeSettings extends ErtebatPreferenceActivity {
     /*
      * Keys of the preferences defined in res/xml/font_preferences.xml
      */
@@ -72,7 +72,7 @@ public class FontSizeSettings extends ertebatPreferenceActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FontSizes fontSizes = ertebat.getFontSizes();
+        FontSizes fontSizes = Ertebat.getFontSizes();
         addPreferencesFromResource(R.xml.font_preferences);
 
         mAccountName = setupListPreference(
@@ -157,7 +157,7 @@ public class FontSizeSettings extends ertebatPreferenceActivity {
      * changed) font size settings.
      */
     private void saveSettings() {
-        FontSizes fontSizes = ertebat.getFontSizes();
+        FontSizes fontSizes = Ertebat.getFontSizes();
 
         fontSizes.setAccountName(Integer.parseInt(mAccountName.getValue()));
         fontSizes.setAccountDescription(Integer.parseInt(mAccountDescription.getValue()));

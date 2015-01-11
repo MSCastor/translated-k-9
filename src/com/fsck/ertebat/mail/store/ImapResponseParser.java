@@ -1,9 +1,9 @@
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import android.text.TextUtils;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.filter.FixedLengthInputStream;
-import com.fsck.ertebat.mail.filter.PeekableInputStream;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.filter.FixedLengthInputStream;
+import com.fsck.Ertebat.mail.filter.PeekableInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -293,7 +293,7 @@ public class ImapResponseParser {
             } catch (Exception e) {
                 // Catch everything else and save it for later.
                 mException = e;
-                //Log.e(ertebat.LOG_TAG, "parseLiteral(): Exception in callback method", e);
+                //Log.e(Ertebat.LOG_TAG, "parseLiteral(): Exception in callback method", e);
             }
 
             // Check if only some of the literal data was read

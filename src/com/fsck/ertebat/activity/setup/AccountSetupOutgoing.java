@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,23 +15,23 @@ import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
-import com.fsck.ertebat.*;
-import com.fsck.ertebat.activity.ertebatActivity;
-import com.fsck.ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.AuthType;
-import com.fsck.ertebat.mail.ConnectionSecurity;
-import com.fsck.ertebat.mail.ServerSettings;
-import com.fsck.ertebat.mail.Transport;
-import com.fsck.ertebat.mail.transport.SmtpTransport;
-import com.fsck.ertebat.view.ClientCertificateSpinner;
-import com.fsck.ertebat.view.ClientCertificateSpinner.OnClientCertificateChangedListener;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.*;
+import com.fsck.Ertebat.activity.ErtebatActivity;
+import com.fsck.Ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.AuthType;
+import com.fsck.Ertebat.mail.ConnectionSecurity;
+import com.fsck.Ertebat.mail.ServerSettings;
+import com.fsck.Ertebat.mail.Transport;
+import com.fsck.Ertebat.mail.transport.SmtpTransport;
+import com.fsck.Ertebat.view.ClientCertificateSpinner;
+import com.fsck.Ertebat.view.ClientCertificateSpinner.OnClientCertificateChangedListener;
+import com.top.Ertebat.mail.R;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class AccountSetupOutgoing extends ertebatActivity implements OnClickListener,
+public class AccountSetupOutgoing extends ErtebatActivity implements OnClickListener,
     OnCheckedChangeListener {
     private static final String EXTRA_ACCOUNT = "account";
 
@@ -444,7 +444,7 @@ public class AccountSetupOutgoing extends ertebatActivity implements OnClickList
             break;
         default:
             port = "";
-            Log.e(ertebat.LOG_TAG, "Unhandled ConnectionSecurity type encountered");
+            Log.e(Ertebat.LOG_TAG, "Unhandled ConnectionSecurity type encountered");
         }
         return port;
     }
@@ -513,7 +513,7 @@ public class AccountSetupOutgoing extends ertebatActivity implements OnClickList
         validateFields();
     }
     private void failure(Exception use) {
-        Log.e(ertebat.LOG_TAG, "Failure", use);
+        Log.e(Ertebat.LOG_TAG, "Failure", use);
         String toastText = getString(R.string.account_setup_bad_uri, use.getMessage());
 
         Toast toast = Toast.makeText(getApplication(), toastText, Toast.LENGTH_LONG);

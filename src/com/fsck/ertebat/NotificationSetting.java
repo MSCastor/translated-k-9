@@ -1,4 +1,4 @@
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 /**
  * Describes how a notification should behave.

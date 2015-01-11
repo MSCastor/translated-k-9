@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +19,10 @@ import android.text.util.Rfc822Token;
 import android.text.util.Rfc822Tokenizer;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.helper.Contacts;
-import com.fsck.ertebat.helper.StringUtils;
-import com.fsck.ertebat.helper.Utility;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.helper.Contacts;
+import com.fsck.Ertebat.helper.StringUtils;
+import com.fsck.Ertebat.helper.Utility;
 
 
 public class Address {
@@ -163,12 +163,12 @@ public class Address {
                     Mailbox mailbox = (Mailbox)address;
                     addresses.add(new Address(mailbox.getLocalPart() + "@" + mailbox.getDomain(), mailbox.getName(), false));
                 } else {
-                    Log.e(ertebat.LOG_TAG, "Unknown address type from Mime4J: "
+                    Log.e(Ertebat.LOG_TAG, "Unknown address type from Mime4J: "
                             + address.getClass().toString());
                 }
             }
         } catch (MimeException pe) {
-            Log.e(ertebat.LOG_TAG, "MimeException in Address.parse()", pe);
+            Log.e(Ertebat.LOG_TAG, "MimeException in Address.parse()", pe);
             //but we do an silent failover : we just use the given string as name with empty address
             addresses.add(new Address(null, addressList, false));
         }
@@ -256,7 +256,7 @@ public class Address {
      *         A "friendly" name for this {@link Address}.
      */
     public CharSequence toFriendly(final Contacts contacts) {
-        if (!ertebat.showCorrespondentNames()) {
+        if (!Ertebat.showCorrespondentNames()) {
             return mAddress;
 
         } else if (contacts != null) {
@@ -265,9 +265,9 @@ public class Address {
             // TODO: The results should probably be cached for performance reasons.
 
             if (name != null) {
-                if (ertebat.changeContactNameColor()) {
+                if (Ertebat.changeContactNameColor()) {
                     final SpannableString coloredName = new SpannableString(name);
-                    coloredName.setSpan(new ForegroundColorSpan(ertebat.getContactNameColor()),
+                    coloredName.setSpan(new ForegroundColorSpan(Ertebat.getContactNameColor()),
                                         0,
                                         coloredName.length(),
                                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE

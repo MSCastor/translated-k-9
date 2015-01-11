@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -40,47 +40,47 @@ import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.Account.MessageFormat;
-import com.fsck.ertebat.activity.Search;
-import com.fsck.ertebat.controller.MessageRemovalListener;
-import com.fsck.ertebat.controller.MessageRetrievalListener;
-import com.fsck.ertebat.helper.HtmlConverter;
-import com.fsck.ertebat.helper.StringUtils;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.Body;
-import com.fsck.ertebat.mail.BodyPart;
-import com.fsck.ertebat.mail.CompositeBody;
-import com.fsck.ertebat.mail.FetchProfile;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.Message.RecipientType;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.filter.Base64OutputStream;
-import com.fsck.ertebat.mail.internet.MimeBodyPart;
-import com.fsck.ertebat.mail.internet.MimeHeader;
-import com.fsck.ertebat.mail.internet.MimeMessage;
-import com.fsck.ertebat.mail.internet.MimeMultipart;
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.internet.MimeUtility.ViewableContainer;
-import com.fsck.ertebat.mail.internet.TextBody;
-import com.fsck.ertebat.mail.store.LockableDatabase.DbCallback;
-import com.fsck.ertebat.mail.store.LockableDatabase.WrappedException;
-import com.fsck.ertebat.mail.store.StorageManager.StorageProvider;
-import com.fsck.ertebat.provider.AttachmentProvider;
-import com.fsck.ertebat.provider.EmailProvider;
-import com.fsck.ertebat.provider.EmailProvider.MessageColumns;
-import com.fsck.ertebat.search.LocalSearch;
-import com.fsck.ertebat.search.SearchSpecification.Attribute;
-import com.fsck.ertebat.search.SearchSpecification.Searchfield;
-import com.fsck.ertebat.search.SqlQueryBuilder;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.Account.MessageFormat;
+import com.fsck.Ertebat.activity.Search;
+import com.fsck.Ertebat.controller.MessageRemovalListener;
+import com.fsck.Ertebat.controller.MessageRetrievalListener;
+import com.fsck.Ertebat.helper.HtmlConverter;
+import com.fsck.Ertebat.helper.StringUtils;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.Body;
+import com.fsck.Ertebat.mail.BodyPart;
+import com.fsck.Ertebat.mail.CompositeBody;
+import com.fsck.Ertebat.mail.FetchProfile;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.Message.RecipientType;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.filter.Base64OutputStream;
+import com.fsck.Ertebat.mail.internet.MimeBodyPart;
+import com.fsck.Ertebat.mail.internet.MimeHeader;
+import com.fsck.Ertebat.mail.internet.MimeMessage;
+import com.fsck.Ertebat.mail.internet.MimeMultipart;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.internet.MimeUtility.ViewableContainer;
+import com.fsck.Ertebat.mail.internet.TextBody;
+import com.fsck.Ertebat.mail.store.LockableDatabase.DbCallback;
+import com.fsck.Ertebat.mail.store.LockableDatabase.WrappedException;
+import com.fsck.Ertebat.mail.store.StorageManager.StorageProvider;
+import com.fsck.Ertebat.provider.AttachmentProvider;
+import com.fsck.Ertebat.provider.EmailProvider;
+import com.fsck.Ertebat.provider.EmailProvider.MessageColumns;
+import com.fsck.Ertebat.search.LocalSearch;
+import com.fsck.Ertebat.search.SearchSpecification.Attribute;
+import com.fsck.Ertebat.search.SearchSpecification.Searchfield;
+import com.fsck.Ertebat.search.SqlQueryBuilder;
 
 /**
  * <pre>
@@ -217,14 +217,14 @@ public class LocalStore extends Store implements Serializable {
             try {
                 upgradeDatabase(db);
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Exception while upgrading database. Resetting the DB to v0", e);
+                Log.e(Ertebat.LOG_TAG, "Exception while upgrading database. Resetting the DB to v0", e);
                 db.setVersion(0);
                 upgradeDatabase(db);
             }
         }
 
         private void upgradeDatabase(final SQLiteDatabase db) {
-            Log.i(ertebat.LOG_TAG, String.format(Locale.US, "Upgrading database from version %d to version %d",
+            Log.i(Ertebat.LOG_TAG, String.format(Locale.US, "Upgrading database from version %d to version %d",
                                             db.getVersion(), DB_VERSION));
 
             AttachmentProvider.clear(mApplication);
@@ -377,21 +377,21 @@ public class LocalStore extends Store implements Serializable {
                         try {
                             db.execSQL("update messages set flags = replace(flags, 'X_NO_SEEN_INFO', 'X_BAD_FLAG')");
                         } catch (SQLiteException e) {
-                            Log.e(ertebat.LOG_TAG, "Unable to get rid of obsolete flag X_NO_SEEN_INFO", e);
+                            Log.e(Ertebat.LOG_TAG, "Unable to get rid of obsolete flag X_NO_SEEN_INFO", e);
                         }
                     }
                     if (db.getVersion() < 36) {
                         try {
                             db.execSQL("ALTER TABLE attachments ADD content_id TEXT");
                         } catch (SQLiteException e) {
-                            Log.e(ertebat.LOG_TAG, "Unable to add content_id column to attachments");
+                            Log.e(Ertebat.LOG_TAG, "Unable to add content_id column to attachments");
                         }
                     }
                     if (db.getVersion() < 37) {
                         try {
                             db.execSQL("ALTER TABLE attachments ADD content_disposition TEXT");
                         } catch (SQLiteException e) {
-                            Log.e(ertebat.LOG_TAG, "Unable to add content_disposition column to attachments");
+                            Log.e(Ertebat.LOG_TAG, "Unable to add content_disposition column to attachments");
                         }
                     }
 
@@ -400,7 +400,7 @@ public class LocalStore extends Store implements Serializable {
                         try {
                             db.execSQL("DELETE FROM headers WHERE id in (SELECT headers.id FROM headers LEFT JOIN messages ON headers.message_id = messages.id WHERE messages.id IS NULL)");
                         } catch (SQLiteException e) {
-                            Log.e(ertebat.LOG_TAG, "Unable to remove extra header data from the database");
+                            Log.e(Ertebat.LOG_TAG, "Unable to remove extra header data from the database");
                         }
                     }
 
@@ -409,7 +409,7 @@ public class LocalStore extends Store implements Serializable {
                         try {
                             db.execSQL("ALTER TABLE messages ADD mime_type TEXT");
                         } catch (SQLiteException e) {
-                            Log.e(ertebat.LOG_TAG, "Unable to add mime_type column to messages");
+                            Log.e(Ertebat.LOG_TAG, "Unable to add mime_type column to messages");
                         }
                     }
 
@@ -436,11 +436,11 @@ public class LocalStore extends Store implements Serializable {
                                     String name = cursor.getString(1);
                                     update41Metadata(db, prefs, id, name);
                                 } catch (Exception e) {
-                                    Log.e(ertebat.LOG_TAG, " error trying to ugpgrade a folder class", e);
+                                    Log.e(Ertebat.LOG_TAG, " error trying to ugpgrade a folder class", e);
                                 }
                             }
                         } catch (SQLiteException e) {
-                            Log.e(ertebat.LOG_TAG, "Exception while upgrading database to v41. folder classes may have vanished", e);
+                            Log.e(Ertebat.LOG_TAG, "Exception while upgrading database to v41. folder classes may have vanished", e);
                         } finally {
                             Utility.closeQuietly(cursor);
                         }
@@ -460,25 +460,25 @@ public class LocalStore extends Store implements Serializable {
 
                             editor.commit();
                             long endTime = System.currentTimeMillis();
-                            Log.i(ertebat.LOG_TAG, "Putting folder preferences for " + folders.size() + " folders back into Preferences took " + (endTime - startTime) + " ms");
+                            Log.i(Ertebat.LOG_TAG, "Putting folder preferences for " + folders.size() + " folders back into Preferences took " + (endTime - startTime) + " ms");
                         } catch (Exception e) {
-                            Log.e(ertebat.LOG_TAG, "Could not replace Preferences in upgrade from DB_VERSION 41", e);
+                            Log.e(Ertebat.LOG_TAG, "Could not replace Preferences in upgrade from DB_VERSION 41", e);
                         }
                     }
                     if (db.getVersion() < 43) {
                         try {
                             // If folder "OUTBOX" (old, v3.800 - v3.802) exists, rename it to
-                            // "ertebatMAIL_INTERNAL_OUTBOX" (new)
+                            // "ErtebatMAIL_INTERNAL_OUTBOX" (new)
                             LocalFolder oldOutbox = new LocalFolder("OUTBOX");
                             if (oldOutbox.exists()) {
                                 ContentValues cv = new ContentValues();
                                 cv.put("name", Account.OUTBOX);
                                 db.update("folders", cv, "name = ?", new String[] { "OUTBOX" });
-                                Log.i(ertebat.LOG_TAG, "Renamed folder OUTBOX to " + Account.OUTBOX);
+                                Log.i(Ertebat.LOG_TAG, "Renamed folder OUTBOX to " + Account.OUTBOX);
                             }
 
                             // Check if old (pre v3.800) localized outbox folder exists
-                            String localizedOutbox = ertebat.app.getString(R.string.special_mailbox_name_outbox);
+                            String localizedOutbox = Ertebat.app.getString(R.string.special_mailbox_name_outbox);
                             LocalFolder obsoleteOutbox = new LocalFolder(localizedOutbox);
                             if (obsoleteOutbox.exists()) {
                                 // Get all messages from the localized outbox ...
@@ -496,7 +496,7 @@ public class LocalStore extends Store implements Serializable {
                                 obsoleteOutbox.delete(true);
                             }
                         } catch (Exception e) {
-                            Log.e(ertebat.LOG_TAG, "Error trying to fix the outbox folders", e);
+                            Log.e(Ertebat.LOG_TAG, "Error trying to fix the outbox folders", e);
                         }
                     }
                     if (db.getVersion() < 44) {
@@ -752,7 +752,7 @@ public class LocalStore extends Store implements Serializable {
                 inTopGroup = prefs.getBoolean(uUid + "." + name + ".inTopGroup", inTopGroup);
                 integrate = prefs.getBoolean(uUid + "." + name + ".integrate", integrate);
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, " Throwing away an error while trying to upgrade folder metadata", e);
+                Log.e(Ertebat.LOG_TAG, " Throwing away an error while trying to upgrade folder metadata", e);
             }
 
             if (displayClass == Folder.FolderClass.NONE) {
@@ -799,8 +799,8 @@ public class LocalStore extends Store implements Serializable {
     }
 
     public void compact() throws MessagingException {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "Before compaction size = " + getSize());
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "Before compaction size = " + getSize());
 
         database.execute(false, new DbCallback<Void>() {
             @Override
@@ -809,23 +809,23 @@ public class LocalStore extends Store implements Serializable {
                 return null;
             }
         });
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "After compaction size = " + getSize());
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "After compaction size = " + getSize());
     }
 
 
     public void clear() throws MessagingException {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "Before prune size = " + getSize());
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "Before prune size = " + getSize());
 
         pruneCachedAttachments(true);
-        if (ertebat.DEBUG) {
-            Log.i(ertebat.LOG_TAG, "After prune / before compaction size = " + getSize());
+        if (Ertebat.DEBUG) {
+            Log.i(Ertebat.LOG_TAG, "After prune / before compaction size = " + getSize());
 
-            Log.i(ertebat.LOG_TAG, "Before clear folder count = " + getFolderCount());
-            Log.i(ertebat.LOG_TAG, "Before clear message count = " + getMessageCount());
+            Log.i(Ertebat.LOG_TAG, "Before clear folder count = " + getFolderCount());
+            Log.i(Ertebat.LOG_TAG, "Before clear message count = " + getMessageCount());
 
-            Log.i(ertebat.LOG_TAG, "After prune / before clear size = " + getSize());
+            Log.i(Ertebat.LOG_TAG, "After prune / before clear size = " + getSize());
         }
         // don't delete messages that are Local, since there is no copy on the server.
         // Don't delete deleted messages.  They are essentially placeholders for UIDs of messages that have
@@ -851,10 +851,10 @@ public class LocalStore extends Store implements Serializable {
 
         compact();
 
-        if (ertebat.DEBUG) {
-            Log.i(ertebat.LOG_TAG, "After clear message count = " + getMessageCount());
+        if (Ertebat.DEBUG) {
+            Log.i(Ertebat.LOG_TAG, "After clear message count = " + getMessageCount());
 
-            Log.i(ertebat.LOG_TAG, "After clear size = " + getSize());
+            Log.i(Ertebat.LOG_TAG, "After clear size = " + getSize());
         }
     }
 
@@ -955,7 +955,7 @@ public class LocalStore extends Store implements Serializable {
     /**
      * Deletes all cached attachments for the entire store.
      * @param force
-     * @throws com.fsck.ertebat.mail.MessagingException
+     * @throws com.fsck.Ertebat.mail.MessagingException
      */
     private void pruneCachedAttachments(final boolean force) throws MessagingException {
         database.execute(false, new DbCallback<Void>() {
@@ -983,8 +983,8 @@ public class LocalStore extends Store implements Serializable {
                                              null);
                                 if (cursor.moveToNext()) {
                                     if (cursor.getString(0) == null) {
-                                        if (ertebat.DEBUG)
-                                            Log.d(ertebat.LOG_TAG, "Attachment " + file.getAbsolutePath() + " has no store data, not deleting");
+                                        if (Ertebat.DEBUG)
+                                            Log.d(Ertebat.LOG_TAG, "Attachment " + file.getAbsolutePath() + " has no store data, not deleting");
                                         /*
                                          * If the attachment has no store data it is not recoverable, so
                                          * we won't delete it.
@@ -1156,8 +1156,8 @@ public class LocalStore extends Store implements Serializable {
                 ((!StringUtils.isNullOrEmpty(where)) ? " AND (" + where + ")" : "") +
                 " ORDER BY date DESC";
 
-        if (ertebat.DEBUG) {
-            Log.d(ertebat.LOG_TAG, "Query = " + sqlQuery);
+        if (Ertebat.DEBUG) {
+            Log.d(Ertebat.LOG_TAG, "Query = " + sqlQuery);
         }
 
         return getMessages(retrievalListener, null, sqlQuery, selectionArgs);
@@ -1205,7 +1205,7 @@ public class LocalStore extends Store implements Serializable {
                         i++;
                     }
                 } catch (Exception e) {
-                    Log.d(ertebat.LOG_TAG, "Got an exception", e);
+                    Log.d(Ertebat.LOG_TAG, "Got an exception", e);
                 } finally {
                     Utility.closeQuietly(cursor);
                 }
@@ -1414,7 +1414,7 @@ public class LocalStore extends Store implements Serializable {
                                     open(cursor);
                                 }
                             } else {
-                                Log.w(ertebat.LOG_TAG, "Creating folder " + getName() + " with existing id " + getId());
+                                Log.w(Ertebat.LOG_TAG, "Creating folder " + getName() + " with existing id " + getId());
                                 create(FolderType.HOLDS_MESSAGES);
                                 open(mode);
                             }
@@ -1834,7 +1834,7 @@ public class LocalStore extends Store implements Serializable {
                 prefHolder.displayClass = FolderClass.valueOf(preferences.getString(id + ".displayMode",
                                           prefHolder.displayClass.name()));
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Unable to load displayMode for " + getName(), e);
+                Log.e(Ertebat.LOG_TAG, "Unable to load displayMode for " + getName(), e);
             }
             if (prefHolder.displayClass == FolderClass.NONE) {
                 prefHolder.displayClass = FolderClass.NO_CLASS;
@@ -1844,7 +1844,7 @@ public class LocalStore extends Store implements Serializable {
                 prefHolder.syncClass = FolderClass.valueOf(preferences.getString(id  + ".syncMode",
                                        prefHolder.syncClass.name()));
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Unable to load syncMode for " + getName(), e);
+                Log.e(Ertebat.LOG_TAG, "Unable to load syncMode for " + getName(), e);
 
             }
             if (prefHolder.syncClass == FolderClass.NONE) {
@@ -1855,7 +1855,7 @@ public class LocalStore extends Store implements Serializable {
                 prefHolder.notifyClass = FolderClass.valueOf(preferences.getString(id  + ".notifyMode",
                                        prefHolder.notifyClass.name()));
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Unable to load notifyMode for " + getName(), e);
+                Log.e(Ertebat.LOG_TAG, "Unable to load notifyMode for " + getName(), e);
             }
             if (prefHolder.notifyClass == FolderClass.NONE) {
                 prefHolder.notifyClass = FolderClass.INHERITED;
@@ -1865,7 +1865,7 @@ public class LocalStore extends Store implements Serializable {
                 prefHolder.pushClass = FolderClass.valueOf(preferences.getString(id  + ".pushMode",
                                        prefHolder.pushClass.name()));
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Unable to load pushMode for " + getName(), e);
+                Log.e(Ertebat.LOG_TAG, "Unable to load pushMode for " + getName(), e);
             }
             if (prefHolder.pushClass == FolderClass.NONE) {
                 prefHolder.pushClass = FolderClass.INHERITED;
@@ -1960,7 +1960,7 @@ public class LocalStore extends Store implements Serializable {
                                         }
 
                                     } catch (Exception e) {
-                                        Log.e(ertebat.LOG_TAG, "Exception fetching message:", e);
+                                        Log.e(Ertebat.LOG_TAG, "Exception fetching message:", e);
                                     } finally {
                                         Utility.closeQuietly(cursor);
                                     }
@@ -2126,7 +2126,7 @@ public class LocalStore extends Store implements Serializable {
                             Long id = cursor.getLong(0);
                             String name = cursor.getString(1);
                             String value = cursor.getString(2);
-                            //Log.i(ertebat.LOG_TAG, "Retrieved header name= " + name + ", value = " + value + " for message " + id);
+                            //Log.i(Ertebat.LOG_TAG, "Retrieved header name= " + name + ", value = " + value + " for message " + id);
                             popMessages.get(id).addHeader(name, value);
                         }
                     } finally {
@@ -2289,12 +2289,12 @@ public class LocalStore extends Store implements Serializable {
 
                                 String oldUID = message.getUid();
 
-                                if (ertebat.DEBUG) {
-                                    Log.d(ertebat.LOG_TAG, "Updating folder_id to " + lDestFolder.getId() + " for message with UID "
+                                if (Ertebat.DEBUG) {
+                                    Log.d(Ertebat.LOG_TAG, "Updating folder_id to " + lDestFolder.getId() + " for message with UID "
                                           + message.getUid() + ", id " + lMessage.getId() + " currently in folder " + getName());
                                 }
 
-                                String newUid = ertebat.LOCAL_UID_PREFIX + UUID.randomUUID().toString();
+                                String newUid = Ertebat.LOCAL_UID_PREFIX + UUID.randomUUID().toString();
                                 message.setUid(newUid);
 
                                 uidMap.put(oldUID, newUid);
@@ -2519,7 +2519,7 @@ public class LocalStore extends Store implements Serializable {
                                     /*
                                      * Create a new message in the database
                                      */
-                                    String randomLocalUid = ertebat.LOCAL_UID_PREFIX +
+                                    String randomLocalUid = Ertebat.LOCAL_UID_PREFIX +
                                             UUID.randomUUID().toString();
 
                                     if (copy) {
@@ -2556,7 +2556,7 @@ public class LocalStore extends Store implements Serializable {
                                     parentId = threadInfo.parentId;
                                 }
 
-                                boolean isDraft = (message.getHeader(ertebat.IDENTITY_HEADER) != null);
+                                boolean isDraft = (message.getHeader(Ertebat.IDENTITY_HEADER) != null);
 
                                 List<Part> attachments;
                                 String text;
@@ -2747,7 +2747,7 @@ public class LocalStore extends Store implements Serializable {
          * necessarily a {@link LocalMessage} instance.
          * @param id
          * @param message
-         * @throws com.fsck.ertebat.mail.MessagingException
+         * @throws com.fsck.Ertebat.mail.MessagingException
          */
         private void saveHeaders(final long id, final MimeMessage message) throws MessagingException {
             database.execute(true, new DbCallback<Void>() {
@@ -2981,7 +2981,7 @@ public class LocalStore extends Store implements Serializable {
          * Changes the stored uid of the given message (using it's internal id as a key) to
          * the uid in the message.
          * @param message
-         * @throws com.fsck.ertebat.mail.MessagingException
+         * @throws com.fsck.Ertebat.mail.MessagingException
          */
         public void changeUid(final LocalMessage message) throws MessagingException {
             open(OPEN_MODE_RW);
@@ -3016,7 +3016,7 @@ public class LocalStore extends Store implements Serializable {
                             try {
                                 message.setFlags(flags, value);
                             } catch (MessagingException e) {
-                                Log.e(ertebat.LOG_TAG, "Something went wrong while setting flag", e);
+                                Log.e(Ertebat.LOG_TAG, "Something went wrong while setting flag", e);
                             }
                         }
 
@@ -3238,7 +3238,7 @@ public class LocalStore extends Store implements Serializable {
 
         /**
          * <p>Fetches the most recent <b>numeric</b> UID value in this folder.  This is used by
-         * {@link com.fsck.ertebat.controller.MessagingController#shouldNotifyForMessage} to see if messages being
+         * {@link com.fsck.Ertebat.controller.MessagingController#shouldNotifyForMessage} to see if messages being
          * fetched are new and unread.  Messages are "new" if they have a UID higher than the most recent UID prior
          * to synchronization.</p>
          *
@@ -3265,15 +3265,15 @@ public class LocalStore extends Store implements Serializable {
                             return cursor.getInt(0);
                         }
                     } catch (Exception e) {
-                        Log.e(ertebat.LOG_TAG, "Unable to updateLastUid: ", e);
+                        Log.e(Ertebat.LOG_TAG, "Unable to updateLastUid: ", e);
                     } finally {
                         Utility.closeQuietly(cursor);
                     }
                     return null;
                 }
             });
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "Updated last UID for folder " + mName + " to " + lastUid);
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "Updated last UID for folder " + mName + " to " + lastUid);
             mLastUid = lastUid;
         }
 
@@ -3290,7 +3290,7 @@ public class LocalStore extends Store implements Serializable {
                             return cursor.getLong(0);
                         }
                     } catch (Exception e) {
-                        Log.e(ertebat.LOG_TAG, "Unable to fetch oldest message date: ", e);
+                        Log.e(Ertebat.LOG_TAG, "Unable to fetch oldest message date: ", e);
                     } finally {
                         Utility.closeQuietly(cursor);
                     }
@@ -3543,7 +3543,7 @@ public class LocalStore extends Store implements Serializable {
 
                     catch (Exception e) {
                         if (!"X_BAD_FLAG".equals(flag)) {
-                            Log.w(ertebat.LOG_TAG, "Unable to parse flag " + flag);
+                            Log.w(Ertebat.LOG_TAG, "Unable to parse flag " + flag);
                         }
                     }
                 }

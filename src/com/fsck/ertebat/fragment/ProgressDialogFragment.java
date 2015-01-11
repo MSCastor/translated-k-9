@@ -1,4 +1,4 @@
-package com.fsck.ertebat.fragment;
+package com.fsck.Ertebat.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;

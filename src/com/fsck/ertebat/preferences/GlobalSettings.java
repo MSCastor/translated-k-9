@@ -1,4 +1,4 @@
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import java.io.File;
 import java.util.Arrays;
@@ -13,15 +13,15 @@ import java.util.TreeMap;
 import android.content.SharedPreferences;
 import android.os.Environment;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.FontSizes;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.ertebat.NotificationHideSubject;
-import com.fsck.ertebat.ertebat.SplitViewMode;
-import com.fsck.ertebat.ertebat.Theme;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.Account.SortType;
-import com.fsck.ertebat.preferences.Settings.*;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.FontSizes;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Ertebat.NotificationHideSubject;
+import com.fsck.Ertebat.Ertebat.SplitViewMode;
+import com.fsck.Ertebat.Ertebat.Theme;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.Account.SortType;
+import com.fsck.Ertebat.preferences.Settings.*;
 
 public class GlobalSettings {
     public static final Map<String, TreeMap<Integer, SettingsDescription>> SETTINGS;
@@ -43,8 +43,8 @@ public class GlobalSettings {
                 new V(1, new DirectorySetting(Environment.getExternalStorageDirectory().toString()))
             ));
         s.put("backgroundOperations", Settings.versions(
-                new V(1, new EnumSetting<ertebat.BACKGROUND_OPS>(
-                        ertebat.BACKGROUND_OPS.class, ertebat.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC))
+                new V(1, new EnumSetting<Ertebat.BACKGROUND_OPS>(
+                        Ertebat.BACKGROUND_OPS.class, Ertebat.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC))
             ));
         s.put("changeRegisteredNameColor", Settings.versions(
                 new V(1, new BooleanSetting(false))
@@ -182,11 +182,11 @@ public class GlobalSettings {
                 new V(1, new BooleanSetting(false))
             ));
         s.put("theme", Settings.versions(
-                new V(1, new ThemeSetting(ertebat.Theme.LIGHT))
+                new V(1, new ThemeSetting(Ertebat.Theme.LIGHT))
             ));
         s.put("messageViewTheme", Settings.versions(
-                new V(16, new ThemeSetting(ertebat.Theme.LIGHT)),
-                new V(24, new SubThemeSetting(ertebat.Theme.USE_GLOBAL))
+                new V(16, new ThemeSetting(Ertebat.Theme.LIGHT)),
+                new V(24, new SubThemeSetting(Ertebat.Theme.USE_GLOBAL))
             ));
         s.put("useVolumeKeysForListNavigation", Settings.versions(
                 new V(1, new BooleanSetting(false))
@@ -211,7 +211,7 @@ public class GlobalSettings {
                 new V(23, new EnumSetting<SplitViewMode>(SplitViewMode.class, SplitViewMode.NEVER))
             ));
         s.put("messageComposeTheme", Settings.versions(
-                new V(24, new SubThemeSetting(ertebat.Theme.USE_GLOBAL))
+                new V(24, new SubThemeSetting(Ertebat.Theme.USE_GLOBAL))
             ));
         s.put("fixedMessageViewTheme", Settings.versions(
                 new V(24, new BooleanSetting(true))
@@ -308,7 +308,7 @@ public class GlobalSettings {
      * Upgrades the settings from version 23 to 24.
      *
      * <p>
-     * Set <em>messageViewTheme</em> to {@link ertebat.Theme#USE_GLOBAL} if <em>messageViewTheme</em> has
+     * Set <em>messageViewTheme</em> to {@link Ertebat.Theme#USE_GLOBAL} if <em>messageViewTheme</em> has
      * the same value as <em>theme</em>.
      * </p>
      */
@@ -316,10 +316,10 @@ public class GlobalSettings {
 
         @Override
         public Set<String> upgrade(Map<String, Object> settings) {
-            ertebat.Theme messageViewTheme = (ertebat.Theme) settings.get("messageViewTheme");
-            ertebat.Theme theme = (ertebat.Theme) settings.get("theme");
+            Ertebat.Theme messageViewTheme = (Ertebat.Theme) settings.get("messageViewTheme");
+            Ertebat.Theme theme = (Ertebat.Theme) settings.get("theme");
             if (theme != null && messageViewTheme != null && theme == messageViewTheme) {
-                settings.put("messageViewTheme", ertebat.Theme.USE_GLOBAL);
+                settings.put("messageViewTheme", Ertebat.Theme.USE_GLOBAL);
             }
 
             return null;
@@ -384,7 +384,7 @@ public class GlobalSettings {
             super("");
 
             Map<String, String> mapping = new HashMap<String, String>();
-            String[] values = ertebat.app.getResources().getStringArray(R.array.settings_language_values);
+            String[] values = Ertebat.app.getResources().getStringArray(R.array.settings_language_values);
             for (String value : values) {
                 if (value.length() == 0) {
                     mapping.put("", "default");
@@ -417,7 +417,7 @@ public class GlobalSettings {
         private static final String THEME_LIGHT = "light";
         private static final String THEME_DARK = "dark";
 
-        public ThemeSetting(ertebat.Theme defaultValue) {
+        public ThemeSetting(Ertebat.Theme defaultValue) {
             super(defaultValue);
         }
 
@@ -425,14 +425,14 @@ public class GlobalSettings {
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 Integer theme = Integer.parseInt(value);
-                if (theme == ertebat.Theme.LIGHT.ordinal() ||
+                if (theme == Ertebat.Theme.LIGHT.ordinal() ||
                         // We used to store the resource ID of the theme in the preference storage,
                         // but don't use the database upgrade mechanism to update the values. So
                         // we have to deal with the old format here.
                         theme == android.R.style.Theme_Light) {
-                    return ertebat.Theme.LIGHT;
-                } else if (theme == ertebat.Theme.DARK.ordinal() || theme == android.R.style.Theme) {
-                    return ertebat.Theme.DARK;
+                    return Ertebat.Theme.LIGHT;
+                } else if (theme == Ertebat.Theme.DARK.ordinal() || theme == android.R.style.Theme) {
+                    return Ertebat.Theme.DARK;
                 }
             } catch (NumberFormatException e) { /* do nothing */ }
 
@@ -442,9 +442,9 @@ public class GlobalSettings {
         @Override
         public Object fromPrettyString(String value) throws InvalidSettingValueException {
             if (THEME_LIGHT.equals(value)) {
-                return ertebat.Theme.LIGHT;
+                return Ertebat.Theme.LIGHT;
             } else if (THEME_DARK.equals(value)) {
-                return ertebat.Theme.DARK;
+                return Ertebat.Theme.DARK;
             }
 
             throw new InvalidSettingValueException();
@@ -452,7 +452,7 @@ public class GlobalSettings {
 
         @Override
         public String toPrettyString(Object value) {
-            switch ((ertebat.Theme) value) {
+            switch ((Ertebat.Theme) value) {
                 case DARK: {
                     return THEME_DARK;
                 }
@@ -464,7 +464,7 @@ public class GlobalSettings {
 
         @Override
         public String toString(Object value) {
-            return Integer.toString(((ertebat.Theme) value).ordinal());
+            return Integer.toString(((Ertebat.Theme) value).ordinal());
         }
     }
 
@@ -482,8 +482,8 @@ public class GlobalSettings {
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 Integer theme = Integer.parseInt(value);
-                if (theme == ertebat.Theme.USE_GLOBAL.ordinal()) {
-                    return ertebat.Theme.USE_GLOBAL;
+                if (theme == Ertebat.Theme.USE_GLOBAL.ordinal()) {
+                    return Ertebat.Theme.USE_GLOBAL;
                 }
 
                 return super.fromString(value);
@@ -495,7 +495,7 @@ public class GlobalSettings {
         @Override
         public Object fromPrettyString(String value) throws InvalidSettingValueException {
             if (THEME_USE_GLOBAL.equals(value)) {
-                return ertebat.Theme.USE_GLOBAL;
+                return Ertebat.Theme.USE_GLOBAL;
             }
 
             return super.fromPrettyString(value);
@@ -503,7 +503,7 @@ public class GlobalSettings {
 
         @Override
         public String toPrettyString(Object value) {
-            if (((ertebat.Theme) value) == ertebat.Theme.USE_GLOBAL) {
+            if (((Ertebat.Theme) value) == Ertebat.Theme.USE_GLOBAL) {
                 return THEME_USE_GLOBAL;
             }
 

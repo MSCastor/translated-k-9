@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,18 +18,18 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.fsck.ertebat.*;
-import com.fsck.ertebat.activity.ertebatActivity;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.fragment.ConfirmationDialogFragment;
-import com.fsck.ertebat.fragment.ConfirmationDialogFragment.ConfirmationDialogFragmentListener;
-import com.fsck.ertebat.mail.AuthenticationFailedException;
-import com.fsck.ertebat.mail.CertificateValidationException;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.Transport;
-import com.fsck.ertebat.mail.store.WebDavStore;
-import com.fsck.ertebat.mail.filter.Hex;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.*;
+import com.fsck.Ertebat.activity.ErtebatActivity;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.fragment.ConfirmationDialogFragment;
+import com.fsck.Ertebat.fragment.ConfirmationDialogFragment.ConfirmationDialogFragmentListener;
+import com.fsck.Ertebat.mail.AuthenticationFailedException;
+import com.fsck.Ertebat.mail.CertificateValidationException;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.Transport;
+import com.fsck.Ertebat.mail.store.WebDavStore;
+import com.fsck.Ertebat.mail.filter.Hex;
+import com.top.Ertebat.mail.R;
 
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateEncodingException;
@@ -47,7 +47,7 @@ import java.util.Locale;
  * XXX NOTE: The manifest for this app has it ignore config changes, because
  * it doesn't correctly deal with restarting while its thread is running.
  */
-public class AccountSetupCheckSettings extends ertebatActivity implements OnClickListener,
+public class AccountSetupCheckSettings extends ErtebatActivity implements OnClickListener,
         ConfirmationDialogFragmentListener{
 
     public static final int ACTIVITY_REQUEST_CODE = 1;
@@ -158,14 +158,14 @@ public class AccountSetupCheckSettings extends ertebatActivity implements OnClic
                     setResult(RESULT_OK);
                     finish();
                 } catch (final AuthenticationFailedException afe) {
-                    Log.e(ertebat.LOG_TAG, "Error while testing settings", afe);
+                    Log.e(Ertebat.LOG_TAG, "Error while testing settings", afe);
                     showErrorDialog(
                         R.string.account_setup_failed_dlg_auth_message_fmt,
                         afe.getMessage() == null ? "" : afe.getMessage());
                 } catch (final CertificateValidationException cve) {
                     handleCertificateValidationException(cve);
                 } catch (final Throwable t) {
-                    Log.e(ertebat.LOG_TAG, "Error while testing settings", t);
+                    Log.e(Ertebat.LOG_TAG, "Error while testing settings", t);
                     showErrorDialog(
                         R.string.account_setup_failed_dlg_server_message_fmt,
                         (t.getMessage() == null ? "" : t.getMessage()));
@@ -177,7 +177,7 @@ public class AccountSetupCheckSettings extends ertebatActivity implements OnClic
     }
 
     private void handleCertificateValidationException(CertificateValidationException cve) {
-        Log.e(ertebat.LOG_TAG, "Error while testing settings", cve);
+        Log.e(Ertebat.LOG_TAG, "Error while testing settings", cve);
 
         X509Certificate[] chain = cve.getCertChain();
         // Avoid NullPointerException in acceptKeyDialog()
@@ -237,7 +237,7 @@ public class AccountSetupCheckSettings extends ertebatActivity implements OnClic
                 try {
                     sha1 = MessageDigest.getInstance("SHA-1");
                 } catch (NoSuchAlgorithmException e) {
-                    Log.e(ertebat.LOG_TAG, "Error while initializing MessageDigest", e);
+                    Log.e(Ertebat.LOG_TAG, "Error while initializing MessageDigest", e);
                 }
 
                 final X509Certificate[] chain = ex.getCertChain();
@@ -270,7 +270,7 @@ public class AccountSetupCheckSettings extends ertebatActivity implements OnClic
                                 String name = "";
                                 switch (type.intValue()) {
                                 case 0:
-                                    Log.w(ertebat.LOG_TAG, "SubjectAltName of type OtherName not supported.");
+                                    Log.w(Ertebat.LOG_TAG, "SubjectAltName of type OtherName not supported.");
                                     continue;
                                 case 1: // RFC822Name
                                     name = (String)value;
@@ -279,13 +279,13 @@ public class AccountSetupCheckSettings extends ertebatActivity implements OnClic
                                     name = (String)value;
                                     break;
                                 case 3:
-                                    Log.w(ertebat.LOG_TAG, "unsupported SubjectAltName of type x400Address");
+                                    Log.w(Ertebat.LOG_TAG, "unsupported SubjectAltName of type x400Address");
                                     continue;
                                 case 4:
-                                    Log.w(ertebat.LOG_TAG, "unsupported SubjectAltName of type directoryName");
+                                    Log.w(Ertebat.LOG_TAG, "unsupported SubjectAltName of type directoryName");
                                     continue;
                                 case 5:
-                                    Log.w(ertebat.LOG_TAG, "unsupported SubjectAltName of type ediPartyName");
+                                    Log.w(Ertebat.LOG_TAG, "unsupported SubjectAltName of type ediPartyName");
                                     continue;
                                 case 6:  // Uri
                                     name = (String)value;
@@ -294,7 +294,7 @@ public class AccountSetupCheckSettings extends ertebatActivity implements OnClic
                                     name = (String)value;
                                     break;
                                 default:
-                                    Log.w(ertebat.LOG_TAG, "unsupported SubjectAltName of unknown type");
+                                    Log.w(Ertebat.LOG_TAG, "unsupported SubjectAltName of unknown type");
                                     continue;
                                 }
 
@@ -314,7 +314,7 @@ public class AccountSetupCheckSettings extends ertebatActivity implements OnClic
                         }
                     } catch (Exception e1) {
                         // don't fail just because of subjectAltNames
-                        Log.w(ertebat.LOG_TAG, "cannot display SubjectAltNames in dialog", e1);
+                        Log.w(Ertebat.LOG_TAG, "cannot display SubjectAltNames in dialog", e1);
                     }
 
                     chainInfo.append("Issuer: ").append(chain[i].getIssuerDN().toString()).append("\n");
@@ -324,7 +324,7 @@ public class AccountSetupCheckSettings extends ertebatActivity implements OnClic
                             char[] sha1sum = Hex.encodeHex(sha1.digest(chain[i].getEncoded()));
                             chainInfo.append("Fingerprint (SHA-1): ").append(new String(sha1sum)).append("\n");
                         } catch (CertificateEncodingException e) {
-                            Log.e(ertebat.LOG_TAG, "Error while encoding certificate", e);
+                            Log.e(Ertebat.LOG_TAG, "Error while encoding certificate", e);
                         }
                     }
                 }

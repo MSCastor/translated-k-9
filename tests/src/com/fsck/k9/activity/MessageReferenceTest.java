@@ -1,7 +1,7 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.MessagingException;
 import junit.framework.TestCase;
 
 public class MessageReferenceTest extends TestCase

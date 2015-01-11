@@ -1,4 +1,4 @@
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,21 +27,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.helper.MediaScannerNotifier;
-import com.fsck.ertebat.helper.SizeFormatter;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.internet.MimeHeader;
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.store.LocalStore.LocalAttachmentBodyPart;
-import com.fsck.ertebat.provider.AttachmentProvider;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.helper.MediaScannerNotifier;
+import com.fsck.Ertebat.helper.SizeFormatter;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.internet.MimeHeader;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalAttachmentBodyPart;
+import com.fsck.Ertebat.provider.AttachmentProvider;
 
 public class AttachmentView extends FrameLayout implements OnClickListener, OnLongClickListener {
     private Context mContext;
@@ -153,15 +153,15 @@ public class AttachmentView extends FrameLayout implements OnClickListener, OnLo
         final ImageView attachmentIcon = (ImageView) findViewById(R.id.attachment_icon);
         viewButton = (Button) findViewById(R.id.view);
         downloadButton = (Button) findViewById(R.id.download);
-        if ((!MimeUtility.mimeTypeMatches(contentType, ertebat.ACCEPTABLE_ATTACHMENT_VIEW_TYPES))
-                || (MimeUtility.mimeTypeMatches(contentType, ertebat.UNACCEPTABLE_ATTACHMENT_VIEW_TYPES))) {
+        if ((!MimeUtility.mimeTypeMatches(contentType, Ertebat.ACCEPTABLE_ATTACHMENT_VIEW_TYPES))
+                || (MimeUtility.mimeTypeMatches(contentType, Ertebat.UNACCEPTABLE_ATTACHMENT_VIEW_TYPES))) {
             viewButton.setVisibility(View.GONE);
         }
-        if ((!MimeUtility.mimeTypeMatches(contentType, ertebat.ACCEPTABLE_ATTACHMENT_DOWNLOAD_TYPES))
-                || (MimeUtility.mimeTypeMatches(contentType, ertebat.UNACCEPTABLE_ATTACHMENT_DOWNLOAD_TYPES))) {
+        if ((!MimeUtility.mimeTypeMatches(contentType, Ertebat.ACCEPTABLE_ATTACHMENT_DOWNLOAD_TYPES))
+                || (MimeUtility.mimeTypeMatches(contentType, Ertebat.UNACCEPTABLE_ATTACHMENT_DOWNLOAD_TYPES))) {
             downloadButton.setVisibility(View.GONE);
         }
-        if (size > ertebat.MAX_ATTACHMENT_DOWNLOAD_SIZE) {
+        if (size > Ertebat.MAX_ATTACHMENT_DOWNLOAD_SIZE) {
             viewButton.setVisibility(View.GONE);
             downloadButton.setVisibility(View.GONE);
         }
@@ -261,8 +261,8 @@ public class AttachmentView extends FrameLayout implements OnClickListener, OnLo
             attachmentSaved(file.toString());
             new MediaScannerNotifier(mContext, file);
         } catch (IOException ioe) {
-            if (ertebat.DEBUG) {
-                Log.e(ertebat.LOG_TAG, "Error saving attachment", ioe);
+            if (Ertebat.DEBUG) {
+                Log.e(Ertebat.LOG_TAG, "Error saving attachment", ioe);
             }
             attachmentNotSaved();
         }
@@ -273,7 +273,7 @@ public class AttachmentView extends FrameLayout implements OnClickListener, OnLo
      * is not set => to the Environment
      */
     public void writeFile() {
-        writeFile(new File(ertebat.getAttachmentDefaultPath()));
+        writeFile(new File(Ertebat.getAttachmentDefaultPath()));
     }
 
     public void saveFile() {
@@ -304,7 +304,7 @@ public class AttachmentView extends FrameLayout implements OnClickListener, OnLo
         try {
             mContext.startActivity(intent);
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Could not display attachment of type " + contentType, e);
+            Log.e(Ertebat.LOG_TAG, "Could not display attachment of type " + contentType, e);
             Toast toast = Toast.makeText(mContext, mContext.getString(R.string.message_view_no_viewer, contentType), Toast.LENGTH_LONG);
             toast.show();
         }
@@ -337,7 +337,7 @@ public class AttachmentView extends FrameLayout implements OnClickListener, OnLo
             }
             // currently we do not cache re result.
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Cannot resolve activity to determine if we shall show the 'view'-button for an attachment", e);
+            Log.e(Ertebat.LOG_TAG, "Cannot resolve activity to determine if we shall show the 'view'-button for an attachment", e);
         }
     }
 

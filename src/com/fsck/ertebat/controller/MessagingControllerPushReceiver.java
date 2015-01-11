@@ -1,19 +1,19 @@
-package com.fsck.ertebat.controller;
+package com.fsck.Ertebat.controller;
 
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
-import com.fsck.ertebat.mail.Folder;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.helper.power.TracingPowerManager.TracingWakeLock;
+import com.fsck.Ertebat.mail.Folder;
 
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.PushReceiver;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.LocalStore.LocalFolder;
-import com.fsck.ertebat.service.SleepService;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.PushReceiver;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalFolder;
+import com.fsck.Ertebat.service.SleepService;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -41,8 +41,8 @@ public class MessagingControllerPushReceiver implements PushReceiver {
     }
 
     public void syncFolder(Folder folder) {
-        if (ertebat.DEBUG)
-            Log.v(ertebat.LOG_TAG, "syncFolder(" + folder.getName() + ")");
+        if (Ertebat.DEBUG)
+            Log.v(Ertebat.LOG_TAG, "syncFolder(" + folder.getName() + ")");
         final CountDownLatch latch = new CountDownLatch(1);
         controller.synchronizeMailbox(account, folder.getName(), new MessagingListener() {
             @Override
@@ -58,20 +58,20 @@ public class MessagingControllerPushReceiver implements PushReceiver {
             }
         }, folder);
 
-        if (ertebat.DEBUG)
-            Log.v(ertebat.LOG_TAG, "syncFolder(" + folder.getName() + ") about to await latch release");
+        if (Ertebat.DEBUG)
+            Log.v(Ertebat.LOG_TAG, "syncFolder(" + folder.getName() + ") about to await latch release");
         try {
             latch.await();
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "syncFolder(" + folder.getName() + ") got latch release");
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "syncFolder(" + folder.getName() + ") got latch release");
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Interrupted while awaiting latch release", e);
+            Log.e(Ertebat.LOG_TAG, "Interrupted while awaiting latch release", e);
         }
     }
 
     @Override
     public void sleep(TracingWakeLock wakeLock, long millis) {
-        SleepService.sleep(mApplication, millis, wakeLock, ertebat.PUSH_WAKE_LOCK_TIMEOUT);
+        SleepService.sleep(mApplication, millis, wakeLock, Ertebat.PUSH_WAKE_LOCK_TIMEOUT);
     }
 
     public void pushError(String errorMessage, Exception e) {
@@ -92,7 +92,7 @@ public class MessagingControllerPushReceiver implements PushReceiver {
             localFolder.open(Folder.OPEN_MODE_RW);
             return localFolder.getPushState();
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Unable to get push state from account " + account.getDescription()
+            Log.e(Ertebat.LOG_TAG, "Unable to get push state from account " + account.getDescription()
                   + ", folder " + folderName, e);
             return null;
         } finally {

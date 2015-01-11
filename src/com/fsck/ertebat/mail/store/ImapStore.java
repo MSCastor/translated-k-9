@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -59,44 +59,44 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import com.beetstra.jutf7.CharsetProvider;
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.controller.MessageRetrievalListener;
-import com.fsck.ertebat.helper.StringUtils;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.helper.power.TracingPowerManager;
-import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
-import com.fsck.ertebat.mail.AuthType;
-import com.fsck.ertebat.mail.Authentication;
-import com.fsck.ertebat.mail.AuthenticationFailedException;
-import com.fsck.ertebat.mail.Body;
-import com.fsck.ertebat.mail.CertificateValidationException;
-import com.fsck.ertebat.mail.ConnectionSecurity;
-import com.fsck.ertebat.mail.FetchProfile;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.PushReceiver;
-import com.fsck.ertebat.mail.Pusher;
-import com.fsck.ertebat.mail.ServerSettings;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.filter.Base64;
-import com.fsck.ertebat.mail.filter.EOLConvertingOutputStream;
-import com.fsck.ertebat.mail.filter.FixedLengthInputStream;
-import com.fsck.ertebat.mail.filter.PeekableInputStream;
-import com.fsck.ertebat.mail.internet.MimeBodyPart;
-import com.fsck.ertebat.mail.internet.MimeHeader;
-import com.fsck.ertebat.mail.internet.MimeMessage;
-import com.fsck.ertebat.mail.internet.MimeMultipart;
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.store.ImapResponseParser.ImapList;
-import com.fsck.ertebat.mail.store.ImapResponseParser.ImapResponse;
-import com.fsck.ertebat.mail.store.imap.ImapUtility;
-import com.fsck.ertebat.mail.transport.imap.ImapSettings;
-import com.fsck.ertebat.net.ssl.TrustedSocketFactory;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.controller.MessageRetrievalListener;
+import com.fsck.Ertebat.helper.StringUtils;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.helper.power.TracingPowerManager;
+import com.fsck.Ertebat.helper.power.TracingPowerManager.TracingWakeLock;
+import com.fsck.Ertebat.mail.AuthType;
+import com.fsck.Ertebat.mail.Authentication;
+import com.fsck.Ertebat.mail.AuthenticationFailedException;
+import com.fsck.Ertebat.mail.Body;
+import com.fsck.Ertebat.mail.CertificateValidationException;
+import com.fsck.Ertebat.mail.ConnectionSecurity;
+import com.fsck.Ertebat.mail.FetchProfile;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.PushReceiver;
+import com.fsck.Ertebat.mail.Pusher;
+import com.fsck.Ertebat.mail.ServerSettings;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.filter.Base64;
+import com.fsck.Ertebat.mail.filter.EOLConvertingOutputStream;
+import com.fsck.Ertebat.mail.filter.FixedLengthInputStream;
+import com.fsck.Ertebat.mail.filter.PeekableInputStream;
+import com.fsck.Ertebat.mail.internet.MimeBodyPart;
+import com.fsck.Ertebat.mail.internet.MimeHeader;
+import com.fsck.Ertebat.mail.internet.MimeMessage;
+import com.fsck.Ertebat.mail.internet.MimeMultipart;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.store.ImapResponseParser.ImapList;
+import com.fsck.Ertebat.mail.store.ImapResponseParser.ImapResponse;
+import com.fsck.Ertebat.mail.store.imap.ImapUtility;
+import com.fsck.Ertebat.mail.transport.imap.ImapSettings;
+import com.fsck.Ertebat.net.ssl.TrustedSocketFactory;
 import com.jcraft.jzlib.JZlib;
 import com.jcraft.jzlib.ZOutputStream;
 
@@ -560,7 +560,7 @@ public class ImapStore extends Store {
                 boolean includeFolder = true;
 
                 if (response.size() > 4 || !(response.getObject(3) instanceof String)) {
-                    Log.w(ertebat.LOG_TAG, "Skipping incorrectly parsed " + commandResponse +
+                    Log.w(Ertebat.LOG_TAG, "Skipping incorrectly parsed " + commandResponse +
                             " reply: " + response);
                     continue;
                 }
@@ -569,7 +569,7 @@ public class ImapStore extends Store {
                 try {
                     decodedFolderName = decodeFolderName(response.getString(3));
                 } catch (CharacterCodingException e) {
-                    Log.w(ertebat.LOG_TAG, "Folder name not correctly encoded with the UTF-7 variant " +
+                    Log.w(Ertebat.LOG_TAG, "Folder name not correctly encoded with the UTF-7 variant " +
                           "as defined by RFC 3501: " + response.getString(3), e);
 
                     //TODO: Use the raw name returned by the server for all commands that require
@@ -629,7 +629,7 @@ public class ImapStore extends Store {
      * Attempt to auto-configure folders by attributes if the server advertises that capability.
      *
      * The parsing here is essentially the same as
-     * {@link #listFolders(com.fsck.ertebat.mail.store.ImapStore.ImapConnection, boolean)}; we should try to consolidate
+     * {@link #listFolders(com.fsck.Ertebat.mail.store.ImapStore.ImapConnection, boolean)}; we should try to consolidate
      * this at some point. :(
      * @param connection IMAP Connection
      * @throws IOException uh oh!
@@ -640,14 +640,14 @@ public class ImapStore extends Store {
         String commandOptions = "";
 
         if (connection.capabilities.contains("XLIST")) {
-            if (ertebat.DEBUG) Log.d(ertebat.LOG_TAG, "Folder auto-configuration: Using XLIST.");
+            if (Ertebat.DEBUG) Log.d(Ertebat.LOG_TAG, "Folder auto-configuration: Using XLIST.");
             commandResponse = "XLIST";
         } else if(connection.capabilities.contains("SPECIAL-USE")) {
-            if (ertebat.DEBUG) Log.d(ertebat.LOG_TAG, "Folder auto-configuration: Using RFC6154/SPECIAL-USE.");
+            if (Ertebat.DEBUG) Log.d(Ertebat.LOG_TAG, "Folder auto-configuration: Using RFC6154/SPECIAL-USE.");
             commandResponse = "LIST";
             commandOptions = " (SPECIAL-USE)";
         } else {
-            if (ertebat.DEBUG) Log.d(ertebat.LOG_TAG, "No detected folder auto-configuration methods.");
+            if (Ertebat.DEBUG) Log.d(Ertebat.LOG_TAG, "No detected folder auto-configuration methods.");
             return;
         }
 
@@ -662,7 +662,7 @@ public class ImapStore extends Store {
                 try {
                     decodedFolderName = decodeFolderName(response.getString(3));
                 } catch (CharacterCodingException e) {
-                    Log.w(ertebat.LOG_TAG, "Folder name not correctly encoded with the UTF-7 variant " +
+                    Log.w(Ertebat.LOG_TAG, "Folder name not correctly encoded with the UTF-7 variant " +
                         "as defined by RFC 3501: " + response.getString(3), e);
                     // We currently just skip folders with malformed names.
                     continue;
@@ -678,17 +678,17 @@ public class ImapStore extends Store {
                     String attribute = attributes.getString(i);
                     if (attribute.equals("\\Drafts")) {
                         mAccount.setDraftsFolderName(decodedFolderName);
-                        if (ertebat.DEBUG) Log.d(ertebat.LOG_TAG, "Folder auto-configuration detected draft folder: " + decodedFolderName);
+                        if (Ertebat.DEBUG) Log.d(Ertebat.LOG_TAG, "Folder auto-configuration detected draft folder: " + decodedFolderName);
                     } else if (attribute.equals("\\Sent")) {
                         mAccount.setSentFolderName(decodedFolderName);
-                        if (ertebat.DEBUG) Log.d(ertebat.LOG_TAG, "Folder auto-configuration detected sent folder: " + decodedFolderName);
+                        if (Ertebat.DEBUG) Log.d(Ertebat.LOG_TAG, "Folder auto-configuration detected sent folder: " + decodedFolderName);
                     } else if (attribute.equals("\\Spam") || attribute.equals("\\Junk")) {
                         //rfc6154 just mentions \Junk
                         mAccount.setSpamFolderName(decodedFolderName);
-                        if (ertebat.DEBUG) Log.d(ertebat.LOG_TAG, "Folder auto-configuration detected spam folder: " + decodedFolderName);
+                        if (Ertebat.DEBUG) Log.d(Ertebat.LOG_TAG, "Folder auto-configuration detected spam folder: " + decodedFolderName);
                     } else if (attribute.equals("\\Trash")) {
                         mAccount.setTrashFolderName(decodedFolderName);
-                        if (ertebat.DEBUG) Log.d(ertebat.LOG_TAG, "Folder auto-configuration detected trash folder: " + decodedFolderName);
+                        if (Ertebat.DEBUG) Log.d(Ertebat.LOG_TAG, "Folder auto-configuration detected trash folder: " + decodedFolderName);
                     }
                 }
             }
@@ -703,7 +703,7 @@ public class ImapStore extends Store {
             autoconfigureFolders(connection);
             connection.close();
         } catch (IOException ioe) {
-            throw new MessagingException(ertebat.app.getString(R.string.error_unable_to_connect), ioe);
+            throw new MessagingException(Ertebat.app.getString(R.string.error_unable_to_connect), ioe);
         }
     }
 
@@ -945,7 +945,7 @@ public class ImapStore extends Store {
             } catch (IOException ioe) {
                 throw ioExceptionHandler(mConnection, ioe);
             } catch (MessagingException me) {
-                Log.e(ertebat.LOG_TAG, "Unable to open connection for " + getLogId(), me);
+                Log.e(Ertebat.LOG_TAG, "Unable to open connection for " + getLogId(), me);
                 throw me;
             }
         }
@@ -999,7 +999,7 @@ public class ImapStore extends Store {
             synchronized (this) {
                 // If we are mid-search and we get a close request, we gotta trash the connection.
                 if (mInSearch && mConnection != null) {
-                    Log.i(ertebat.LOG_TAG, "IMAP search was aborted, shutting down connection.");
+                    Log.i(Ertebat.LOG_TAG, "IMAP search was aborted, shutting down connection.");
                     mConnection.close();
                 } else {
                     releaseConnection(mConnection);
@@ -1148,8 +1148,8 @@ public class ImapStore extends Store {
                     /*
                      * If the remote folder doesn't exist we try to create it.
                      */
-                    if (ertebat.DEBUG) {
-                        Log.i(ertebat.LOG_TAG, "ImapFolder.copyMessages: attempting to create remote " +
+                    if (Ertebat.DEBUG) {
+                        Log.i(Ertebat.LOG_TAG, "ImapFolder.copyMessages: attempting to create remote " +
                                 "folder '" + remoteDestName + "' for " + getLogId());
                     }
 
@@ -1200,15 +1200,15 @@ public class ImapStore extends Store {
                                         uidMap.put(srcUid, destUid);
                                     }
                                 } else {
-                                    if (ertebat.DEBUG) {
-                                        Log.v(ertebat.LOG_TAG, "Parse error: size of source UIDs " +
+                                    if (Ertebat.DEBUG) {
+                                        Log.v(Ertebat.LOG_TAG, "Parse error: size of source UIDs " +
                                                 "list is not the same as size of destination " +
                                                 "UIDs list.");
                                     }
                                 }
                             } else {
-                                if (ertebat.DEBUG) {
-                                    Log.v(ertebat.LOG_TAG, "Parsing of the sequence set failed.");
+                                if (Ertebat.DEBUG) {
+                                    Log.v(Ertebat.LOG_TAG, "Parsing of the sequence set failed.");
                                 }
                             }
                         }
@@ -1245,14 +1245,14 @@ public class ImapStore extends Store {
                     /*
                      * If the remote trash folder doesn't exist we try to create it.
                      */
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "IMAPMessage.delete: attempting to create remote '" + trashFolderName + "' folder for " + getLogId());
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "IMAPMessage.delete: attempting to create remote '" + trashFolderName + "' folder for " + getLogId());
                     remoteTrashFolder.create(FolderType.HOLDS_MESSAGES);
                 }
 
                 if (exists(remoteTrashName)) {
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "IMAPMessage.delete: copying remote " + messages.length + " messages to '" + trashFolderName + "' for " + getLogId());
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "IMAPMessage.delete: copying remote " + messages.length + " messages to '" + trashFolderName + "' for " + getLogId());
 
                     moveMessages(messages, remoteTrashFolder);
                 } else {
@@ -1311,7 +1311,7 @@ public class ImapStore extends Store {
                     return Long.parseLong(messages[0].getUid());
                 }
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Unable to find highest UID in folder " + getName(), e);
+                Log.e(Ertebat.LOG_TAG, "Unable to find highest UID in folder " + getName(), e);
             }
             return -1L;
 
@@ -1488,7 +1488,7 @@ public class ImapStore extends Store {
                 fetchFields.add("INTERNALDATE");
                 fetchFields.add("RFC822.SIZE");
                 fetchFields.add("BODY.PEEK[HEADER.FIELDS (date subject from content-type to cc " +
-                        "reply-to message-id references in-reply-to " + ertebat.IDENTITY_HEADER + ")]");
+                        "reply-to message-id references in-reply-to " + Ertebat.IDENTITY_HEADER + ")]");
             }
             if (fp.contains(FetchProfile.Item.STRUCTURE)) {
                 fetchFields.add("BODYSTRUCTURE");
@@ -1533,18 +1533,18 @@ public class ImapStore extends Store {
                             if (uid != null) {
                                 try {
                                     msgSeqUidMap.put(msgSeq, uid);
-                                    if (ertebat.DEBUG) {
-                                        Log.v(ertebat.LOG_TAG, "Stored uid '" + uid + "' for msgSeq " + msgSeq + " into map " /*+ msgSeqUidMap.toString() */);
+                                    if (Ertebat.DEBUG) {
+                                        Log.v(Ertebat.LOG_TAG, "Stored uid '" + uid + "' for msgSeq " + msgSeq + " into map " /*+ msgSeqUidMap.toString() */);
                                     }
                                 } catch (Exception e) {
-                                    Log.e(ertebat.LOG_TAG, "Unable to store uid '" + uid + "' for msgSeq " + msgSeq);
+                                    Log.e(Ertebat.LOG_TAG, "Unable to store uid '" + uid + "' for msgSeq " + msgSeq);
                                 }
                             }
 
                             Message message = messageMap.get(uid);
                             if (message == null) {
-                                if (ertebat.DEBUG)
-                                    Log.d(ertebat.LOG_TAG, "Do not have message in messageMap for UID " + uid + " for " + getLogId());
+                                if (Ertebat.DEBUG)
+                                    Log.d(Ertebat.LOG_TAG, "Do not have message in messageMap for UID " + uid + " for " + getLogId());
 
                                 handleUntaggedResponse(response);
                                 continue;
@@ -1623,8 +1623,8 @@ public class ImapStore extends Store {
                         String uid = fetchList.getKeyedString("UID");
 
                         if (!message.getUid().equals(uid)) {
-                            if (ertebat.DEBUG)
-                                Log.d(ertebat.LOG_TAG, "Did not ask for UID " + uid + " for " + getLogId());
+                            if (Ertebat.DEBUG)
+                                Log.d(Ertebat.LOG_TAG, "Did not ask for UID " + uid + " for " + getLogId());
 
                             handleUntaggedResponse(response);
                             continue;
@@ -1711,8 +1711,8 @@ public class ImapStore extends Store {
                     try {
                         parseBodyStructure(bs, message, "TEXT");
                     } catch (MessagingException e) {
-                        if (ertebat.DEBUG)
-                            Log.d(ertebat.LOG_TAG, "Error handling message for " + getLogId(), e);
+                        if (Ertebat.DEBUG)
+                            Log.d(Ertebat.LOG_TAG, "Error handling message for " + getLogId(), e);
                         message.setBody(null);
                     }
                 }
@@ -1760,8 +1760,8 @@ public class ImapStore extends Store {
                             String key = (String)keyObj;
                             if ("UIDNEXT".equalsIgnoreCase(key)) {
                                 uidNext = bracketed.getLong(1);
-                                if (ertebat.DEBUG)
-                                    Log.d(ertebat.LOG_TAG, "Got UidNext = " + uidNext + " for " + getLogId());
+                                if (Ertebat.DEBUG)
+                                    Log.d(Ertebat.LOG_TAG, "Got UidNext = " + uidNext + " for " + getLogId());
                             }
                         }
                     }
@@ -1779,15 +1779,15 @@ public class ImapStore extends Store {
             if (response.mTag == null && response.size() > 1) {
                 if (ImapResponseParser.equalsIgnoreCase(response.get(1), "EXISTS")) {
                     mMessageCount = response.getNumber(0);
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "Got untagged EXISTS with value " + mMessageCount + " for " + getLogId());
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "Got untagged EXISTS with value " + mMessageCount + " for " + getLogId());
                 }
                 handlePossibleUidNext(response);
 
                 if (ImapResponseParser.equalsIgnoreCase(response.get(1), "EXPUNGE") && mMessageCount > 0) {
                     mMessageCount--;
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "Got untagged EXPUNGE with mMessageCount " + mMessageCount + " for " + getLogId());
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "Got untagged EXPUNGE with mMessageCount " + mMessageCount + " for " + getLogId());
                 }
 //            if (response.size() > 1) {
 //                Object bracketedObj = response.get(1);
@@ -1809,7 +1809,7 @@ public class ImapStore extends Store {
 //                                    sb.append(' ');
 //                                }
 //
-//                                Log.w(ertebat.LOG_TAG, "ALERT: " + sb.toString() + " for " + getLogId());
+//                                Log.w(Ertebat.LOG_TAG, "ALERT: " + sb.toString() + " for " + getLogId());
 //                            }
 //                        }
 //                    }
@@ -1818,7 +1818,7 @@ public class ImapStore extends Store {
 //                }
 //            }
             }
-            //Log.i(ertebat.LOG_TAG, "mMessageCount = " + mMessageCount + " for " + getLogId());
+            //Log.i(Ertebat.LOG_TAG, "mMessageCount = " + mMessageCount + " for " + getLogId());
         }
 
         private void parseBodyStructure(ImapList bs, Part part, String id)
@@ -2051,8 +2051,8 @@ public class ImapStore extends Store {
                      * not implement the APPENDUID response code.
                      */
                     String newUid = getUidFromMessageId(message);
-                    if (ertebat.DEBUG) {
-                        Log.d(ertebat.LOG_TAG, "Got UID " + newUid + " for message for " + getLogId());
+                    if (Ertebat.DEBUG) {
+                        Log.d(Ertebat.LOG_TAG, "Got UID " + newUid + " for message for " + getLogId());
                     }
 
                     if (!StringUtils.isNullOrEmpty(newUid)) {
@@ -2082,13 +2082,13 @@ public class ImapStore extends Store {
                 String[] messageIdHeader = message.getHeader("Message-ID");
 
                 if (messageIdHeader == null || messageIdHeader.length == 0) {
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "Did not get a message-id in order to search for UID  for " + getLogId());
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "Did not get a message-id in order to search for UID  for " + getLogId());
                     return null;
                 }
                 String messageId = messageIdHeader[0];
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "Looking for UID for message with message-id " + messageId + " for " + getLogId());
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "Looking for UID for message with message-id " + messageId + " for " + getLogId());
 
                 List<ImapResponse> responses =
                     executeSimpleCommand(
@@ -2167,7 +2167,7 @@ public class ImapStore extends Store {
                     return null;
                 }
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Exception while updated push state for " + getLogId(), e);
+                Log.e(Ertebat.LOG_TAG, "Exception while updated push state for " + getLogId(), e);
                 return null;
             }
         }
@@ -2199,7 +2199,7 @@ public class ImapStore extends Store {
         }
 
         private MessagingException ioExceptionHandler(ImapConnection connection, IOException ioe) {
-            Log.e(ertebat.LOG_TAG, "IOException for " + getLogId(), ioe);
+            Log.e(Ertebat.LOG_TAG, "IOException for " + getLogId(), ioe);
             if (connection != null) {
                 connection.close();
             }
@@ -2381,14 +2381,14 @@ public class ImapStore extends Store {
 
                 if (capabilityList != null && !capabilityList.isEmpty() &&
                         ImapResponseParser.equalsIgnoreCase(capabilityList.get(0), CAPABILITY_CAPABILITY)) {
-                    if (ertebat.DEBUG) {
-                        Log.d(ertebat.LOG_TAG, "Saving " + capabilityList.size() + " capabilities for " + getLogId());
+                    if (Ertebat.DEBUG) {
+                        Log.d(Ertebat.LOG_TAG, "Saving " + capabilityList.size() + " capabilities for " + getLogId());
                     }
                     for (Object capability : capabilityList) {
                         if (capability instanceof String) {
-//                            if (ertebat.DEBUG)
+//                            if (Ertebat.DEBUG)
 //                            {
-//                                Log.v(ertebat.LOG_TAG, "Saving capability '" + capability + "' for " + getLogId());
+//                                Log.v(Ertebat.LOG_TAG, "Saving capability '" + capability + "' for " + getLogId());
 //                            }
                             capabilities.add(((String)capability).toUpperCase(Locale.US));
                         }
@@ -2409,14 +2409,14 @@ public class ImapStore extends Store {
             try {
                 Security.setProperty("networkaddress.cache.ttl", "0");
             } catch (Exception e) {
-                Log.w(ertebat.LOG_TAG, "Could not set DNS ttl to 0 for " + getLogId(), e);
+                Log.w(Ertebat.LOG_TAG, "Could not set DNS ttl to 0 for " + getLogId(), e);
             }
 
 
             try {
                 Security.setProperty("networkaddress.cache.negative.ttl", "0");
             } catch (Exception e) {
-                Log.w(ertebat.LOG_TAG, "Could not set DNS negative ttl to 0 for " + getLogId(), e);
+                Log.w(Ertebat.LOG_TAG, "Could not set DNS negative ttl to 0 for " + getLogId(), e);
             }
 
             try {
@@ -2426,8 +2426,8 @@ public class ImapStore extends Store {
                 InetAddress[] addresses = InetAddress.getAllByName(mSettings.getHost());
                 for (int i = 0; i < addresses.length; i++) {
                     try {
-                        if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_IMAP) {
-                            Log.d(ertebat.LOG_TAG, "Connecting to " + mSettings.getHost() + " as " +
+                        if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_IMAP) {
+                            Log.d(Ertebat.LOG_TAG, "Connecting to " + mSettings.getHost() + " as " +
                                     addresses[i]);
                         }
 
@@ -2463,16 +2463,16 @@ public class ImapStore extends Store {
 
                 capabilities.clear();
                 ImapResponse nullResponse = mParser.readResponse();
-                if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_IMAP)
-                    Log.v(ertebat.LOG_TAG, getLogId() + "<<<" + nullResponse);
+                if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_IMAP)
+                    Log.v(Ertebat.LOG_TAG, getLogId() + "<<<" + nullResponse);
 
                 List<ImapResponse> nullResponses = new LinkedList<ImapResponse>();
                 nullResponses.add(nullResponse);
                 receiveCapabilities(nullResponses);
 
                 if (!hasCapability(CAPABILITY_CAPABILITY)) {
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "Did not get capabilities in banner, requesting CAPABILITY for " + getLogId());
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "Did not get capabilities in banner, requesting CAPABILITY for " + getLogId());
                     List<ImapResponse> responses = receiveCapabilities(executeSimpleCommand(COMMAND_CAPABILITY));
                     if (responses.size() != 2) {
                         throw new MessagingException("Invalid CAPABILITY response received");
@@ -2494,8 +2494,8 @@ public class ImapStore extends Store {
                         mParser = new ImapResponseParser(mIn);
                         mOut = new BufferedOutputStream(mSocket.getOutputStream(), 1024);
                         // Per RFC 2595 (3.1):  Once TLS has been started, reissue CAPABILITY command
-                        if (ertebat.DEBUG)
-                            Log.i(ertebat.LOG_TAG, "Updating capabilities after STARTTLS for " + getLogId());
+                        if (Ertebat.DEBUG)
+                            Log.i(Ertebat.LOG_TAG, "Updating capabilities after STARTTLS for " + getLogId());
                         capabilities.clear();
                         List<ImapResponse> responses = receiveCapabilities(executeSimpleCommand(COMMAND_CAPABILITY));
                         if (responses.size() != 2) {
@@ -2540,7 +2540,7 @@ public class ImapStore extends Store {
                         saslAuthExternal();
                     } else {
                         // Provide notification to user of a problem authenticating using client certificates
-                        throw new CertificateValidationException(ertebat.app.getString(R.string.auth_external_error));
+                        throw new CertificateValidationException(Ertebat.app.getString(R.string.auth_external_error));
                     }
                     break;
 
@@ -2549,23 +2549,23 @@ public class ImapStore extends Store {
                             "Unhandled authentication method found in the server settings (bug).");
                 }
                 authSuccess = true;
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, CAPABILITY_COMPRESS_DEFLATE + " = " + hasCapability(CAPABILITY_COMPRESS_DEFLATE));
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, CAPABILITY_COMPRESS_DEFLATE + " = " + hasCapability(CAPABILITY_COMPRESS_DEFLATE));
                 }
                 if (hasCapability(CAPABILITY_COMPRESS_DEFLATE)) {
-                    ConnectivityManager connectivityManager = (ConnectivityManager)ertebat.app.getSystemService(Context.CONNECTIVITY_SERVICE);
+                    ConnectivityManager connectivityManager = (ConnectivityManager)Ertebat.app.getSystemService(Context.CONNECTIVITY_SERVICE);
                     boolean useCompression = true;
 
                     NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
                     if (netInfo != null) {
                         int type = netInfo.getType();
-                        if (ertebat.DEBUG)
-                            Log.d(ertebat.LOG_TAG, "On network type " + type);
+                        if (Ertebat.DEBUG)
+                            Log.d(Ertebat.LOG_TAG, "On network type " + type);
                         useCompression = mSettings.useCompression(type);
 
                     }
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "useCompression " + useCompression);
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "useCompression " + useCompression);
                     if (useCompression) {
                         try {
                             executeSimpleCommand(COMMAND_COMPRESS_DEFLATE);
@@ -2576,53 +2576,53 @@ public class ImapStore extends Store {
                             ZOutputStream zOutputStream = new ZOutputStream(mSocket.getOutputStream(), JZlib.Z_BEST_SPEED, true);
                             mOut = new BufferedOutputStream(zOutputStream, 1024);
                             zOutputStream.setFlushMode(JZlib.Z_PARTIAL_FLUSH);
-                            if (ertebat.DEBUG) {
-                                Log.i(ertebat.LOG_TAG, "Compression enabled for " + getLogId());
+                            if (Ertebat.DEBUG) {
+                                Log.i(Ertebat.LOG_TAG, "Compression enabled for " + getLogId());
                             }
                         } catch (Exception e) {
-                            Log.e(ertebat.LOG_TAG, "Unable to negotiate compression", e);
+                            Log.e(Ertebat.LOG_TAG, "Unable to negotiate compression", e);
                         }
                     }
                 }
 
 
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "NAMESPACE = " + hasCapability(CAPABILITY_NAMESPACE)
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "NAMESPACE = " + hasCapability(CAPABILITY_NAMESPACE)
                           + ", mPathPrefix = " + mSettings.getPathPrefix());
 
                 if (mSettings.getPathPrefix() == null) {
                     if (hasCapability(CAPABILITY_NAMESPACE)) {
-                        if (ertebat.DEBUG)
-                            Log.i(ertebat.LOG_TAG, "mPathPrefix is unset and server has NAMESPACE capability");
+                        if (Ertebat.DEBUG)
+                            Log.i(Ertebat.LOG_TAG, "mPathPrefix is unset and server has NAMESPACE capability");
                         List<ImapResponse> namespaceResponses =
                             executeSimpleCommand(COMMAND_NAMESPACE);
                         for (ImapResponse response : namespaceResponses) {
                             if (ImapResponseParser.equalsIgnoreCase(response.get(0), COMMAND_NAMESPACE)) {
-                                if (ertebat.DEBUG)
-                                    Log.d(ertebat.LOG_TAG, "Got NAMESPACE response " + response + " on " + getLogId());
+                                if (Ertebat.DEBUG)
+                                    Log.d(Ertebat.LOG_TAG, "Got NAMESPACE response " + response + " on " + getLogId());
 
                                 Object personalNamespaces = response.get(1);
                                 if (personalNamespaces != null && personalNamespaces instanceof ImapList) {
-                                    if (ertebat.DEBUG)
-                                        Log.d(ertebat.LOG_TAG, "Got personal namespaces: " + personalNamespaces);
+                                    if (Ertebat.DEBUG)
+                                        Log.d(Ertebat.LOG_TAG, "Got personal namespaces: " + personalNamespaces);
                                     ImapList bracketed = (ImapList)personalNamespaces;
                                     Object firstNamespace = bracketed.get(0);
                                     if (firstNamespace != null && firstNamespace instanceof ImapList) {
-                                        if (ertebat.DEBUG)
-                                            Log.d(ertebat.LOG_TAG, "Got first personal namespaces: " + firstNamespace);
+                                        if (Ertebat.DEBUG)
+                                            Log.d(Ertebat.LOG_TAG, "Got first personal namespaces: " + firstNamespace);
                                         bracketed = (ImapList)firstNamespace;
                                         mSettings.setPathPrefix(bracketed.getString(0));
                                         mSettings.setPathDelimeter(bracketed.getString(1));
                                         mSettings.setCombinedPrefix(null);
-                                        if (ertebat.DEBUG)
-                                            Log.d(ertebat.LOG_TAG, "Got path '" + mSettings.getPathPrefix() + "' and separator '" + mSettings.getPathDelimeter() + "'");
+                                        if (Ertebat.DEBUG)
+                                            Log.d(Ertebat.LOG_TAG, "Got path '" + mSettings.getPathPrefix() + "' and separator '" + mSettings.getPathDelimeter() + "'");
                                     }
                                 }
                             }
                         }
                     } else {
-                        if (ertebat.DEBUG)
-                            Log.i(ertebat.LOG_TAG, "mPathPrefix is unset but server does not have NAMESPACE capability");
+                        if (Ertebat.DEBUG)
+                            Log.i(Ertebat.LOG_TAG, "mPathPrefix is unset but server does not have NAMESPACE capability");
                         mSettings.setPathPrefix("");
                     }
                 }
@@ -2634,12 +2634,12 @@ public class ImapStore extends Store {
                             if (ImapResponseParser.equalsIgnoreCase(response.get(0), "LIST")) {
                                 mSettings.setPathDelimeter(response.getString(2));
                                 mSettings.setCombinedPrefix(null);
-                                if (ertebat.DEBUG)
-                                    Log.d(ertebat.LOG_TAG, "Got path delimeter '" + mSettings.getPathDelimeter() + "' for " + getLogId());
+                                if (Ertebat.DEBUG)
+                                    Log.d(Ertebat.LOG_TAG, "Got path delimeter '" + mSettings.getPathDelimeter() + "' for " + getLogId());
                             }
                         }
                     } catch (Exception e) {
-                        Log.e(ertebat.LOG_TAG, "Unable to get path delimeter using LIST", e);
+                        Log.e(Ertebat.LOG_TAG, "Unable to get path delimeter using LIST", e);
                     }
                 }
 
@@ -2652,14 +2652,14 @@ public class ImapStore extends Store {
                 String ceMess = ce.getMessage();
                 String[] tokens = ceMess.split("-");
                 if (tokens != null && tokens.length > 1 && tokens[1] != null) {
-                    Log.e(ertebat.LOG_TAG, "Stripping host/port from ConnectionException for " + getLogId(), ce);
+                    Log.e(Ertebat.LOG_TAG, "Stripping host/port from ConnectionException for " + getLogId(), ce);
                     throw new ConnectException(tokens[1].trim());
                 } else {
                     throw ce;
                 }
             } finally {
                 if (!authSuccess) {
-                    Log.e(ertebat.LOG_TAG, "Failed to login, closing connection for " + getLogId());
+                    Log.e(Ertebat.LOG_TAG, "Failed to login, closing connection for " + getLogId());
                     close();
                 }
             }
@@ -2752,7 +2752,7 @@ public class ImapStore extends Store {
                         throw new MessagingException(
                                 "Command continuation aborted: " + response);
                     } else {
-                        Log.w(ertebat.LOG_TAG, "After sending tag " + tag
+                        Log.w(Ertebat.LOG_TAG, "After sending tag " + tag
                                 + ", got tag response from previous command "
                                 + response + " for " + getLogId());
                     }
@@ -2768,11 +2768,11 @@ public class ImapStore extends Store {
             ImapResponse response;
             do {
                 response = mParser.readResponse();
-                if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_IMAP)
-                    Log.v(ertebat.LOG_TAG, getLogId() + "<<<" + response);
+                if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_IMAP)
+                    Log.v(Ertebat.LOG_TAG, getLogId() + "<<<" + response);
 
                 if (response.mTag != null && !response.mTag.equalsIgnoreCase(tag)) {
-                    Log.w(ertebat.LOG_TAG, "After sending tag " + tag + ", got tag response from previous command " + response + " for " + getLogId());
+                    Log.w(Ertebat.LOG_TAG, "After sending tag " + tag + ", got tag response from previous command " + response + " for " + getLogId());
                     Iterator<ImapResponse> iter = responses.iterator();
                     while (iter.hasNext()) {
                         ImapResponse delResponse = iter.next();
@@ -2803,8 +2803,8 @@ public class ImapStore extends Store {
         }
 
         protected boolean isIdleCapable() {
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "Connection " + getLogId() + " has " + capabilities.size() + " capabilities");
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "Connection " + getLogId() + " has " + capabilities.size() + " capabilities");
 
             return capabilities.contains(CAPABILITY_IDLE);
         }
@@ -2840,8 +2840,8 @@ public class ImapStore extends Store {
         public ImapResponse readResponse(ImapResponseParser.IImapResponseCallback callback) throws IOException {
             try {
                 ImapResponse response = mParser.readResponse(callback);
-                if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_IMAP)
-                    Log.v(ertebat.LOG_TAG, getLogId() + "<<<" + response);
+                if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_IMAP)
+                    Log.v(Ertebat.LOG_TAG, getLogId() + "<<<" + response);
 
                 return response;
             } catch (IOException ioe) {
@@ -2856,8 +2856,8 @@ public class ImapStore extends Store {
             mOut.write('\n');
             mOut.flush();
 
-            if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_IMAP)
-                Log.v(ertebat.LOG_TAG, getLogId() + ">>> " + continuation);
+            if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_IMAP)
+                Log.v(Ertebat.LOG_TAG, getLogId() + ">>> " + continuation);
 
         }
 
@@ -2870,12 +2870,12 @@ public class ImapStore extends Store {
                 mOut.write(commandToSend.getBytes());
                 mOut.flush();
 
-                if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_IMAP) {
-                    if (sensitive && !ertebat.DEBUG_SENSITIVE) {
-                        Log.v(ertebat.LOG_TAG, getLogId() + ">>> "
+                if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_IMAP) {
+                    if (sensitive && !Ertebat.DEBUG_SENSITIVE) {
+                        Log.v(Ertebat.LOG_TAG, getLogId() + ">>> "
                               + "[Command Hidden, Enable Sensitive Debug Logging To Show]");
                     } else {
-                        Log.v(ertebat.LOG_TAG, getLogId() + ">>> " + commandToSend);
+                        Log.v(Ertebat.LOG_TAG, getLogId() + ">>> " + commandToSend);
                     }
                 }
 
@@ -2905,17 +2905,17 @@ public class ImapStore extends Store {
         public List<ImapResponse> executeSimpleCommand(String command, boolean sensitive, UntaggedHandler untaggedHandler)
         throws IOException, ImapException, MessagingException {
             String commandToLog = command;
-            if (sensitive && !ertebat.DEBUG_SENSITIVE) {
+            if (sensitive && !Ertebat.DEBUG_SENSITIVE) {
                 commandToLog = "*sensitive*";
             }
 
 
-            //if (ertebat.DEBUG)
-            //    Log.v(ertebat.LOG_TAG, "Sending IMAP command " + commandToLog + " on connection " + getLogId());
+            //if (Ertebat.DEBUG)
+            //    Log.v(Ertebat.LOG_TAG, "Sending IMAP command " + commandToLog + " on connection " + getLogId());
 
             String tag = sendCommand(command, sensitive);
-            //if (ertebat.DEBUG)
-            //    Log.v(ertebat.LOG_TAG, "Sent IMAP command " + commandToLog + " with tag " + tag + " for " + getLogId());
+            //if (Ertebat.DEBUG)
+            //    Log.v(Ertebat.LOG_TAG, "Sent IMAP command " + commandToLog + " with tag " + tag + " for " + getLogId());
 
             return readStatusResponse(tag, commandToLog, untaggedHandler);
         }
@@ -3003,7 +3003,7 @@ public class ImapStore extends Store {
         }
         public void refresh() throws IOException, MessagingException {
             if (idling.get()) {
-                wakeLock.acquire(ertebat.PUSH_WAKE_LOCK_TIMEOUT);
+                wakeLock.acquire(Ertebat.PUSH_WAKE_LOCK_TIMEOUT);
                 sendDone();
             }
         }
@@ -3030,9 +3030,9 @@ public class ImapStore extends Store {
         public void start() {
             Runnable runner = new Runnable() {
                 public void run() {
-                    wakeLock.acquire(ertebat.PUSH_WAKE_LOCK_TIMEOUT);
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "Pusher starting for " + getLogId());
+                    wakeLock.acquire(Ertebat.PUSH_WAKE_LOCK_TIMEOUT);
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "Pusher starting for " + getLogId());
 
                     long lastUidNext = -1L;
                     while (!stop.get()) {
@@ -3042,10 +3042,10 @@ public class ImapStore extends Store {
                                 String pushStateS = receiver.getPushState(getName());
                                 ImapPushState pushState = ImapPushState.parse(pushStateS);
                                 oldUidNext = pushState.uidNext;
-                                if (ertebat.DEBUG)
-                                    Log.i(ertebat.LOG_TAG, "Got oldUidNext " + oldUidNext + " for " + getLogId());
+                                if (Ertebat.DEBUG)
+                                    Log.i(Ertebat.LOG_TAG, "Got oldUidNext " + oldUidNext + " for " + getLogId());
                             } catch (Exception e) {
-                                Log.e(ertebat.LOG_TAG, "Unable to get oldUidNext for " + getLogId(), e);
+                                Log.e(Ertebat.LOG_TAG, "Unable to get oldUidNext for " + getLogId(), e);
                             }
 
                             /*
@@ -3090,16 +3090,16 @@ public class ImapStore extends Store {
                             long newUidNext = uidNext;
 
                             if (newUidNext == -1) {
-                                if (ertebat.DEBUG) {
-                                    Log.d(ertebat.LOG_TAG, "uidNext is -1, using search to find highest UID");
+                                if (Ertebat.DEBUG) {
+                                    Log.d(Ertebat.LOG_TAG, "uidNext is -1, using search to find highest UID");
                                 }
                                 long highestUid = getHighestUid();
                                 if (highestUid != -1L) {
-                                    if (ertebat.DEBUG)
-                                        Log.d(ertebat.LOG_TAG, "highest UID = " + highestUid);
+                                    if (Ertebat.DEBUG)
+                                        Log.d(Ertebat.LOG_TAG, "highest UID = " + highestUid);
                                     newUidNext = highestUid + 1;
-                                    if (ertebat.DEBUG)
-                                        Log.d(ertebat.LOG_TAG, "highest UID = " + highestUid
+                                    if (Ertebat.DEBUG)
+                                        Log.d(Ertebat.LOG_TAG, "highest UID = " + highestUid
                                               + ", set newUidNext to " + newUidNext);
                                 }
                             }
@@ -3114,8 +3114,8 @@ public class ImapStore extends Store {
                             lastUidNext = newUidNext;
                             if (newUidNext > startUid) {
 
-                                if (ertebat.DEBUG)
-                                    Log.i(ertebat.LOG_TAG, "Needs sync from uid " + startUid  + " to " + newUidNext + " for " + getLogId());
+                                if (Ertebat.DEBUG)
+                                    Log.i(Ertebat.LOG_TAG, "Needs sync from uid " + startUid  + " to " + newUidNext + " for " + getLogId());
                                 List<Message> messages = new ArrayList<Message>();
                                 for (long uid = startUid; uid < newUidNext; uid++) {
                                     ImapMessage message = new ImapMessage("" + uid, ImapFolderPusher.this);
@@ -3128,15 +3128,15 @@ public class ImapStore extends Store {
                             } else {
                                 List<ImapResponse> untaggedResponses = null;
                                 while (!storedUntaggedResponses.isEmpty()) {
-                                    if (ertebat.DEBUG)
-                                        Log.i(ertebat.LOG_TAG, "Processing " + storedUntaggedResponses.size() + " untagged responses from previous commands for " + getLogId());
+                                    if (Ertebat.DEBUG)
+                                        Log.i(Ertebat.LOG_TAG, "Processing " + storedUntaggedResponses.size() + " untagged responses from previous commands for " + getLogId());
                                     untaggedResponses = new ArrayList<ImapResponse>(storedUntaggedResponses);
                                     storedUntaggedResponses.clear();
                                     processUntaggedResponses(untaggedResponses);
                                 }
 
-                                if (ertebat.DEBUG)
-                                    Log.i(ertebat.LOG_TAG, "About to IDLE for " + getLogId());
+                                if (Ertebat.DEBUG)
+                                    Log.i(Ertebat.LOG_TAG, "About to IDLE for " + getLogId());
 
                                 receiver.setPushActive(getName(), true);
                                 idling.set(true);
@@ -3149,20 +3149,20 @@ public class ImapStore extends Store {
                                 idleFailureCount.set(0);
                             }
                         } catch (Exception e) {
-                            wakeLock.acquire(ertebat.PUSH_WAKE_LOCK_TIMEOUT);
+                            wakeLock.acquire(Ertebat.PUSH_WAKE_LOCK_TIMEOUT);
                             storedUntaggedResponses.clear();
                             idling.set(false);
                             receiver.setPushActive(getName(), false);
                             try {
                                 close();
                             } catch (Exception me) {
-                                Log.e(ertebat.LOG_TAG, "Got exception while closing for exception for " + getLogId(), me);
+                                Log.e(Ertebat.LOG_TAG, "Got exception while closing for exception for " + getLogId(), me);
                             }
                             if (stop.get()) {
-                                Log.i(ertebat.LOG_TAG, "Got exception while idling, but stop is set for " + getLogId());
+                                Log.i(Ertebat.LOG_TAG, "Got exception while idling, but stop is set for " + getLogId());
                             } else {
                                 receiver.pushError("Push error for " + getName(), e);
-                                Log.e(ertebat.LOG_TAG, "Got exception while idling for " + getLogId(), e);
+                                Log.e(Ertebat.LOG_TAG, "Got exception while idling for " + getLogId(), e);
                                 int delayTimeInt = delayTime.get();
                                 receiver.sleep(wakeLock, delayTimeInt);
                                 delayTimeInt *= 2;
@@ -3171,7 +3171,7 @@ public class ImapStore extends Store {
                                 }
                                 delayTime.set(delayTimeInt);
                                 if (idleFailureCount.incrementAndGet() > IDLE_FAILURE_COUNT_LIMIT) {
-                                    Log.e(ertebat.LOG_TAG, "Disabling pusher for " + getLogId() + " after " + idleFailureCount.get() + " consecutive errors");
+                                    Log.e(Ertebat.LOG_TAG, "Disabling pusher for " + getLogId() + " after " + idleFailureCount.get() + " consecutive errors");
                                     receiver.pushError("Push disabled for " + getName() + " after " + idleFailureCount.get() + " consecutive errors", e);
                                     stop.set(true);
                                 }
@@ -3181,11 +3181,11 @@ public class ImapStore extends Store {
                     }
                     receiver.setPushActive(getName(), false);
                     try {
-                        if (ertebat.DEBUG)
-                            Log.i(ertebat.LOG_TAG, "Pusher for " + getLogId() + " is exiting");
+                        if (Ertebat.DEBUG)
+                            Log.i(Ertebat.LOG_TAG, "Pusher for " + getLogId() + " is exiting");
                         close();
                     } catch (Exception me) {
-                        Log.e(ertebat.LOG_TAG, "Got exception while closing for " + getLogId(), me);
+                        Log.e(Ertebat.LOG_TAG, "Got exception while closing for " + getLogId(), me);
                     } finally {
                         wakeLock.release();
                     }
@@ -3202,8 +3202,8 @@ public class ImapStore extends Store {
                 if (ImapResponseParser.equalsIgnoreCase(responseType, "FETCH")
                         || ImapResponseParser.equalsIgnoreCase(responseType, "EXPUNGE")
                         || ImapResponseParser.equalsIgnoreCase(responseType, "EXISTS")) {
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "Storing response " + response + " for later processing");
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "Storing response " + response + " for later processing");
 
                     storedUntaggedResponses.add(response);
                 }
@@ -3231,8 +3231,8 @@ public class ImapStore extends Store {
                     syncMessages(mMessageCount, true);
                 }
             }
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "UIDs for messages needing flag sync are " + flagSyncMsgSeqs + "  for " + getLogId());
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "UIDs for messages needing flag sync are " + flagSyncMsgSeqs + "  for " + getLogId());
 
             if (!flagSyncMsgSeqs.isEmpty()) {
                 syncMessages(flagSyncMsgSeqs);
@@ -3248,17 +3248,17 @@ public class ImapStore extends Store {
                 String pushStateS = receiver.getPushState(getName());
                 ImapPushState pushState = ImapPushState.parse(pushStateS);
                 oldUidNext = pushState.uidNext;
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "Got oldUidNext " + oldUidNext + " for " + getLogId());
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "Got oldUidNext " + oldUidNext + " for " + getLogId());
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Unable to get oldUidNext for " + getLogId(), e);
+                Log.e(Ertebat.LOG_TAG, "Unable to get oldUidNext for " + getLogId(), e);
             }
 
             Message[] messageArray = getMessages(end, end, null, true, null);
             if (messageArray != null && messageArray.length > 0) {
                 long newUid = Long.parseLong(messageArray[0].getUid());
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "Got newUid " + newUid + " for message " + end + " on " + getLogId());
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "Got newUid " + newUid + " for message " + end + " on " + getLogId());
                 long startUid = oldUidNext;
                 if (startUid < newUid - 10) {
                     startUid = newUid - 10;
@@ -3268,8 +3268,8 @@ public class ImapStore extends Store {
                 }
                 if (newUid >= startUid) {
 
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "Needs sync from uid " + startUid  + " to " + newUid + " for " + getLogId());
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "Needs sync from uid " + startUid  + " to " + newUid + " for " + getLogId());
                     List<Message> messages = new ArrayList<Message>();
                     for (long uid = startUid; uid <= newUid; uid++) {
                         ImapMessage message = new ImapMessage(Long.toString(uid), ImapFolderPusher.this);
@@ -3306,7 +3306,7 @@ public class ImapStore extends Store {
                     needsPoll.set(true);
                     msgSeqUidMap.clear();
                     String existingUid = existingMessage.getUid();
-                    Log.w(ertebat.LOG_TAG, "Message with UID " + existingUid + " still exists on server, not expunging");
+                    Log.w(Ertebat.LOG_TAG, "Message with UID " + existingUid + " still exists on server, not expunging");
                     removeUids.remove(existingUid);
                 }
                 for (String uid : removeUids) {
@@ -3314,13 +3314,13 @@ public class ImapStore extends Store {
                     try {
                         message.setFlagInternal(Flag.DELETED, true);
                     } catch (MessagingException me) {
-                        Log.e(ertebat.LOG_TAG, "Unable to set DELETED flag on message " + message.getUid());
+                        Log.e(Ertebat.LOG_TAG, "Unable to set DELETED flag on message " + message.getUid());
                     }
                     messages.add(message);
                 }
                 receiver.messagesRemoved(this, messages);
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Cannot remove EXPUNGEd messages", e);
+                Log.e(Ertebat.LOG_TAG, "Cannot remove EXPUNGEd messages", e);
             }
 
         }
@@ -3332,11 +3332,11 @@ public class ImapStore extends Store {
                 try {
                     Object responseType = response.get(1);
                     if (ImapResponseParser.equalsIgnoreCase(responseType, "FETCH")) {
-                        Log.i(ertebat.LOG_TAG, "Got FETCH " + response);
+                        Log.i(Ertebat.LOG_TAG, "Got FETCH " + response);
                         long msgSeq = response.getLong(0);
 
-                        if (ertebat.DEBUG)
-                            Log.d(ertebat.LOG_TAG, "Got untagged FETCH for msgseq " + msgSeq + " for " + getLogId());
+                        if (Ertebat.DEBUG)
+                            Log.d(Ertebat.LOG_TAG, "Got untagged FETCH for msgseq " + msgSeq + " for " + getLogId());
 
                         if (!flagSyncMsgSeqs.contains(msgSeq)) {
                             flagSyncMsgSeqs.add(msgSeq);
@@ -3347,8 +3347,8 @@ public class ImapStore extends Store {
                         if (msgSeq <= oldMessageCount) {
                             messageCountDelta = -1;
                         }
-                        if (ertebat.DEBUG)
-                            Log.d(ertebat.LOG_TAG, "Got untagged EXPUNGE for msgseq " + msgSeq + " for " + getLogId());
+                        if (Ertebat.DEBUG)
+                            Log.d(Ertebat.LOG_TAG, "Got untagged EXPUNGE for msgseq " + msgSeq + " for " + getLogId());
 
                         List<Long> newSeqs = new ArrayList<Long>();
                         Iterator<Long> flagIter = flagSyncMsgSeqs.iterator();
@@ -3368,20 +3368,20 @@ public class ImapStore extends Store {
                         Collections.sort(msgSeqs);  // Have to do comparisons in order because of msgSeq reductions
 
                         for (long msgSeqNum : msgSeqs) {
-                            if (ertebat.DEBUG) {
-                                Log.v(ertebat.LOG_TAG, "Comparing EXPUNGEd msgSeq " + msgSeq + " to " + msgSeqNum);
+                            if (Ertebat.DEBUG) {
+                                Log.v(Ertebat.LOG_TAG, "Comparing EXPUNGEd msgSeq " + msgSeq + " to " + msgSeqNum);
                             }
                             if (msgSeqNum == msgSeq) {
                                 String uid = msgSeqUidMap.get(msgSeqNum);
-                                if (ertebat.DEBUG) {
-                                    Log.d(ertebat.LOG_TAG, "Scheduling removal of UID " + uid + " because msgSeq " + msgSeqNum + " was expunged");
+                                if (Ertebat.DEBUG) {
+                                    Log.d(Ertebat.LOG_TAG, "Scheduling removal of UID " + uid + " because msgSeq " + msgSeqNum + " was expunged");
                                 }
                                 removeMsgUids.add(uid);
                                 msgSeqUidMap.remove(msgSeqNum);
                             } else if (msgSeqNum > msgSeq) {
                                 String uid = msgSeqUidMap.get(msgSeqNum);
-                                if (ertebat.DEBUG) {
-                                    Log.d(ertebat.LOG_TAG, "Reducing msgSeq for UID " + uid + " from " + msgSeqNum + " to " + (msgSeqNum - 1));
+                                if (Ertebat.DEBUG) {
+                                    Log.d(Ertebat.LOG_TAG, "Reducing msgSeq for UID " + uid + " from " + msgSeqNum + " to " + (msgSeqNum - 1));
                                 }
                                 msgSeqUidMap.remove(msgSeqNum);
                                 msgSeqUidMap.put(msgSeqNum - 1, uid);
@@ -3389,7 +3389,7 @@ public class ImapStore extends Store {
                         }
                     }
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Could not handle untagged FETCH for " + getLogId(), e);
+                    Log.e(Ertebat.LOG_TAG, "Could not handle untagged FETCH for " + getLogId(), e);
                 }
             }
             return messageCountDelta;
@@ -3420,26 +3420,26 @@ public class ImapStore extends Store {
             }
             ImapConnection conn = mConnection;
             if (conn != null) {
-                if (ertebat.DEBUG)
-                    Log.v(ertebat.LOG_TAG, "Closing mConnection to stop pushing for " + getLogId());
+                if (Ertebat.DEBUG)
+                    Log.v(Ertebat.LOG_TAG, "Closing mConnection to stop pushing for " + getLogId());
                 conn.close();
             } else {
-                Log.w(ertebat.LOG_TAG, "Attempt to interrupt null mConnection to stop pushing on folderPusher for " + getLogId());
+                Log.w(Ertebat.LOG_TAG, "Attempt to interrupt null mConnection to stop pushing on folderPusher for " + getLogId());
             }
         }
 
         public void handleAsyncUntaggedResponse(ImapResponse response) {
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "Got async response: " + response);
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "Got async response: " + response);
 
             if (stop.get()) {
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "Got async untagged response: " + response + ", but stop is set for " + getLogId());
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "Got async untagged response: " + response + ", but stop is set for " + getLogId());
 
                 try {
                     sendDone();
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Exception while sending DONE for " + getLogId(), e);
+                    Log.e(Ertebat.LOG_TAG, "Exception while sending DONE for " + getLogId(), e);
                 }
             } else {
                 if (response.mTag == null) {
@@ -3449,22 +3449,22 @@ public class ImapStore extends Store {
                         if (ImapResponseParser.equalsIgnoreCase(responseType, "EXISTS") || ImapResponseParser.equalsIgnoreCase(responseType, "EXPUNGE") ||
                                 ImapResponseParser.equalsIgnoreCase(responseType, "FETCH")) {
                             if (!started) {
-                                wakeLock.acquire(ertebat.PUSH_WAKE_LOCK_TIMEOUT);
+                                wakeLock.acquire(Ertebat.PUSH_WAKE_LOCK_TIMEOUT);
                                 started = true;
                             }
 
-                            if (ertebat.DEBUG)
-                                Log.d(ertebat.LOG_TAG, "Got useful async untagged response: " + response + " for " + getLogId());
+                            if (Ertebat.DEBUG)
+                                Log.d(Ertebat.LOG_TAG, "Got useful async untagged response: " + response + " for " + getLogId());
 
                             try {
                                 sendDone();
                             } catch (Exception e) {
-                                Log.e(ertebat.LOG_TAG, "Exception while sending DONE for " + getLogId(), e);
+                                Log.e(Ertebat.LOG_TAG, "Exception while sending DONE for " + getLogId(), e);
                             }
                         }
                     } else if (response.mCommandContinuationRequested) {
-                        if (ertebat.DEBUG)
-                            Log.d(ertebat.LOG_TAG, "Idling " + getLogId());
+                        if (Ertebat.DEBUG)
+                            Log.d(Ertebat.LOG_TAG, "Idling " + getLogId());
 
                         wakeLock.release();
                     }
@@ -3510,24 +3510,24 @@ public class ImapStore extends Store {
                     try {
                         folderPusher.refresh();
                     } catch (Exception e) {
-                        Log.e(ertebat.LOG_TAG, "Got exception while refreshing for " + folderPusher.getName(), e);
+                        Log.e(Ertebat.LOG_TAG, "Got exception while refreshing for " + folderPusher.getName(), e);
                     }
                 }
             }
         }
 
         public void stop() {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "Requested stop of IMAP pusher");
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "Requested stop of IMAP pusher");
 
             synchronized (folderPushers) {
                 for (ImapFolderPusher folderPusher : folderPushers.values()) {
                     try {
-                        if (ertebat.DEBUG)
-                            Log.i(ertebat.LOG_TAG, "Requesting stop of IMAP folderPusher " + folderPusher.getName());
+                        if (Ertebat.DEBUG)
+                            Log.i(Ertebat.LOG_TAG, "Requesting stop of IMAP folderPusher " + folderPusher.getName());
                         folderPusher.stop();
                     } catch (Exception e) {
-                        Log.e(ertebat.LOG_TAG, "Got exception while stopping " + folderPusher.getName(), e);
+                        Log.e(Ertebat.LOG_TAG, "Got exception while stopping " + folderPusher.getName(), e);
                     }
                 }
                 folderPushers.clear();
@@ -3570,7 +3570,7 @@ public class ImapStore extends Store {
                             try {
                                 newUidNext = Long.parseLong(value);
                             } catch (NumberFormatException e) {
-                                Log.e(ertebat.LOG_TAG, "Unable to part uidNext value " + value, e);
+                                Log.e(Ertebat.LOG_TAG, "Unable to part uidNext value " + value, e);
                             }
 
                         }

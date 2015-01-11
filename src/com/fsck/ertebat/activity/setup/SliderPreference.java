@@ -22,7 +22,7 @@
  * Source: https://github.com/jayschwa/AndroidSliderPreference
  */
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -33,8 +33,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.SeekBar;
 
-import com.fsck.ertebat.*;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.*;
+import com.top.Ertebat.mail.R;
 
 
 /**

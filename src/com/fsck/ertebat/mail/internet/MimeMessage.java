@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -25,16 +25,16 @@ import org.apache.james.mime4j.stream.Field;
 import org.apache.james.mime4j.stream.MimeConfig;
 import org.apache.james.mime4j.util.MimeUtil;
 
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.Body;
-import com.fsck.ertebat.mail.BodyPart;
-import com.fsck.ertebat.mail.CompositeBody;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Multipart;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.store.UnavailableStorageException;
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.Body;
+import com.fsck.Ertebat.mail.BodyPart;
+import com.fsck.Ertebat.mail.CompositeBody;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Multipart;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.store.UnavailableStorageException;
+import com.fsck.Ertebat.Ertebat;
 
 /**
  * An implementation of Message that stores all of it's metadata in RFC 822 and
@@ -146,14 +146,14 @@ public class MimeMessage extends Message {
      *
      * @see #mSentDate
      * @param sentDate
-     * @throws com.fsck.ertebat.mail.MessagingException
+     * @throws com.fsck.Ertebat.mail.MessagingException
      */
     public void addSentDate(Date sentDate) throws MessagingException {
         if (mDateFormat == null) {
             mDateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
         }
 
-        if (ertebat.hideTimeZone()) {
+        if (Ertebat.hideTimeZone()) {
             mDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         }
 

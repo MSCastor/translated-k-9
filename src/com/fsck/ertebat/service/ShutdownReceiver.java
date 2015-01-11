@@ -1,11 +1,11 @@
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 /**
  * Capture the system shutdown event in order to properly free resources.
@@ -24,7 +24,7 @@ public class ShutdownReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, final Intent intent) {
         if (Intent.ACTION_SHUTDOWN.equals(intent.getAction())) {
-            Log.i(ertebat.LOG_TAG, "System is shutting down, releasing resources");
+            Log.i(Ertebat.LOG_TAG, "System is shutting down, releasing resources");
 
             // prevent any scheduled intent from waking up K-9
             BootReceiver.purgeSchedule(context);

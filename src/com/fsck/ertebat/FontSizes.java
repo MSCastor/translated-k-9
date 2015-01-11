@@ -1,10 +1,10 @@
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 import android.content.SharedPreferences;
 import android.util.TypedValue;
 import android.widget.TextView;
 
-import com.fsck.ertebat.preferences.GlobalSettings;
+import com.fsck.Ertebat.preferences.GlobalSettings;
 
 /**
  * Manage font size of the information displayed in the account list, folder

@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import java.util.Date;
 
@@ -11,25 +11,25 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 public class BootReceiver extends CoreReceiver {
 
-    public static String FIRE_INTENT = "com.fsck.ertebat.service.BroadcastReceiver.fireIntent";
-    public static String SCHEDULE_INTENT = "com.fsck.ertebat.service.BroadcastReceiver.scheduleIntent";
-    public static String CANCEL_INTENT = "com.fsck.ertebat.service.BroadcastReceiver.cancelIntent";
+    public static String FIRE_INTENT = "com.fsck.Ertebat.service.BroadcastReceiver.fireIntent";
+    public static String SCHEDULE_INTENT = "com.fsck.Ertebat.service.BroadcastReceiver.scheduleIntent";
+    public static String CANCEL_INTENT = "com.fsck.Ertebat.service.BroadcastReceiver.cancelIntent";
 
-    public static String ALARMED_INTENT = "com.fsck.ertebat.service.BroadcastReceiver.pendingIntent";
-    public static String AT_TIME = "com.fsck.ertebat.service.BroadcastReceiver.atTime";
+    public static String ALARMED_INTENT = "com.fsck.Ertebat.service.BroadcastReceiver.pendingIntent";
+    public static String AT_TIME = "com.fsck.Ertebat.service.BroadcastReceiver.atTime";
 
     @Override
     public Integer receive(Context context, Intent intent, Integer tmpWakeLockId) {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "BootReceiver.onReceive" + intent);
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "BootReceiver.onReceive" + intent);
 
         final String action = intent.getAction();
         if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
-            //ertebat.setServicesEnabled(context, tmpWakeLockId);
+            //Ertebat.setServicesEnabled(context, tmpWakeLockId);
             //tmpWakeLockId = null;
         } else if (Intent.ACTION_DEVICE_STORAGE_LOW.equals(action)) {
             MailService.actionCancel(context, tmpWakeLockId);
@@ -41,24 +41,24 @@ public class BootReceiver extends CoreReceiver {
             MailService.connectivityChange(context, tmpWakeLockId);
             tmpWakeLockId = null;
         } else if ("com.android.sync.SYNC_CONN_STATUS_CHANGED".equals(action)) {
-            ertebat.BACKGROUND_OPS bOps = ertebat.getBackgroundOps();
-            if (bOps == ertebat.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC) {
+            Ertebat.BACKGROUND_OPS bOps = Ertebat.getBackgroundOps();
+            if (bOps == Ertebat.BACKGROUND_OPS.WHEN_CHECKED_AUTO_SYNC) {
                 MailService.actionReset(context, tmpWakeLockId);
                 tmpWakeLockId = null;
             }
         } else if (FIRE_INTENT.equals(action)) {
             Intent alarmedIntent = intent.getParcelableExtra(ALARMED_INTENT);
             String alarmedAction = alarmedIntent.getAction();
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "BootReceiver Got alarm to fire alarmedIntent " + alarmedAction);
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "BootReceiver Got alarm to fire alarmedIntent " + alarmedAction);
             alarmedIntent.putExtra(WAKE_LOCK_ID, tmpWakeLockId);
             tmpWakeLockId = null;
             context.startService(alarmedIntent);
         } else if (SCHEDULE_INTENT.equals(action)) {
             long atTime = intent.getLongExtra(AT_TIME, -1);
             Intent alarmedIntent = intent.getParcelableExtra(ALARMED_INTENT);
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "BootReceiver Scheduling intent " + alarmedIntent + " for " + new Date(atTime));
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "BootReceiver Scheduling intent " + alarmedIntent + " for " + new Date(atTime));
 
             PendingIntent pi = buildPendingIntent(context, intent);
             AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -66,8 +66,8 @@ public class BootReceiver extends CoreReceiver {
             alarmMgr.set(AlarmManager.RTC_WAKEUP, atTime, pi);
         } else if (CANCEL_INTENT.equals(action)) {
             Intent alarmedIntent = intent.getParcelableExtra(ALARMED_INTENT);
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "BootReceiver Canceling alarmedIntent " + alarmedIntent);
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "BootReceiver Canceling alarmedIntent " + alarmedIntent);
 
             PendingIntent pi = buildPendingIntent(context, intent);
 
@@ -93,8 +93,8 @@ public class BootReceiver extends CoreReceiver {
     }
 
     public static void scheduleIntent(Context context, long atTime, Intent alarmedIntent) {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "BootReceiver Got request to schedule alarmedIntent " + alarmedIntent.getAction());
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "BootReceiver Got request to schedule alarmedIntent " + alarmedIntent.getAction());
         Intent i = new Intent();
         i.setClass(context, BootReceiver.class);
         i.setAction(SCHEDULE_INTENT);
@@ -104,8 +104,8 @@ public class BootReceiver extends CoreReceiver {
     }
 
     public static void cancelIntent(Context context, Intent alarmedIntent) {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "BootReceiver Got request to cancel alarmedIntent " + alarmedIntent.getAction());
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "BootReceiver Got request to cancel alarmedIntent " + alarmedIntent.getAction());
         Intent i = new Intent();
         i.setClass(context, BootReceiver.class);
         i.setAction(CANCEL_INTENT);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.ertebat.Startup" parent="@android:style/Theme.Holo.NoActionBar">
+    <style name="Theme.Ertebat.Startup" parent="@android:style/Theme.Holo.NoActionBar">
         <item name="android:windowBackground">@android:color/black</item>
     </style>
 
-    <style name="Theme.ertebat.Light.Base" parent="@android:style/Theme.Holo.Light">
+    <style name="Theme.Ertebat.Light.Base" parent="@android:style/Theme.Holo.Light">
         <item name="iconFolder">@drawable/folder_light</item>
         <item name="iconListItemMenu">@drawable/dropdown_ic_arrow_normal_holo_light</item>
         <item name="iconMenuInfoDetails">@android:drawable/ic_menu_info_details</item>
@@ -59,7 +59,7 @@
         <item name="contactPictureFallbackDefaultBackgroundColor">#ffababab</item>
     </style>
 
-    <style name="Theme.ertebat.Dark.Base" parent="@android:style/Theme.Holo">
+    <style name="Theme.Ertebat.Dark.Base" parent="@android:style/Theme.Holo">
         <item name="iconFolder">@drawable/folder_dark</item>
         <item name="iconListItemMenu">@drawable/dropdown_ic_arrow_normal_holo_dark</item>
         <item name="iconMenuInfoDetails">@android:drawable/ic_menu_info_details</item>
@@ -113,27 +113,27 @@
         <item name="contactPictureFallbackDefaultBackgroundColor">#ff606060</item>
     </style>
 
-    <style name="Theme.ertebat.Light" parent="Theme.ertebat.Light.Base">
+    <style name="Theme.Ertebat.Light" parent="Theme.Ertebat.Light.Base">
         <item name="composerBackgroundColor">@android:color/background_light</item>
         <item name="compatDividerVertical">?android:attr/dividerVertical</item>
         <item name="compatSelectableItemBackground">?android:attr/selectableItemBackground</item>
     </style>
 
-    <style name="Theme.ertebat.Dark" parent="Theme.ertebat.Dark.Base">
+    <style name="Theme.Ertebat.Dark" parent="Theme.Ertebat.Dark.Base">
         <item name="composerBackgroundColor">@android:color/background_dark</item>
         <item name="compatDividerVertical">?android:attr/dividerVertical</item>
         <item name="compatSelectableItemBackground">?android:attr/selectableItemBackground</item>
     </style>
 
-    <style name="Theme.ertebat.Dialog.Light" parent="Theme.ertebat.Light">
+    <style name="Theme.Ertebat.Dialog.Light" parent="Theme.Ertebat.Light">
         <item name="backgroundColorChooseAccountHeader">#cccccc</item>
     </style>
 
-    <style name="Theme.ertebat.Dialog.Dark" parent="Theme.ertebat.Dark">
+    <style name="Theme.Ertebat.Dialog.Dark" parent="Theme.Ertebat.Dark">
         <item name="backgroundColorChooseAccountHeader">#404040</item>
     </style>
 
-    <style name="Theme.ertebat.Dialog.Translucent.Dark" parent="@android:style/Theme.Holo.Dialog">
+    <style name="Theme.Ertebat.Dialog.Translucent.Dark" parent="@android:style/Theme.Holo.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -142,7 +142,7 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     </style>
 
-    <style name="Theme.ertebat.Dialog.Translucent.Light" parent="@android:style/Theme.Holo.Light.Dialog">
+    <style name="Theme.Ertebat.Dialog.Translucent.Light" parent="@android:style/Theme.Holo.Light.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>

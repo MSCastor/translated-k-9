@@ -1,4 +1,4 @@
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,9 +9,9 @@ import android.widget.ListView;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 
-public class ertebatPullToRefreshListView extends PullToRefreshListView {
+public class ErtebatPullToRefreshListView extends PullToRefreshListView {
 
-    public ertebatPullToRefreshListView(Context context, AttributeSet attrs) {
+    public ErtebatPullToRefreshListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

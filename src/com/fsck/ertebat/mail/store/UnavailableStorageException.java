@@ -1,6 +1,6 @@
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.MessagingException;
 
 public class UnavailableStorageException extends MessagingException {
 

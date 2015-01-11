@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.controller;
+package com.fsck.Ertebat.controller;
 
 import java.io.CharArrayWriter;
 import java.io.PrintWriter;
@@ -40,60 +40,60 @@ import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.AccountStats;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.ertebat.NotificationHideSubject;
-import com.fsck.ertebat.ertebat.Intents;
-import com.fsck.ertebat.ertebat.NotificationQuickDelete;
-import com.fsck.ertebat.NotificationSetting;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.Accounts;
-import com.fsck.ertebat.activity.FolderList;
-import com.fsck.ertebat.activity.MessageList;
-import com.fsck.ertebat.activity.MessageReference;
-import com.fsck.ertebat.activity.NotificationDeleteConfirmation;
-import com.fsck.ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
-import com.fsck.ertebat.activity.setup.AccountSetupIncoming;
-import com.fsck.ertebat.activity.setup.AccountSetupOutgoing;
-import com.fsck.ertebat.cache.EmailProviderCache;
-import com.fsck.ertebat.helper.Contacts;
-import com.fsck.ertebat.helper.power.TracingPowerManager;
-import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.FetchProfile;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Folder.FolderType;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.AccountStats;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Ertebat.NotificationHideSubject;
+import com.fsck.Ertebat.Ertebat.Intents;
+import com.fsck.Ertebat.Ertebat.NotificationQuickDelete;
+import com.fsck.Ertebat.NotificationSetting;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.Accounts;
+import com.fsck.Ertebat.activity.FolderList;
+import com.fsck.Ertebat.activity.MessageList;
+import com.fsck.Ertebat.activity.MessageReference;
+import com.fsck.Ertebat.activity.NotificationDeleteConfirmation;
+import com.fsck.Ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
+import com.fsck.Ertebat.activity.setup.AccountSetupIncoming;
+import com.fsck.Ertebat.activity.setup.AccountSetupOutgoing;
+import com.fsck.Ertebat.cache.EmailProviderCache;
+import com.fsck.Ertebat.helper.Contacts;
+import com.fsck.Ertebat.helper.power.TracingPowerManager;
+import com.fsck.Ertebat.helper.power.TracingPowerManager.TracingWakeLock;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.FetchProfile;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Folder.FolderType;
 
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.Message.RecipientType;
-import com.fsck.ertebat.mail.CertificateValidationException;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.PushReceiver;
-import com.fsck.ertebat.mail.Pusher;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.Transport;
-import com.fsck.ertebat.mail.internet.MimeMessage;
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.internet.TextBody;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.LocalStore.LocalFolder;
-import com.fsck.ertebat.mail.store.LocalStore.LocalMessage;
-import com.fsck.ertebat.mail.store.LocalStore.PendingCommand;
-import com.fsck.ertebat.mail.store.Pop3Store;
-import com.fsck.ertebat.mail.store.UnavailableAccountException;
-import com.fsck.ertebat.mail.store.UnavailableStorageException;
-import com.fsck.ertebat.provider.EmailProvider;
-import com.fsck.ertebat.provider.EmailProvider.StatsColumns;
-import com.fsck.ertebat.search.ConditionsTreeNode;
-import com.fsck.ertebat.search.LocalSearch;
-import com.fsck.ertebat.search.SearchAccount;
-import com.fsck.ertebat.search.SearchSpecification;
-import com.fsck.ertebat.search.SqlQueryBuilder;
-import com.fsck.ertebat.service.NotificationActionService;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.Message.RecipientType;
+import com.fsck.Ertebat.mail.CertificateValidationException;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.PushReceiver;
+import com.fsck.Ertebat.mail.Pusher;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.Transport;
+import com.fsck.Ertebat.mail.internet.MimeMessage;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.internet.TextBody;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalFolder;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalMessage;
+import com.fsck.Ertebat.mail.store.LocalStore.PendingCommand;
+import com.fsck.Ertebat.mail.store.Pop3Store;
+import com.fsck.Ertebat.mail.store.UnavailableAccountException;
+import com.fsck.Ertebat.mail.store.UnavailableStorageException;
+import com.fsck.Ertebat.provider.EmailProvider;
+import com.fsck.Ertebat.provider.EmailProvider.StatsColumns;
+import com.fsck.Ertebat.search.ConditionsTreeNode;
+import com.fsck.Ertebat.search.LocalSearch;
+import com.fsck.Ertebat.search.SearchAccount;
+import com.fsck.Ertebat.search.SearchSpecification;
+import com.fsck.Ertebat.search.SqlQueryBuilder;
+import com.fsck.Ertebat.service.NotificationActionService;
 
 
 /**
@@ -145,15 +145,15 @@ public class MessagingController implements Runnable {
      * So 25k gives good performance and a reasonable data footprint. Sounds good to me.
      */
 
-    private static final String PENDING_COMMAND_MOVE_OR_COPY = "com.fsck.ertebat.MessagingController.moveOrCopy";
-    private static final String PENDING_COMMAND_MOVE_OR_COPY_BULK = "com.fsck.ertebat.MessagingController.moveOrCopyBulk";
-    private static final String PENDING_COMMAND_MOVE_OR_COPY_BULK_NEW = "com.fsck.ertebat.MessagingController.moveOrCopyBulkNew";
-    private static final String PENDING_COMMAND_EMPTY_TRASH = "com.fsck.ertebat.MessagingController.emptyTrash";
-    private static final String PENDING_COMMAND_SET_FLAG_BULK = "com.fsck.ertebat.MessagingController.setFlagBulk";
-    private static final String PENDING_COMMAND_SET_FLAG = "com.fsck.ertebat.MessagingController.setFlag";
-    private static final String PENDING_COMMAND_APPEND = "com.fsck.ertebat.MessagingController.append";
-    private static final String PENDING_COMMAND_MARK_ALL_AS_READ = "com.fsck.ertebat.MessagingController.markAllAsRead";
-    private static final String PENDING_COMMAND_EXPUNGE = "com.fsck.ertebat.MessagingController.expunge";
+    private static final String PENDING_COMMAND_MOVE_OR_COPY = "com.fsck.Ertebat.MessagingController.moveOrCopy";
+    private static final String PENDING_COMMAND_MOVE_OR_COPY_BULK = "com.fsck.Ertebat.MessagingController.moveOrCopyBulk";
+    private static final String PENDING_COMMAND_MOVE_OR_COPY_BULK_NEW = "com.fsck.Ertebat.MessagingController.moveOrCopyBulkNew";
+    private static final String PENDING_COMMAND_EMPTY_TRASH = "com.fsck.Ertebat.MessagingController.emptyTrash";
+    private static final String PENDING_COMMAND_SET_FLAG_BULK = "com.fsck.Ertebat.MessagingController.setFlagBulk";
+    private static final String PENDING_COMMAND_SET_FLAG = "com.fsck.Ertebat.MessagingController.setFlag";
+    private static final String PENDING_COMMAND_APPEND = "com.fsck.Ertebat.MessagingController.append";
+    private static final String PENDING_COMMAND_MARK_ALL_AS_READ = "com.fsck.Ertebat.MessagingController.markAllAsRead";
+    private static final String PENDING_COMMAND_EXPUNGE = "com.fsck.Ertebat.MessagingController.expunge";
 
     public static class UidReverseComparator implements Comparator<Message> {
         @Override
@@ -201,7 +201,7 @@ public class MessagingController implements Runnable {
     private boolean mBusy;
 
     /**
-     *  {@link ertebat}
+     *  {@link Ertebat}
      */
     private Application mApplication;
 
@@ -387,7 +387,7 @@ public class MessagingController implements Runnable {
 
 
     /**
-     * @param application  {@link ertebat}
+     * @param application  {@link Ertebat}
      */
     private MessagingController(Application application) {
         mApplication = application;
@@ -402,7 +402,7 @@ public class MessagingController implements Runnable {
     /**
      * Gets or creates the singleton instance of MessagingController. Application is used to
      * provide a Context to classes that need it.
-     * @param application {@link ertebat}
+     * @param application {@link Ertebat}
      * @return
      */
     public synchronized static MessagingController getInstance(Application application) {
@@ -427,8 +427,8 @@ public class MessagingController implements Runnable {
                 if (command != null) {
                     commandDescription = command.description;
 
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "Running " + (command.isForeground ? "Foreground" : "Background") + " command '" + command.description + "', seq = " + command.sequence);
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "Running " + (command.isForeground ? "Foreground" : "Background") + " command '" + command.description + "', seq = " + command.sequence);
 
                     mBusy = true;
                     try {
@@ -442,7 +442,7 @@ public class MessagingController implements Runnable {
                                     sleep(30 * 1000);
                                     mCommands.put(command);
                                 } catch (InterruptedException e) {
-                                    Log.e(ertebat.LOG_TAG, "interrupted while putting a pending command for"
+                                    Log.e(Ertebat.LOG_TAG, "interrupted while putting a pending command for"
                                           + " an unavailable account back into the queue."
                                           + " THIS SHOULD NEVER HAPPEN.");
                                 }
@@ -450,8 +450,8 @@ public class MessagingController implements Runnable {
                         } .start();
                     }
 
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, (command.isForeground ? "Foreground" : "Background") +
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, (command.isForeground ? "Foreground" : "Background") +
                               " Command '" + command.description + "' completed");
 
                     for (MessagingListener l : getListeners(command.listener)) {
@@ -459,7 +459,7 @@ public class MessagingController implements Runnable {
                     }
                 }
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Error running command '" + commandDescription + "'", e);
+                Log.e(Ertebat.LOG_TAG, "Error running command '" + commandDescription + "'", e);
             }
             mBusy = false;
         }
@@ -568,7 +568,7 @@ public class MessagingController implements Runnable {
         }
         List <? extends Folder > localFolders = null;
         if (!account.isAvailable(mApplication)) {
-            Log.i(ertebat.LOG_TAG, "not listing folders of unavailable account");
+            Log.i(Ertebat.LOG_TAG, "not listing folders of unavailable account");
         } else {
             try {
                 Store localStore = account.getLocalStore();
@@ -643,7 +643,7 @@ public class MessagingController implements Runnable {
 
                         // FIXME: This is a hack used to clean up when we accidentally created the
                         //        special placeholder folder "-NONE-".
-                        if (ertebat.FOLDER_NONE.equals(localFolderName)) {
+                        if (Ertebat.FOLDER_NONE.equals(localFolderName)) {
                             localFolder.delete(false);
                         }
 
@@ -756,13 +756,13 @@ public class MessagingController implements Runnable {
 
     public Future<?> searchRemoteMessages(final String acctUuid, final String folderName, final String query,
             final Flag[] requiredFlags, final Flag[] forbiddenFlags, final MessagingListener listener) {
-        if (ertebat.DEBUG) {
+        if (Ertebat.DEBUG) {
             String msg = "searchRemoteMessages ("
                          + "acct=" + acctUuid
                          + ", folderName = " + folderName
                          + ", query = " + query
                          + ")";
-            Log.i(ertebat.LOG_TAG, msg);
+            Log.i(Ertebat.LOG_TAG, msg);
         }
 
         return threadPool.submit(new Runnable() {
@@ -797,7 +797,7 @@ public class MessagingController implements Runnable {
 
             List<Message> messages = remoteFolder.search(query, requiredFlags, forbiddenFlags);
 
-            if (ertebat.DEBUG) {
+            if (Ertebat.DEBUG) {
                 Log.i("Remote Search", "Remote search got " + messages.size() + " results");
             }
 
@@ -822,9 +822,9 @@ public class MessagingController implements Runnable {
 
         } catch (Exception e) {
             if (Thread.currentThread().isInterrupted()) {
-                Log.i(ertebat.LOG_TAG, "Caught exception on aborted remote search; safe to ignore.", e);
+                Log.i(Ertebat.LOG_TAG, "Caught exception on aborted remote search; safe to ignore.", e);
             } else {
-                Log.e(ertebat.LOG_TAG, "Could not complete remote search", e);
+                Log.e(Ertebat.LOG_TAG, "Could not complete remote search", e);
                 if (listener != null) {
                     listener.remoteSearchFailed(acct, null, e.getMessage());
                 }
@@ -861,7 +861,7 @@ public class MessagingController implements Runnable {
 
                     loadSearchResultsSynchronous(messages, localFolder, remoteFolder, listener);
                 } catch (MessagingException e) {
-                    Log.e(ertebat.LOG_TAG, "Exception in loadSearchResults: " + e);
+                    Log.e(Ertebat.LOG_TAG, "Exception in loadSearchResults: " + e);
                     addErrorMessage(account, null, e);
                 } finally {
                     if (listener != null) {
@@ -949,8 +949,8 @@ public class MessagingController implements Runnable {
         Folder remoteFolder = null;
         LocalFolder tLocalFolder = null;
 
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "Synchronizing folder " + account.getDescription() + ":" + folder);
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "Synchronizing folder " + account.getDescription() + ":" + folder);
 
         for (MessagingListener l : getListeners(listener)) {
             l.synchronizeMailboxStarted(account, folder);
@@ -968,15 +968,15 @@ public class MessagingController implements Runnable {
 
         Exception commandException = null;
         try {
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "SYNC: About to process pending commands for account " + account.getDescription());
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "SYNC: About to process pending commands for account " + account.getDescription());
 
             try {
                 processPendingCommandsSynchronous(account);
             } catch (Exception e) {
                 addErrorMessage(account, null, e);
 
-                Log.e(ertebat.LOG_TAG, "Failure processing command, but allow message sync attempt", e);
+                Log.e(Ertebat.LOG_TAG, "Failure processing command, but allow message sync attempt", e);
                 commandException = e;
             }
 
@@ -984,8 +984,8 @@ public class MessagingController implements Runnable {
              * Get the message list from the local store and create an index of
              * the uids within the list.
              */
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "SYNC: About to get local folder " + folder);
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "SYNC: About to get local folder " + folder);
 
             final LocalStore localStore = account.getLocalStore();
             tLocalFolder = localStore.getFolder(folder);
@@ -999,14 +999,14 @@ public class MessagingController implements Runnable {
             }
 
             if (providedRemoteFolder != null) {
-                if (ertebat.DEBUG)
-                    Log.v(ertebat.LOG_TAG, "SYNC: using providedRemoteFolder " + folder);
+                if (Ertebat.DEBUG)
+                    Log.v(Ertebat.LOG_TAG, "SYNC: using providedRemoteFolder " + folder);
                 remoteFolder = providedRemoteFolder;
             } else {
                 Store remoteStore = account.getRemoteStore();
 
-                if (ertebat.DEBUG)
-                    Log.v(ertebat.LOG_TAG, "SYNC: About to get remote folder " + folder);
+                if (Ertebat.DEBUG)
+                    Log.v(Ertebat.LOG_TAG, "SYNC: About to get remote folder " + folder);
                 remoteFolder = remoteStore.getFolder(folder);
 
                 if (! verifyOrCreateRemoteSpecialFolder(account, folder, remoteFolder, listener)) {
@@ -1020,8 +1020,8 @@ public class MessagingController implements Runnable {
                 Open the folder
                 Upload any local messages that are marked as PENDING_UPLOAD (Drafts, Sent, Trash)
                 Get the message count
-                Get the list of the newest ertebat.DEFAULT_VISIBLE_LIMIT messages
-                getMessages(messageCount - ertebat.DEFAULT_VISIBLE_LIMIT, messageCount)
+                Get the list of the newest Ertebat.DEFAULT_VISIBLE_LIMIT messages
+                getMessages(messageCount - Ertebat.DEFAULT_VISIBLE_LIMIT, messageCount)
                 See if we have each message locally, if not fetch it's flags and envelope
                 Get and update the unread count for the folder
                 Update the remote flags of any messages we have locally with an internal date newer than the remote message.
@@ -1035,13 +1035,13 @@ public class MessagingController implements Runnable {
                 /*
                  * Open the remote folder. This pre-loads certain metadata like message count.
                  */
-                if (ertebat.DEBUG)
-                    Log.v(ertebat.LOG_TAG, "SYNC: About to open remote folder " + folder);
+                if (Ertebat.DEBUG)
+                    Log.v(Ertebat.LOG_TAG, "SYNC: About to open remote folder " + folder);
 
                 remoteFolder.open(Folder.OPEN_MODE_RW);
                 if (Account.EXPUNGE_ON_POLL.equals(account.getExpungePolicy())) {
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "SYNC: Expunging folder " + account.getDescription() + ":" + folder);
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "SYNC: Expunging folder " + account.getDescription() + ":" + folder);
                     remoteFolder.expunge();
                 }
 
@@ -1055,15 +1055,15 @@ public class MessagingController implements Runnable {
             int visibleLimit = localFolder.getVisibleLimit();
 
             if (visibleLimit < 0) {
-                visibleLimit = ertebat.DEFAULT_VISIBLE_LIMIT;
+                visibleLimit = Ertebat.DEFAULT_VISIBLE_LIMIT;
             }
 
             Message[] remoteMessageArray = EMPTY_MESSAGE_ARRAY;
             final ArrayList<Message> remoteMessages = new ArrayList<Message>();
             HashMap<String, Message> remoteUidMap = new HashMap<String, Message>();
 
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "SYNC: Remote message count for folder " + folder + " is " + remoteMessageCount);
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "SYNC: Remote message count for folder " + folder + " is " + remoteMessageCount);
             final Date earliestDate = account.getEarliestPollDate();
 
 
@@ -1077,8 +1077,8 @@ public class MessagingController implements Runnable {
                 }
                 int remoteEnd = remoteMessageCount;
 
-                if (ertebat.DEBUG)
-                    Log.v(ertebat.LOG_TAG, "SYNC: About to get messages " + remoteStart + " through " + remoteEnd + " for folder " + folder);
+                if (Ertebat.DEBUG)
+                    Log.v(Ertebat.LOG_TAG, "SYNC: About to get messages " + remoteStart + " through " + remoteEnd + " for folder " + folder);
 
                 final AtomicInteger headerProgress = new AtomicInteger(0);
                 for (MessagingListener l : getListeners(listener)) {
@@ -1101,8 +1101,8 @@ public class MessagingController implements Runnable {
                         remoteUidMap.put(thisMess.getUid(), thisMess);
                     }
                 }
-                if (ertebat.DEBUG)
-                    Log.v(ertebat.LOG_TAG, "SYNC: Got " + remoteUidMap.size() + " messages for folder " + folder);
+                if (Ertebat.DEBUG)
+                    Log.v(Ertebat.LOG_TAG, "SYNC: Got " + remoteUidMap.size() + " messages for folder " + folder);
 
                 remoteMessageArray = null;
                 for (MessagingListener l : getListeners(listener)) {
@@ -1150,8 +1150,8 @@ public class MessagingController implements Runnable {
             localFolder.setLastChecked(System.currentTimeMillis());
             localFolder.setStatus(null);
 
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "Done synchronizing folder " + account.getDescription() + ":" + folder +
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "Done synchronizing folder " + account.getDescription() + ":" + folder +
                       " @ " + new Date() + " with " + newMessages + " new messages");
 
             for (MessagingListener l : getListeners(listener)) {
@@ -1161,7 +1161,7 @@ public class MessagingController implements Runnable {
 
             if (commandException != null) {
                 String rootMessage = getRootCauseMessage(commandException);
-                Log.e(ertebat.LOG_TAG, "Root cause failure in " + account.getDescription() + ":" +
+                Log.e(Ertebat.LOG_TAG, "Root cause failure in " + account.getDescription() + ":" +
                       tLocalFolder.getName() + " was '" + rootMessage + "'");
                 localFolder.setStatus(rootMessage);
                 for (MessagingListener l : getListeners(listener)) {
@@ -1169,11 +1169,11 @@ public class MessagingController implements Runnable {
                 }
             }
 
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "Done synchronizing folder " + account.getDescription() + ":" + folder);
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "Done synchronizing folder " + account.getDescription() + ":" + folder);
 
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "synchronizeMailbox", e);
+            Log.e(Ertebat.LOG_TAG, "synchronizeMailbox", e);
             // If we don't set the last checked, it can try too often during
             // failure conditions
             String rootMessage = getRootCauseMessage(e);
@@ -1182,7 +1182,7 @@ public class MessagingController implements Runnable {
                     tLocalFolder.setStatus(rootMessage);
                     tLocalFolder.setLastChecked(System.currentTimeMillis());
                 } catch (MessagingException me) {
-                    Log.e(ertebat.LOG_TAG, "Could not set last checked on folder " + account.getDescription() + ":" +
+                    Log.e(Ertebat.LOG_TAG, "Could not set last checked on folder " + account.getDescription() + ":" +
                           tLocalFolder.getName(), e);
                 }
             }
@@ -1192,7 +1192,7 @@ public class MessagingController implements Runnable {
             }
             notifyUserIfCertificateProblem(mApplication, e, account, true);
             addErrorMessage(account, null, e);
-            Log.e(ertebat.LOG_TAG, "Failed synchronizing folder " + account.getDescription() + ":" + folder + " @ " + new Date());
+            Log.e(Ertebat.LOG_TAG, "Failed synchronizing folder " + account.getDescription() + ":" + folder + " @ " + new Date());
 
         } finally {
             if (providedRemoteFolder == null) {
@@ -1228,8 +1228,8 @@ public class MessagingController implements Runnable {
                     for (MessagingListener l : getListeners(listener)) {
                         l.synchronizeMailboxFinished(account, folder, 0, 0);
                     }
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "Done synchronizing folder " + folder);
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "Done synchronizing folder " + folder);
 
                     return false;
                 }
@@ -1265,8 +1265,8 @@ public class MessagingController implements Runnable {
         Date downloadStarted = new Date(); // now
 
         if (earliestDate != null) {
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "Only syncing messages after " + earliestDate);
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "Only syncing messages after " + earliestDate);
             }
         }
         final String folder = remoteFolder.getName();
@@ -1277,7 +1277,7 @@ public class MessagingController implements Runnable {
             unreadBeforeStart = stats.unreadMessageCount;
 
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Unable to getUnreadMessageCount for account: " + account, e);
+            Log.e(Ertebat.LOG_TAG, "Unable to getUnreadMessageCount for account: " + account, e);
         }
 
         ArrayList<Message> syncFlagMessages = new ArrayList<Message>();
@@ -1296,8 +1296,8 @@ public class MessagingController implements Runnable {
             l.synchronizeMailboxProgress(account, folder, progress.get(), todo);
         }
 
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "SYNC: Have " + unsyncedMessages.size() + " unsynced messages");
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "SYNC: Have " + unsyncedMessages.size() + " unsynced messages");
 
         messages.clear();
         final ArrayList<Message> largeMessages = new ArrayList<Message>();
@@ -1322,8 +1322,8 @@ public class MessagingController implements Runnable {
             }
             fp.add(FetchProfile.Item.ENVELOPE);
 
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "SYNC: About to fetch " + unsyncedMessages.size() + " unsynced messages for folder " + folder);
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "SYNC: About to fetch " + unsyncedMessages.size() + " unsynced messages for folder " + folder);
 
 
             fetchUnsyncedMessages(account, remoteFolder, localFolder, unsyncedMessages, smallMessages, largeMessages, progress, todo, fp);
@@ -1336,15 +1336,15 @@ public class MessagingController implements Runnable {
                     localFolder.setPushState(newPushState);
                 }
             }
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "SYNC: Synced unsynced messages for folder " + folder);
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "SYNC: Synced unsynced messages for folder " + folder);
             }
 
 
         }
 
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "SYNC: Have "
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "SYNC: Have "
                   + largeMessages.size() + " large messages and "
                   + smallMessages.size() + " small messages out of "
                   + unsyncedMessages.size() + " unsynced messages");
@@ -1379,8 +1379,8 @@ public class MessagingController implements Runnable {
 
         refreshLocalMessageFlags(account, remoteFolder, localFolder, syncFlagMessages, progress, todo);
 
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "SYNC: Synced remote messages for folder " + folder + ", " + newMessages.get() + " new messages");
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "SYNC: Synced remote messages for folder " + folder + ", " + newMessages.get() + " new messages");
 
         localFolder.purgeToVisibleLimit(new MessageRemovalListener() {
             @Override
@@ -1428,13 +1428,13 @@ public class MessagingController implements Runnable {
         if (localMessage == null) {
             if (!flagSyncOnly) {
                 if (!message.isSet(Flag.X_DOWNLOADED_FULL) && !message.isSet(Flag.X_DOWNLOADED_PARTIAL)) {
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "Message with uid " + message.getUid() + " has not yet been downloaded");
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "Message with uid " + message.getUid() + " has not yet been downloaded");
 
                     unsyncedMessages.add(message);
                 } else {
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "Message with uid " + message.getUid() + " is partially or fully downloaded");
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "Message with uid " + message.getUid() + " is partially or fully downloaded");
 
                     // Store the updated message locally
                     localFolder.appendMessages(new Message[] { message });
@@ -1453,12 +1453,12 @@ public class MessagingController implements Runnable {
                 }
             }
         } else if (!localMessage.isSet(Flag.DELETED)) {
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "Message with uid " + message.getUid() + " is present in the local store");
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "Message with uid " + message.getUid() + " is present in the local store");
 
             if (!localMessage.isSet(Flag.X_DOWNLOADED_FULL) && !localMessage.isSet(Flag.X_DOWNLOADED_PARTIAL)) {
-                if (ertebat.DEBUG)
-                    Log.v(ertebat.LOG_TAG, "Message with uid " + message.getUid()
+                if (Ertebat.DEBUG)
+                    Log.v(Ertebat.LOG_TAG, "Message with uid " + message.getUid()
                           + " is not downloaded, even partially; trying again");
 
                 unsyncedMessages.add(message);
@@ -1500,12 +1500,12 @@ public class MessagingController implements Runnable {
                     }
                     if (message.isSet(Flag.DELETED) || message.olderThan(earliestDate)) {
 
-                        if (ertebat.DEBUG) {
+                        if (Ertebat.DEBUG) {
                             if (message.isSet(Flag.DELETED)) {
-                                Log.v(ertebat.LOG_TAG, "Newly downloaded message " + account + ":" + folder + ":" + message.getUid()
+                                Log.v(Ertebat.LOG_TAG, "Newly downloaded message " + account + ":" + folder + ":" + message.getUid()
                                       + " was marked deleted on server, skipping");
                             } else {
-                                Log.d(ertebat.LOG_TAG, "Newly downloaded message " + message.getUid() + " is older than "
+                                Log.d(Ertebat.LOG_TAG, "Newly downloaded message " + message.getUid() + " is older than "
                                       + earliestDate + ", skipping");
                             }
                         }
@@ -1541,7 +1541,7 @@ public class MessagingController implements Runnable {
                         }
                     }
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Error while storing downloaded message.", e);
+                    Log.e(Ertebat.LOG_TAG, "Error while storing downloaded message.", e);
                     addErrorMessage(account, null, e);
                 }
             }
@@ -1573,8 +1573,8 @@ public class MessagingController implements Runnable {
      * @param folder
      */
     private void writeUnsyncedMessages(final List<Message> messages, final LocalFolder localFolder, final Account account, final String folder) {
-        if (ertebat.DEBUG) {
-            Log.v(ertebat.LOG_TAG, "Batch writing " + Integer.toString(messages.size()) + " messages");
+        if (Ertebat.DEBUG) {
+            Log.v(Ertebat.LOG_TAG, "Batch writing " + Integer.toString(messages.size()) + " messages");
         }
         try {
             // Store the new message locally
@@ -1583,15 +1583,15 @@ public class MessagingController implements Runnable {
             for (final Message message : messages) {
                 final Message localMessage = localFolder.getMessage(message.getUid());
                 syncFlags(localMessage, message);
-                if (ertebat.DEBUG)
-                    Log.v(ertebat.LOG_TAG, "About to notify listeners that we got a new unsynced message "
+                if (Ertebat.DEBUG)
+                    Log.v(Ertebat.LOG_TAG, "About to notify listeners that we got a new unsynced message "
                           + account + ":" + folder + ":" + message.getUid());
                 for (final MessagingListener l : getListeners()) {
                     l.synchronizeMailboxAddOrUpdateMessage(account, folder, localMessage);
                 }
             }
         } catch (final Exception e) {
-            Log.e(ertebat.LOG_TAG, "Error while storing downloaded message.", e);
+            Log.e(Ertebat.LOG_TAG, "Error while storing downloaded message.", e);
             addErrorMessage(account, null, e);
         }
     }
@@ -1600,8 +1600,8 @@ public class MessagingController implements Runnable {
     private boolean shouldImportMessage(final Account account, final String folder, final Message message, final AtomicInteger progress, final Date earliestDate) {
 
         if (account.isSearchByDateCapable() && message.olderThan(earliestDate)) {
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "Message " + message.getUid() + " is older than "
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "Message " + message.getUid() + " is older than "
                       + earliestDate + ", hence not saving");
             }
             return false;
@@ -1621,8 +1621,8 @@ public class MessagingController implements Runnable {
 
         final Date earliestDate = account.getEarliestPollDate();
 
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "SYNC: Fetching small messages for folder " + folder);
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "SYNC: Fetching small messages for folder " + folder);
 
         remoteFolder.fetch(smallMessages.toArray(new Message[smallMessages.size()]),
         fp, new MessageRetrievalListener() {
@@ -1650,8 +1650,8 @@ public class MessagingController implements Runnable {
                         newMessages.incrementAndGet();
                     }
 
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "About to notify listeners that we got a new small message "
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "About to notify listeners that we got a new small message "
                               + account + ":" + folder + ":" + message.getUid());
 
                     // Update the listener with what we've found
@@ -1671,7 +1671,7 @@ public class MessagingController implements Runnable {
 
                 } catch (MessagingException me) {
                     addErrorMessage(account, null, me);
-                    Log.e(ertebat.LOG_TAG, "SYNC: fetch small messages", me);
+                    Log.e(Ertebat.LOG_TAG, "SYNC: fetch small messages", me);
                 }
             }
 
@@ -1682,8 +1682,8 @@ public class MessagingController implements Runnable {
             public void messagesFinished(int total) {}
         });
 
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "SYNC: Done fetching small messages for folder " + folder);
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "SYNC: Done fetching small messages for folder " + folder);
     }
 
 
@@ -1700,8 +1700,8 @@ public class MessagingController implements Runnable {
 
         final Date earliestDate = account.getEarliestPollDate();
 
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "SYNC: Fetching large messages for folder " + folder);
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "SYNC: Fetching large messages for folder " + folder);
 
         remoteFolder.fetch(largeMessages.toArray(new Message[largeMessages.size()]), fp, null);
         for (Message message : largeMessages) {
@@ -1778,8 +1778,8 @@ public class MessagingController implements Runnable {
                 // viewed.
                 localMessage.setFlag(Flag.X_DOWNLOADED_PARTIAL, true);
             }
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "About to notify listeners that we got a new large message "
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "About to notify listeners that we got a new large message "
                       + account + ":" + folder + ":" + message.getUid());
 
             // Update the listener with what we've found
@@ -1808,8 +1808,8 @@ public class MessagingController implements Runnable {
             }
 
         }//for large messages
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "SYNC: Done fetching large messages for folder " + folder);
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "SYNC: Done fetching large messages for folder " + folder);
 
     }
 
@@ -1822,8 +1822,8 @@ public class MessagingController implements Runnable {
 
         final String folder = remoteFolder.getName();
         if (remoteFolder.supportsFetchingFlags()) {
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "SYNC: About to sync flags for "
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "SYNC: About to sync flags for "
                       + syncFlagMessages.size() + " remote messages for folder " + folder);
 
             FetchProfile fp = new FetchProfile();
@@ -1934,10 +1934,10 @@ public class MessagingController implements Runnable {
                 try {
                     processPendingCommandsSynchronous(account);
                 } catch (UnavailableStorageException e) {
-                    Log.i(ertebat.LOG_TAG, "Failed to process pending command because storage is not available - trying again later.");
+                    Log.i(Ertebat.LOG_TAG, "Failed to process pending command because storage is not available - trying again later.");
                     throw new UnavailableAccountException(e);
                 } catch (MessagingException me) {
-                    Log.e(ertebat.LOG_TAG, "processPendingCommands", me);
+                    Log.e(Ertebat.LOG_TAG, "processPendingCommands", me);
 
                     addErrorMessage(account, null, me);
 
@@ -1969,8 +1969,8 @@ public class MessagingController implements Runnable {
         try {
             for (PendingCommand command : commands) {
                 processingCommand = command;
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "Processing pending command '" + command + "'");
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "Processing pending command '" + command + "'");
 
                 String[] components = command.command.split("\\.");
                 String commandTitle = components[components.length - 1];
@@ -2003,12 +2003,12 @@ public class MessagingController implements Runnable {
                         processPendingExpunge(command, account);
                     }
                     localStore.removePendingCommand(command);
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "Done processing pending command '" + command + "'");
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "Done processing pending command '" + command + "'");
                 } catch (MessagingException me) {
                     if (me.isPermanentFailure()) {
                         addErrorMessage(account, null, me);
-                        Log.e(ertebat.LOG_TAG, "Failure of command '" + command + "' was permanent, removing command from queue");
+                        Log.e(Ertebat.LOG_TAG, "Failure of command '" + command + "' was permanent, removing command from queue");
                         localStore.removePendingCommand(processingCommand);
                     } else {
                         throw me;
@@ -2024,7 +2024,7 @@ public class MessagingController implements Runnable {
         } catch (MessagingException me) {
             notifyUserIfCertificateProblem(mApplication, me, account, true);
             addErrorMessage(account, null, me);
-            Log.e(ertebat.LOG_TAG, "Could not process command '" + processingCommand + "'", me);
+            Log.e(Ertebat.LOG_TAG, "Could not process command '" + processingCommand + "'", me);
             throw me;
         } finally {
             for (MessagingListener l : getListeners()) {
@@ -2079,18 +2079,18 @@ public class MessagingController implements Runnable {
             }
 
             Message remoteMessage = null;
-            if (!localMessage.getUid().startsWith(ertebat.LOCAL_UID_PREFIX)) {
+            if (!localMessage.getUid().startsWith(Ertebat.LOCAL_UID_PREFIX)) {
                 remoteMessage = remoteFolder.getMessage(localMessage.getUid());
             }
 
             if (remoteMessage == null) {
                 if (localMessage.isSet(Flag.X_REMOTE_COPY_STARTED)) {
-                    Log.w(ertebat.LOG_TAG, "Local message with uid " + localMessage.getUid() +
+                    Log.w(Ertebat.LOG_TAG, "Local message with uid " + localMessage.getUid() +
                           " has flag " + Flag.X_REMOTE_COPY_STARTED + " already set, checking for remote message with " +
                           " same message id");
                     String rUid = remoteFolder.getUidFromMessageId(localMessage);
                     if (rUid != null) {
-                        Log.w(ertebat.LOG_TAG, "Local message has flag " + Flag.X_REMOTE_COPY_STARTED + " already set, and there is a remote message with " +
+                        Log.w(Ertebat.LOG_TAG, "Local message has flag " + Flag.X_REMOTE_COPY_STARTED + " already set, and there is a remote message with " +
                               " uid " + rUid + ", assuming message was already copied and aborting this copy");
 
                         String oldUid = localMessage.getUid();
@@ -2101,7 +2101,7 @@ public class MessagingController implements Runnable {
                         }
                         return;
                     } else {
-                        Log.w(ertebat.LOG_TAG, "No remote message with message-id found, proceeding with append");
+                        Log.w(Ertebat.LOG_TAG, "No remote message with message-id found, proceeding with append");
                     }
                 }
 
@@ -2284,7 +2284,7 @@ public class MessagingController implements Runnable {
                     localUidMap.put(command.arguments[i], command.arguments[i + offset]);
 
                     String uid = command.arguments[i];
-                    if (!uid.startsWith(ertebat.LOCAL_UID_PREFIX)) {
+                    if (!uid.startsWith(Ertebat.LOCAL_UID_PREFIX)) {
                         messages.add(remoteSrcFolder.getMessage(uid));
                     }
                 }
@@ -2292,7 +2292,7 @@ public class MessagingController implements Runnable {
             } else {
                 for (int i = 4; i < command.arguments.length; i++) {
                     String uid = command.arguments[i];
-                    if (!uid.startsWith(ertebat.LOCAL_UID_PREFIX)) {
+                    if (!uid.startsWith(Ertebat.LOCAL_UID_PREFIX)) {
                         messages.add(remoteSrcFolder.getMessage(uid));
                     }
                 }
@@ -2311,18 +2311,18 @@ public class MessagingController implements Runnable {
                 throw new MessagingException("processingPendingMoveOrCopy: could not open remoteSrcFolder " + srcFolder + " read/write", true);
             }
 
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "processingPendingMoveOrCopy: source folder = " + srcFolder
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "processingPendingMoveOrCopy: source folder = " + srcFolder
                       + ", " + messages.size() + " messages, destination folder = " + destFolder + ", isCopy = " + isCopy);
 
             Map <String, String> remoteUidMap = null;
 
             if (!isCopy && destFolder.equals(account.getTrashFolderName())) {
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "processingPendingMoveOrCopy doing special case for deleting message");
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "processingPendingMoveOrCopy doing special case for deleting message");
 
                 String destFolderName = destFolder;
-                if (ertebat.FOLDER_NONE.equals(destFolderName)) {
+                if (Ertebat.FOLDER_NONE.equals(destFolderName)) {
                     destFolderName = null;
                 }
                 remoteSrcFolder.delete(messages.toArray(EMPTY_MESSAGE_ARRAY), destFolderName);
@@ -2336,8 +2336,8 @@ public class MessagingController implements Runnable {
                 }
             }
             if (!isCopy && Account.EXPUNGE_IMMEDIATELY.equals(account.getExpungePolicy())) {
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "processingPendingMoveOrCopy expunging folder " + account.getDescription() + ":" + srcFolder);
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "processingPendingMoveOrCopy expunging folder " + account.getDescription() + ":" + srcFolder);
 
                 remoteSrcFolder.expunge();
             }
@@ -2417,7 +2417,7 @@ public class MessagingController implements Runnable {
             List<Message> messages = new ArrayList<Message>();
             for (int i = 3; i < command.arguments.length; i++) {
                 String uid = command.arguments[i];
-                if (!uid.startsWith(ertebat.LOCAL_UID_PREFIX)) {
+                if (!uid.startsWith(Ertebat.LOCAL_UID_PREFIX)) {
                     messages.add(remoteFolder.getMessage(uid));
                 }
             }
@@ -2441,8 +2441,8 @@ public class MessagingController implements Runnable {
         if (account.getErrorFolderName().equals(folder)) {
             return;
         }
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "processPendingSetFlagOld: folder = " + folder + ", uid = " + uid);
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "processPendingSetFlagOld: folder = " + folder + ", uid = " + uid);
 
         boolean newState = Boolean.parseBoolean(command.arguments[2]);
 
@@ -2459,7 +2459,7 @@ public class MessagingController implements Runnable {
                 return;
             }
             Message remoteMessage = null;
-            if (!uid.startsWith(ertebat.LOCAL_UID_PREFIX)) {
+            if (!uid.startsWith(Ertebat.LOCAL_UID_PREFIX)) {
                 remoteMessage = remoteFolder.getMessage(uid);
             }
             if (remoteMessage == null) {
@@ -2492,8 +2492,8 @@ public class MessagingController implements Runnable {
         if (account.getErrorFolderName().equals(folder)) {
             return;
         }
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "processPendingExpunge: folder = " + folder);
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "processPendingExpunge: folder = " + folder);
 
         Store remoteStore = account.getRemoteStore();
         Folder remoteFolder = remoteStore.getFolder(folder);
@@ -2506,8 +2506,8 @@ public class MessagingController implements Runnable {
                 return;
             }
             remoteFolder.expunge();
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "processPendingExpunge: complete for folder = " + folder);
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "processPendingExpunge: complete for folder = " + folder);
         } finally {
             closeFolder(remoteFolder);
         }
@@ -2545,20 +2545,20 @@ public class MessagingController implements Runnable {
         }
 
         Message remoteMessage = null;
-        if (!uid.startsWith(ertebat.LOCAL_UID_PREFIX)) {
+        if (!uid.startsWith(Ertebat.LOCAL_UID_PREFIX)) {
             remoteMessage = remoteSrcFolder.getMessage(uid);
         }
         if (remoteMessage == null) {
             throw new MessagingException("processPendingMoveOrCopyOld: remoteMessage " + uid + " does not exist", true);
         }
 
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "processPendingMoveOrCopyOld: source folder = " + srcFolder
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "processPendingMoveOrCopyOld: source folder = " + srcFolder
                   + ", uid = " + uid + ", destination folder = " + destFolder + ", isCopy = " + isCopy);
 
         if (!isCopy && destFolder.equals(account.getTrashFolderName())) {
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "processPendingMoveOrCopyOld doing special case for deleting message");
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "processPendingMoveOrCopyOld doing special case for deleting message");
 
             remoteMessage.delete(account.getTrashFolderName());
             remoteSrcFolder.close();
@@ -2620,7 +2620,7 @@ public class MessagingController implements Runnable {
             remoteFolder.setFlags(new Flag[] {Flag.SEEN}, true);
             remoteFolder.close();
         } catch (UnsupportedOperationException uoe) {
-            Log.w(ertebat.LOG_TAG, "Could not mark all server-side as read because store doesn't support operation", uoe);
+            Log.w(Ertebat.LOG_TAG, "Could not mark all server-side as read because store doesn't support operation", uoe);
         } finally {
             closeFolder(localFolder);
             closeFolder(remoteFolder);
@@ -2639,8 +2639,8 @@ public class MessagingController implements Runnable {
         }
 
         final int id = incoming
-                ? ertebat.CERTIFICATE_EXCEPTION_NOTIFICATION_INCOMING + account.getAccountNumber()
-                : ertebat.CERTIFICATE_EXCEPTION_NOTIFICATION_OUTGOING + account.getAccountNumber();
+                ? Ertebat.CERTIFICATE_EXCEPTION_NOTIFICATION_INCOMING + account.getAccountNumber()
+                : Ertebat.CERTIFICATE_EXCEPTION_NOTIFICATION_OUTGOING + account.getAccountNumber();
         final Intent i = incoming
                 ? AccountSetupIncoming.intentActionEditIncomingSettings(context, account)
                 : AccountSetupOutgoing.intentActionEditOutgoingSettings(context, account);
@@ -2659,8 +2659,8 @@ public class MessagingController implements Runnable {
         builder.setContentIntent(pi);
 
         configureNotification(builder, null, null,
-                ertebat.NOTIFICATION_LED_FAILURE_COLOR,
-                ertebat.NOTIFICATION_LED_BLINK_FAST, true);
+                Ertebat.NOTIFICATION_LED_FAILURE_COLOR,
+                Ertebat.NOTIFICATION_LED_BLINK_FAST, true);
 
         final NotificationManager nm = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -2673,9 +2673,9 @@ public class MessagingController implements Runnable {
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (direction == CheckDirection.INCOMING) {
-            nm.cancel(null, ertebat.CERTIFICATE_EXCEPTION_NOTIFICATION_INCOMING + account.getAccountNumber());
+            nm.cancel(null, Ertebat.CERTIFICATE_EXCEPTION_NOTIFICATION_INCOMING + account.getAccountNumber());
         } else {
-            nm.cancel(null, ertebat.CERTIFICATE_EXCEPTION_NOTIFICATION_OUTGOING + account.getAccountNumber());
+            nm.cancel(null, Ertebat.CERTIFICATE_EXCEPTION_NOTIFICATION_OUTGOING + account.getAccountNumber());
         }
     }
 
@@ -2693,7 +2693,7 @@ public class MessagingController implements Runnable {
             try {
                 PackageInfo packageInfo = mApplication.getPackageManager().getPackageInfo(
                         mApplication.getPackageName(), 0);
-                ps.format("ertebat-Mail version: %s\r\n", packageInfo.versionName);
+                ps.format("Ertebat-Mail version: %s\r\n", packageInfo.versionName);
             } catch (Exception e) {
                 // ignore
             }
@@ -2709,12 +2709,12 @@ public class MessagingController implements Runnable {
 
             addErrorMessage(account, subject, baos.toString());
         } catch (Throwable it) {
-            Log.e(ertebat.LOG_TAG, "Could not save error message to " + account.getErrorFolderName(), it);
+            Log.e(Ertebat.LOG_TAG, "Could not save error message to " + account.getErrorFolderName(), it);
         }
     }
 
     public void addErrorMessage(Account account, String subject, String body) {
-        if (!ertebat.DEBUG) {
+        if (!Ertebat.DEBUG) {
             return;
         }
         if (!loopCatch.compareAndSet(false, true)) {
@@ -2739,7 +2739,7 @@ public class MessagingController implements Runnable {
             Date nowDate = new Date(nowTime);
             message.setInternalDate(nowDate);
             message.addSentDate(nowDate);
-            message.setFrom(new Address(account.getEmail(), "ertebatmail internal"));
+            message.setFrom(new Address(account.getEmail(), "Ertebatmail internal"));
             messages[0] = message;
 
             localFolder.appendMessages(messages);
@@ -2747,7 +2747,7 @@ public class MessagingController implements Runnable {
             localFolder.clearMessagesOlderThan(nowTime - (15 * 60 * 1000));
 
         } catch (Throwable it) {
-            Log.e(ertebat.LOG_TAG, "Could not save error message to " + account.getErrorFolderName(), it);
+            Log.e(Ertebat.LOG_TAG, "Could not save error message to " + account.getErrorFolderName(), it);
         } finally {
             loopCatch.set(false);
         }
@@ -2757,8 +2757,8 @@ public class MessagingController implements Runnable {
 
     public void markAllMessagesRead(final Account account, final String folder) {
 
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "Marking all messages in " + account.getDescription() + ":" + folder + " as read");
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "Marking all messages in " + account.getDescription() + ":" + folder + " as read");
         List<String> args = new ArrayList<String>();
         args.add(folder);
         PendingCommand command = new PendingCommand();
@@ -2801,7 +2801,7 @@ public class MessagingController implements Runnable {
         try {
             localStore = account.getLocalStore();
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Couldn't get LocalStore instance", e);
+            Log.e(Ertebat.LOG_TAG, "Couldn't get LocalStore instance", e);
             return;
         }
 
@@ -2816,7 +2816,7 @@ public class MessagingController implements Runnable {
                 removeFlagFromCache(account, ids, flag);
             }
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Couldn't set flags in local database", e);
+            Log.e(Ertebat.LOG_TAG, "Couldn't set flags in local database", e);
         }
 
         // Read folder name and UID of messages from the database
@@ -2824,7 +2824,7 @@ public class MessagingController implements Runnable {
         try {
             folderMap = localStore.getFoldersAndUids(ids, threadedList);
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Couldn't get folder name and UID of messages", e);
+            Log.e(Ertebat.LOG_TAG, "Couldn't get folder name and UID of messages", e);
             return;
         }
 
@@ -2840,7 +2840,7 @@ public class MessagingController implements Runnable {
                     l.folderStatusChanged(account, folderName, unreadMessageCount);
                 }
             } catch (MessagingException e) {
-                Log.w(ertebat.LOG_TAG, "Couldn't get unread count for folder: " + folderName, e);
+                Log.w(Ertebat.LOG_TAG, "Couldn't get unread count for folder: " + folderName, e);
             }
 
             // The error folder is always a local folder
@@ -2965,11 +2965,11 @@ public class MessagingController implements Runnable {
 
     public void clearAllPending(final Account account) {
         try {
-            Log.w(ertebat.LOG_TAG, "Clearing pending commands!");
+            Log.w(Ertebat.LOG_TAG, "Clearing pending commands!");
             LocalStore localStore = account.getLocalStore();
             localStore.removePendingCommands();
         } catch (MessagingException me) {
-            Log.e(ertebat.LOG_TAG, "Unable to clear pending command", me);
+            Log.e(Ertebat.LOG_TAG, "Unable to clear pending command", me);
             addErrorMessage(account, null, me);
         }
     }
@@ -2996,8 +2996,8 @@ public class MessagingController implements Runnable {
 
             Message message = localFolder.getMessage(uid);
 
-            if (uid.startsWith(ertebat.LOCAL_UID_PREFIX)) {
-                Log.w(ertebat.LOG_TAG, "Message has local UID so cannot download fully.");
+            if (uid.startsWith(Ertebat.LOCAL_UID_PREFIX)) {
+                Log.w(Ertebat.LOG_TAG, "Message has local UID so cannot download fully.");
                 // ASH move toast
                 android.widget.Toast.makeText(mApplication,
                         "Message has local UID so cannot download fully",
@@ -3009,7 +3009,7 @@ public class MessagingController implements Runnable {
             }
             /* commented out because this was pulled from another unmerged branch:
             } else if (localFolder.isLocalOnly() && !force) {
-                Log.w(ertebat.LOG_TAG, "Message in local-only folder so cannot download fully.");
+                Log.w(Ertebat.LOG_TAG, "Message in local-only folder so cannot download fully.");
                 // ASH move toast
                 android.widget.Toast.makeText(mApplication,
                         "Message in local-only folder so cannot download fully",
@@ -3235,8 +3235,8 @@ public class MessagingController implements Runnable {
                         l.loadAttachmentFinished(account, message, part, tag);
                     }
                 } catch (MessagingException me) {
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "Exception loading attachment", me);
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "Exception loading attachment", me);
 
                     for (MessagingListener l : getListeners(listener)) {
                         l.loadAttachmentFailed(account, message, part, tag, me.getMessage());
@@ -3329,7 +3329,7 @@ public class MessagingController implements Runnable {
 
     private void notifyWhileSendingDone(Account account) {
         if (account.isShowOngoing()) {
-            cancelNotification(ertebat.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber());
+            cancelNotification(Ertebat.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber());
         }
     }
 
@@ -3366,13 +3366,13 @@ public class MessagingController implements Runnable {
                 account.getInboxFolderName());
         builder.setContentIntent(stack.getPendingIntent(0, 0));
 
-        if (ertebat.NOTIFICATION_LED_WHILE_SYNCING) {
+        if (Ertebat.NOTIFICATION_LED_WHILE_SYNCING) {
             configureNotification(builder, null, null,
                     account.getNotificationSetting().getLedColor(),
-                    ertebat.NOTIFICATION_LED_BLINK_FAST, true);
+                    Ertebat.NOTIFICATION_LED_BLINK_FAST, true);
         }
 
-        notifMgr.notify(ertebat.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber(),
+        notifMgr.notify(Ertebat.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber(),
                 builder.build());
     }
 
@@ -3409,10 +3409,10 @@ public class MessagingController implements Runnable {
         TaskStackBuilder stack = buildFolderListBackStack(mApplication, account);
         builder.setContentIntent(stack.getPendingIntent(0, 0));
 
-        configureNotification(builder,  null, null, ertebat.NOTIFICATION_LED_FAILURE_COLOR,
-                ertebat.NOTIFICATION_LED_BLINK_FAST, true);
+        configureNotification(builder,  null, null, Ertebat.NOTIFICATION_LED_FAILURE_COLOR,
+                Ertebat.NOTIFICATION_LED_BLINK_FAST, true);
 
-        notifMgr.notify(ertebat.SEND_FAILED_NOTIFICATION - account.getAccountNumber(),
+        notifMgr.notify(Ertebat.SEND_FAILED_NOTIFICATION - account.getAccountNumber(),
                 builder.build());
     }
 
@@ -3447,19 +3447,19 @@ public class MessagingController implements Runnable {
                 account.getInboxFolderName());
         builder.setContentIntent(stack.getPendingIntent(0, 0));
 
-        if (ertebat.NOTIFICATION_LED_WHILE_SYNCING) {
+        if (Ertebat.NOTIFICATION_LED_WHILE_SYNCING) {
             configureNotification(builder,  null, null,
                     account.getNotificationSetting().getLedColor(),
-                    ertebat.NOTIFICATION_LED_BLINK_FAST, true);
+                    Ertebat.NOTIFICATION_LED_BLINK_FAST, true);
         }
 
-        notifMgr.notify(ertebat.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber(),
+        notifMgr.notify(Ertebat.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber(),
                 builder.build());
     }
 
     private void notifyFetchingMailCancel(final Account account) {
         if (account.isShowOngoing()) {
-            cancelNotification(ertebat.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber());
+            cancelNotification(Ertebat.FETCHING_EMAIL_NOTIFICATION - account.getAccountNumber());
         }
     }
 
@@ -3478,7 +3478,7 @@ public class MessagingController implements Runnable {
                 return true;
             }
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Exception while checking for unsent messages", e);
+            Log.e(Ertebat.LOG_TAG, "Exception while checking for unsent messages", e);
         } finally {
             closeFolder(localFolder);
         }
@@ -3518,8 +3518,8 @@ public class MessagingController implements Runnable {
             fp.add(FetchProfile.Item.ENVELOPE);
             fp.add(FetchProfile.Item.BODY);
 
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "Scanning folder '" + account.getOutboxFolderName() + "' (" + ((LocalFolder)localFolder).getId() + ") for messages to send");
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "Scanning folder '" + account.getOutboxFolderName() + "' (" + ((LocalFolder)localFolder).getId() + ") for messages to send");
 
             Transport transport = Transport.getInstance(account);
             for (Message message : localMessages) {
@@ -3534,11 +3534,11 @@ public class MessagingController implements Runnable {
                         count = oldCount;
                     }
 
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "Send count for message " + message.getUid() + " is " + count.get());
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "Send count for message " + message.getUid() + " is " + count.get());
 
-                    if (count.incrementAndGet() > ertebat.MAX_SEND_ATTEMPTS) {
-                        Log.e(ertebat.LOG_TAG, "Send count for message " + message.getUid() + " can't be delivered after " + ertebat.MAX_SEND_ATTEMPTS + " attempts.  Giving up until the user restarts the device");
+                    if (count.incrementAndGet() > Ertebat.MAX_SEND_ATTEMPTS) {
+                        Log.e(Ertebat.LOG_TAG, "Send count for message " + message.getUid() + " can't be delivered after " + Ertebat.MAX_SEND_ATTEMPTS + " attempts.  Giving up until the user restarts the device");
                         notifySendTempFailed(account, new MessagingException(message.getSubject()));
                         continue;
                     }
@@ -3549,8 +3549,8 @@ public class MessagingController implements Runnable {
                     try {
 
 
-                        if (message.getHeader(ertebat.IDENTITY_HEADER) != null) {
-                            Log.v(ertebat.LOG_TAG, "The user has set the Outbox and Drafts folder to the same thing. " +
+                        if (message.getHeader(Ertebat.IDENTITY_HEADER) != null) {
+                            Log.v(Ertebat.LOG_TAG, "The user has set the Outbox and Drafts folder to the same thing. " +
                                   "This message appears to be a draft, so K-9 will not send it");
                             continue;
 
@@ -3558,8 +3558,8 @@ public class MessagingController implements Runnable {
 
 
                         message.setFlag(Flag.X_SEND_IN_PROGRESS, true);
-                        if (ertebat.DEBUG)
-                            Log.i(ertebat.LOG_TAG, "Sending message with UID " + message.getUid());
+                        if (Ertebat.DEBUG)
+                            Log.i(Ertebat.LOG_TAG, "Sending message with UID " + message.getUid());
                         transport.sendMessage(message);
                         message.setFlag(Flag.X_SEND_IN_PROGRESS, false);
                         message.setFlag(Flag.SEEN, true);
@@ -3568,18 +3568,18 @@ public class MessagingController implements Runnable {
                             l.synchronizeMailboxProgress(account, account.getSentFolderName(), progress, todo);
                         }
                         if (!account.hasSentFolder()) {
-                            if (ertebat.DEBUG)
-                                Log.i(ertebat.LOG_TAG, "Account does not have a sent mail folder; deleting sent message");
+                            if (Ertebat.DEBUG)
+                                Log.i(Ertebat.LOG_TAG, "Account does not have a sent mail folder; deleting sent message");
                             message.setFlag(Flag.DELETED, true);
                         } else {
                             LocalFolder localSentFolder = (LocalFolder) localStore.getFolder(account.getSentFolderName());
-                            if (ertebat.DEBUG)
-                                Log.i(ertebat.LOG_TAG, "Moving sent message to folder '" + account.getSentFolderName() + "' (" + localSentFolder.getId() + ") ");
+                            if (Ertebat.DEBUG)
+                                Log.i(Ertebat.LOG_TAG, "Moving sent message to folder '" + account.getSentFolderName() + "' (" + localSentFolder.getId() + ") ");
 
                             localFolder.moveMessages(new Message[] { message }, localSentFolder);
 
-                            if (ertebat.DEBUG)
-                                Log.i(ertebat.LOG_TAG, "Moved sent message to folder '" + account.getSentFolderName() + "' (" + localSentFolder.getId() + ") ");
+                            if (Ertebat.DEBUG)
+                                Log.i(Ertebat.LOG_TAG, "Moved sent message to folder '" + account.getSentFolderName() + "' (" + localSentFolder.getId() + ") ");
 
                             PendingCommand command = new PendingCommand();
                             command.command = PENDING_COMMAND_APPEND;
@@ -3600,14 +3600,14 @@ public class MessagingController implements Runnable {
                         notifyUserIfCertificateProblem(mApplication, e, account, false);
                         addErrorMessage(account, "Failed to send message", e);
                         message.setFlag(Flag.X_SEND_FAILED, true);
-                        Log.e(ertebat.LOG_TAG, "Failed to send message", e);
+                        Log.e(Ertebat.LOG_TAG, "Failed to send message", e);
                         for (MessagingListener l : getListeners()) {
                             l.synchronizeMailboxFailed(account, localFolder.getName(), getRootCauseMessage(e));
                         }
                         lastFailure = e;
                     }
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Failed to fetch message for sending", e);
+                    Log.e(Ertebat.LOG_TAG, "Failed to fetch message for sending", e);
                     for (MessagingListener l : getListeners()) {
                         l.synchronizeMailboxFailed(account, localFolder.getName(), getRootCauseMessage(e));
                     }
@@ -3626,7 +3626,7 @@ public class MessagingController implements Runnable {
                 }
             }
         } catch (UnavailableStorageException e) {
-            Log.i(ertebat.LOG_TAG, "Failed to send pending messages because storage is not available - trying again later.");
+            Log.i(Ertebat.LOG_TAG, "Failed to send pending messages because storage is not available - trying again later.");
             throw new UnavailableAccountException(e);
         } catch (Exception e) {
             for (MessagingListener l : getListeners()) {
@@ -3636,7 +3636,7 @@ public class MessagingController implements Runnable {
 
         } finally {
             if (lastFailure == null) {
-                cancelNotification(ertebat.SEND_FAILED_NOTIFICATION - account.getAccountNumber());
+                cancelNotification(Ertebat.SEND_FAILED_NOTIFICATION - account.getAccountNumber());
             }
             closeFolder(localFolder);
         }
@@ -3652,7 +3652,7 @@ public class MessagingController implements Runnable {
                     AccountStats stats = account.getStats(context);
                     listener.accountStatusChanged(account, stats);
                 } catch (MessagingException me) {
-                    Log.e(ertebat.LOG_TAG, "Count not get unread count for account " +
+                    Log.e(Ertebat.LOG_TAG, "Count not get unread count for account " +
                             account.getDescription(), me);
                 }
 
@@ -3748,7 +3748,7 @@ public class MessagingController implements Runnable {
                     Folder localFolder = account.getLocalStore().getFolder(folderName);
                     unreadMessageCount = localFolder.getUnreadMessageCount();
                 } catch (MessagingException me) {
-                    Log.e(ertebat.LOG_TAG, "Count not get unread count for account " + account.getDescription(), me);
+                    Log.e(Ertebat.LOG_TAG, "Count not get unread count for account " + account.getDescription(), me);
                 }
                 l.folderStatusChanged(account, folderName, unreadMessageCount);
             }
@@ -3761,7 +3761,7 @@ public class MessagingController implements Runnable {
 
 
     public boolean isMoveCapable(Message message) {
-        return !message.getUid().startsWith(ertebat.LOCAL_UID_PREFIX);
+        return !message.getUid().startsWith(Ertebat.LOCAL_UID_PREFIX);
     }
     public boolean isCopyCapable(Message message) {
         return isMoveCapable(message);
@@ -3774,7 +3774,7 @@ public class MessagingController implements Runnable {
             return localStore.isMoveCapable() && remoteStore.isMoveCapable();
         } catch (MessagingException me) {
 
-            Log.e(ertebat.LOG_TAG, "Exception while ascertaining move capability", me);
+            Log.e(Ertebat.LOG_TAG, "Exception while ascertaining move capability", me);
             return false;
         }
     }
@@ -3784,7 +3784,7 @@ public class MessagingController implements Runnable {
             Store remoteStore = account.getRemoteStore();
             return localStore.isCopyCapable() && remoteStore.isCopyCapable();
         } catch (MessagingException me) {
-            Log.e(ertebat.LOG_TAG, "Exception while ascertaining copy capability", me);
+            Log.e(Ertebat.LOG_TAG, "Exception while ascertaining copy capability", me);
             return false;
         }
     }
@@ -3886,7 +3886,7 @@ public class MessagingController implements Runnable {
             List<String> uids = new LinkedList<String>();
             for (Message message : inMessages) {
                 String uid = message.getUid();
-                if (!uid.startsWith(ertebat.LOCAL_UID_PREFIX)) {
+                if (!uid.startsWith(Ertebat.LOCAL_UID_PREFIX)) {
                     uids.add(uid);
                 }
 
@@ -3903,8 +3903,8 @@ public class MessagingController implements Runnable {
                     origUidMap.put(message.getUid(), message);
                 }
 
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "moveOrCopyMessageSynchronous: source folder = " + srcFolder
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "moveOrCopyMessageSynchronous: source folder = " + srcFolder
                           + ", " + messages.length + " messages, " + ", destination folder = " + destFolder + ", isCopy = " + isCopy);
 
                 if (isCopy) {
@@ -3950,7 +3950,7 @@ public class MessagingController implements Runnable {
 
             processPendingCommands(account);
         } catch (UnavailableStorageException e) {
-            Log.i(ertebat.LOG_TAG, "Failed to move/copy message because storage is not available - trying again later.");
+            Log.i(Ertebat.LOG_TAG, "Failed to move/copy message because storage is not available - trying again later.");
             throw new UnavailableAccountException(e);
         } catch (MessagingException me) {
             addErrorMessage(account, null, me);
@@ -4016,7 +4016,7 @@ public class MessagingController implements Runnable {
             deleteMessagesSynchronous(account, folderName,
                     messagesToDelete.toArray(EMPTY_MESSAGE_ARRAY), null);
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Something went wrong while deleting threads", e);
+            Log.e(Ertebat.LOG_TAG, "Something went wrong while deleting threads", e);
         }
     }
 
@@ -4076,8 +4076,8 @@ public class MessagingController implements Runnable {
             localFolder = localStore.getFolder(folder);
             Map<String, String> uidMap = null;
             if (folder.equals(account.getTrashFolderName()) || !account.hasTrashFolder()) {
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "Deleting messages in trash folder or trash set to -None-, not copying");
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "Deleting messages in trash folder or trash set to -None-, not copying");
 
                 localFolder.setFlags(messages, new Flag[] { Flag.DELETED }, true);
             } else {
@@ -4086,8 +4086,8 @@ public class MessagingController implements Runnable {
                     localTrashFolder.create(Folder.FolderType.HOLDS_MESSAGES);
                 }
                 if (localTrashFolder.exists()) {
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "Deleting messages in normal folder, moving");
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "Deleting messages in normal folder, moving");
 
                     uidMap = localFolder.moveMessages(messages, localTrashFolder);
 
@@ -4101,8 +4101,8 @@ public class MessagingController implements Runnable {
                 }
             }
 
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "Delete policy for account " + account.getDescription() + " is " + account.getDeletePolicy());
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "Delete policy for account " + account.getDescription() + " is " + account.getDeletePolicy());
 
             if (folder.equals(account.getOutboxFolderName())) {
                 for (Message message : messages) {
@@ -4129,13 +4129,13 @@ public class MessagingController implements Runnable {
                 queueSetFlag(account, folder, Boolean.toString(true), Flag.SEEN.toString(), uids);
                 processPendingCommands(account);
             } else {
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "Delete policy " + account.getDeletePolicy() + " prevents delete from server");
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "Delete policy " + account.getDeletePolicy() + " prevents delete from server");
             }
 
             unsuppressMessages(account, messages);
         } catch (UnavailableStorageException e) {
-            Log.i(ertebat.LOG_TAG, "Failed to delete message because storage is not available - trying again later.");
+            Log.i(Ertebat.LOG_TAG, "Failed to delete message because storage is not available - trying again later.");
             throw new UnavailableAccountException(e);
         } catch (MessagingException me) {
             addErrorMessage(account, null, me);
@@ -4209,10 +4209,10 @@ public class MessagingController implements Runnable {
                         processPendingCommands(account);
                     }
                 } catch (UnavailableStorageException e) {
-                    Log.i(ertebat.LOG_TAG, "Failed to empty trash because storage is not available - trying again later.");
+                    Log.i(Ertebat.LOG_TAG, "Failed to empty trash because storage is not available - trying again later.");
                     throw new UnavailableAccountException(e);
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "emptyTrash failed", e);
+                    Log.e(Ertebat.LOG_TAG, "emptyTrash failed", e);
                     addErrorMessage(account, null, e);
                 } finally {
                     closeFolder(localFolder);
@@ -4241,8 +4241,8 @@ public class MessagingController implements Runnable {
     }
 
     public void sendAlternate(final Context context, Account account, Message message) {
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "About to load message " + account.getDescription() + ":" + message.getFolder().getName()
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "About to load message " + account.getDescription() + ":" + message.getFolder().getName()
                   + ":" + message.getUid() + " for sendAlternate");
 
         loadMessageForView(account, message.getFolder().getName(),
@@ -4250,8 +4250,8 @@ public class MessagingController implements Runnable {
             @Override
             public void loadMessageForViewBodyAvailable(Account account, String folder, String uid,
             Message message) {
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "Got message " + account.getDescription() + ":" + folder
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "Got message " + account.getDescription() + ":" + folder
                           + ":" + message.getUid() + " for sendAlternate");
 
                 try {
@@ -4294,7 +4294,7 @@ public class MessagingController implements Runnable {
                     msg.setType("text/plain");
                     context.startActivity(Intent.createChooser(msg, context.getString(R.string.send_alternate_chooser_title)));
                 } catch (MessagingException me) {
-                    Log.e(ertebat.LOG_TAG, "Unable to send email through alternate program", me);
+                    Log.e(Ertebat.LOG_TAG, "Unable to send email through alternate program", me);
                 }
             }
         });
@@ -4318,9 +4318,9 @@ public class MessagingController implements Runnable {
         if (useManualWakeLock) {
             TracingPowerManager pm = TracingPowerManager.getPowerManager(context);
 
-            twakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ertebat MessagingController.checkMail");
+            twakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Ertebat MessagingController.checkMail");
             twakeLock.setReferenceCounted(false);
-            twakeLock.acquire(ertebat.MANUAL_WAKE_LOCK_TIMEOUT);
+            twakeLock.acquire(Ertebat.MANUAL_WAKE_LOCK_TIMEOUT);
         }
         final TracingWakeLock wakeLock = twakeLock;
 
@@ -4332,8 +4332,8 @@ public class MessagingController implements Runnable {
             public void run() {
 
                 try {
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "Starting mail check");
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "Starting mail check");
                     Preferences prefs = Preferences.getPreferences(context);
 
                     Collection<Account> accounts;
@@ -4349,15 +4349,15 @@ public class MessagingController implements Runnable {
                     }
 
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Unable to synchronize mail", e);
+                    Log.e(Ertebat.LOG_TAG, "Unable to synchronize mail", e);
                     addErrorMessage(account, null, e);
                 }
                 putBackground("finalize sync", null, new Runnable() {
                     @Override
                     public void run() {
 
-                        if (ertebat.DEBUG)
-                            Log.i(ertebat.LOG_TAG, "Finished mail sync");
+                        if (Ertebat.DEBUG)
+                            Log.i(Ertebat.LOG_TAG, "Finished mail sync");
 
                         if (wakeLock != null) {
                             wakeLock.release();
@@ -4380,20 +4380,20 @@ public class MessagingController implements Runnable {
                                      final Preferences prefs,
                                      final MessagingListener listener) {
         if (!account.isAvailable(context)) {
-            if (ertebat.DEBUG) {
-                Log.i(ertebat.LOG_TAG, "Skipping synchronizing unavailable account " + account.getDescription());
+            if (Ertebat.DEBUG) {
+                Log.i(Ertebat.LOG_TAG, "Skipping synchronizing unavailable account " + account.getDescription());
             }
             return;
         }
         final long accountInterval = account.getAutomaticCheckIntervalMinutes() * 60 * 1000;
         if (!ignoreLastCheckedTime && accountInterval <= 0) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "Skipping synchronizing account " + account.getDescription());
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "Skipping synchronizing account " + account.getDescription());
             return;
         }
 
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "Synchronizing account " + account.getDescription());
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "Synchronizing account " + account.getDescription());
 
         account.setRingNotified(false);
 
@@ -4414,8 +4414,8 @@ public class MessagingController implements Runnable {
                 if (modeMismatch(aDisplayMode, fDisplayClass)) {
                     // Never sync a folder that isn't displayed
                     /*
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "Not syncing folder " + folder.getName() +
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "Not syncing folder " + folder.getName() +
                               " which is in display mode " + fDisplayClass + " while account is in display mode " + aDisplayMode);
                     */
 
@@ -4425,8 +4425,8 @@ public class MessagingController implements Runnable {
                 if (modeMismatch(aSyncMode, fSyncClass)) {
                     // Do not sync folders in the wrong class
                     /*
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "Not syncing folder " + folder.getName() +
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "Not syncing folder " + folder.getName() +
                               " which is in sync mode " + fSyncClass + " while account is in sync mode " + aSyncMode);
                     */
 
@@ -4435,14 +4435,14 @@ public class MessagingController implements Runnable {
                 synchronizeFolder(account, folder, ignoreLastCheckedTime, accountInterval, listener);
             }
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Unable to synchronize account " + account.getName(), e);
+            Log.e(Ertebat.LOG_TAG, "Unable to synchronize account " + account.getName(), e);
             addErrorMessage(account, null, e);
         } finally {
             putBackground("clear notification flag for " + account.getDescription(), null, new Runnable() {
                 @Override
                 public void run() {
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "Clearing notification flag for " + account.getDescription());
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "Clearing notification flag for " + account.getDescription());
                     account.setRingNotified(false);
                     try {
                         AccountStats stats = account.getStats(context);
@@ -4450,7 +4450,7 @@ public class MessagingController implements Runnable {
                             notifyAccountCancel(context, account);
                         }
                     } catch (MessagingException e) {
-                        Log.e(ertebat.LOG_TAG, "Unable to getUnreadMessageCount for account: " + account, e);
+                        Log.e(Ertebat.LOG_TAG, "Unable to getUnreadMessageCount for account: " + account, e);
                     }
                 }
             }
@@ -4469,14 +4469,14 @@ public class MessagingController implements Runnable {
         final MessagingListener listener) {
 
 
-        if (ertebat.DEBUG)
-            Log.v(ertebat.LOG_TAG, "Folder " + folder.getName() + " was last synced @ " +
+        if (Ertebat.DEBUG)
+            Log.v(Ertebat.LOG_TAG, "Folder " + folder.getName() + " was last synced @ " +
                   new Date(folder.getLastChecked()));
 
         if (!ignoreLastCheckedTime && folder.getLastChecked() >
                 (System.currentTimeMillis() - accountInterval)) {
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "Not syncing folder " + folder.getName()
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "Not syncing folder " + folder.getName()
                       + ", previously synced @ " + new Date(folder.getLastChecked())
                       + " which would be too recent for the account period");
 
@@ -4495,8 +4495,8 @@ public class MessagingController implements Runnable {
 
                     if (!ignoreLastCheckedTime && tLocalFolder.getLastChecked() >
                     (System.currentTimeMillis() - accountInterval)) {
-                        if (ertebat.DEBUG)
-                            Log.v(ertebat.LOG_TAG, "Not running Command for folder " + folder.getName()
+                        if (Ertebat.DEBUG)
+                            Log.v(Ertebat.LOG_TAG, "Not running Command for folder " + folder.getName()
                                   + ", previously synced @ " + new Date(folder.getLastChecked())
                                   + " which would be too recent for the account period");
                         return;
@@ -4509,7 +4509,7 @@ public class MessagingController implements Runnable {
                     }
                 } catch (Exception e) {
 
-                    Log.e(ertebat.LOG_TAG, "Exception while processing folder " +
+                    Log.e(Ertebat.LOG_TAG, "Exception while processing folder " +
                           account.getDescription() + ":" + folder.getName(), e);
                     addErrorMessage(account, null, e);
                 } finally {
@@ -4537,10 +4537,10 @@ public class MessagingController implements Runnable {
                         l.accountSizeChanged(account, oldSize, newSize);
                     }
                 } catch (UnavailableStorageException e) {
-                    Log.i(ertebat.LOG_TAG, "Failed to compact account because storage is not available - trying again later.");
+                    Log.i(Ertebat.LOG_TAG, "Failed to compact account because storage is not available - trying again later.");
                     throw new UnavailableAccountException(e);
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Failed to compact account " + account.getDescription(), e);
+                    Log.e(Ertebat.LOG_TAG, "Failed to compact account " + account.getDescription(), e);
                 }
             }
         });
@@ -4565,10 +4565,10 @@ public class MessagingController implements Runnable {
                         l.accountStatusChanged(account, stats);
                     }
                 } catch (UnavailableStorageException e) {
-                    Log.i(ertebat.LOG_TAG, "Failed to clear account because storage is not available - trying again later.");
+                    Log.i(Ertebat.LOG_TAG, "Failed to clear account because storage is not available - trying again later.");
                     throw new UnavailableAccountException(e);
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Failed to clear account " + account.getDescription(), e);
+                    Log.e(Ertebat.LOG_TAG, "Failed to clear account " + account.getDescription(), e);
                 }
             }
         });
@@ -4593,10 +4593,10 @@ public class MessagingController implements Runnable {
                         l.accountStatusChanged(account, stats);
                     }
                 } catch (UnavailableStorageException e) {
-                    Log.i(ertebat.LOG_TAG, "Failed to recreate an account because storage is not available - trying again later.");
+                    Log.i(Ertebat.LOG_TAG, "Failed to recreate an account because storage is not available - trying again later.");
                     throw new UnavailableAccountException(e);
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Failed to recreate account " + account.getDescription(), e);
+                    Log.e(Ertebat.LOG_TAG, "Failed to recreate account " + account.getDescription(), e);
                 }
             }
         });
@@ -4656,8 +4656,8 @@ public class MessagingController implements Runnable {
             try {
                 Integer messageUid = Integer.parseInt(message.getUid());
                 if (messageUid <= localFolder.getLastUid()) {
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "Message uid is " + messageUid + ", max message uid is " +
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "Message uid is " + messageUid + ", max message uid is " +
                               localFolder.getLastUid() + ".  Skipping notification.");
                     return false;
                 }
@@ -4703,7 +4703,7 @@ public class MessagingController implements Runnable {
     private CharSequence getMessageSender(Context context, Account account, Message message) {
         try {
             boolean isSelf = false;
-            final Contacts contacts = ertebat.showContactName() ? Contacts.getInstance(context) : null;
+            final Contacts contacts = Ertebat.showContactName() ? Contacts.getInstance(context) : null;
             final Address[] fromAddrs = message.getFrom();
 
             if (fromAddrs != null) {
@@ -4725,7 +4725,7 @@ public class MessagingController implements Runnable {
                 return context.getString(R.string.general_no_sender);
             }
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Unable to get sender information for notification.", e);
+            Log.e(Ertebat.LOG_TAG, "Unable to get sender information for notification.", e);
         }
 
         return null;
@@ -4838,8 +4838,8 @@ public class MessagingController implements Runnable {
         CharSequence summary = buildMessageSummary(context, sender, subject);
 
         boolean privacyModeEnabled =
-                (ertebat.getNotificationHideSubject() == NotificationHideSubject.ALWAYS) ||
-                (ertebat.getNotificationHideSubject() == NotificationHideSubject.WHEN_LOCKED &&
+                (Ertebat.getNotificationHideSubject() == NotificationHideSubject.ALWAYS) ||
+                (Ertebat.getNotificationHideSubject() == NotificationHideSubject.WHEN_LOCKED &&
                 keyguardService.inKeyguardRestrictedInputMode());
 
         if (privacyModeEnabled || summary.length() == 0) {
@@ -4904,7 +4904,7 @@ public class MessagingController implements Runnable {
                     context.getString(R.string.notification_action_mark_as_read),
                     NotificationActionService.getReadAllMessagesIntent(context, account, allRefs));
 
-            NotificationQuickDelete deleteOption = ertebat.getNotificationQuickDeleteBehaviour();
+            NotificationQuickDelete deleteOption = Ertebat.getNotificationQuickDeleteBehaviour();
             boolean showDeleteAction = deleteOption == NotificationQuickDelete.ALWAYS ||
                     (deleteOption == NotificationQuickDelete.FOR_SINGLE_MSG && newMessages == 1);
 
@@ -4977,7 +4977,7 @@ public class MessagingController implements Runnable {
                 (n.shouldRing()) ?  n.getRingtone() : null,
                 (n.shouldVibrate()) ? n.getVibration() : null,
                 (n.isLed()) ? Integer.valueOf(n.getLedColor()) : null,
-                ertebat.NOTIFICATION_LED_BLINK_SLOW,
+                Ertebat.NOTIFICATION_LED_BLINK_SLOW,
                 ringAndVibrate);
 
         notifMgr.notify(account.getAccountNumber(), builder.build());
@@ -5046,8 +5046,8 @@ public class MessagingController implements Runnable {
      * @param ledColor
      *         Color to flash LED. {@code null}, if no LED flash should happen.
      * @param ledSpeed
-     *         Either {@link ertebat#NOTIFICATION_LED_BLINK_SLOW} or
-     *         {@link ertebat#NOTIFICATION_LED_BLINK_FAST}.
+     *         Either {@link Ertebat#NOTIFICATION_LED_BLINK_SLOW} or
+     *         {@link Ertebat#NOTIFICATION_LED_BLINK_FAST}.
      * @param ringAndVibrate
      *          {@code true}, if ringtone/vibration are allowed. {@code false}, otherwise.
      */
@@ -5055,7 +5055,7 @@ public class MessagingController implements Runnable {
             long[] vibrationPattern, Integer ledColor, int ledSpeed, boolean ringAndVibrate) {
 
         // if it's quiet time, then we shouldn't be ringing, buzzing or flashing
-        if (ertebat.isQuietTime()) {
+        if (Ertebat.isQuietTime()) {
             return;
         }
 
@@ -5072,12 +5072,12 @@ public class MessagingController implements Runnable {
         if (ledColor != null) {
             int ledOnMS;
             int ledOffMS;
-            if (ledSpeed == ertebat.NOTIFICATION_LED_BLINK_SLOW) {
-                ledOnMS = ertebat.NOTIFICATION_LED_ON_TIME;
-                ledOffMS = ertebat.NOTIFICATION_LED_OFF_TIME;
+            if (ledSpeed == Ertebat.NOTIFICATION_LED_BLINK_SLOW) {
+                ledOnMS = Ertebat.NOTIFICATION_LED_ON_TIME;
+                ledOffMS = Ertebat.NOTIFICATION_LED_OFF_TIME;
             } else {
-                ledOnMS = ertebat.NOTIFICATION_LED_FAST_ON_TIME;
-                ledOffMS = ertebat.NOTIFICATION_LED_FAST_OFF_TIME;
+                ledOnMS = Ertebat.NOTIFICATION_LED_FAST_ON_TIME;
+                ledOffMS = Ertebat.NOTIFICATION_LED_FAST_OFF_TIME;
             }
 
             builder.setLights(ledColor, ledOnMS, ledOffMS);
@@ -5129,7 +5129,7 @@ public class MessagingController implements Runnable {
             processPendingCommands(account);
 
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Unable to save message as draft.", e);
+            Log.e(Ertebat.LOG_TAG, "Unable to save message as draft.", e);
             addErrorMessage(account, null, e);
         }
         return localMessage;
@@ -5140,7 +5140,7 @@ public class MessagingController implements Runnable {
         if (message instanceof LocalMessage) {
             id = ((LocalMessage) message).getId();
         } else {
-            Log.w(ertebat.LOG_TAG, "MessagingController.getId() called without a LocalMessage");
+            Log.w(Ertebat.LOG_TAG, "MessagingController.getId() called without a LocalMessage");
             id = INVALID_MESSAGE_ID;
         }
 
@@ -5222,8 +5222,8 @@ public class MessagingController implements Runnable {
                 if (folder.getName().equals(account.getErrorFolderName())
                         || folder.getName().equals(account.getOutboxFolderName())) {
                     /*
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "Not pushing folder " + folder.getName() +
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "Not pushing folder " + folder.getName() +
                               " which should never be pushed");
                     */
 
@@ -5238,8 +5238,8 @@ public class MessagingController implements Runnable {
                 if (modeMismatch(aDisplayMode, fDisplayClass)) {
                     // Never push a folder that isn't displayed
                     /*
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "Not pushing folder " + folder.getName() +
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "Not pushing folder " + folder.getName() +
                               " which is in display class " + fDisplayClass + " while account is in display mode " + aDisplayMode);
                     */
 
@@ -5249,15 +5249,15 @@ public class MessagingController implements Runnable {
                 if (modeMismatch(aPushMode, fPushClass)) {
                     // Do not push folders in the wrong class
                     /*
-                    if (ertebat.DEBUG)
-                        Log.v(ertebat.LOG_TAG, "Not pushing folder " + folder.getName() +
+                    if (Ertebat.DEBUG)
+                        Log.v(Ertebat.LOG_TAG, "Not pushing folder " + folder.getName() +
                               " which is in push mode " + fPushClass + " while account is in push mode " + aPushMode);
                     */
 
                     continue;
                 }
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "Starting pusher for " + account.getDescription() + ":" + folder.getName());
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "Starting pusher for " + account.getDescription() + ":" + folder.getName());
 
                 names.add(folder.getName());
             }
@@ -5267,8 +5267,8 @@ public class MessagingController implements Runnable {
                 int maxPushFolders = account.getMaxPushFolders();
 
                 if (names.size() > maxPushFolders) {
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "Count of folders to push for account " + account.getDescription() + " is " + names.size()
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "Count of folders to push for account " + account.getDescription() + " is " + names.size()
                               + ", greater than limit of " + maxPushFolders + ", truncating");
 
                     names = names.subList(0, maxPushFolders);
@@ -5277,8 +5277,8 @@ public class MessagingController implements Runnable {
                 try {
                     Store store = account.getRemoteStore();
                     if (!store.isPushCapable()) {
-                        if (ertebat.DEBUG)
-                            Log.i(ertebat.LOG_TAG, "Account " + account.getDescription() + " is not push capable, skipping");
+                        if (Ertebat.DEBUG)
+                            Log.i(Ertebat.LOG_TAG, "Account " + account.getDescription() + " is not push capable, skipping");
 
                         return false;
                     }
@@ -5290,26 +5290,26 @@ public class MessagingController implements Runnable {
                         }
                     }
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Could not get remote store", e);
+                    Log.e(Ertebat.LOG_TAG, "Could not get remote store", e);
                     return false;
                 }
 
                 return true;
             } else {
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "No folders are configured for pushing in account " + account.getDescription());
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "No folders are configured for pushing in account " + account.getDescription());
                 return false;
             }
 
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Got exception while setting up pushing", e);
+            Log.e(Ertebat.LOG_TAG, "Got exception while setting up pushing", e);
         }
         return false;
     }
 
     public void stopAllPushing() {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "Stopping all pushers");
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "Stopping all pushers");
 
         Iterator<Pusher> iter = pushers.values().iterator();
         while (iter.hasNext()) {
@@ -5320,8 +5320,8 @@ public class MessagingController implements Runnable {
     }
 
     public void messagesArrived(final Account account, final Folder remoteFolder, final List<Message> messages, final boolean flagSyncOnly) {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "Got new pushed email messages for account " + account.getDescription()
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "Got new pushed email messages for account " + account.getDescription()
                   + ", folder " + remoteFolder.getName());
 
         final CountDownLatch latch = new CountDownLatch(1);
@@ -5343,8 +5343,8 @@ public class MessagingController implements Runnable {
                     localFolder.setLastPush(System.currentTimeMillis());
                     localFolder.setStatus(null);
 
-                    if (ertebat.DEBUG)
-                        Log.i(ertebat.LOG_TAG, "messagesArrived newCount = " + newCount + ", unread count = " + unreadMessageCount);
+                    if (Ertebat.DEBUG)
+                        Log.i(Ertebat.LOG_TAG, "messagesArrived newCount = " + newCount + ", unread count = " + unreadMessageCount);
 
                     if (unreadMessageCount == 0) {
                         notifyAccountCancel(mApplication, account);
@@ -5363,7 +5363,7 @@ public class MessagingController implements Runnable {
                         LocalFolder folder = localFolder;
                         folder.setStatus(errorMessage);
                     } catch (Exception se) {
-                        Log.e(ertebat.LOG_TAG, "Unable to set failed status on localFolder", se);
+                        Log.e(Ertebat.LOG_TAG, "Unable to set failed status on localFolder", se);
                     }
                     for (MessagingListener l : getListeners()) {
                         l.synchronizeMailboxFailed(account, remoteFolder.getName(), errorMessage);
@@ -5379,10 +5379,10 @@ public class MessagingController implements Runnable {
         try {
             latch.await();
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Interrupted while awaiting latch release", e);
+            Log.e(Ertebat.LOG_TAG, "Interrupted while awaiting latch release", e);
         }
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "MessagingController.messagesArrivedLatch released");
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "MessagingController.messagesArrivedLatch released");
     }
 
     public void systemStatusChanged() {
@@ -5634,7 +5634,7 @@ public class MessagingController implements Runnable {
         for (Map.Entry<Account, Map<Folder, List<Message>>> entry : accountMap.entrySet()) {
             Account account = entry.getKey();
 
-            //account.refresh(Preferences.getPreferences(ertebat.app));
+            //account.refresh(Preferences.getPreferences(Ertebat.app));
             Map<Folder, List<Message>> folderMap = entry.getValue();
             for (Map.Entry<Folder, List<Message>> folderEntry : folderMap.entrySet()) {
                 Folder folder = folderEntry.getKey();

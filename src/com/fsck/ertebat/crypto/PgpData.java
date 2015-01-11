@@ -1,4 +1,4 @@
-package com.fsck.ertebat.crypto;
+package com.fsck.Ertebat.crypto;
 
 import java.io.Serializable;
 

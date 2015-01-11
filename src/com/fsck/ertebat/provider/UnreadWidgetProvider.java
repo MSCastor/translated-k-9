@@ -1,17 +1,17 @@
-package com.fsck.ertebat.provider;
+package com.fsck.Ertebat.provider;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.AccountStats;
-import com.fsck.ertebat.BaseAccount;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.UnreadWidgetConfiguration;
-import com.fsck.ertebat.activity.FolderList;
-import com.fsck.ertebat.activity.MessageList;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.search.LocalSearch;
-import com.fsck.ertebat.search.SearchAccount;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.AccountStats;
+import com.fsck.Ertebat.BaseAccount;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.UnreadWidgetConfiguration;
+import com.fsck.Ertebat.activity.FolderList;
+import com.fsck.Ertebat.activity.MessageList;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.search.LocalSearch;
+import com.fsck.Ertebat.search.SearchAccount;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -68,7 +68,7 @@ public class UnreadWidgetProvider extends AppWidgetProvider {
 
             if (searchAccount != null) {
                 account = searchAccount;
-                MessagingController controller = MessagingController.getInstance(ertebat.app);
+                MessagingController controller = MessagingController.getInstance(Ertebat.app);
                 stats = controller.getSearchAccountStatsSynchronous(searchAccount, null);
                 clickIntent = MessageList.intentDisplaySearch(context,
                         searchAccount.getRelatedSearch(), false, true, true);
@@ -78,7 +78,7 @@ public class UnreadWidgetProvider extends AppWidgetProvider {
                     account = realAccount;
                     stats = realAccount.getStats(context);
 
-                    if (ertebat.FOLDER_NONE.equals(realAccount.getAutoExpandFolderName())) {
+                    if (Ertebat.FOLDER_NONE.equals(realAccount.getAutoExpandFolderName())) {
                         clickIntent = FolderList.actionHandleAccountIntent(context, realAccount, false);
                     } else {
                         LocalSearch search = new LocalSearch(realAccount.getAutoExpandFolderName());
@@ -99,8 +99,8 @@ public class UnreadWidgetProvider extends AppWidgetProvider {
                 unreadCount = stats.unreadMessageCount;
             }
         } catch (Exception e) {
-            if (ertebat.DEBUG) {
-                Log.e(ertebat.LOG_TAG, "Error getting widget configuration", e);
+            if (Ertebat.DEBUG) {
+                Log.e(Ertebat.LOG_TAG, "Error getting widget configuration", e);
             }
         }
 

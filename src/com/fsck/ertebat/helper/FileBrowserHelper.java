@@ -1,4 +1,4 @@
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 
 import java.io.File;
 
@@ -12,8 +12,8 @@ import android.net.Uri;
 import android.text.InputType;
 import android.widget.EditText;
 
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
 
 public class FileBrowserHelper {
     /**
@@ -77,7 +77,7 @@ public class FileBrowserHelper {
         boolean success = false;
 
         if (startPath == null) {
-            startPath = new File(ertebat.getAttachmentDefaultPath());
+            startPath = new File(Ertebat.getAttachmentDefaultPath());
         }
 
         int listIndex = 0;
@@ -109,7 +109,7 @@ public class FileBrowserHelper {
         boolean success = false;
 
         if (startPath == null) {
-            startPath = new File(ertebat.getAttachmentDefaultPath());
+            startPath = new File(Ertebat.getAttachmentDefaultPath());
         }
 
         int listIndex = 0;

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,30 +37,30 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Account.FolderMode;
-import com.fsck.ertebat.AccountStats;
-import com.fsck.ertebat.BaseAccount;
-import com.fsck.ertebat.FontSizes;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.activity.setup.AccountSettings;
-import com.fsck.ertebat.activity.setup.FolderSettings;
-import com.fsck.ertebat.activity.setup.Prefs;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.helper.SizeFormatter;
-import com.fsck.ertebat.helper.power.TracingPowerManager;
-import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.store.LocalStore.LocalFolder;
-import com.fsck.ertebat.search.LocalSearch;
-import com.fsck.ertebat.search.SearchSpecification.Attribute;
-import com.fsck.ertebat.search.SearchSpecification.Searchfield;
-import com.fsck.ertebat.service.MailService;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Account.FolderMode;
+import com.fsck.Ertebat.AccountStats;
+import com.fsck.Ertebat.BaseAccount;
+import com.fsck.Ertebat.FontSizes;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.activity.setup.AccountSettings;
+import com.fsck.Ertebat.activity.setup.FolderSettings;
+import com.fsck.Ertebat.activity.setup.Prefs;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.helper.SizeFormatter;
+import com.fsck.Ertebat.helper.power.TracingPowerManager;
+import com.fsck.Ertebat.helper.power.TracingPowerManager.TracingWakeLock;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalFolder;
+import com.fsck.Ertebat.search.LocalSearch;
+import com.fsck.Ertebat.search.SearchSpecification.Attribute;
+import com.fsck.Ertebat.search.SearchSpecification.Searchfield;
+import com.fsck.Ertebat.service.MailService;
+import com.top.Ertebat.mail.R;
 
 import de.cketti.library.changelog.ChangeLog;
 
@@ -69,7 +69,7 @@ import de.cketti.library.changelog.ChangeLog;
  * Activity shows list of the Account's folders
  */
 
-public class FolderList extends ertebatListActivity {
+public class FolderList extends ErtebatListActivity {
     private static final String EXTRA_ACCOUNT = "account";
 
     private static final String EXTRA_FROM_SHORTCUT = "fromShortcut";
@@ -88,7 +88,7 @@ public class FolderList extends ertebatListActivity {
 
     private int mUnreadMessageCount;
 
-    private FontSizes mFontSizes = ertebat.getFontSizes();
+    private FontSizes mFontSizes = Ertebat.getFontSizes();
     private Context context;
 
     private MenuItem mRefreshMenuItem;
@@ -208,7 +208,7 @@ public class FolderList extends ertebatListActivity {
         TracingPowerManager pm = TracingPowerManager.getPowerManager(this);
         final TracingWakeLock wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "FolderList checkMail");
         wakeLock.setReferenceCounted(false);
-        wakeLock.acquire(ertebat.WAKE_LOCK_TIMEOUT);
+        wakeLock.acquire(Ertebat.WAKE_LOCK_TIMEOUT);
         MessagingListener listener = new MessagingListener() {
             @Override
             public void synchronizeMailboxFinished(Account account, String folder, int totalMessagesInMailbox, int numNewMessages) {
@@ -326,7 +326,7 @@ public class FolderList extends ertebatListActivity {
         }
 
         if (intent.getBooleanExtra(EXTRA_FROM_SHORTCUT, false) &&
-                   !ertebat.FOLDER_NONE.equals(mAccount.getAutoExpandFolderName())) {
+                   !Ertebat.FOLDER_NONE.equals(mAccount.getAutoExpandFolderName())) {
             onOpenFolder(mAccount.getAutoExpandFolderName());
             finish();
         } else {
@@ -372,7 +372,7 @@ public class FolderList extends ertebatListActivity {
         super.onResume();
 
         if (!mAccount.isAvailable(this)) {
-            Log.i(ertebat.LOG_TAG, "account unavaliabale, not showing folder-list but account-list");
+            Log.i(Ertebat.LOG_TAG, "account unavaliabale, not showing folder-list but account-list");
             Accounts.listAccounts(this);
             finish();
             return;
@@ -474,14 +474,14 @@ public class FolderList extends ertebatListActivity {
         LocalFolder localFolder = null;
         try {
             if (account == null || folderName == null || !account.isAvailable(FolderList.this)) {
-                Log.i(ertebat.LOG_TAG, "not clear folder of unavailable account");
+                Log.i(Ertebat.LOG_TAG, "not clear folder of unavailable account");
                 return;
             }
             localFolder = account.getLocalStore().getFolder(folderName);
             localFolder.open(Folder.OPEN_MODE_RW);
             localFolder.clearAllMessages();
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Exception while clearing folder", e);
+            Log.e(Ertebat.LOG_TAG, "Exception while clearing folder", e);
         } finally {
             if (localFolder != null) {
                 localFolder.close();
@@ -759,7 +759,7 @@ public class FolderList extends ertebatListActivity {
                                 continue;
                             }
                         } catch (MessagingException me) {
-                            Log.e(ertebat.LOG_TAG, "Couldn't get prefs to check for displayability of folder " + folder.getName(), me);
+                            Log.e(Ertebat.LOG_TAG, "Couldn't get prefs to check for displayability of folder " + folder.getName(), me);
                         }
 
                         FolderInfoHolder holder = null;
@@ -819,7 +819,7 @@ public class FolderList extends ertebatListActivity {
                 try {
                     if (account != null && folderName != null) {
                         if (!account.isAvailable(FolderList.this)) {
-                            Log.i(ertebat.LOG_TAG, "not refreshing folder of unavailable account");
+                            Log.i(Ertebat.LOG_TAG, "not refreshing folder of unavailable account");
                             return;
                         }
                         localFolder = account.getLocalStore().getFolder(folderName);
@@ -832,7 +832,7 @@ public class FolderList extends ertebatListActivity {
                         }
                     }
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Exception while populating folder", e);
+                    Log.e(Ertebat.LOG_TAG, "Exception while populating folder", e);
                 } finally {
                     if (localFolder != null) {
                         localFolder.close();
@@ -958,7 +958,7 @@ public class FolderList extends ertebatListActivity {
             if (position <= getCount()) {
                 return  getItemView(position, convertView, parent);
             } else {
-                Log.e(ertebat.LOG_TAG, "getView with illegal positon=" + position
+                Log.e(Ertebat.LOG_TAG, "getView with illegal positon=" + position
                       + " called! count is only " + getCount());
                 return null;
             }
@@ -1038,7 +1038,7 @@ public class FolderList extends ertebatListActivity {
                 try {
                     folder.unreadMessageCount  = folder.folder.getUnreadMessageCount();
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Unable to get unreadMessageCount for " + mAccount.getDescription() + ":"
+                    Log.e(Ertebat.LOG_TAG, "Unable to get unreadMessageCount for " + mAccount.getDescription() + ":"
                           + folder.name);
                 }
             }
@@ -1058,13 +1058,13 @@ public class FolderList extends ertebatListActivity {
                 try {
                     folder.flaggedMessageCount = folder.folder.getFlaggedMessageCount();
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Unable to get flaggedMessageCount for " + mAccount.getDescription() + ":"
+                    Log.e(Ertebat.LOG_TAG, "Unable to get flaggedMessageCount for " + mAccount.getDescription() + ":"
                           + folder.name);
                 }
 
                     }
 
-            if (ertebat.messageListStars() && folder.flaggedMessageCount > 0) {
+            if (Ertebat.messageListStars() && folder.flaggedMessageCount > 0) {
                 holder.flaggedMessageCount.setText(Integer.toString(folder.flaggedMessageCount));
                 holder.flaggedMessageCountWrapper.setOnClickListener(
                         createFlaggedSearch(mAccount, folder));
@@ -1087,7 +1087,7 @@ public class FolderList extends ertebatListActivity {
 
             mFontSizes.setViewTextSize(holder.folderName, mFontSizes.getFolderName());
 
-            if (ertebat.wrapFolderNames()) {
+            if (Ertebat.wrapFolderNames()) {
                 holder.folderName.setEllipsize(null);
                 holder.folderName.setSingleLine(false);
             }

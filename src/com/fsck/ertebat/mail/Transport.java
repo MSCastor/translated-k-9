@@ -1,9 +1,9 @@
 
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.mail.transport.SmtpTransport;
-import com.fsck.ertebat.mail.transport.WebDavTransport;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.mail.transport.SmtpTransport;
+import com.fsck.Ertebat.mail.transport.WebDavTransport;
 
 public abstract class Transport {
     protected static final int SOCKET_CONNECT_TIMEOUT = 10000;

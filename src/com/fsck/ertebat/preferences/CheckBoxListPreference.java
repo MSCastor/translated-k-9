@@ -1,4 +1,4 @@
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import android.app.AlertDialog.Builder;
 import android.content.Context;

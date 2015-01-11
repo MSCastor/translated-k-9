@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 public abstract class BodyPart implements Part {
     private Multipart mParent;

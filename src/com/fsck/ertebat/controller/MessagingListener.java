@@ -1,16 +1,16 @@
 
-package com.fsck.ertebat.controller;
+package com.fsck.Ertebat.controller;
 
 import java.util.List;
 
 import android.content.Context;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.AccountStats;
-import com.fsck.ertebat.BaseAccount;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.Part;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.AccountStats;
+import com.fsck.Ertebat.BaseAccount;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.Part;
 
 /**
  * Defines the interface that {@link MessagingController} will use to callback to requesters.

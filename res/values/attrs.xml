@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="ertebatStyles">
+    <declare-styleable name="ErtebatStyles">
         <attr name="iconFolder" format="reference" />
         <attr name="iconListItemMenu" format="reference" />
         <attr name="iconMenuInfoDetails" format="reference" />

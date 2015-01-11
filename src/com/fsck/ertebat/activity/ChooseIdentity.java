@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,19 +10,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Identity;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Identity;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
 
 import java.util.List;
 
-public class ChooseIdentity extends ertebatListActivity {
+public class ChooseIdentity extends ErtebatListActivity {
     Account mAccount;
     ArrayAdapter<String> adapter;
 
-    public static final String EXTRA_ACCOUNT = "com.fsck.ertebat.ChooseIdentity_account";
-    public static final String EXTRA_IDENTITY = "com.fsck.ertebat.ChooseIdentity_identity";
+    public static final String EXTRA_ACCOUNT = "com.fsck.Ertebat.ChooseIdentity_account";
+    public static final String EXTRA_IDENTITY = "com.fsck.Ertebat.ChooseIdentity_identity";
 
     protected List<Identity> identities = null;
 

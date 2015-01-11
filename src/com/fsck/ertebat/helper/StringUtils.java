@@ -1,4 +1,4 @@
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 
 public final class StringUtils {
 

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity.misc;
+package com.fsck.Ertebat.activity.misc;
 
 import android.content.Context;
 import android.view.MotionEvent;

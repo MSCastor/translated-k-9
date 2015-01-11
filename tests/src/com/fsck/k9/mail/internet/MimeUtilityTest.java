@@ -1,4 +1,4 @@
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
 import android.test.AndroidTestCase;
 

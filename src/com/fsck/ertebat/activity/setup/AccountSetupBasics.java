@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 
 import java.io.Serializable;
@@ -28,23 +28,23 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.EmailAddressValidator;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.ertebatActivity;
-import com.fsck.ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.AuthType;
-import com.fsck.ertebat.mail.ConnectionSecurity;
-import com.fsck.ertebat.mail.ServerSettings;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.Transport;
-import com.fsck.ertebat.mail.store.ImapStore;
-import com.fsck.ertebat.mail.transport.SmtpTransport;
-import com.fsck.ertebat.view.ClientCertificateSpinner;
-import com.fsck.ertebat.view.ClientCertificateSpinner.OnClientCertificateChangedListener;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.EmailAddressValidator;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.ErtebatActivity;
+import com.fsck.Ertebat.activity.setup.AccountSetupCheckSettings.CheckDirection;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.AuthType;
+import com.fsck.Ertebat.mail.ConnectionSecurity;
+import com.fsck.Ertebat.mail.ServerSettings;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.Transport;
+import com.fsck.Ertebat.mail.store.ImapStore;
+import com.fsck.Ertebat.mail.transport.SmtpTransport;
+import com.fsck.Ertebat.view.ClientCertificateSpinner;
+import com.fsck.Ertebat.view.ClientCertificateSpinner.OnClientCertificateChangedListener;
 
 /**
  * Prompts the user for the email address and password.
@@ -53,14 +53,14 @@ import com.fsck.ertebat.view.ClientCertificateSpinner.OnClientCertificateChanged
  * activity. If no settings are found the settings are handed off to the
  * AccountSetupAccountType activity.
  */
-public class AccountSetupBasics extends ertebatActivity
+public class AccountSetupBasics extends ErtebatActivity
     implements OnClickListener, TextWatcher, OnCheckedChangeListener, OnClientCertificateChangedListener {
-    private final static String EXTRA_ACCOUNT = "com.fsck.ertebat.AccountSetupBasics.account";
+    private final static String EXTRA_ACCOUNT = "com.fsck.Ertebat.AccountSetupBasics.account";
     private final static int DIALOG_NOTE = 1;
     private final static String STATE_KEY_PROVIDER =
-            "com.fsck.ertebat.AccountSetupBasics.provider";
+            "com.fsck.Ertebat.AccountSetupBasics.provider";
     private final static String STATE_KEY_CHECKED_INCOMING =
-            "com.fsck.ertebat.AccountSetupBasics.checkedIncoming";
+            "com.fsck.Ertebat.AccountSetupBasics.checkedIncoming";
 
     private EditText mEmailView;
     private EditText mPasswordView;
@@ -232,7 +232,7 @@ public class AccountSetupBasics extends ertebatActivity
         try {
             name = getDefaultAccountName();
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Could not get default account name", e);
+            Log.e(Ertebat.LOG_TAG, "Could not get default account name", e);
         }
 
         if (name == null) {
@@ -340,7 +340,7 @@ public class AccountSetupBasics extends ertebatActivity
             AccountSetupCheckSettings.actionCheckSettings(this, mAccount, CheckDirection.INCOMING);
         } catch (UnsupportedEncodingException enc) {
             // This really shouldn't happen since the encoding is hardcoded to UTF-8
-            Log.e(ertebat.LOG_TAG, "Couldn't urlencode username or password.", enc);
+            Log.e(Ertebat.LOG_TAG, "Couldn't urlencode username or password.", enc);
         } catch (URISyntaxException use) {
             /*
              * If there is some problem with the URI we give up and go on to
@@ -389,7 +389,7 @@ public class AccountSetupBasics extends ertebatActivity
                 //We've successfully checked outgoing as well.
                 mAccount.setDescription(mAccount.getEmail());
                 mAccount.save(Preferences.getPreferences(this));
-                ertebat.setServicesEnabled(this);
+                Ertebat.setServicesEnabled(this);
                 AccountSetupNames.actionSetNames(this, mAccount);
                 finish();
             }
@@ -504,7 +504,7 @@ public class AccountSetupBasics extends ertebatActivity
                 }
             }
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Error while trying to load provider settings.", e);
+            Log.e(Ertebat.LOG_TAG, "Error while trying to load provider settings.", e);
         }
         return null;
     }

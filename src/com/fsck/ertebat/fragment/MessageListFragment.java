@@ -1,4 +1,4 @@
-package com.fsck.ertebat.fragment;
+package com.fsck.Ertebat.fragment;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -64,42 +64,42 @@ import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Account.SortType;
-import com.fsck.ertebat.FontSizes;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.ActivityListener;
-import com.fsck.ertebat.activity.ChooseFolder;
-import com.fsck.ertebat.activity.FolderInfoHolder;
-import com.fsck.ertebat.activity.MessageReference;
-import com.fsck.ertebat.activity.misc.ContactPictureLoader;
-import com.fsck.ertebat.cache.EmailProviderCache;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.fragment.ConfirmationDialogFragment.ConfirmationDialogFragmentListener;
-import com.fsck.ertebat.helper.ContactPicture;
-import com.fsck.ertebat.helper.MergeCursorWithUniqueId;
-import com.fsck.ertebat.helper.MessageHelper;
-import com.fsck.ertebat.helper.StringUtils;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.LocalStore.LocalFolder;
-import com.fsck.ertebat.provider.EmailProvider;
-import com.fsck.ertebat.provider.EmailProvider.MessageColumns;
-import com.fsck.ertebat.provider.EmailProvider.SpecialColumns;
-import com.fsck.ertebat.provider.EmailProvider.ThreadColumns;
-import com.fsck.ertebat.search.ConditionsTreeNode;
-import com.fsck.ertebat.search.LocalSearch;
-import com.fsck.ertebat.search.SearchSpecification;
-import com.fsck.ertebat.search.SearchSpecification.SearchCondition;
-import com.fsck.ertebat.search.SearchSpecification.Searchfield;
-import com.fsck.ertebat.search.SqlQueryBuilder;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Account.SortType;
+import com.fsck.Ertebat.FontSizes;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.ActivityListener;
+import com.fsck.Ertebat.activity.ChooseFolder;
+import com.fsck.Ertebat.activity.FolderInfoHolder;
+import com.fsck.Ertebat.activity.MessageReference;
+import com.fsck.Ertebat.activity.misc.ContactPictureLoader;
+import com.fsck.Ertebat.cache.EmailProviderCache;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.fragment.ConfirmationDialogFragment.ConfirmationDialogFragmentListener;
+import com.fsck.Ertebat.helper.ContactPicture;
+import com.fsck.Ertebat.helper.MergeCursorWithUniqueId;
+import com.fsck.Ertebat.helper.MessageHelper;
+import com.fsck.Ertebat.helper.StringUtils;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalFolder;
+import com.fsck.Ertebat.provider.EmailProvider;
+import com.fsck.Ertebat.provider.EmailProvider.MessageColumns;
+import com.fsck.Ertebat.provider.EmailProvider.SpecialColumns;
+import com.fsck.Ertebat.provider.EmailProvider.ThreadColumns;
+import com.fsck.Ertebat.search.ConditionsTreeNode;
+import com.fsck.Ertebat.search.LocalSearch;
+import com.fsck.Ertebat.search.SearchSpecification;
+import com.fsck.Ertebat.search.SearchSpecification.SearchCondition;
+import com.fsck.Ertebat.search.SearchSpecification.Searchfield;
+import com.fsck.Ertebat.search.SqlQueryBuilder;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -416,7 +416,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
     private int mSelectedCount = 0;
     private Set<Long> mSelected = new HashSet<Long>();
 
-    private FontSizes mFontSizes = ertebat.getFontSizes();
+    private FontSizes mFontSizes = Ertebat.getFontSizes();
 
     private ActionMode mActionMode;
 
@@ -798,11 +798,11 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
         mPreferences = Preferences.getPreferences(appContext);
         mController = MessagingController.getInstance(getActivity().getApplication());
 
-        mPreviewLines = ertebat.messageListPreviewLines();
-        mCheckboxes = ertebat.messageListCheckboxes();
-        mStars = ertebat.messageListStars();
+        mPreviewLines = Ertebat.messageListPreviewLines();
+        mCheckboxes = Ertebat.messageListCheckboxes();
+        mStars = Ertebat.messageListStars();
 
-        if (ertebat.showContactPicture()) {
+        if (Ertebat.showContactPicture()) {
             mContactsPictureLoader = ContactPicture.getContactPictureLoader(getActivity());
         }
 
@@ -923,9 +923,9 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
             mSortAscending = mAccount.isSortAscending(mSortType);
             mSortDateAscending = mAccount.isSortAscending(SortType.SORT_DATE);
         } else {
-            mSortType = ertebat.getSortType();
-            mSortAscending = ertebat.isSortAscending(mSortType);
-            mSortDateAscending = ertebat.isSortAscending(SortType.SORT_DATE);
+            mSortType = Ertebat.getSortType();
+            mSortAscending = Ertebat.isSortAscending(mSortType);
+            mSortDateAscending = Ertebat.isSortAscending(SortType.SORT_DATE);
         }
     }
 
@@ -1012,7 +1012,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
             localFolder = localStore.getFolder(folder);
             return new FolderInfoHolder(mContext, localFolder, account);
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "getFolder(" + folder + ") goes boom: ", e);
+            Log.e(Ertebat.LOG_TAG, "getFolder(" + folder + ") goes boom: ", e);
             return null;
         } finally {
             if (localFolder != null) {
@@ -1028,7 +1028,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
                 return folder.getName();
             }
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "getFolderNameById() failed.", e);
+            Log.e(Ertebat.LOG_TAG, "getFolderNameById() failed.", e);
         }
 
         return null;
@@ -1041,7 +1041,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
             localFolder.open(Folder.OPEN_MODE_RO);
             return localFolder;
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "getFolderNameById() failed.", e);
+            Log.e(Ertebat.LOG_TAG, "getFolderNameById() failed.", e);
             return null;
         }
     }
@@ -1066,7 +1066,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
 
         Context appContext = getActivity().getApplicationContext();
 
-        mSenderAboveSubject = ertebat.messageListSenderAboveSubject();
+        mSenderAboveSubject = Ertebat.messageListSenderAboveSubject();
 
         if (!mLoaderJustInitialized) {
             restartLoader();
@@ -1258,18 +1258,18 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
 
             account.save(mPreferences);
         } else {
-            ertebat.setSortType(mSortType);
+            Ertebat.setSortType(mSortType);
 
             if (sortAscending == null) {
-                mSortAscending = ertebat.isSortAscending(mSortType);
+                mSortAscending = Ertebat.isSortAscending(mSortType);
             } else {
                 mSortAscending = sortAscending;
             }
-            ertebat.setSortAscending(mSortType, mSortAscending);
-            mSortDateAscending = ertebat.isSortAscending(SortType.SORT_DATE);
+            Ertebat.setSortAscending(mSortType, mSortAscending);
+            mSortDateAscending = Ertebat.isSortAscending(SortType.SORT_DATE);
 
             Editor editor = mPreferences.getPreferences().edit();
-            ertebat.save(editor);
+            Ertebat.save(editor);
             editor.commit();
         }
 
@@ -1313,7 +1313,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
     }
 
     private void onDelete(List<Message> messages) {
-        if (ertebat.confirmDelete()) {
+        if (Ertebat.confirmDelete()) {
             // remember the message selection for #onCreateDialog(int)
             mActiveMessages = messages;
             showDialog(R.id.dialog_confirm_delete);
@@ -1993,7 +1993,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
             }
 
             // Background color
-            if (selected || ertebat.useBackgroundAsUnreadIndicator()) {
+            if (selected || Ertebat.useBackgroundAsUnreadIndicator()) {
                 int res;
                 if (selected) {
                     res = R.attr.messageListSelectedBackgroundColor;
@@ -2061,7 +2061,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
             //TODO: make this part of the theme
-            int color = (ertebat.getertebatTheme() == ertebat.Theme.LIGHT) ?
+            int color = (Ertebat.getErtebatTheme() == Ertebat.Theme.LIGHT) ?
                     Color.rgb(105, 105, 105) :
                     Color.rgb(160, 160, 160);
 
@@ -2514,7 +2514,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
             Account account = entry.getKey();
             String archiveFolder = account.getArchiveFolderName();
 
-            if (!ertebat.FOLDER_NONE.equals(archiveFolder)) {
+            if (!Ertebat.FOLDER_NONE.equals(archiveFolder)) {
                 move(entry.getValue(), archiveFolder);
             }
         }
@@ -2547,7 +2547,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
      *         The messages to move to the spam folder. Never {@code null}.
      */
     private void onSpam(List<Message> messages) {
-        if (ertebat.confirmSpam()) {
+        if (Ertebat.confirmSpam()) {
             // remember the message selection for #onCreateDialog(int)
             mActiveMessages = messages;
             showDialog(R.id.dialog_confirm_spam);
@@ -2563,7 +2563,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
             Account account = entry.getKey();
             String spamFolder = account.getSpamFolderName();
 
-            if (!ertebat.FOLDER_NONE.equals(spamFolder)) {
+            if (!Ertebat.FOLDER_NONE.equals(spamFolder)) {
                 move(entry.getValue(), spamFolder);
             }
         }
@@ -2645,7 +2645,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
      * @param messages
      *         The list of messages to copy or move. Never {@code null}.
      * @param destination
-     *         The name of the destination folder. Never {@code null} or {@link ertebat#FOLDER_NONE}.
+     *         The name of the destination folder. Never {@code null} or {@link Ertebat#FOLDER_NONE}.
      * @param operation
      *         Specifies what operation to perform. Never {@code null}.
      */
@@ -2975,11 +2975,11 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
         // If we represent a remote search, then kill that before going back.
         if (isRemoteSearch() && mRemoteSearchFuture != null) {
             try {
-                Log.i(ertebat.LOG_TAG, "Remote search in progress, attempting to abort...");
+                Log.i(Ertebat.LOG_TAG, "Remote search in progress, attempting to abort...");
                 // Canceling the future stops any message fetches in progress.
                 final boolean cancelSuccess = mRemoteSearchFuture.cancel(true);   // mayInterruptIfRunning = true
                 if (!cancelSuccess) {
-                    Log.e(ertebat.LOG_TAG, "Could not cancel remote search future.");
+                    Log.e(Ertebat.LOG_TAG, "Could not cancel remote search future.");
                 }
                 // Closing the folder will kill off the connection if we're mid-search.
                 final Account searchAccount = mAccount;
@@ -2989,7 +2989,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
                 mListener.remoteSearchFinished(searchAccount, mCurrentFolder.name, 0, null);
             } catch (Exception e) {
                 // Since the user is going back, log and squash any exceptions.
-                Log.e(ertebat.LOG_TAG, "Could not abort remote search before going back", e);
+                Log.e(Ertebat.LOG_TAG, "Could not abort remote search before going back", e);
             }
         }
         super.onStop();
@@ -3172,7 +3172,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
         try {
             return folder.getMessage(uid);
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Something went wrong while fetching a message", e);
+            Log.e(Ertebat.LOG_TAG, "Something went wrong while fetching a message", e);
         }
 
         return null;
@@ -3251,7 +3251,7 @@ public class MessageListFragment extends Fragment implements OnItemClickListener
     }
 
     public boolean isErrorFolder() {
-        return ertebat.ERROR_FOLDER_NAME.equals(mFolderName);
+        return Ertebat.ERROR_FOLDER_NAME.equals(mFolderName);
     }
 
     public boolean isRemoteFolder() {

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity.loader;
+package com.fsck.Ertebat.activity.loader;
 
 import java.io.File;
 
@@ -10,9 +10,9 @@ import android.net.Uri;
 import android.provider.OpenableColumns;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.activity.misc.Attachment;
-import com.fsck.ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.activity.misc.Attachment;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
 
 /**
  * Loader to fetch metadata of an attachment.
@@ -79,16 +79,16 @@ public class AttachmentInfoLoader  extends AsyncTaskLoader<Attachment> {
         if (size <= 0) {
             String uriString = uri.toString();
             if (uriString.startsWith("file://")) {
-                Log.v(ertebat.LOG_TAG, uriString.substring("file://".length()));
+                Log.v(Ertebat.LOG_TAG, uriString.substring("file://".length()));
                 File f = new File(uriString.substring("file://".length()));
                 size = f.length();
             } else {
-                Log.v(ertebat.LOG_TAG, "Not a file: " + uriString);
+                Log.v(Ertebat.LOG_TAG, "Not a file: " + uriString);
             }
         } else {
-            Log.v(ertebat.LOG_TAG, "old attachment.size: " + size);
+            Log.v(Ertebat.LOG_TAG, "old attachment.size: " + size);
         }
-        Log.v(ertebat.LOG_TAG, "new attachment.size: " + size);
+        Log.v(Ertebat.LOG_TAG, "new attachment.size: " + size);
 
         mAttachment.contentType = usableContentType;
         mAttachment.name = name;

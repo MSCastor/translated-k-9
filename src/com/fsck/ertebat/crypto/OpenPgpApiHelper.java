@@ -1,8 +1,8 @@
-package com.fsck.ertebat.crypto;
+package com.fsck.Ertebat.crypto;
 
 import android.text.TextUtils;
 
-import com.fsck.ertebat.Identity;
+import com.fsck.Ertebat.Identity;
 
 
 public class OpenPgpApiHelper {

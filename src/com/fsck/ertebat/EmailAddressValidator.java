@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 import android.text.util.Rfc822Tokenizer;
 import android.widget.AutoCompleteTextView.Validator;
@@ -14,6 +14,6 @@ public class EmailAddressValidator implements Validator {
     }
 
     public boolean isValidAddressOnly(CharSequence text) {
-        return com.fsck.ertebat.helper.Regex.EMAIL_ADDRESS_PATTERN.matcher(text).matches();
+        return com.fsck.Ertebat.helper.Regex.EMAIL_ADDRESS_PATTERN.matcher(text).matches();
     }
 }

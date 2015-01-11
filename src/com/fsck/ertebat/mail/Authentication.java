@@ -1,9 +1,9 @@
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.security.MessageDigest;
 
-import com.fsck.ertebat.mail.filter.Base64;
-import com.fsck.ertebat.mail.filter.Hex;
+import com.fsck.Ertebat.mail.filter.Base64;
+import com.fsck.Ertebat.mail.filter.Hex;
 
 public class Authentication {
     private static final String US_ASCII = "US-ASCII";

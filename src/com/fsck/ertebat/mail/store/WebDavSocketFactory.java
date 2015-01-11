@@ -1,10 +1,10 @@
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.scheme.LayeredSocketFactory;
 import org.apache.http.params.HttpParams;
 
-import com.fsck.ertebat.net.ssl.TrustManagerFactory;
+import com.fsck.Ertebat.net.ssl.TrustManagerFactory;
 
 import java.io.IOException;
 import java.net.InetAddress;

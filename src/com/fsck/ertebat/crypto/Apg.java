@@ -1,4 +1,4 @@
-package com.fsck.ertebat.crypto;
+package com.fsck.Ertebat.crypto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +16,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.widget.Toast;
 
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.MessageCompose;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.internet.MimeUtility;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.MessageCompose;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
 
 /**
  * APG integration.
@@ -576,7 +576,7 @@ public class Apg extends CryptoProvider {
                 c.close();
             }
         } catch (SecurityException e) {
-            // if there was a problem, then let the user know, this will not stop ertebat/APG from
+            // if there was a problem, then let the user know, this will not stop Ertebat/APG from
             // working, but some features won't be available, so we can still return "true"
             Toast.makeText(context,
                            context.getResources().getString(R.string.insufficient_apg_permissions),

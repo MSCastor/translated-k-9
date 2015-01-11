@@ -1,6 +1,6 @@
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -49,7 +49,7 @@ public class ViewSwitcher extends ViewAnimator implements AnimationListener {
     }
 
     private void setupAnimations(Animation in, Animation out) {
-        if (ertebat.showAnimations()) {
+        if (Ertebat.showAnimations()) {
             setInAnimation(in);
             setOutAnimation(out);
             out.setAnimationListener(this);
@@ -60,7 +60,7 @@ public class ViewSwitcher extends ViewAnimator implements AnimationListener {
     }
 
     private void handleSwitchCompleteCallback() {
-        if (!ertebat.showAnimations()) {
+        if (!Ertebat.showAnimations()) {
             onAnimationEnd(null);
         }
     }

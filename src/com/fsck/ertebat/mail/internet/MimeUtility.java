@@ -1,14 +1,14 @@
 
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
 import android.content.Context;
 import android.util.Log;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.helper.HtmlConverter;
-import com.fsck.ertebat.mail.*;
-import com.fsck.ertebat.mail.Message.RecipientType;
-import com.fsck.ertebat.mail.internet.BinaryTempFileBody.BinaryTempFileBodyInputStream;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.helper.HtmlConverter;
+import com.fsck.Ertebat.mail.*;
+import com.fsck.Ertebat.mail.Message.RecipientType;
+import com.fsck.Ertebat.mail.internet.BinaryTempFileBody.BinaryTempFileBodyInputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.james.mime4j.codec.Base64InputStream;
@@ -33,7 +33,7 @@ import java.nio.charset.IllegalCharsetNameException;
 public class MimeUtility {
     public static final String DEFAULT_ATTACHMENT_MIME_TYPE = "application/octet-stream";
 
-    public static final String ertebat_SETTINGS_MIME_TYPE = "application/x-ertebatsettings";
+    public static final String Ertebat_SETTINGS_MIME_TYPE = "application/x-Ertebatsettings";
 
     private static final String TEXT_DIVIDER =
             "------------------------------------------------------------------------";
@@ -46,7 +46,7 @@ public class MimeUtility {
     public static final String[][] MIME_TYPE_BY_EXTENSION_MAP = new String[][] {
         //* Do not delete the next two lines
     { "", DEFAULT_ATTACHMENT_MIME_TYPE },
-    { "ertebats", ertebat_SETTINGS_MIME_TYPE},
+    { "Ertebats", Ertebat_SETTINGS_MIME_TYPE},
     //* Do not delete the previous two lines
     { "123", "application/vnd.lotus-1-2-3"},
     { "323", "text/h323"},
@@ -1115,13 +1115,13 @@ public class MimeUtility {
              * If we are not able to process the body there's nothing we can do about it. Return
              * null and let the upper layers handle the missing content.
              */
-            Log.e(ertebat.LOG_TAG, "Unable to getTextFromPart " + oom.toString());
+            Log.e(Ertebat.LOG_TAG, "Unable to getTextFromPart " + oom.toString());
         } catch (Exception e) {
             /*
              * If we are not able to process the body there's nothing we can do about it. Return
              * null and let the upper layers handle the missing content.
              */
-            Log.e(ertebat.LOG_TAG, "Unable to getTextFromPart", e);
+            Log.e(Ertebat.LOG_TAG, "Unable to getTextFromPart", e);
         }
         return null;
     }
@@ -2358,7 +2358,7 @@ public class MimeUtility {
             }
 
             if (charset.matches(rule[0])) {
-                Log.e(ertebat.LOG_TAG, "I don't know how to deal with the charset " + charset +
+                Log.e(Ertebat.LOG_TAG, "I don't know how to deal with the charset " + charset +
                         ". Falling back to " + rule[1]);
                 charset = rule[1];
                 try {

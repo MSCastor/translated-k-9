@@ -1,4 +1,4 @@
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,28 +36,28 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.crypto.CryptoProvider;
-import com.fsck.ertebat.crypto.PgpData;
-import com.fsck.ertebat.fragment.MessageViewFragment;
-import com.fsck.ertebat.helper.ClipboardManager;
-import com.fsck.ertebat.helper.Contacts;
-import com.fsck.ertebat.helper.HtmlConverter;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Multipart;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.LocalStore.LocalMessage;
-import com.fsck.ertebat.provider.AttachmentProvider.AttachmentProviderColumns;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.crypto.CryptoProvider;
+import com.fsck.Ertebat.crypto.PgpData;
+import com.fsck.Ertebat.fragment.MessageViewFragment;
+import com.fsck.Ertebat.helper.ClipboardManager;
+import com.fsck.Ertebat.helper.Contacts;
+import com.fsck.Ertebat.helper.HtmlConverter;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Multipart;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalMessage;
+import com.fsck.Ertebat.provider.AttachmentProvider.AttachmentProviderColumns;
 
 import org.apache.commons.io.IOUtils;
 
@@ -477,7 +477,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
 
 
         } catch (Exception me) {
-            Log.e(ertebat.LOG_TAG, "setHeaders - error", me);
+            Log.e(Ertebat.LOG_TAG, "setHeaders - error", me);
         }
     }
 
@@ -637,7 +637,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
                     addHiddenAttachment(view);
                 }
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Error adding attachment view", e);
+                Log.e(Ertebat.LOG_TAG, "Error adding attachment view", e);
             }
         }
     }
@@ -845,7 +845,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
 
                     String sanitized = Utility.sanitizeFilename(filename);
 
-                    File directory = new File(ertebat.getAttachmentDefaultPath());
+                    File directory = new File(Ertebat.getAttachmentDefaultPath());
                     File file = Utility.createUniqueFile(directory, sanitized);
                     FileOutputStream out = new FileOutputStream(file);
                     try {

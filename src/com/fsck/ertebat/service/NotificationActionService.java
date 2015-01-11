@@ -1,15 +1,15 @@
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import java.util.ArrayList;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.activity.MessageCompose;
-import com.fsck.ertebat.activity.MessageReference;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Message;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.activity.MessageCompose;
+import com.fsck.Ertebat.activity.MessageReference;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Message;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -17,10 +17,10 @@ import android.content.Intent;
 import android.util.Log;
 
 public class NotificationActionService extends CoreService {
-    private final static String REPLY_ACTION = "com.fsck.ertebat.service.NotificationActionService.REPLY_ACTION";
-    private final static String READ_ALL_ACTION = "com.fsck.ertebat.service.NotificationActionService.READ_ALL_ACTION";
-    private final static String DELETE_ALL_ACTION = "com.fsck.ertebat.service.NotificationActionService.DELETE_ALL_ACTION";
-    private final static String ACKNOWLEDGE_ACTION = "com.fsck.ertebat.service.NotificationActionService.ACKNOWLEDGE_ACTION";
+    private final static String REPLY_ACTION = "com.fsck.Ertebat.service.NotificationActionService.REPLY_ACTION";
+    private final static String READ_ALL_ACTION = "com.fsck.Ertebat.service.NotificationActionService.READ_ALL_ACTION";
+    private final static String DELETE_ALL_ACTION = "com.fsck.Ertebat.service.NotificationActionService.DELETE_ALL_ACTION";
+    private final static String ACKNOWLEDGE_ACTION = "com.fsck.Ertebat.service.NotificationActionService.ACKNOWLEDGE_ACTION";
 
     private final static String EXTRA_ACCOUNT = "account";
     private final static String EXTRA_MESSAGE = "message";
@@ -65,8 +65,8 @@ public class NotificationActionService extends CoreService {
 
     @Override
     public int startService(Intent intent, int startId) {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "NotificationActionService started with startId = " + startId);
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "NotificationActionService started with startId = " + startId);
         final Preferences preferences = Preferences.getPreferences(this);
         final MessagingController controller = MessagingController.getInstance(getApplication());
         final Account account = preferences.getAccount(intent.getStringExtra(EXTRA_ACCOUNT));
@@ -74,8 +74,8 @@ public class NotificationActionService extends CoreService {
 
         if (account != null) {
             if (READ_ALL_ACTION.equals(action)) {
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "NotificationActionService marking messages as read");
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "NotificationActionService marking messages as read");
 
                 ArrayList<MessageReference> refs =
                         intent.getParcelableArrayListExtra(EXTRA_MESSAGE_LIST);
@@ -83,8 +83,8 @@ public class NotificationActionService extends CoreService {
                     controller.setFlag(account, ref.folderName, ref.uid, Flag.SEEN, true);
                 }
             } else if (DELETE_ALL_ACTION.equals(action)) {
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "NotificationActionService deleting messages");
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "NotificationActionService deleting messages");
 
                 ArrayList<MessageReference> refs =
                         intent.getParcelableArrayListExtra(EXTRA_MESSAGE_LIST);
@@ -99,8 +99,8 @@ public class NotificationActionService extends CoreService {
 
                 controller.deleteMessages(messages, null);
             } else if (REPLY_ACTION.equals(action)) {
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "NotificationActionService initiating reply");
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "NotificationActionService initiating reply");
 
                 MessageReference ref = (MessageReference) intent.getParcelableExtra(EXTRA_MESSAGE);
                 Message message = ref.restoreToLocalMessage(this);
@@ -109,7 +109,7 @@ public class NotificationActionService extends CoreService {
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 } else {
-                    Log.i(ertebat.LOG_TAG, "Could not execute reply action.");
+                    Log.i(Ertebat.LOG_TAG, "Could not execute reply action.");
                 }
             } else if (ACKNOWLEDGE_ACTION.equals(action)) {
                 // nothing to do here, we just want to cancel the notification so the list
@@ -119,7 +119,7 @@ public class NotificationActionService extends CoreService {
             /* there's no point in keeping the notification after the user clicked on it */
             controller.notifyAccountCancel(this, account);
         } else {
-            Log.w(ertebat.LOG_TAG, "Could not find account for notification action.");
+            Log.w(Ertebat.LOG_TAG, "Could not find account for notification action.");
         }
         
         return START_NOT_STICKY;

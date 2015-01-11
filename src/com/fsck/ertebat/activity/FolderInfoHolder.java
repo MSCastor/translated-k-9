@@ -1,10 +1,10 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.content.Context;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.mail.Folder;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.mail.Folder;
+import com.top.Ertebat.mail.R;
 
 public class FolderInfoHolder implements Comparable<FolderInfoHolder> {
     public String name;

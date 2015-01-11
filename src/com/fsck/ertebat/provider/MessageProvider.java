@@ -1,4 +1,4 @@
-package com.fsck.ertebat.provider;
+package com.fsck.Ertebat.provider;
 
 import android.app.Application;
 import android.content.ContentProvider;
@@ -19,21 +19,21 @@ import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.AccountStats;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.activity.FolderInfoHolder;
-import com.fsck.ertebat.activity.MessageInfoHolder;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.helper.MessageHelper;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.search.SearchAccount;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.AccountStats;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.activity.FolderInfoHolder;
+import com.fsck.Ertebat.activity.MessageInfoHolder;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.helper.MessageHelper;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.search.SearchAccount;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -301,7 +301,7 @@ public class MessageProvider extends ContentProvider {
 
             // new code for integrated inbox, only execute this once as it will be processed afterwards via the listener
             final SearchAccount integratedInboxAccount = SearchAccount.createUnifiedInboxAccount(getContext());
-            final MessagingController msgController = MessagingController.getInstance(ertebat.app);
+            final MessagingController msgController = MessagingController.getInstance(Ertebat.app);
 
             msgController.searchLocalMessages(integratedInboxAccount.getRelatedSearch(),
                                               new MesssageInfoHolderRetrieverListener(queue));
@@ -501,7 +501,7 @@ public class MessageProvider extends ContentProvider {
 
                         ret.addRow(values);
                     } catch (MessagingException e) {
-                        Log.e(ertebat.LOG_TAG, e.getMessage());
+                        Log.e(Ertebat.LOG_TAG, e.getMessage());
                         values[0] = "Unknown";
                         values[1] = 0;
                     }
@@ -552,7 +552,7 @@ public class MessageProvider extends ContentProvider {
         public void close() {
             if (mClosed.compareAndSet(false, true)) {
                 mCursor.close();
-                Log.d(ertebat.LOG_TAG, "Cursor closed, null'ing & releasing semaphore");
+                Log.d(Ertebat.LOG_TAG, "Cursor closed, null'ing & releasing semaphore");
                 mCursor = null;
                 mSemaphore.release();
             }
@@ -857,7 +857,7 @@ public class MessageProvider extends ContentProvider {
 
             /* Android content resolvers can only process CrossProcessCursor instances */
             if (!(cursor instanceof CrossProcessCursor)) {
-                Log.w(ertebat.LOG_TAG, "Unsupported cursor, returning null: " + cursor);
+                Log.w(Ertebat.LOG_TAG, "Unsupported cursor, returning null: " + cursor);
                 mSemaphore.release();
                 return null;
             }
@@ -874,11 +874,11 @@ public class MessageProvider extends ContentProvider {
                 public void run() {
                     final MonitoredCursor monitored = weakReference.get();
                     if (monitored != null && !monitored.isClosed()) {
-                        Log.w(ertebat.LOG_TAG, "Forcibly closing remotely exposed cursor");
+                        Log.w(Ertebat.LOG_TAG, "Forcibly closing remotely exposed cursor");
                         try {
                             monitored.close();
                         } catch (Exception e) {
-                            Log.w(ertebat.LOG_TAG, "Exception while forcibly closing cursor", e);
+                            Log.w(Ertebat.LOG_TAG, "Exception while forcibly closing cursor", e);
                         }
                     }
                 }
@@ -933,12 +933,12 @@ public class MessageProvider extends ContentProvider {
             try {
                 queue.put(mHolders);
             } catch (InterruptedException e) {
-                Log.e(ertebat.LOG_TAG, "Unable to return message list back to caller", e);
+                Log.e(Ertebat.LOG_TAG, "Unable to return message list back to caller", e);
             }
         }
     }
 
-    public static final String AUTHORITY = "com.fsck.ertebat.messageprovider";
+    public static final String AUTHORITY = "com.fsck.Ertebat.messageprovider";
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
@@ -985,10 +985,10 @@ public class MessageProvider extends ContentProvider {
         registerQueryHandler(new ThrottlingQueryHandler(new MessagesQueryHandler()));
         registerQueryHandler(new ThrottlingQueryHandler(new UnreadQueryHandler()));
 
-        ertebat.registerApplicationAware(new ertebat.ApplicationAware() {
+        Ertebat.registerApplicationAware(new Ertebat.ApplicationAware() {
             @Override
             public void initializeComponent(final Application application) {
-                Log.v(ertebat.LOG_TAG, "Registering content resolver notifier");
+                Log.v(Ertebat.LOG_TAG, "Registering content resolver notifier");
 
                 MessagingController.getInstance(application).addListener(new MessagingListener() {
                     @Override
@@ -1004,12 +1004,12 @@ public class MessageProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        if (ertebat.app == null) {
+        if (Ertebat.app == null) {
             return 0;
         }
 
-        if (ertebat.DEBUG) {
-            Log.v(ertebat.LOG_TAG, "MessageProvider/delete: " + uri);
+        if (Ertebat.DEBUG) {
+            Log.v(Ertebat.LOG_TAG, "MessageProvider/delete: " + uri);
         }
 
         // Note: can only delete a message
@@ -1030,7 +1030,7 @@ public class MessageProvider extends ContentProvider {
             if (account.getAccountNumber() == accountId) {
                 myAccount = account;
                 if (!account.isAvailable(getContext())) {
-                    Log.w(ertebat.LOG_TAG, "not deleting messages because account is unavailable at the moment");
+                    Log.w(Ertebat.LOG_TAG, "not deleting messages because account is unavailable at the moment");
                     return 0;
                 }
             }
@@ -1039,19 +1039,19 @@ public class MessageProvider extends ContentProvider {
         // get localstore parameter
         Message msg = null;
         try {
-            Folder lf = LocalStore.getLocalInstance(myAccount, ertebat.app).getFolder(folderName);
+            Folder lf = LocalStore.getLocalInstance(myAccount, Ertebat.app).getFolder(folderName);
             int msgCount = lf.getMessageCount();
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "folder msg count = " + msgCount);
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "folder msg count = " + msgCount);
             }
             msg = lf.getMessage(msgUid);
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Unable to retrieve message", e);
+            Log.e(Ertebat.LOG_TAG, "Unable to retrieve message", e);
         }
 
         // launch command to delete the message
         if ((myAccount != null) && (msg != null)) {
-            MessagingController controller = MessagingController.getInstance(ertebat.app);
+            MessagingController controller = MessagingController.getInstance(Ertebat.app);
             controller.deleteMessages(Collections.singletonList(msg), null);
         }
 
@@ -1061,12 +1061,12 @@ public class MessageProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        if (ertebat.app == null) {
+        if (Ertebat.app == null) {
             return null;
         }
 
-        if (ertebat.DEBUG) {
-            Log.v(ertebat.LOG_TAG, "MessageProvider/getType: " + uri);
+        if (Ertebat.DEBUG) {
+            Log.v(Ertebat.LOG_TAG, "MessageProvider/getType: " + uri);
         }
 
         return null;
@@ -1074,12 +1074,12 @@ public class MessageProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        if (ertebat.app == null) {
+        if (Ertebat.app == null) {
             return null;
         }
 
-        if (ertebat.DEBUG) {
-            Log.v(ertebat.LOG_TAG, "MessageProvider/insert: " + uri);
+        if (Ertebat.DEBUG) {
+            Log.v(Ertebat.LOG_TAG, "MessageProvider/insert: " + uri);
         }
 
         return null;
@@ -1088,12 +1088,12 @@ public class MessageProvider extends ContentProvider {
     @Override
     public Cursor query(final Uri uri, final String[] projection, final String selection,
                         final String[] selectionArgs, final String sortOrder) {
-        if (ertebat.app == null) {
+        if (Ertebat.app == null) {
             return null;
         }
 
-        if (ertebat.DEBUG) {
-            Log.v(ertebat.LOG_TAG, "MessageProvider/query: " + uri);
+        if (Ertebat.DEBUG) {
+            Log.v(Ertebat.LOG_TAG, "MessageProvider/query: " + uri);
         }
 
         final Cursor cursor;
@@ -1110,7 +1110,7 @@ public class MessageProvider extends ContentProvider {
             final QueryHandler handler = mQueryHandlers.get(code);
             cursor = handler.query(uri, projection, selection, selectionArgs, sortOrder);
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Unable to execute query for URI: " + uri, e);
+            Log.e(Ertebat.LOG_TAG, "Unable to execute query for URI: " + uri, e);
             return null;
         }
 
@@ -1119,12 +1119,12 @@ public class MessageProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        if (ertebat.app == null) {
+        if (Ertebat.app == null) {
             return 0;
         }
 
-        if (ertebat.DEBUG) {
-            Log.v(ertebat.LOG_TAG, "MessageProvider/update: " + uri);
+        if (Ertebat.DEBUG) {
+            Log.v(Ertebat.LOG_TAG, "MessageProvider/update: " + uri);
         }
 
 //TBD

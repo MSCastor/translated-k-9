@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.util.Collection;
 import java.util.List;
@@ -27,34 +27,34 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Account.SortType;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.ertebat.SplitViewMode;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
-import com.fsck.ertebat.activity.setup.AccountSettings;
-import com.fsck.ertebat.activity.setup.FolderSettings;
-import com.fsck.ertebat.activity.setup.Prefs;
-import com.fsck.ertebat.crypto.PgpData;
-import com.fsck.ertebat.fragment.MessageListFragment;
-import com.fsck.ertebat.fragment.MessageListFragment.MessageListFragmentListener;
-import com.fsck.ertebat.fragment.MessageViewFragment;
-import com.fsck.ertebat.fragment.MessageViewFragment.MessageViewFragmentListener;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.store.StorageManager;
-import com.fsck.ertebat.search.LocalSearch;
-import com.fsck.ertebat.search.SearchAccount;
-import com.fsck.ertebat.search.SearchSpecification;
-import com.fsck.ertebat.search.SearchSpecification.Attribute;
-import com.fsck.ertebat.search.SearchSpecification.SearchCondition;
-import com.fsck.ertebat.search.SearchSpecification.Searchfield;
-import com.fsck.ertebat.view.MessageHeader;
-import com.fsck.ertebat.view.MessageOpenPgpView;
-import com.fsck.ertebat.view.MessageTitleView;
-import com.fsck.ertebat.view.ViewSwitcher;
-import com.fsck.ertebat.view.ViewSwitcher.OnSwitchCompleteListener;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Account.SortType;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Ertebat.SplitViewMode;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.activity.misc.SwipeGestureDetector.OnSwipeGestureListener;
+import com.fsck.Ertebat.activity.setup.AccountSettings;
+import com.fsck.Ertebat.activity.setup.FolderSettings;
+import com.fsck.Ertebat.activity.setup.Prefs;
+import com.fsck.Ertebat.crypto.PgpData;
+import com.fsck.Ertebat.fragment.MessageListFragment;
+import com.fsck.Ertebat.fragment.MessageListFragment.MessageListFragmentListener;
+import com.fsck.Ertebat.fragment.MessageViewFragment;
+import com.fsck.Ertebat.fragment.MessageViewFragment.MessageViewFragmentListener;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.store.StorageManager;
+import com.fsck.Ertebat.search.LocalSearch;
+import com.fsck.Ertebat.search.SearchAccount;
+import com.fsck.Ertebat.search.SearchSpecification;
+import com.fsck.Ertebat.search.SearchSpecification.Attribute;
+import com.fsck.Ertebat.search.SearchSpecification.SearchCondition;
+import com.fsck.Ertebat.search.SearchSpecification.Searchfield;
+import com.fsck.Ertebat.view.MessageHeader;
+import com.fsck.Ertebat.view.MessageOpenPgpView;
+import com.fsck.Ertebat.view.MessageTitleView;
+import com.fsck.Ertebat.view.ViewSwitcher;
+import com.fsck.Ertebat.view.ViewSwitcher.OnSwitchCompleteListener;
+import com.top.Ertebat.mail.R;
 
 import de.cketti.library.changelog.ChangeLog;
 
@@ -64,7 +64,7 @@ import de.cketti.library.changelog.ChangeLog;
  * shows a list of messages.
  * From this Activity the user can perform all standard message operations.
  */
-public class MessageList extends ertebatFragmentActivity implements MessageListFragmentListener,
+public class MessageList extends ErtebatFragmentActivity implements MessageListFragmentListener,
         MessageViewFragmentListener, OnBackStackChangedListener, OnSwipeGestureListener,
         OnSwitchCompleteListener {
 
@@ -78,8 +78,8 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
     private static final String EXTRA_MESSAGE_REFERENCE = "message_reference";
 
     // used for remote search
-    public static final String EXTRA_SEARCH_ACCOUNT = "com.fsck.ertebat.search_account";
-    private static final String EXTRA_SEARCH_FOLDER = "com.fsck.ertebat.search_folder";
+    public static final String EXTRA_SEARCH_ACCOUNT = "com.fsck.Ertebat.search_account";
+    private static final String EXTRA_SEARCH_FOLDER = "com.fsck.Ertebat.search_folder";
 
     private static final String STATE_DISPLAY_MODE = "displayMode";
     private static final String STATE_MESSAGE_LIST_WAS_DISPLAYED = "messageListWasDisplayed";
@@ -168,7 +168,7 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
     private ProgressBar mActionBarProgress;
     private MenuItem mMenuButtonCheckMail;
     private View mActionButtonIndeterminateProgress;
-    private int mLastDirection = (ertebat.messageViewShowNext()) ? NEXT : PREVIOUS;
+    private int mLastDirection = (Ertebat.messageViewShowNext()) ? NEXT : PREVIOUS;
 
     /**
      * {@code true} if the message list should be displayed as flat list (i.e. no threading)
@@ -283,7 +283,7 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
         if (!hasMessageListFragment) {
             FragmentTransaction ft = fragmentManager.beginTransaction();
             mMessageListFragment = MessageListFragment.newInstance(mSearch, false,
-                    (ertebat.isThreadedViewEnabled() && !mNoThreading));
+                    (Ertebat.isThreadedViewEnabled() && !mNoThreading));
             ft.add(R.id.message_list_container, mMessageListFragment);
             ft.commit();
         }
@@ -331,7 +331,7 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
     }
 
     private boolean useSplitView() {
-        SplitViewMode splitViewMode = ertebat.getSplitViewMode();
+        SplitViewMode splitViewMode = Ertebat.getSplitViewMode();
         int orientation = getResources().getConfiguration().orientation;
 
         return (splitViewMode == SplitViewMode.ALWAYS ||
@@ -465,7 +465,7 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
         mSingleFolderMode = mSingleAccountMode && (mSearch.getFolderNames().size() == 1);
 
         if (mSingleAccountMode && (mAccount == null || !mAccount.isAvailable(this))) {
-            Log.i(ertebat.LOG_TAG, "not opening MessageList of unavailable account");
+            Log.i(Ertebat.LOG_TAG, "not opening MessageList of unavailable account");
             onAccountUnavailable();
             return false;
         }
@@ -577,11 +577,11 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP: {
                 if (mMessageViewFragment != null && mDisplayMode != DisplayMode.MESSAGE_LIST &&
-                        ertebat.useVolumeKeysForNavigationEnabled()) {
+                        Ertebat.useVolumeKeysForNavigationEnabled()) {
                     showPreviousMessage();
                     return true;
                 } else if (mDisplayMode != DisplayMode.MESSAGE_VIEW &&
-                        ertebat.useVolumeKeysForListNavigationEnabled()) {
+                        Ertebat.useVolumeKeysForListNavigationEnabled()) {
                     mMessageListFragment.onMoveUp();
                     return true;
                 }
@@ -590,11 +590,11 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
             }
             case KeyEvent.KEYCODE_VOLUME_DOWN: {
                 if (mMessageViewFragment != null && mDisplayMode != DisplayMode.MESSAGE_LIST &&
-                        ertebat.useVolumeKeysForNavigationEnabled()) {
+                        Ertebat.useVolumeKeysForNavigationEnabled()) {
                     showNextMessage();
                     return true;
                 } else if (mDisplayMode != DisplayMode.MESSAGE_VIEW &&
-                        ertebat.useVolumeKeysForListNavigationEnabled()) {
+                        Ertebat.useVolumeKeysForListNavigationEnabled()) {
                     mMessageListFragment.onMoveDown();
                     return true;
                 }
@@ -723,10 +723,10 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         // Swallow these events too to avoid the audible notification of a volume change
-        if (ertebat.useVolumeKeysForListNavigationEnabled()) {
+        if (Ertebat.useVolumeKeysForListNavigationEnabled()) {
             if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP) || (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
-                if (ertebat.DEBUG)
-                    Log.v(ertebat.LOG_TAG, "Swallowed key up.");
+                if (Ertebat.DEBUG)
+                    Log.v(Ertebat.LOG_TAG, "Swallowed key up.");
                 return true;
             }
         }
@@ -981,11 +981,11 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
             }
 
             MenuItem toggleTheme = menu.findItem(R.id.toggle_message_view_theme);
-            if (ertebat.useFixedMessageViewTheme()) {
+            if (Ertebat.useFixedMessageViewTheme()) {
                 toggleTheme.setVisible(false);
             } else {
                 // Set title of menu item to switch to dark/light theme
-                if (ertebat.getertebatMessageViewTheme() == ertebat.Theme.DARK) {
+                if (Ertebat.getErtebatMessageViewTheme() == Ertebat.Theme.DARK) {
                     toggleTheme.setTitle(R.string.message_view_theme_action_light);
                 } else {
                     toggleTheme.setTitle(R.string.message_view_theme_action_dark);
@@ -1003,13 +1003,13 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
             // Jellybean has built-in long press selection support
             menu.findItem(R.id.select_text).setVisible(Build.VERSION.SDK_INT < 16);
 
-            menu.findItem(R.id.delete).setVisible(ertebat.isMessageViewDeleteActionVisible());
+            menu.findItem(R.id.delete).setVisible(Ertebat.isMessageViewDeleteActionVisible());
 
             /*
              * Set visibility of copy, move, archive, spam in action bar and refile submenu
              */
             if (mMessageViewFragment.isCopyCapable()) {
-                menu.findItem(R.id.copy).setVisible(ertebat.isMessageViewCopyActionVisible());
+                menu.findItem(R.id.copy).setVisible(Ertebat.isMessageViewCopyActionVisible());
             } else {
                 menu.findItem(R.id.copy).setVisible(false);
             }
@@ -1018,11 +1018,11 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
                 boolean canMessageBeArchived = mMessageViewFragment.canMessageBeArchived();
                 boolean canMessageBeMovedToSpam = mMessageViewFragment.canMessageBeMovedToSpam();
 
-                menu.findItem(R.id.move).setVisible(ertebat.isMessageViewMoveActionVisible());
+                menu.findItem(R.id.move).setVisible(Ertebat.isMessageViewMoveActionVisible());
                 menu.findItem(R.id.archive).setVisible(canMessageBeArchived &&
-                        ertebat.isMessageViewArchiveActionVisible());
+                        Ertebat.isMessageViewArchiveActionVisible());
                 menu.findItem(R.id.spam).setVisible(canMessageBeMovedToSpam &&
-                        ertebat.isMessageViewSpamActionVisible());
+                        Ertebat.isMessageViewSpamActionVisible());
             } else {
                 menu.findItem(R.id.move).setVisible(false);
                 menu.findItem(R.id.archive).setVisible(false);
@@ -1377,7 +1377,7 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
 
     @Override
     public void showNextMessageOrReturn() {
-        if (ertebat.messageViewReturnToList() || !showLogicalNextMessage()) {
+        if (Ertebat.messageViewReturnToList() || !showLogicalNextMessage()) {
             if (mDisplayMode == DisplayMode.SPLIT_VIEW) {
                 showMessageViewPlaceHolder();
             } else {
@@ -1472,10 +1472,10 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
     }
 
     private void onToggleTheme() {
-        if (ertebat.getertebatMessageViewTheme() == ertebat.Theme.DARK) {
-            ertebat.setertebatMessageViewThemeSetting(ertebat.Theme.LIGHT);
+        if (Ertebat.getErtebatMessageViewTheme() == Ertebat.Theme.DARK) {
+            Ertebat.setErtebatMessageViewThemeSetting(Ertebat.Theme.LIGHT);
         } else {
-            ertebat.setertebatMessageViewThemeSetting(ertebat.Theme.DARK);
+            Ertebat.setErtebatMessageViewThemeSetting(Ertebat.Theme.DARK);
         }
 
         new Thread(new Runnable() {
@@ -1484,7 +1484,7 @@ public class MessageList extends ertebatFragmentActivity implements MessageListF
                 Context appContext = getApplicationContext();
                 Preferences prefs = Preferences.getPreferences(appContext);
                 Editor editor = prefs.getPreferences().edit();
-                ertebat.save(editor);
+                Ertebat.save(editor);
                 editor.commit();
             }
         }).start();

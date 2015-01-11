@@ -1,10 +1,10 @@
 
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
 import android.util.Log;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -177,7 +177,7 @@ public class DecoderUtil {
         }
 
         if (encodedText.isEmpty()) {
-            Log.w(ertebat.LOG_TAG, "Missing encoded text in encoded word: '" + body.substring(begin, end) + "'");
+            Log.w(Ertebat.LOG_TAG, "Missing encoded text in encoded word: '" + body.substring(begin, end) + "'");
             return null;
         }
 
@@ -186,7 +186,7 @@ public class DecoderUtil {
         } else if (encoding.equalsIgnoreCase("B")) {
             return DecoderUtil.decodeB(encodedText, charset);
         } else {
-            Log.w(ertebat.LOG_TAG, "Warning: Unknown encoding in encoded word '" + body.substring(begin, end) + "'");
+            Log.w(Ertebat.LOG_TAG, "Warning: Unknown encoding in encoded word '" + body.substring(begin, end) + "'");
             return null;
         }
     }

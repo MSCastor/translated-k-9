@@ -51,7 +51,7 @@ public class PullToRefreshHorizontalScrollView extends PullToRefreshBase<Horizon
 		HorizontalScrollView scrollView;
 
 		if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-			scrollView = new InternalHorizontalScrollViewSDertebat(context, attrs);
+			scrollView = new InternalHorizontalScrollViewSDErtebat(context, attrs);
 		} else {
 			scrollView = new HorizontalScrollView(context, attrs);
 		}
@@ -75,9 +75,9 @@ public class PullToRefreshHorizontalScrollView extends PullToRefreshBase<Horizon
 	}
 
 	@TargetApi(9)
-	final class InternalHorizontalScrollViewSDertebat extends HorizontalScrollView {
+	final class InternalHorizontalScrollViewSDErtebat extends HorizontalScrollView {
 
-		public InternalHorizontalScrollViewSDertebat(Context context, AttributeSet attrs) {
+		public InternalHorizontalScrollViewSDErtebat(Context context, AttributeSet attrs) {
 			super(context, attrs);
 		}
 

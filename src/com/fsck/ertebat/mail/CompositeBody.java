@@ -1,4 +1,4 @@
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 
 /**

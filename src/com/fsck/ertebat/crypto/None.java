@@ -1,11 +1,11 @@
-package com.fsck.ertebat.crypto;
+package com.fsck.Ertebat.crypto;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 
-import com.fsck.ertebat.mail.Message;
+import com.fsck.Ertebat.mail.Message;
 
 /**
  * Dummy CryptoProvider for when cryptography is disabled. It is never "available" and doesn't

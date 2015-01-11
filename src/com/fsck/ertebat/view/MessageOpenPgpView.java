@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -23,18 +23,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Identity;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.crypto.CryptoHelper;
-import com.fsck.ertebat.crypto.OpenPgpApiHelper;
-import com.fsck.ertebat.fragment.MessageViewFragment;
-import com.fsck.ertebat.helper.IdentityHelper;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Identity;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.crypto.CryptoHelper;
+import com.fsck.Ertebat.crypto.OpenPgpApiHelper;
+import com.fsck.Ertebat.fragment.MessageViewFragment;
+import com.fsck.Ertebat.helper.IdentityHelper;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
 
 import org.openintents.openpgp.OpenPgpError;
 import org.openintents.openpgp.OpenPgpSignatureResult;
@@ -262,7 +262,7 @@ public class MessageOpenPgpView extends LinearLayout {
                     decryptVerify(new Intent());
 
                 } catch (MessagingException me) {
-                    Log.e(ertebat.LOG_TAG, "Unable to decrypt email.", me);
+                    Log.e(Ertebat.LOG_TAG, "Unable to decrypt email.", me);
                 }
 
             }
@@ -283,7 +283,7 @@ public class MessageOpenPgpView extends LinearLayout {
         try {
             is = new ByteArrayInputStream(mData.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            Log.e(ertebat.LOG_TAG, "UnsupportedEncodingException.", e);
+            Log.e(Ertebat.LOG_TAG, "UnsupportedEncodingException.", e);
         }
         final ByteArrayOutputStream os = new ByteArrayOutputStream();
 
@@ -298,7 +298,7 @@ public class MessageOpenPgpView extends LinearLayout {
                     mMissingKeyPI.getIntentSender(),
                     REQUEST_CODE_DECRYPT_VERIFY, null, 0, 0, 0);
         } catch (SendIntentException e) {
-            Log.e(ertebat.LOG_TAG, "SendIntentException", e);
+            Log.e(Ertebat.LOG_TAG, "SendIntentException", e);
         }
     }
 
@@ -326,8 +326,8 @@ public class MessageOpenPgpView extends LinearLayout {
                             sigResult = result.getParcelableExtra(OpenPgpApi.RESULT_SIGNATURE);
                         }
 
-                        if (ertebat.DEBUG)
-                            Log.d(ertebat.LOG_TAG, "result: " + os.toByteArray().length
+                        if (Ertebat.DEBUG)
+                            Log.d(Ertebat.LOG_TAG, "result: " + os.toByteArray().length
                                     + " str=" + output);
 
                         // missing key -> PendingIntent to get keys
@@ -336,7 +336,7 @@ public class MessageOpenPgpView extends LinearLayout {
                         mProgress.setVisibility(View.GONE);
                         mFragment.setMessageWithOpenPgp(output, sigResult);
                     } catch (UnsupportedEncodingException e) {
-                        Log.e(ertebat.LOG_TAG, "UnsupportedEncodingException", e);
+                        Log.e(Ertebat.LOG_TAG, "UnsupportedEncodingException", e);
                     }
                     break;
                 }
@@ -347,7 +347,7 @@ public class MessageOpenPgpView extends LinearLayout {
                                 pi.getIntentSender(),
                                 requestCode, null, 0, 0, 0);
                     } catch (SendIntentException e) {
-                        Log.e(ertebat.LOG_TAG, "SendIntentException", e);
+                        Log.e(Ertebat.LOG_TAG, "SendIntentException", e);
                     }
                     break;
                 }
@@ -361,8 +361,8 @@ public class MessageOpenPgpView extends LinearLayout {
     }
 
     public boolean handleOnActivityResult(int requestCode, int resultCode, Intent data) {
-        if (ertebat.DEBUG)
-            Log.d(ertebat.LOG_TAG, "onActivityResult resultCode: " + resultCode);
+        if (Ertebat.DEBUG)
+            Log.d(Ertebat.LOG_TAG, "onActivityResult resultCode: " + resultCode);
 
         // try again after user interaction
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_DECRYPT_VERIFY) {
@@ -391,9 +391,9 @@ public class MessageOpenPgpView extends LinearLayout {
             public void run() {
                 mProgress.setVisibility(View.GONE);
 
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
-                    Log.d(ertebat.LOG_TAG, "OpenPGP Error Message:" + error.getMessage());
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
+                    Log.d(Ertebat.LOG_TAG, "OpenPGP Error Message:" + error.getMessage());
                 }
 
                 mText.setText(mFragment.getString(R.string.openpgp_error) + " "

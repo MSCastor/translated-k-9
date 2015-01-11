@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import java.util.Collection;
 import java.util.Date;
@@ -11,23 +11,23 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.Account.FolderMode;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.Pusher;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.Account.FolderMode;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.Pusher;
 
 public class MailService extends CoreService {
-    private static final String ACTION_CHECK_MAIL = "com.fsck.ertebat.intent.action.MAIL_SERVICE_WAKEUP";
-    private static final String ACTION_RESET = "com.fsck.ertebat.intent.action.MAIL_SERVICE_RESET";
-    private static final String ACTION_RESCHEDULE_POLL = "com.fsck.ertebat.intent.action.MAIL_SERVICE_RESCHEDULE_POLL";
-    private static final String ACTION_CANCEL = "com.fsck.ertebat.intent.action.MAIL_SERVICE_CANCEL";
-    private static final String ACTION_REFRESH_PUSHERS = "com.fsck.ertebat.intent.action.MAIL_SERVICE_REFRESH_PUSHERS";
-    private static final String ACTION_RESTART_PUSHERS = "com.fsck.ertebat.intent.action.MAIL_SERVICE_RESTART_PUSHERS";
-    private static final String CONNECTIVITY_CHANGE = "com.fsck.ertebat.intent.action.MAIL_SERVICE_CONNECTIVITY_CHANGE";
-    private static final String CANCEL_CONNECTIVITY_NOTICE = "com.fsck.ertebat.intent.action.MAIL_SERVICE_CANCEL_CONNECTIVITY_NOTICE";
+    private static final String ACTION_CHECK_MAIL = "com.fsck.Ertebat.intent.action.MAIL_SERVICE_WAKEUP";
+    private static final String ACTION_RESET = "com.fsck.Ertebat.intent.action.MAIL_SERVICE_RESET";
+    private static final String ACTION_RESCHEDULE_POLL = "com.fsck.Ertebat.intent.action.MAIL_SERVICE_RESCHEDULE_POLL";
+    private static final String ACTION_CANCEL = "com.fsck.Ertebat.intent.action.MAIL_SERVICE_CANCEL";
+    private static final String ACTION_REFRESH_PUSHERS = "com.fsck.Ertebat.intent.action.MAIL_SERVICE_REFRESH_PUSHERS";
+    private static final String ACTION_RESTART_PUSHERS = "com.fsck.Ertebat.intent.action.MAIL_SERVICE_RESTART_PUSHERS";
+    private static final String CONNECTIVITY_CHANGE = "com.fsck.Ertebat.intent.action.MAIL_SERVICE_CONNECTIVITY_CHANGE";
+    private static final String CANCEL_CONNECTIVITY_NOTICE = "com.fsck.Ertebat.intent.action.MAIL_SERVICE_CANCEL_CONNECTIVITY_NOTICE";
 
     private static long nextCheck = -1;
     private static boolean pushingRequested = false;
@@ -77,8 +77,8 @@ public class MailService extends CoreService {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (ertebat.DEBUG)
-            Log.v(ertebat.LOG_TAG, "***** MailService *****: onCreate");
+        if (Ertebat.DEBUG)
+            Log.v(Ertebat.LOG_TAG, "***** MailService *****: onCreate");
     }
 
     @Override
@@ -90,7 +90,7 @@ public class MailService extends CoreService {
         final boolean hasConnectivity = Utility.hasConnectivity(getApplication());
         boolean autoSync = ContentResolver.getMasterSyncAutomatically();
 
-        ertebat.BACKGROUND_OPS bOps = ertebat.getBackgroundOps();
+        Ertebat.BACKGROUND_OPS bOps = Ertebat.getBackgroundOps();
 
         switch (bOps) {
             case NEVER:
@@ -106,40 +106,40 @@ public class MailService extends CoreService {
 
         syncBlocked = !(doBackground && hasConnectivity);
 
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "MailService.onStart(" + intent + ", " + startId
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "MailService.onStart(" + intent + ", " + startId
                   + "), hasConnectivity = " + hasConnectivity + ", doBackground = " + doBackground);
 
         // MessagingController.getInstance(getApplication()).addListener(mListener);
         if (ACTION_CHECK_MAIL.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "***** MailService *****: checking mail");
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "***** MailService *****: checking mail");
             if (hasConnectivity && doBackground) {
                 PollService.startService(this);
             }
             reschedulePollInBackground(hasConnectivity, doBackground, startId, false);
         } else if (ACTION_CANCEL.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "***** MailService *****: cancel");
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "***** MailService *****: cancel");
             cancel();
         } else if (ACTION_RESET.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "***** MailService *****: reschedule");
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "***** MailService *****: reschedule");
             rescheduleAllInBackground(hasConnectivity, doBackground, startId);
         } else if (ACTION_RESTART_PUSHERS.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "***** MailService *****: restarting pushers");
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "***** MailService *****: restarting pushers");
             reschedulePushersInBackground(hasConnectivity, doBackground, startId);
         } else if (ACTION_RESCHEDULE_POLL.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "***** MailService *****: rescheduling poll");
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "***** MailService *****: rescheduling poll");
             reschedulePollInBackground(hasConnectivity, doBackground, startId, true);
         } else if (ACTION_REFRESH_PUSHERS.equals(intent.getAction())) {
             refreshPushersInBackground(hasConnectivity, doBackground, startId);
         } else if (CONNECTIVITY_CHANGE.equals(intent.getAction())) {
             rescheduleAllInBackground(hasConnectivity, doBackground, startId);
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "Got connectivity action with hasConnectivity = " + hasConnectivity + ", doBackground = " + doBackground);
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "Got connectivity action with hasConnectivity = " + hasConnectivity + ", doBackground = " + doBackground);
         } else if (CANCEL_CONNECTIVITY_NOTICE.equals(intent.getAction())) {
             /* do nothing */
         }
@@ -148,23 +148,23 @@ public class MailService extends CoreService {
             MessagingController.getInstance(getApplication()).systemStatusChanged();
         }
 
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "MailService.onStart took " + (System.currentTimeMillis() - startTime) + "ms");
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "MailService.onStart took " + (System.currentTimeMillis() - startTime) + "ms");
 
         return START_NOT_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        if (ertebat.DEBUG)
-            Log.v(ertebat.LOG_TAG, "***** MailService *****: onDestroy()");
+        if (Ertebat.DEBUG)
+            Log.v(Ertebat.LOG_TAG, "***** MailService *****: onDestroy()");
         super.onDestroy();
         //     MessagingController.getInstance(getApplication()).removeListener(mListener);
     }
 
     private void cancel() {
         Intent i = new Intent();
-        i.setClassName(getApplication().getPackageName(), "com.fsck.ertebat.service.MailService");
+        i.setClassName(getApplication().getPackageName(), "com.fsck.Ertebat.service.MailService");
         i.setAction(ACTION_CHECK_MAIL);
         BootReceiver.cancelIntent(this, i);
     }
@@ -174,8 +174,8 @@ public class MailService extends CoreService {
 
     public static void saveLastCheckEnd(Context context) {
         long lastCheckEnd = System.currentTimeMillis();
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "Saving lastCheckEnd = " + new Date(lastCheckEnd));
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "Saving lastCheckEnd = " + new Date(lastCheckEnd));
         Preferences prefs = Preferences.getPreferences(context);
         SharedPreferences sPrefs = prefs.getPreferences();
         SharedPreferences.Editor editor = sPrefs.edit();
@@ -192,7 +192,7 @@ public class MailService extends CoreService {
                 reschedulePoll(hasConnectivity, doBackground, true);
                 reschedulePushers(hasConnectivity, doBackground);
             }
-        }, ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT, startId);
+        }, Ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT, startId);
     }
 
     private void reschedulePollInBackground(final boolean hasConnectivity,
@@ -202,7 +202,7 @@ public class MailService extends CoreService {
             public void run() {
                 reschedulePoll(hasConnectivity, doBackground, considerLastCheckEnd);
             }
-        }, ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT, startId);
+        }, Ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT, startId);
     }
 
     private void reschedulePushersInBackground(final boolean hasConnectivity,
@@ -212,7 +212,7 @@ public class MailService extends CoreService {
             public void run() {
                 reschedulePushers(hasConnectivity, doBackground);
             }
-        }, ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT, startId);
+        }, Ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT, startId);
     }
 
     private void refreshPushersInBackground(boolean hasConnectivity, boolean doBackground,
@@ -224,7 +224,7 @@ public class MailService extends CoreService {
                     refreshPushers();
                     schedulePushers();
                 }
-            }, ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT, startId);
+            }, Ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT, startId);
         }
     }
 
@@ -232,8 +232,8 @@ public class MailService extends CoreService {
             boolean considerLastCheckEnd) {
 
         if (!(hasConnectivity && doBackground)) {
-            if (ertebat.DEBUG) {
-                Log.i(ertebat.LOG_TAG, "No connectivity, canceling check for " +
+            if (Ertebat.DEBUG) {
+                Log.i(Ertebat.LOG_TAG, "No connectivity, canceling check for " +
                         getApplication().getPackageName());
             }
 
@@ -249,7 +249,7 @@ public class MailService extends CoreService {
         long lastCheckEnd = sPrefs.getLong(LAST_CHECK_END, -1);
 
         if (lastCheckEnd > System.currentTimeMillis()) {
-            Log.i(ertebat.LOG_TAG, "The database claims that the last time mail was checked was in " +
+            Log.i(Ertebat.LOG_TAG, "The database claims that the last time mail was checked was in " +
                     "the future (" + lastCheckEnd + "). To try to get things back to normal, " +
                     "the last check time has been reset to: " + System.currentTimeMillis());
             lastCheckEnd = System.currentTimeMillis();
@@ -269,8 +269,8 @@ public class MailService extends CoreService {
         editor.commit();
 
         if (shortestInterval == -1) {
-            if (ertebat.DEBUG) {
-                Log.i(ertebat.LOG_TAG, "No next check scheduled for package " +
+            if (Ertebat.DEBUG) {
+                Log.i(Ertebat.LOG_TAG, "No next check scheduled for package " +
                         getApplication().getPackageName());
             }
 
@@ -283,8 +283,8 @@ public class MailService extends CoreService {
                     !considerLastCheckEnd ? System.currentTimeMillis() : lastCheckEnd);
             long nextTime = base + delay;
 
-            if (ertebat.DEBUG) {
-                Log.i(ertebat.LOG_TAG, "previousInterval = " + previousInterval +
+            if (Ertebat.DEBUG) {
+                Log.i(Ertebat.LOG_TAG, "previousInterval = " + previousInterval +
                       ", shortestInterval = " + shortestInterval +
                       ", lastCheckEnd = " + new Date(lastCheckEnd) +
                       ", considerLastCheckEnd = " + considerLastCheckEnd);
@@ -294,18 +294,18 @@ public class MailService extends CoreService {
             pollingRequested = true;
 
             try {
-                if (ertebat.DEBUG) {
-                    Log.i(ertebat.LOG_TAG, "Next check for package " +
+                if (Ertebat.DEBUG) {
+                    Log.i(Ertebat.LOG_TAG, "Next check for package " +
                             getApplication().getPackageName() + " scheduled for " +
                             new Date(nextTime));
                 }
             } catch (Exception e) {
                 // I once got a NullPointerException deep in new Date();
-                Log.e(ertebat.LOG_TAG, "Exception while logging", e);
+                Log.e(Ertebat.LOG_TAG, "Exception while logging", e);
             }
 
             Intent i = new Intent();
-            i.setClassName(getApplication().getPackageName(), "com.fsck.ertebat.service.MailService");
+            i.setClassName(getApplication().getPackageName(), "com.fsck.Ertebat.service.MailService");
             i.setAction(ACTION_CHECK_MAIL);
             BootReceiver.scheduleIntent(MailService.this, nextTime, i);
         }
@@ -321,15 +321,15 @@ public class MailService extends CoreService {
     }
 
     private void reschedulePushers(boolean hasConnectivity, boolean doBackground) {
-        if (ertebat.DEBUG) {
-            Log.i(ertebat.LOG_TAG, "Rescheduling pushers");
+        if (Ertebat.DEBUG) {
+            Log.i(Ertebat.LOG_TAG, "Rescheduling pushers");
         }
 
         stopPushers();
 
         if (!(hasConnectivity && doBackground)) {
-            if (ertebat.DEBUG) {
-                Log.i(ertebat.LOG_TAG, "Not scheduling pushers:  connectivity? " + hasConnectivity +
+            if (Ertebat.DEBUG) {
+                Log.i(Ertebat.LOG_TAG, "Not scheduling pushers:  connectivity? " + hasConnectivity +
                         " -- doBackground? " + doBackground);
             }
             return;
@@ -343,8 +343,8 @@ public class MailService extends CoreService {
     private void setupPushers() {
         boolean pushing = false;
         for (Account account : Preferences.getPreferences(MailService.this).getAccounts()) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "Setting up pushers for account " + account.getDescription());
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "Setting up pushers for account " + account.getDescription());
             if (account.isEnabled() && account.isAvailable(getApplicationContext())) {
                 pushing |= MessagingController.getInstance(getApplication()).setupPushing(account);
             } else {
@@ -360,36 +360,36 @@ public class MailService extends CoreService {
     private void refreshPushers() {
         try {
             long nowTime = System.currentTimeMillis();
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "Refreshing pushers");
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "Refreshing pushers");
             Collection<Pusher> pushers = MessagingController.getInstance(getApplication()).getPushers();
             for (Pusher pusher : pushers) {
                 long lastRefresh = pusher.getLastRefresh();
                 int refreshInterval = pusher.getRefreshInterval();
                 long sinceLast = nowTime - lastRefresh;
                 if (sinceLast + 10000 > refreshInterval) { // Add 10 seconds to keep pushers in sync, avoid drift
-                    if (ertebat.DEBUG) {
-                        Log.d(ertebat.LOG_TAG, "PUSHREFRESH: refreshing lastRefresh = " + lastRefresh + ", interval = " + refreshInterval
+                    if (Ertebat.DEBUG) {
+                        Log.d(Ertebat.LOG_TAG, "PUSHREFRESH: refreshing lastRefresh = " + lastRefresh + ", interval = " + refreshInterval
                               + ", nowTime = " + nowTime + ", sinceLast = " + sinceLast);
                     }
                     pusher.refresh();
                     pusher.setLastRefresh(nowTime);
                 } else {
-                    if (ertebat.DEBUG) {
-                        Log.d(ertebat.LOG_TAG, "PUSHREFRESH: NOT refreshing lastRefresh = " + lastRefresh + ", interval = " + refreshInterval
+                    if (Ertebat.DEBUG) {
+                        Log.d(Ertebat.LOG_TAG, "PUSHREFRESH: NOT refreshing lastRefresh = " + lastRefresh + ", interval = " + refreshInterval
                               + ", nowTime = " + nowTime + ", sinceLast = " + sinceLast);
                     }
                 }
             }
             // Whenever we refresh our pushers, send any unsent messages
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "PUSHREFRESH:  trying to send mail in all folders!");
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "PUSHREFRESH:  trying to send mail in all folders!");
             }
 
             MessagingController.getInstance(getApplication()).sendPendingMessages(null);
 
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Exception while refreshing pushers", e);
+            Log.e(Ertebat.LOG_TAG, "Exception while refreshing pushers", e);
         }
     }
 
@@ -403,15 +403,15 @@ public class MailService extends CoreService {
                 minInterval = interval;
             }
         }
-        if (ertebat.DEBUG) {
-            Log.v(ertebat.LOG_TAG, "Pusher refresh interval = " + minInterval);
+        if (Ertebat.DEBUG) {
+            Log.v(Ertebat.LOG_TAG, "Pusher refresh interval = " + minInterval);
         }
         if (minInterval > 0) {
             long nextTime = System.currentTimeMillis() + minInterval;
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, "Next pusher refresh scheduled for " + new Date(nextTime));
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, "Next pusher refresh scheduled for " + new Date(nextTime));
             Intent i = new Intent();
-            i.setClassName(getApplication().getPackageName(), "com.fsck.ertebat.service.MailService");
+            i.setClassName(getApplication().getPackageName(), "com.fsck.Ertebat.service.MailService");
             i.setAction(ACTION_REFRESH_PUSHERS);
             BootReceiver.scheduleIntent(MailService.this, nextTime, i);
         }

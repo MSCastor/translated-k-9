@@ -1,4 +1,4 @@
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.mail.store.StorageManager;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.mail.store.StorageManager;
 
 /**
  * That BroadcastReceiver is only interested in UNMOUNT events.
@@ -28,16 +28,16 @@ public class StorageGoneReceiver extends BroadcastReceiver {
             return;
         }
 
-        if (ertebat.DEBUG) {
-            Log.v(ertebat.LOG_TAG, "StorageGoneReceiver: " + intent.toString());
+        if (Ertebat.DEBUG) {
+            Log.v(Ertebat.LOG_TAG, "StorageGoneReceiver: " + intent.toString());
         }
 
         final String path = uri.getPath();
 
         if (Intent.ACTION_MEDIA_EJECT.equals(action)) {
-            StorageManager.getInstance(ertebat.app).onBeforeUnmount(path);
+            StorageManager.getInstance(Ertebat.app).onBeforeUnmount(path);
         } else if (Intent.ACTION_MEDIA_UNMOUNTED.equals(action)) {
-            StorageManager.getInstance(ertebat.app).onAfterUnmount(path);
+            StorageManager.getInstance(Ertebat.app).onAfterUnmount(path);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,8 +9,8 @@ import java.util.TreeMap;
 
 import android.content.SharedPreferences;
 
-import com.fsck.ertebat.mail.Folder.FolderClass;
-import com.fsck.ertebat.preferences.Settings.*;
+import com.fsck.Ertebat.mail.Folder.FolderClass;
+import com.fsck.Ertebat.preferences.Settings.*;
 
 public class FolderSettings {
     public static final Map<String, TreeMap<Integer, SettingsDescription>> SETTINGS;

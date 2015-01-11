@@ -1,4 +1,4 @@
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,18 +18,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Identity;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.AuthType;
-import com.fsck.ertebat.mail.ConnectionSecurity;
-import com.fsck.ertebat.mail.ServerSettings;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.Transport;
-import com.fsck.ertebat.mail.store.WebDavStore;
-import com.fsck.ertebat.preferences.Settings.InvalidSettingValueException;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Identity;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.AuthType;
+import com.fsck.Ertebat.mail.ConnectionSecurity;
+import com.fsck.Ertebat.mail.ServerSettings;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.Transport;
+import com.fsck.Ertebat.mail.store.WebDavStore;
+import com.fsck.Ertebat.preferences.Settings.InvalidSettingValueException;
 
 public class SettingsImporter {
 
@@ -194,22 +194,22 @@ public class SettingsImporter {
                         importGlobalSettings(storage, editor, imported.contentVersion,
                                 imported.globalSettings);
                     } else {
-                        Log.w(ertebat.LOG_TAG, "Was asked to import global settings but none found.");
+                        Log.w(Ertebat.LOG_TAG, "Was asked to import global settings but none found.");
                     }
                     if (editor.commit()) {
-                        if (ertebat.DEBUG) {
-                            Log.v(ertebat.LOG_TAG, "Committed global settings to the preference " +
+                        if (Ertebat.DEBUG) {
+                            Log.v(Ertebat.LOG_TAG, "Committed global settings to the preference " +
                                     "storage.");
                         }
                         globalSettingsImported = true;
                     } else {
-                        if (ertebat.DEBUG) {
-                            Log.v(ertebat.LOG_TAG, "Failed to commit global settings to the " +
+                        if (Ertebat.DEBUG) {
+                            Log.v(Ertebat.LOG_TAG, "Failed to commit global settings to the " +
                                     "preference storage");
                         }
                     }
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Exception while importing global settings", e);
+                    Log.e(Ertebat.LOG_TAG, "Exception while importing global settings", e);
                 }
             }
 
@@ -225,8 +225,8 @@ public class SettingsImporter {
                                         editor, imported.contentVersion, account, overwrite);
 
                                 if (editor.commit()) {
-                                    if (ertebat.DEBUG) {
-                                        Log.v(ertebat.LOG_TAG, "Committed settings for account \"" +
+                                    if (Ertebat.DEBUG) {
+                                        Log.v(Ertebat.LOG_TAG, "Committed settings for account \"" +
                                                 importResult.imported.name +
                                                 "\" to the settings database.");
                                     }
@@ -253,26 +253,26 @@ public class SettingsImporter {
 
                                     importedAccounts.add(importResult);
                                 } else {
-                                    if (ertebat.DEBUG) {
-                                        Log.w(ertebat.LOG_TAG, "Error while committing settings for " +
+                                    if (Ertebat.DEBUG) {
+                                        Log.w(Ertebat.LOG_TAG, "Error while committing settings for " +
                                                 "account \"" + importResult.original.name +
                                                 "\" to the settings database.");
                                     }
                                     errorneousAccounts.add(importResult.original);
                                 }
                             } catch (InvalidSettingValueException e) {
-                                if (ertebat.DEBUG) {
-                                    Log.e(ertebat.LOG_TAG, "Encountered invalid setting while " +
+                                if (Ertebat.DEBUG) {
+                                    Log.e(Ertebat.LOG_TAG, "Encountered invalid setting while " +
                                             "importing account \"" + account.name + "\"", e);
                                 }
                                 errorneousAccounts.add(new AccountDescription(account.name, account.uuid));
                             } catch (Exception e) {
-                                Log.e(ertebat.LOG_TAG, "Exception while importing account \"" +
+                                Log.e(Ertebat.LOG_TAG, "Exception while importing account \"" +
                                         account.name + "\"", e);
                                 errorneousAccounts.add(new AccountDescription(account.name, account.uuid));
                             }
                         } else {
-                            Log.w(ertebat.LOG_TAG, "Was asked to import account with UUID " +
+                            Log.w(Ertebat.LOG_TAG, "Was asked to import account with UUID " +
                                     accountUuid + ". But this account wasn't found.");
                         }
                     }
@@ -288,13 +288,13 @@ public class SettingsImporter {
                         throw new SettingsImportExportException("Failed to set default account");
                     }
                 } else {
-                    Log.w(ertebat.LOG_TAG, "Was asked to import at least one account but none found.");
+                    Log.w(Ertebat.LOG_TAG, "Was asked to import at least one account but none found.");
                 }
             }
 
             preferences.loadAccounts();
-            ertebat.loadPrefs(preferences);
-            ertebat.setServicesEnabled(context);
+            Ertebat.loadPrefs(preferences);
+            Ertebat.setServicesEnabled(context);
 
             return new ImportResults(globalSettingsImported, importedAccounts, errorneousAccounts);
 
@@ -651,13 +651,13 @@ public class SettingsImporter {
      *         The new value for the preference.
      */
     private static void putString(SharedPreferences.Editor editor, String key, String value) {
-        if (ertebat.DEBUG) {
+        if (Ertebat.DEBUG) {
             String outputValue = value;
-            if (!ertebat.DEBUG_SENSITIVE &&
+            if (!Ertebat.DEBUG_SENSITIVE &&
                     (key.endsWith(".transportUri") || key.endsWith(".storeUri"))) {
                 outputValue = "*sensitive*";
             }
-            Log.v(ertebat.LOG_TAG, "Setting " + key + "=" + outputValue);
+            Log.v(Ertebat.LOG_TAG, "Setting " + key + "=" + outputValue);
         }
         editor.putString(key, value);
     }
@@ -685,7 +685,7 @@ public class SettingsImporter {
                     if (SettingsExporter.ROOT_ELEMENT.equals(xpp.getName())) {
                         imported = parseRoot(xpp, globalSettings, accountUuids, overview);
                     } else {
-                        Log.w(ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+                        Log.w(Ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
                     }
                 }
                 eventType = xpp.next();
@@ -752,20 +752,20 @@ public class SettingsImporter {
                             }
                         } else {
                             skipToEndTag(xpp, SettingsExporter.GLOBAL_ELEMENT);
-                            Log.w(ertebat.LOG_TAG, "More than one global settings element. Only using the first one!");
+                            Log.w(Ertebat.LOG_TAG, "More than one global settings element. Only using the first one!");
                         }
                     } else {
                         skipToEndTag(xpp, SettingsExporter.GLOBAL_ELEMENT);
-                        Log.i(ertebat.LOG_TAG, "Skipping global settings");
+                        Log.i(Ertebat.LOG_TAG, "Skipping global settings");
                     }
                 } else if (SettingsExporter.ACCOUNTS_ELEMENT.equals(element)) {
                     if (result.accounts == null) {
                         result.accounts = parseAccounts(xpp, accountUuids, overview);
                     } else {
-                        Log.w(ertebat.LOG_TAG, "More than one accounts element. Only using the first one!");
+                        Log.w(Ertebat.LOG_TAG, "More than one accounts element. Only using the first one!");
                     }
                 } else {
-                    Log.w(ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+                    Log.w(Ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
                 }
             }
             eventType = xpp.next();
@@ -839,12 +839,12 @@ public class SettingsImporter {
                     }
 
                     if (result.settings.containsKey(key)) {
-                        Log.w(ertebat.LOG_TAG, "Already read key \"" + key + "\". Ignoring value \"" + value + "\"");
+                        Log.w(Ertebat.LOG_TAG, "Already read key \"" + key + "\". Ignoring value \"" + value + "\"");
                     } else {
                         result.settings.put(key, value);
                     }
                 } else {
-                    Log.w(ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+                    Log.w(Ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
                 }
             }
             eventType = xpp.next();
@@ -877,11 +877,11 @@ public class SettingsImporter {
                     } else if (!accounts.containsKey(account.uuid)) {
                         accounts.put(account.uuid, account);
                     } else {
-                        Log.w(ertebat.LOG_TAG, "Duplicate account entries with UUID " + account.uuid +
+                        Log.w(Ertebat.LOG_TAG, "Duplicate account entries with UUID " + account.uuid +
                                 ". Ignoring!");
                     }
                 } else {
-                    Log.w(ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+                    Log.w(Ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
                 }
             }
             eventType = xpp.next();
@@ -900,7 +900,7 @@ public class SettingsImporter {
             UUID.fromString(uuid);
         } catch (Exception e) {
             skipToEndTag(xpp, SettingsExporter.ACCOUNT_ELEMENT);
-            Log.w(ertebat.LOG_TAG, "Skipping account with invalid UUID " + uuid);
+            Log.w(Ertebat.LOG_TAG, "Skipping account with invalid UUID " + uuid);
             return null;
         }
 
@@ -947,14 +947,14 @@ public class SettingsImporter {
                             account.folders = parseFolders(xpp);
                         }
                     } else {
-                        Log.w(ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+                        Log.w(Ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
                     }
                 }
                 eventType = xpp.next();
             }
         } else {
             skipToEndTag(xpp, SettingsExporter.ACCOUNT_ELEMENT);
-            Log.i(ertebat.LOG_TAG, "Skipping account with UUID " + uuid);
+            Log.i(Ertebat.LOG_TAG, "Skipping account with UUID " + uuid);
         }
 
         // If we couldn't find an account name use the UUID
@@ -993,7 +993,7 @@ public class SettingsImporter {
                 } else if (SettingsExporter.EXTRA_ELEMENT.equals(element)) {
                     server.extras = parseSettings(xpp, SettingsExporter.EXTRA_ELEMENT);
                 } else {
-                    Log.w(ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+                    Log.w(Ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
                 }
             }
             eventType = xpp.next();
@@ -1020,7 +1020,7 @@ public class SettingsImporter {
                     ImportedIdentity identity = parseIdentity(xpp);
                     identities.add(identity);
                 } else {
-                    Log.w(ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+                    Log.w(Ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
                 }
             }
             eventType = xpp.next();
@@ -1048,7 +1048,7 @@ public class SettingsImporter {
                 } else if (SettingsExporter.SETTINGS_ELEMENT.equals(element)) {
                     identity.settings = parseSettings(xpp, SettingsExporter.SETTINGS_ELEMENT);
                 } else {
-                    Log.w(ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+                    Log.w(Ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
                 }
             }
             eventType = xpp.next();
@@ -1075,7 +1075,7 @@ public class SettingsImporter {
                     ImportedFolder folder = parseFolder(xpp);
                     folders.add(folder);
                 } else {
-                    Log.w(ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
+                    Log.w(Ertebat.LOG_TAG, "Unexpected start tag: " + xpp.getName());
                 }
             }
             eventType = xpp.next();

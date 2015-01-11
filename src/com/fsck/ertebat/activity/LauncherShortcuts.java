@@ -1,13 +1,13 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.BaseAccount;
-import com.fsck.ertebat.search.SearchAccount;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.BaseAccount;
+import com.fsck.Ertebat.search.SearchAccount;
+import com.top.Ertebat.mail.R;
 
 public class LauncherShortcuts extends AccountList {
     @Override

@@ -1,11 +1,11 @@
 
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
-import com.fsck.ertebat.mail.Body;
-import com.fsck.ertebat.mail.BodyPart;
-import com.fsck.ertebat.mail.CompositeBody;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Multipart;
+import com.fsck.Ertebat.mail.Body;
+import com.fsck.Ertebat.mail.BodyPart;
+import com.fsck.Ertebat.mail.CompositeBody;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Multipart;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

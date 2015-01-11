@@ -1,8 +1,8 @@
 
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
 
 import android.app.Activity;
 import android.content.Context;
@@ -39,7 +39,7 @@ public class ClientCertificateSpinner extends LinearLayout {
         if (context instanceof Activity) {
             mActivity = (Activity) context;
         } else {
-            Log.e(ertebat.LOG_TAG, "ClientCertificateSpinner init failed! Please inflate with Activity!");
+            Log.e(Ertebat.LOG_TAG, "ClientCertificateSpinner init failed! Please inflate with Activity!");
         }
 
         setOrientation(LinearLayout.HORIZONTAL);
@@ -102,8 +102,8 @@ public class ClientCertificateSpinner extends LinearLayout {
         KeyChain.choosePrivateKeyAlias(mActivity, new KeyChainAliasCallback() {
             @Override
             public void alias(String alias) {
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "User has selected client certificate alias: " + alias);
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "User has selected client certificate alias: " + alias);
 
                 setAlias(alias);
             }

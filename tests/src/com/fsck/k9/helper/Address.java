@@ -1,14 +1,14 @@
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 import junit.framework.TestCase;
 
 public class Address extends TestCase {
     /**
      * test the possibility to parse "From:" fields with no email.
      * for example: From: News for Vector Limited - Google Finance
-     * http://code.google.com/p/ertebatmail/issues/detail?id=3814
+     * http://code.google.com/p/Ertebatmail/issues/detail?id=3814
      */
     public void testParseWithMissingEmail() {
-        com.fsck.ertebat.mail.Address[] addresses =  com.fsck.ertebat.mail.Address.parse("NAME ONLY");
+        com.fsck.Ertebat.mail.Address[] addresses =  com.fsck.Ertebat.mail.Address.parse("NAME ONLY");
         assertEquals(1, addresses.length);
         assertEquals(null, addresses[0].getAddress());
         assertEquals("NAME ONLY", addresses[0].getPersonal());
@@ -18,7 +18,7 @@ public class Address extends TestCase {
      * test name + valid email
      */
     public void testPraseWithValidEmail() {
-        com.fsck.ertebat.mail.Address[] addresses =  com.fsck.ertebat.mail.Address.parse("Max Mustermann <maxmuster@mann.com>");
+        com.fsck.Ertebat.mail.Address[] addresses =  com.fsck.Ertebat.mail.Address.parse("Max Mustermann <maxmuster@mann.com>");
         assertEquals(1, addresses.length);
         assertEquals("maxmuster@mann.com", addresses[0].getAddress());
         assertEquals("Max Mustermann", addresses[0].getPersonal());
@@ -27,7 +27,7 @@ public class Address extends TestCase {
      * test with multi email addresses
      */
     public void testPraseWithValidEmailMulti() {
-        com.fsck.ertebat.mail.Address[] addresses =  com.fsck.ertebat.mail.Address.parse("lorem@ipsum.us,mark@twain.com");
+        com.fsck.Ertebat.mail.Address[] addresses =  com.fsck.Ertebat.mail.Address.parse("lorem@ipsum.us,mark@twain.com");
         assertEquals(2, addresses.length);
         assertEquals("lorem@ipsum.us", addresses[0].getAddress());
         assertEquals(null, addresses[0].getPersonal());

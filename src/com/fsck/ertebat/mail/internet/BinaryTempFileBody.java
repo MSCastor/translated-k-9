@@ -1,8 +1,8 @@
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
-import com.fsck.ertebat.mail.Body;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.filter.Base64OutputStream;
+import com.fsck.Ertebat.mail.Body;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.filter.Base64OutputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.james.mime4j.codec.QuotedPrintableOutputStream;
 import org.apache.james.mime4j.util.MimeUtil;

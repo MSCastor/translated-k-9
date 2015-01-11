@@ -1,9 +1,9 @@
-package com.fsck.ertebat.mail.transport.imap;
+package com.fsck.Ertebat.mail.transport.imap;
 
-import com.fsck.ertebat.mail.AuthType;
-import com.fsck.ertebat.mail.ConnectionSecurity;
-import com.fsck.ertebat.mail.store.ImapStore;
-import com.fsck.ertebat.mail.store.ImapStore.ImapConnection;
+import com.fsck.Ertebat.mail.AuthType;
+import com.fsck.Ertebat.mail.ConnectionSecurity;
+import com.fsck.Ertebat.mail.store.ImapStore;
+import com.fsck.Ertebat.mail.store.ImapStore.ImapConnection;
 
 /**
  * Settings source for IMAP. Implemented in order to remove coupling between {@link ImapStore} and {@link ImapConnection}.

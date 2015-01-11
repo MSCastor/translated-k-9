@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -60,45 +60,45 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.AccountStats;
-import com.fsck.ertebat.BaseAccount;
-import com.fsck.ertebat.FontSizes;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.activity.misc.ExtendedAsyncTask;
-import com.fsck.ertebat.activity.misc.NonConfigurationInstance;
-import com.fsck.ertebat.activity.setup.AccountSettings;
-import com.fsck.ertebat.activity.setup.AccountSetupBasics;
-import com.fsck.ertebat.activity.setup.Prefs;
-import com.fsck.ertebat.activity.setup.WelcomeMessage;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.helper.SizeFormatter;
-import com.fsck.ertebat.mail.AuthType;
-import com.fsck.ertebat.mail.ServerSettings;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.Transport;
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.store.StorageManager;
-import com.fsck.ertebat.mail.store.WebDavStore;
-import com.fsck.ertebat.preferences.SettingsExporter;
-import com.fsck.ertebat.preferences.SettingsImportExportException;
-import com.fsck.ertebat.preferences.SettingsImporter;
-import com.fsck.ertebat.preferences.SettingsImporter.AccountDescription;
-import com.fsck.ertebat.preferences.SettingsImporter.AccountDescriptionPair;
-import com.fsck.ertebat.preferences.SettingsImporter.ImportContents;
-import com.fsck.ertebat.preferences.SettingsImporter.ImportResults;
-import com.fsck.ertebat.search.LocalSearch;
-import com.fsck.ertebat.search.SearchAccount;
-import com.fsck.ertebat.search.SearchSpecification.Attribute;
-import com.fsck.ertebat.search.SearchSpecification.Searchfield;
-import com.fsck.ertebat.view.ColorChip;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.AccountStats;
+import com.fsck.Ertebat.BaseAccount;
+import com.fsck.Ertebat.FontSizes;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.activity.misc.ExtendedAsyncTask;
+import com.fsck.Ertebat.activity.misc.NonConfigurationInstance;
+import com.fsck.Ertebat.activity.setup.AccountSettings;
+import com.fsck.Ertebat.activity.setup.AccountSetupBasics;
+import com.fsck.Ertebat.activity.setup.Prefs;
+import com.fsck.Ertebat.activity.setup.WelcomeMessage;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.helper.SizeFormatter;
+import com.fsck.Ertebat.mail.AuthType;
+import com.fsck.Ertebat.mail.ServerSettings;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.Transport;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.store.StorageManager;
+import com.fsck.Ertebat.mail.store.WebDavStore;
+import com.fsck.Ertebat.preferences.SettingsExporter;
+import com.fsck.Ertebat.preferences.SettingsImportExportException;
+import com.fsck.Ertebat.preferences.SettingsImporter;
+import com.fsck.Ertebat.preferences.SettingsImporter.AccountDescription;
+import com.fsck.Ertebat.preferences.SettingsImporter.AccountDescriptionPair;
+import com.fsck.Ertebat.preferences.SettingsImporter.ImportContents;
+import com.fsck.Ertebat.preferences.SettingsImporter.ImportResults;
+import com.fsck.Ertebat.search.LocalSearch;
+import com.fsck.Ertebat.search.SearchAccount;
+import com.fsck.Ertebat.search.SearchSpecification.Attribute;
+import com.fsck.Ertebat.search.SearchSpecification.Searchfield;
+import com.fsck.Ertebat.view.ColorChip;
+import com.top.Ertebat.mail.R;
 
 import de.cketti.library.changelog.ChangeLog;
 
 
-public class Accounts extends ertebatListActivity implements OnItemClickListener {
+public class Accounts extends ErtebatListActivity implements OnItemClickListener {
 
     /**
      * Immutable empty {@link BaseAccount} array
@@ -131,7 +131,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
     private AccountsAdapter mAdapter;
     private SearchAccount mAllMessagesAccount = null;
     private SearchAccount mUnifiedInboxAccount = null;
-    private FontSizes mFontSizes = ertebat.getFontSizes();
+    private FontSizes mFontSizes = Ertebat.getFontSizes();
 
     private MenuItem mRefreshMenuItem;
     private ActionBar mActionBar;
@@ -203,7 +203,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
             runOnUiThread(new Runnable() {
                 public void run() {
                     AccountStats stats = accountStats.get(account.getUuid());
-                    if (newSize != -1 && stats != null && ertebat.measureAccounts()) {
+                    if (newSize != -1 && stats != null && Ertebat.measureAccounts()) {
                         stats.size = newSize;
                     }
                     String toastText = getString(R.string.account_size_changed, account.getDescription(),
@@ -259,12 +259,12 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
             try {
                 AccountStats stats = account.getStats(Accounts.this);
                 if (stats == null) {
-                    Log.w(ertebat.LOG_TAG, "Unable to get account stats");
+                    Log.w(Ertebat.LOG_TAG, "Unable to get account stats");
                 } else {
                     accountStatusChanged(account, stats);
                 }
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Unable to get account stats", e);
+                Log.e(Ertebat.LOG_TAG, "Unable to get account stats", e);
             }
         }
         @Override
@@ -377,14 +377,14 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
     @Override
     public void onNewIntent(Intent intent) {
         Uri uri = intent.getData();
-        Log.i(ertebat.LOG_TAG, "Accounts Activity got uri " + uri);
+        Log.i(Ertebat.LOG_TAG, "Accounts Activity got uri " + uri);
         if (uri != null) {
             ContentResolver contentResolver = getContentResolver();
 
-            Log.i(ertebat.LOG_TAG, "Accounts Activity got content of type " + contentResolver.getType(uri));
+            Log.i(Ertebat.LOG_TAG, "Accounts Activity got content of type " + contentResolver.getType(uri));
 
             String contentType = contentResolver.getType(uri);
-            if (MimeUtility.ertebat_SETTINGS_MIME_TYPE.equals(contentType)) {
+            if (MimeUtility.Ertebat_SETTINGS_MIME_TYPE.equals(contentType)) {
                 onImport(uri);
             }
         }
@@ -394,7 +394,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        if (!ertebat.isHideSpecialAccounts()) {
+        if (!Ertebat.isHideSpecialAccounts()) {
             createSpecialAccounts();
         }
 
@@ -417,7 +417,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
         }
 
         boolean startup = intent.getBooleanExtra(EXTRA_STARTUP, true);
-        if (startup && ertebat.startIntegratedInbox() && !ertebat.isHideSpecialAccounts()) {
+        if (startup && Ertebat.startIntegratedInbox() && !Ertebat.isHideSpecialAccounts()) {
             onOpenAccount(mUnifiedInboxAccount);
             finish();
             return;
@@ -571,7 +571,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
 //        }
 
         List<BaseAccount> newAccounts;
-        if (!ertebat.isHideSpecialAccounts() && accounts.length > 0) {
+        if (!Ertebat.isHideSpecialAccounts() && accounts.length > 0) {
             if (mUnifiedInboxAccount == null || mAllMessagesAccount == null) {
                 createSpecialAccounts();
             }
@@ -602,7 +602,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
             if (account instanceof Account) {
                 Account realAccount = (Account) account;
                 controller.getAccountStats(this, realAccount, mListener);
-            } else if (ertebat.countSearchMessages() && account instanceof SearchAccount) {
+            } else if (Ertebat.countSearchMessages() && account instanceof SearchAccount) {
                 final SearchAccount searchAccount = (SearchAccount) account;
                 controller.getSearchAccountStats(searchAccount, mListener);
             }
@@ -671,10 +671,10 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
                 Toast toast = Toast.makeText(getApplication(), toastText, Toast.LENGTH_SHORT);
                 toast.show();
 
-                Log.i(ertebat.LOG_TAG, "refusing to open account that is not available");
+                Log.i(Ertebat.LOG_TAG, "refusing to open account that is not available");
                 return false;
             }
-            if (ertebat.FOLDER_NONE.equals(realAccount.getAutoExpandFolderName())) {
+            if (Ertebat.FOLDER_NONE.equals(realAccount.getAutoExpandFolderName())) {
                 FolderList.actionHandleAccount(this, realAccount);
             } else {
                 LocalSearch search = new LocalSearch(realAccount.getAutoExpandFolderName());
@@ -1013,12 +1013,12 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
                 mAccount.save(Preferences.getPreferences(mContext));
 
                 // Start services if necessary
-                ertebat.setServicesEnabled(mContext);
+                Ertebat.setServicesEnabled(mContext);
 
                 // Get list of folders from remote server
                 MessagingController.getInstance(mApplication).listFolders(mAccount, true, null);
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Something went while setting account passwords", e);
+                Log.e(Ertebat.LOG_TAG, "Something went while setting account passwords", e);
             }
             return null;
         }
@@ -1079,7 +1079,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
                         .notifyAccountCancel(Accounts.this, realAccount);
                         Preferences.getPreferences(Accounts.this)
                         .deleteAccount(realAccount);
-                        ertebat.setServicesEnabled(Accounts.this);
+                        Ertebat.setServicesEnabled(Accounts.this);
                         refresh();
                     }
                 }
@@ -1430,7 +1430,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i(ertebat.LOG_TAG, "onActivityResult requestCode = " + requestCode + ", resultCode = " + resultCode + ", data = " + data);
+        Log.i(Ertebat.LOG_TAG, "onActivityResult requestCode = " + requestCode + ", resultCode = " + resultCode + ", data = " + data);
         if (resultCode != RESULT_OK)
             return;
         if (data == null) {
@@ -1791,7 +1791,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
                 holder.newMessageCountWrapper.setVisibility(unreadMessageCount > 0 ? View.VISIBLE : View.GONE);
 
                 holder.flaggedMessageCount.setText(Integer.toString(stats.flaggedMessageCount));
-                holder.flaggedMessageCountWrapper.setVisibility(ertebat.messageListStars() && stats.flaggedMessageCount > 0 ? View.VISIBLE : View.GONE);
+                holder.flaggedMessageCountWrapper.setVisibility(Ertebat.messageListStars() && stats.flaggedMessageCount > 0 ? View.VISIBLE : View.GONE);
 
                 holder.flaggedMessageCountWrapper.setOnClickListener(createFlaggedSearchListener(account));
                 holder.newMessageCountWrapper.setOnClickListener(createUnreadSearchListener(account));
@@ -1945,7 +1945,7 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
                 mFileName = SettingsExporter.exportToFile(mContext, mIncludeGlobals,
                             mAccountUuids);
             } catch (SettingsImportExportException e) {
-                Log.w(ertebat.LOG_TAG, "Exception during export", e);
+                Log.w(Ertebat.LOG_TAG, "Exception during export", e);
                 return false;
             }
             return true;
@@ -2012,13 +2012,13 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
                     }
                 }
             } catch (SettingsImportExportException e) {
-                Log.w(ertebat.LOG_TAG, "Exception during import", e);
+                Log.w(Ertebat.LOG_TAG, "Exception during import", e);
                 return false;
             } catch (FileNotFoundException e) {
-                Log.w(ertebat.LOG_TAG, "Couldn't open import file", e);
+                Log.w(Ertebat.LOG_TAG, "Couldn't open import file", e);
                 return false;
             } catch (Exception e) {
-                Log.w(ertebat.LOG_TAG, "Unknown error", e);
+                Log.w(Ertebat.LOG_TAG, "Unknown error", e);
                 return false;
             }
             return true;
@@ -2085,10 +2085,10 @@ public class Accounts extends ertebatListActivity implements OnItemClickListener
                     }
                 }
             } catch (SettingsImportExportException e) {
-                Log.w(ertebat.LOG_TAG, "Exception during export", e);
+                Log.w(Ertebat.LOG_TAG, "Exception during export", e);
                 return false;
             } catch (FileNotFoundException e) {
-                Log.w(ertebat.LOG_TAG, "Couldn't read content from URI " + mUri);
+                Log.w(Ertebat.LOG_TAG, "Couldn't read content from URI " + mUri);
                 return false;
             }
             return true;

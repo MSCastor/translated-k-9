@@ -1,4 +1,4 @@
-package com.fsck.ertebat.remotecontrol;
+package com.fsck.Ertebat.remotecontrol;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,21 +7,21 @@ import android.os.Bundle;
 import android.util.Log;
 
 class AccountReceiver extends BroadcastReceiver {
-    ertebatAccountReceptor receptor = null;
+    ErtebatAccountReceptor receptor = null;
 
-    protected AccountReceiver(ertebatAccountReceptor nReceptor) {
+    protected AccountReceiver(ErtebatAccountReceptor nReceptor) {
         receptor = nReceptor;
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (ertebatRemoteControl.ertebat_REQUEST_ACCOUNTS.equals(intent.getAction())) {
+        if (ErtebatRemoteControl.Ertebat_REQUEST_ACCOUNTS.equals(intent.getAction())) {
             Bundle bundle = getResultExtras(false);
             if (bundle == null) {
-                Log.w(ertebatRemoteControl.LOG_TAG, "Response bundle is empty");
+                Log.w(ErtebatRemoteControl.LOG_TAG, "Response bundle is empty");
                 return;
             }
-            receptor.accounts(bundle.getStringArray(ertebatRemoteControl.ertebat_ACCOUNT_UUIDS), bundle.getStringArray(ertebatRemoteControl.ertebat_ACCOUNT_DESCRIPTIONS));
+            receptor.accounts(bundle.getStringArray(ErtebatRemoteControl.Ertebat_ACCOUNT_UUIDS), bundle.getStringArray(ErtebatRemoteControl.Ertebat_ACCOUNT_DESCRIPTIONS));
         }
     }
 

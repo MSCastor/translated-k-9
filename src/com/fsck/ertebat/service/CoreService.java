@@ -1,4 +1,4 @@
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -12,10 +12,10 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.helper.power.TracingPowerManager;
-import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.helper.power.TracingPowerManager;
+import com.fsck.Ertebat.helper.power.TracingPowerManager.TracingWakeLock;
 
 /**
  * {@code CoreService} is the base class for all K-9 Services.
@@ -32,7 +32,7 @@ import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
  * should thus not be used to run the tasks.
  * </p><p>
  * CoreService is providing the execution plumbing for background tasks including the required
- * thread and task queuing for all ertebat services to use.
+ * thread and task queuing for all Ertebat services to use.
  * </p><p>
  * A service is supposed to run only as long as it has some work to do whether that work is active
  * processing or some just some monitoring, like listening on a network port for incoming connections
@@ -57,7 +57,7 @@ import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
  */
 public abstract class CoreService extends Service {
 
-    public static String WAKE_LOCK_ID = "com.fsck.ertebat.service.CoreService.wakeLockId";
+    public static String WAKE_LOCK_ID = "com.fsck.Ertebat.service.CoreService.wakeLockId";
 
     private static ConcurrentHashMap<Integer, TracingWakeLock> sWakeLocks =
         new ConcurrentHashMap<Integer, TracingWakeLock>();
@@ -144,7 +144,7 @@ public abstract class CoreService extends Service {
      */
     protected static void addWakeLock(Context context, Intent intent) {
         TracingWakeLock wakeLock = acquireWakeLock(context, "CoreService addWakeLock",
-                ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT);
+                Ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT);
         Integer tmpWakeLockId = registerWakeLock(wakeLock);
         intent.putExtra(WAKE_LOCK_ID, tmpWakeLockId);
     }
@@ -190,8 +190,8 @@ public abstract class CoreService extends Service {
 
     @Override
     public void onCreate() {
-        if (ertebat.DEBUG) {
-            Log.i(ertebat.LOG_TAG, "CoreService: " + className + ".onCreate()");
+        if (Ertebat.DEBUG) {
+            Log.i(Ertebat.LOG_TAG, "CoreService: " + className + ".onCreate()");
         }
 
         mThreadPool = Executors.newFixedThreadPool(1);  // Must be single threaded
@@ -204,7 +204,7 @@ public abstract class CoreService extends Service {
          * started with START_STICKY are started with the intent being null.
          *
          * For now we just ignore these restart events. This should be fine because all necessary
-         * services are started from ertebat.onCreate() when the Application object is initialized.
+         * services are started from Ertebat.onCreate() when the Application object is initialized.
          *
          * See issue 3750
          */
@@ -215,10 +215,10 @@ public abstract class CoreService extends Service {
 
         // Acquire new wake lock
         TracingWakeLock wakeLock = acquireWakeLock(this, "CoreService onStart",
-                ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT);
+                Ertebat.MAIL_SERVICE_WAKE_LOCK_TIMEOUT);
 
-        if (ertebat.DEBUG) {
-            Log.i(ertebat.LOG_TAG, "CoreService: " + className + ".onStart(" + intent + ", " + startId + ")");
+        if (Ertebat.DEBUG) {
+            Log.i(Ertebat.LOG_TAG, "CoreService: " + className + ".onStart(" + intent + ", " + startId + ")");
         }
 
         // If we were started by BootReceiver, release the wake lock acquired there.
@@ -231,8 +231,8 @@ public abstract class CoreService extends Service {
         // release it.
         int coreWakeLockId = intent.getIntExtra(WAKE_LOCK_ID, -1);
         if (coreWakeLockId != -1) {
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "Got core wake lock id " + coreWakeLockId);
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "Got core wake lock id " + coreWakeLockId);
             }
 
             // Remove wake lock from the registry
@@ -240,8 +240,8 @@ public abstract class CoreService extends Service {
 
             // Release wake lock
             if (coreWakeLock != null) {
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "Found core wake lock with id " + coreWakeLockId +
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "Found core wake lock with id " + coreWakeLockId +
                             ", releasing");
                 }
                 coreWakeLock.release();
@@ -306,8 +306,8 @@ public abstract class CoreService extends Service {
                     // Get the sync status
                     boolean oldIsSyncDisabled = MailService.isSyncDisabled();
 
-                    if (ertebat.DEBUG) {
-                        Log.d(ertebat.LOG_TAG, "CoreService (" + className + ") running Runnable " +
+                    if (Ertebat.DEBUG) {
+                        Log.d(Ertebat.LOG_TAG, "CoreService (" + className + ") running Runnable " +
                                 runner.hashCode() + " with startId " + startId);
                     }
 
@@ -322,8 +322,8 @@ public abstract class CoreService extends Service {
                 } finally {
                     // Making absolutely sure stopSelf() will be called
                     try {
-                        if (ertebat.DEBUG) {
-                            Log.d(ertebat.LOG_TAG, "CoreService (" + className + ") completed " +
+                        if (Ertebat.DEBUG) {
+                            Log.d(Ertebat.LOG_TAG, "CoreService (" + className + ") completed " +
                                     "Runnable " + runner.hashCode() + " with startId " + startId);
                         }
                         wakeLock.release();
@@ -338,7 +338,7 @@ public abstract class CoreService extends Service {
 
         // TODO: remove this. we never set mThreadPool to null
         if (mThreadPool == null) {
-            Log.e(ertebat.LOG_TAG, "CoreService.execute (" + className + ") called with no thread " +
+            Log.e(Ertebat.LOG_TAG, "CoreService.execute (" + className + ") called with no thread " +
                     "pool available; running Runnable " + runner.hashCode() +
                     " in calling thread");
 
@@ -347,8 +347,8 @@ public abstract class CoreService extends Service {
                 serviceShutdownScheduled = startId != null;
             }
         } else {
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "CoreService (" + className + ") queueing Runnable " +
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "CoreService (" + className + ") queueing Runnable " +
                         runner.hashCode() + " with startId " + startId);
             }
 
@@ -362,7 +362,7 @@ public abstract class CoreService extends Service {
                     throw e;
                 }
 
-                Log.i(ertebat.LOG_TAG, "CoreService: " + className + " is shutting down, ignoring " +
+                Log.i(Ertebat.LOG_TAG, "CoreService: " + className + " is shutting down, ignoring " +
                         "rejected execution exception: " + e.getMessage());
             }
         }
@@ -391,7 +391,7 @@ public abstract class CoreService extends Service {
 
     @Override
     public void onLowMemory() {
-        Log.w(ertebat.LOG_TAG, "CoreService: " + className + ".onLowMemory() - Running low on memory");
+        Log.w(Ertebat.LOG_TAG, "CoreService: " + className + ".onLowMemory() - Running low on memory");
     }
 
     /**
@@ -399,8 +399,8 @@ public abstract class CoreService extends Service {
      */
     @Override
     public void onDestroy() {
-        if (ertebat.DEBUG) {
-            Log.i(ertebat.LOG_TAG, "CoreService: " + className + ".onDestroy()");
+        if (Ertebat.DEBUG) {
+            Log.i(Ertebat.LOG_TAG, "CoreService: " + className + ".onDestroy()");
         }
 
         // Shut down thread pool

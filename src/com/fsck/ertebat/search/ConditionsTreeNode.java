@@ -1,4 +1,4 @@
-package com.fsck.ertebat.search;
+package com.fsck.Ertebat.search;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,9 +10,9 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fsck.ertebat.search.SearchSpecification.Attribute;
-import com.fsck.ertebat.search.SearchSpecification.Searchfield;
-import com.fsck.ertebat.search.SearchSpecification.SearchCondition;
+import com.fsck.Ertebat.search.SearchSpecification.Attribute;
+import com.fsck.Ertebat.search.SearchSpecification.Searchfield;
+import com.fsck.Ertebat.search.SearchSpecification.SearchCondition;
 
 /**
  * This class stores search conditions. It's basically a boolean expression binary tree.

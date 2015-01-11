@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,25 +21,25 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Account.FolderMode;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.MessagingException;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Account.FolderMode;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.top.Ertebat.mail.R;
 
-public class ChooseFolder extends ertebatListActivity {
-    public static final String EXTRA_ACCOUNT = "com.fsck.ertebat.ChooseFolder_account";
-    public static final String EXTRA_CUR_FOLDER = "com.fsck.ertebat.ChooseFolder_curfolder";
-    public static final String EXTRA_SEL_FOLDER = "com.fsck.ertebat.ChooseFolder_selfolder";
-    public static final String EXTRA_NEW_FOLDER = "com.fsck.ertebat.ChooseFolder_newfolder";
-    public static final String EXTRA_MESSAGE = "com.fsck.ertebat.ChooseFolder_message";
-    public static final String EXTRA_SHOW_CURRENT = "com.fsck.ertebat.ChooseFolder_showcurrent";
-    public static final String EXTRA_SHOW_FOLDER_NONE = "com.fsck.ertebat.ChooseFolder_showOptionNone";
-    public static final String EXTRA_SHOW_DISPLAYABLE_ONLY = "com.fsck.ertebat.ChooseFolder_showDisplayableOnly";
+public class ChooseFolder extends ErtebatListActivity {
+    public static final String EXTRA_ACCOUNT = "com.fsck.Ertebat.ChooseFolder_account";
+    public static final String EXTRA_CUR_FOLDER = "com.fsck.Ertebat.ChooseFolder_curfolder";
+    public static final String EXTRA_SEL_FOLDER = "com.fsck.Ertebat.ChooseFolder_selfolder";
+    public static final String EXTRA_NEW_FOLDER = "com.fsck.Ertebat.ChooseFolder_newfolder";
+    public static final String EXTRA_MESSAGE = "com.fsck.Ertebat.ChooseFolder_message";
+    public static final String EXTRA_SHOW_CURRENT = "com.fsck.Ertebat.ChooseFolder_showcurrent";
+    public static final String EXTRA_SHOW_FOLDER_NONE = "com.fsck.Ertebat.ChooseFolder_showOptionNone";
+    public static final String EXTRA_SHOW_DISPLAYABLE_ONLY = "com.fsck.Ertebat.ChooseFolder_showDisplayableOnly";
 
 
     String mFolder;
@@ -294,7 +294,7 @@ public class ChooseFolder extends ertebatListActivity {
                         continue;
                     }
                 } catch (MessagingException me) {
-                    Log.e(ertebat.LOG_TAG, "Couldn't get prefs to check for displayability of folder " +
+                    Log.e(Ertebat.LOG_TAG, "Couldn't get prefs to check for displayability of folder " +
                             folder.getName(), me);
                 }
 
@@ -320,7 +320,7 @@ public class ChooseFolder extends ertebatListActivity {
                     topFolders.size() + ((mShowOptionNone) ? 1 : 0));
 
             if (mShowOptionNone) {
-                localFolders.add(ertebat.FOLDER_NONE);
+                localFolders.add(Ertebat.FOLDER_NONE);
             }
 
             localFolders.addAll(topFolders);
@@ -339,7 +339,7 @@ public class ChooseFolder extends ertebatListActivity {
                     if (mAccount.getInboxFolderName().equalsIgnoreCase(name)) {
                         folderList.add(getString(R.string.special_mailbox_name_inbox));
                         mHeldInbox = name;
-                    } else if (!ertebat.ERROR_FOLDER_NAME.equals(name) &&
+                    } else if (!Ertebat.ERROR_FOLDER_NAME.equals(name) &&
                             !account.getOutboxFolderName().equals(name)) {
                         folderList.add(name);
                     }

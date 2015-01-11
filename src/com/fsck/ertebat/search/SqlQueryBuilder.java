@@ -1,15 +1,15 @@
-package com.fsck.ertebat.search;
+package com.fsck.Ertebat.search;
 
 import java.util.List;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.LocalStore.LocalFolder;
-import com.fsck.ertebat.search.SearchSpecification.Attribute;
-import com.fsck.ertebat.search.SearchSpecification.SearchCondition;
-import com.fsck.ertebat.search.SearchSpecification.Searchfield;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalFolder;
+import com.fsck.Ertebat.search.SearchSpecification.Attribute;
+import com.fsck.Ertebat.search.SearchSpecification.SearchCondition;
+import com.fsck.Ertebat.search.SearchSpecification.Searchfield;
 
 
 public class SqlQueryBuilder {

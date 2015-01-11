@@ -1,28 +1,28 @@
 
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.remotecontrol.ertebatRemoteControl;
-import com.fsck.ertebat.Preferences;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.remotecontrol.ErtebatRemoteControl;
+import com.fsck.Ertebat.Preferences;
 
-import static com.fsck.ertebat.remotecontrol.ertebatRemoteControl.*;
+import static com.fsck.Ertebat.remotecontrol.ErtebatRemoteControl.*;
 
 public class RemoteControlReceiver extends CoreReceiver {
     @Override
     public Integer receive(Context context, Intent intent, Integer tmpWakeLockId) {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "RemoteControlReceiver.onReceive" + intent);
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "RemoteControlReceiver.onReceive" + intent);
 
-        if (ertebatRemoteControl.ertebat_SET.equals(intent.getAction())) {
+        if (ErtebatRemoteControl.Ertebat_SET.equals(intent.getAction())) {
             RemoteControlService.set(context, intent, tmpWakeLockId);
             tmpWakeLockId = null;
-        } else if (ertebatRemoteControl.ertebat_REQUEST_ACCOUNTS.equals(intent.getAction())) {
+        } else if (ErtebatRemoteControl.Ertebat_REQUEST_ACCOUNTS.equals(intent.getAction())) {
             try {
                 Preferences preferences = Preferences.getPreferences(context);
                 Account[] accounts = preferences.getAccounts();
@@ -36,10 +36,10 @@ public class RemoteControlReceiver extends CoreReceiver {
                     descriptions[i] = account.getDescription();
                 }
                 Bundle bundle = getResultExtras(true);
-                bundle.putStringArray(ertebat_ACCOUNT_UUIDS, uuids);
-                bundle.putStringArray(ertebat_ACCOUNT_DESCRIPTIONS, descriptions);
+                bundle.putStringArray(Ertebat_ACCOUNT_UUIDS, uuids);
+                bundle.putStringArray(Ertebat_ACCOUNT_DESCRIPTIONS, descriptions);
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Could not handle ertebat_RESPONSE_INTENT", e);
+                Log.e(Ertebat.LOG_TAG, "Could not handle Ertebat_RESPONSE_INTENT", e);
             }
 
         }

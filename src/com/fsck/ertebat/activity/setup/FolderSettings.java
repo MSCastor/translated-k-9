@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,22 +9,22 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.util.Log;
 
-import com.fsck.ertebat.*;
-import com.fsck.ertebat.activity.FolderInfoHolder;
-import com.fsck.ertebat.activity.ertebatPreferenceActivity;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Folder.FolderClass;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.LocalStore.LocalFolder;
-import com.fsck.ertebat.service.MailService;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.*;
+import com.fsck.Ertebat.activity.FolderInfoHolder;
+import com.fsck.Ertebat.activity.ErtebatPreferenceActivity;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Folder.FolderClass;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalFolder;
+import com.fsck.Ertebat.service.MailService;
+import com.top.Ertebat.mail.R;
 
-public class FolderSettings extends ertebatPreferenceActivity {
+public class FolderSettings extends ErtebatPreferenceActivity {
 
-    private static final String EXTRA_FOLDER_NAME = "com.fsck.ertebat.folderName";
-    private static final String EXTRA_ACCOUNT = "com.fsck.ertebat.account";
+    private static final String EXTRA_FOLDER_NAME = "com.fsck.Ertebat.folderName";
+    private static final String EXTRA_ACCOUNT = "com.fsck.Ertebat.account";
 
     private static final String PREFERENCE_TOP_CATERGORY = "folder_settings";
     private static final String PREFERENCE_DISPLAY_CLASS = "folder_settings_folder_display_mode";
@@ -63,7 +63,7 @@ public class FolderSettings extends ertebatPreferenceActivity {
             mFolder = localStore.getFolder(folderName);
             mFolder.open(Folder.OPEN_MODE_RW);
         } catch (MessagingException me) {
-            Log.e(ertebat.LOG_TAG, "Unable to edit folder " + folderName + " preferences", me);
+            Log.e(Ertebat.LOG_TAG, "Unable to edit folder " + folderName + " preferences", me);
             return;
         }
 
@@ -73,7 +73,7 @@ public class FolderSettings extends ertebatPreferenceActivity {
             store = mAccount.getRemoteStore();
             isPushCapable = store.isPushCapable();
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Could not get remote store", e);
+            Log.e(Ertebat.LOG_TAG, "Could not get remote store", e);
         }
 
         addPreferencesFromResource(R.xml.folder_settings_preferences);
@@ -169,7 +169,7 @@ public class FolderSettings extends ertebatPreferenceActivity {
         try {
             saveSettings();
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "Saving folder settings failed", e);
+            Log.e(Ertebat.LOG_TAG, "Saving folder settings failed", e);
         }
 
         super.onPause();

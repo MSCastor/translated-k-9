@@ -1,13 +1,13 @@
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fsck.ertebat.mail.AuthType;
-import com.fsck.ertebat.mail.ConnectionSecurity;
-import com.fsck.ertebat.mail.ServerSettings;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.store.ImapStore;
+import com.fsck.Ertebat.mail.AuthType;
+import com.fsck.Ertebat.mail.ConnectionSecurity;
+import com.fsck.Ertebat.mail.ServerSettings;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.store.ImapStore;
 import junit.framework.TestCase;
 
 public class ImapStoreUriTest extends TestCase {

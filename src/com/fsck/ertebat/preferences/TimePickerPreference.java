@@ -2,7 +2,7 @@
  * on 2010-11-27 by jessev
  */
 
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import java.util.Locale;
 

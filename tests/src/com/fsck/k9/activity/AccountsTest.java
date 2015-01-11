@@ -1,7 +1,7 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
-import com.fsck.ertebat.activity.Accounts;
+import com.fsck.Ertebat.activity.Accounts;
 /**
  * This is a simple framework for a test of an Application.  See
  * {@link android.test.ApplicationTestCase ApplicationTestCase} for more information on
@@ -9,13 +9,13 @@ import com.fsck.ertebat.activity.Accounts;
  * <p/>
  * To run this test, you can type:
  * adb shell am instrument -w \
- * -e class com.fsck.ertebat.activity.AccountsTest \
- * com.fsck.ertebat.tests/android.test.InstrumentationTestRunner
+ * -e class com.fsck.Ertebat.activity.AccountsTest \
+ * com.fsck.Ertebat.tests/android.test.InstrumentationTestRunner
  */
 public class AccountsTest extends ActivityInstrumentationTestCase2<Accounts> {
 
     public AccountsTest() {
-        super("com.fsck.ertebat", Accounts.class);
+        super("com.fsck.Ertebat", Accounts.class);
     }
 
 }

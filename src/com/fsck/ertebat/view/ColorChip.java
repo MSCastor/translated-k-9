@@ -1,4 +1,4 @@
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import android.graphics.Paint;
 import android.graphics.Path;

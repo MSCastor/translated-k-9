@@ -1,11 +1,11 @@
 
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.fsck.ertebat.mail.store.UnavailableStorageException;
+import com.fsck.Ertebat.mail.store.UnavailableStorageException;
 
 public interface Body {
     public InputStream getInputStream() throws MessagingException;

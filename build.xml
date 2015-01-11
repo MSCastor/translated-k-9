@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ertebat" default="help">
+<project name="Ertebat" default="help">
 
     <!-- The local.properties file is created and updated by the 'android' tool.
          It contains the path to the SDK. It should *NOT* be checked into
@@ -80,11 +80,11 @@
     <!-- version-tag: custom -->
     <import file="${sdk.dir}/tools/ant/build.xml" />
 
-    <!-- ertebat CUSTOM STUFF -->
+    <!-- Ertebat CUSTOM STUFF -->
 
     <!-- out folders for a parent project if this project is an instrumentation project -->
-    <property name="rclib" value="${out.dir}/ertebatRemoteControl.jar" />
-    <property name="rcdir" value="com/fsck/ertebat/remotecontrol/**" />
+    <property name="rclib" value="${out.dir}/ErtebatRemoteControl.jar" />
+    <property name="rcdir" value="com/fsck/Ertebat/remotecontrol/**" />
 
     <property name="changelog-path-src" value="res/xml/changelog_master.xml" />
 
@@ -303,8 +303,8 @@
 
     <target name="upload" depends="clean,-get-version,release">
         <echo>Uploading to Google Code using Google::Code::Upload</echo>
-        <move file="${out.final.file}" tofile="bin/ertebat-${current-version-name}-release.apk" />
-        <property name="gcode-project" value="ertebatmail" />
+        <move file="${out.final.file}" tofile="bin/Ertebat-${current-version-name}-release.apk" />
+        <property name="gcode-project" value="Ertebatmail" />
         <exec executable="googlecode_upload.pl" failonerror="true">
             <arg value="--summary" />
             <arg value="${ant.project.name} ${current-version-name}" />
@@ -316,13 +316,13 @@
             <arg value="${gcode-pass}" />
             <arg value="--labels" />
             <arg value="Type-Installer" />
-            <arg value="bin/ertebat-${current-version-name}-release.apk" />
+            <arg value="bin/Ertebat-${current-version-name}-release.apk" />
         </exec>
     </target>
 
     <target name="astyle">
         <exec executable="astyle" failonerror="true">
-            <arg line="--style=java --indent=spaces=4 --indent-switches --max-instatement-indent=40 --add-brackets --convert-tabs --unpad-paren --pad-header --pad-oper --suffix=none --recursive 'src/com/fsck/ertebat/*.java' 'tests/src/com/fsck/ertebat/*.java'" />
+            <arg line="--style=java --indent=spaces=4 --indent-switches --max-instatement-indent=40 --add-brackets --convert-tabs --unpad-paren --pad-header --pad-oper --suffix=none --recursive 'src/com/fsck/Ertebat/*.java' 'tests/src/com/fsck/Ertebat/*.java'" />
         </exec>
     </target>
 

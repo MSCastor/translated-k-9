@@ -1,10 +1,10 @@
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
 
 public enum ConnectionSecurity {
     NONE(R.string.account_setup_incoming_security_none_label),
@@ -30,6 +30,6 @@ public enum ConnectionSecurity {
 
     @Override
     public String toString() {
-        return ertebat.app.getString(mResourceId);
+        return Ertebat.app.getString(mResourceId);
     }
 }

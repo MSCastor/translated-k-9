@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity.misc;
+package com.fsck.Ertebat.activity.misc;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,9 +24,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.util.LruCache;
 import android.widget.QuickContactBadge;
-import com.fsck.ertebat.helper.Contacts;
-import com.fsck.ertebat.helper.StringUtils;
-import com.fsck.ertebat.mail.Address;
+import com.fsck.Ertebat.helper.Contacts;
+import com.fsck.Ertebat.helper.StringUtils;
+import com.fsck.Ertebat.mail.Address;
 
 public class ContactPictureLoader {
     /**

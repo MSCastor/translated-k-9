@@ -1,4 +1,4 @@
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,8 +18,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
 
 /**
  * Manager for different {@link StorageProvider} -classes that abstract access
@@ -186,8 +186,8 @@ public class StorageManager {
         @Override
         public void init(final Context context) {
             mRoot = computeRoot(context);
-            // use <STORAGE_ROOT>/ertebat
-            mApplicationDir = new File(mRoot, "ertebat");
+            // use <STORAGE_ROOT>/Ertebat
+            mApplicationDir = new File(mRoot, "Ertebat");
         }
 
         /**
@@ -205,7 +205,7 @@ public class StorageManager {
                 return isMountPoint(root)
                        && Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
             } catch (IOException e) {
-                Log.w(ertebat.LOG_TAG, "Specified root isn't ready: " + mRoot, e);
+                Log.w(Ertebat.LOG_TAG, "Specified root isn't ready: " + mRoot, e);
                 return false;
             }
         }
@@ -606,7 +606,7 @@ public class StorageManager {
     public boolean isReady(final String providerId) {
         StorageProvider provider = getProvider(providerId);
         if (provider == null) {
-            Log.w(ertebat.LOG_TAG, "Storage-Provider \"" + providerId + "\" does not exist");
+            Log.w(Ertebat.LOG_TAG, "Storage-Provider \"" + providerId + "\" does not exist");
             return false;
         }
         return provider.isReady(mApplication);
@@ -630,7 +630,7 @@ public class StorageManager {
      * @param path
      */
     public void onBeforeUnmount(final String path) {
-        Log.i(ertebat.LOG_TAG, "storage path \"" + path + "\" unmounting");
+        Log.i(Ertebat.LOG_TAG, "storage path \"" + path + "\" unmounting");
         final StorageProvider provider = resolveProvider(path);
         if (provider == null) {
             return;
@@ -639,7 +639,7 @@ public class StorageManager {
             try {
                 listener.onUnmount(provider.getId());
             } catch (Exception e) {
-                Log.w(ertebat.LOG_TAG, "Error while notifying StorageListener", e);
+                Log.w(Ertebat.LOG_TAG, "Error while notifying StorageListener", e);
             }
         }
         final SynchronizationAid sync = mProviderLocks.get(resolveProvider(path));
@@ -649,7 +649,7 @@ public class StorageManager {
     }
 
     public void onAfterUnmount(final String path) {
-        Log.i(ertebat.LOG_TAG, "storage path \"" + path + "\" unmounted");
+        Log.i(Ertebat.LOG_TAG, "storage path \"" + path + "\" unmounted");
         final StorageProvider provider = resolveProvider(path);
         if (provider == null) {
             return;
@@ -659,7 +659,7 @@ public class StorageManager {
         sync.unmounting = false;
         sync.writeLock.unlock();
 
-        ertebat.setServicesEnabled(ertebat.app);
+        Ertebat.setServicesEnabled(Ertebat.app);
     }
 
     /**
@@ -667,7 +667,7 @@ public class StorageManager {
      * @param readOnly
      */
     public void onMount(final String path, final boolean readOnly) {
-        Log.i(ertebat.LOG_TAG, "storage path \"" + path + "\" mounted readOnly=" + readOnly);
+        Log.i(Ertebat.LOG_TAG, "storage path \"" + path + "\" mounted readOnly=" + readOnly);
         if (readOnly) {
             return;
         }
@@ -680,12 +680,12 @@ public class StorageManager {
             try {
                 listener.onMount(provider.getId());
             } catch (Exception e) {
-                Log.w(ertebat.LOG_TAG, "Error while notifying StorageListener", e);
+                Log.w(Ertebat.LOG_TAG, "Error while notifying StorageListener", e);
             }
         }
 
         // XXX we should reset mail service ONLY if there are accounts using the storage (this is not done in a regular listener because it has to be invoked afterward)
-        ertebat.setServicesEnabled(ertebat.app);
+        Ertebat.setServicesEnabled(Ertebat.app);
     }
 
     /**

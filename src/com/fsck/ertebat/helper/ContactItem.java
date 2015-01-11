@@ -1,4 +1,4 @@
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 
 import java.io.Serializable;
 import java.util.Collections;

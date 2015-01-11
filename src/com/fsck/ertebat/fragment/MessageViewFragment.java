@@ -1,4 +1,4 @@
-package com.fsck.ertebat.fragment;
+package com.fsck.Ertebat.fragment;
 
 import java.io.File;
 import java.util.Collections;
@@ -22,28 +22,28 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.ChooseFolder;
-import com.fsck.ertebat.activity.MessageReference;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.crypto.CryptoProvider.CryptoDecryptCallback;
-import com.fsck.ertebat.crypto.PgpData;
-import com.fsck.ertebat.fragment.ConfirmationDialogFragment.ConfirmationDialogFragmentListener;
-import com.fsck.ertebat.helper.FileBrowserHelper;
-import com.fsck.ertebat.helper.FileBrowserHelper.FileBrowserFailOverCallback;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.store.LocalStore.LocalMessage;
-import com.fsck.ertebat.view.AttachmentView;
-import com.fsck.ertebat.view.AttachmentView.AttachmentFileDownloadCallback;
-import com.fsck.ertebat.view.MessageHeader;
-import com.fsck.ertebat.view.SingleMessageView;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.ChooseFolder;
+import com.fsck.Ertebat.activity.MessageReference;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.crypto.CryptoProvider.CryptoDecryptCallback;
+import com.fsck.Ertebat.crypto.PgpData;
+import com.fsck.Ertebat.fragment.ConfirmationDialogFragment.ConfirmationDialogFragmentListener;
+import com.fsck.Ertebat.helper.FileBrowserHelper;
+import com.fsck.Ertebat.helper.FileBrowserHelper.FileBrowserFailOverCallback;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalMessage;
+import com.fsck.Ertebat.view.AttachmentView;
+import com.fsck.Ertebat.view.AttachmentView.AttachmentFileDownloadCallback;
+import com.fsck.Ertebat.view.MessageHeader;
+import com.fsck.Ertebat.view.SingleMessageView;
 
 import org.openintents.openpgp.OpenPgpSignatureResult;
 
@@ -195,7 +195,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         Context context = new ContextThemeWrapper(inflater.getContext(),
-                ertebat.getertebatThemeResourceId(ertebat.getertebatMessageViewTheme()));
+                Ertebat.getErtebatThemeResourceId(Ertebat.getErtebatMessageViewTheme()));
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = mLayoutInflater.inflate(R.layout.message, container, false);
 
@@ -267,8 +267,8 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
 
     private void displayMessage(MessageReference ref, boolean resetPgpData) {
         mMessageReference = ref;
-        if (ertebat.DEBUG) {
-            Log.d(ertebat.LOG_TAG, "MessageView displaying message " + mMessageReference);
+        if (Ertebat.DEBUG) {
+            Log.d(Ertebat.LOG_TAG, "MessageView displaying message " + mMessageReference);
         }
 
         Context appContext = getActivity().getApplicationContext();
@@ -292,7 +292,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
      * Called from UI thread when user select Delete
      */
     public void onDelete() {
-        if (ertebat.confirmDelete() || (ertebat.confirmDeleteStarred() && mMessage.isSet(Flag.FLAGGED))) {
+        if (Ertebat.confirmDelete() || (Ertebat.confirmDeleteStarred() && mMessage.isSet(Flag.FLAGGED))) {
             showDialog(R.id.dialog_confirm_delete);
         } else {
             delete();
@@ -328,11 +328,11 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
             return;
         }
 
-        if (ertebat.FOLDER_NONE.equalsIgnoreCase(dstFolder)) {
+        if (Ertebat.FOLDER_NONE.equalsIgnoreCase(dstFolder)) {
             return;
         }
 
-        if (mAccount.getSpamFolderName().equals(dstFolder) && ertebat.confirmSpam()) {
+        if (mAccount.getSpamFolderName().equals(dstFolder) && Ertebat.confirmSpam()) {
             mDstFolder = dstFolder;
             showDialog(R.id.dialog_confirm_spam);
         } else {
@@ -604,7 +604,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
                         mFragmentListener.updateMenu();
 
                     } catch (MessagingException e) {
-                        Log.v(ertebat.LOG_TAG, "loadMessageForViewBodyAvailable", e);
+                        Log.v(Ertebat.LOG_TAG, "loadMessageForViewBodyAvailable", e);
                     }
                 }
             });
@@ -728,7 +728,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
             data.setSignatureResult(signatureResult);
             mMessageView.setMessage(mAccount, (LocalMessage) mMessage, data, mController, mListener);
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "displayMessageBody failed", e);
+            Log.e(Ertebat.LOG_TAG, "displayMessageBody failed", e);
         }
     }
 
@@ -742,7 +742,7 @@ public class MessageViewFragment extends Fragment implements OnClickListener,
         try {
             mMessageView.setMessage(account, message, pgpData, controller, listener);
         } catch (MessagingException e) {
-            Log.e(ertebat.LOG_TAG, "displayMessageBody failed", e);
+            Log.e(Ertebat.LOG_TAG, "displayMessageBody failed", e);
         }
     }
 

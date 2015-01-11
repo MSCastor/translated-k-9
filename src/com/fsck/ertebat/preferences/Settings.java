@@ -1,4 +1,4 @@
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,8 +11,8 @@ import java.util.Map.Entry;
 
 import android.util.Log;
 
-import com.fsck.ertebat.FontSizes;
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.FontSizes;
+import com.fsck.Ertebat.Ertebat;
 
 /*
  * TODO:
@@ -67,7 +67,7 @@ public class Settings {
 
             boolean useDefaultValue;
             if (!importedSettings.containsKey(key)) {
-                Log.v(ertebat.LOG_TAG, "Key \"" + key + "\" wasn't found in the imported file." +
+                Log.v(Ertebat.LOG_TAG, "Key \"" + key + "\" wasn't found in the imported file." +
                         ((useDefaultValues) ? " Using default value." : ""));
                 useDefaultValue = useDefaultValues;
             } else {
@@ -77,7 +77,7 @@ public class Settings {
                     validatedSettings.put(key, internalValue);
                     useDefaultValue = false;
                 } catch (InvalidSettingValueException e) {
-                    Log.v(ertebat.LOG_TAG, "Key \"" + key + "\" has invalid value \"" + prettyValue +
+                    Log.v(Ertebat.LOG_TAG, "Key \"" + key + "\" has invalid value \"" + prettyValue +
                             "\" in imported file. " +
                             ((useDefaultValues) ? "Using default value." : "Skipping."));
                     useDefaultValue = useDefaultValues;
@@ -142,9 +142,9 @@ public class Settings {
                         Object defaultValue = setting.getDefaultValue();
                         upgradedSettings.put(settingName, defaultValue);
 
-                        if (ertebat.DEBUG) {
+                        if (Ertebat.DEBUG) {
                             String prettyValue = setting.toPrettyString(defaultValue);
-                            Log.v(ertebat.LOG_TAG, "Added new setting \"" + settingName +
+                            Log.v(Ertebat.LOG_TAG, "Added new setting \"" + settingName +
                                     "\" with default value \"" + prettyValue + "\"");
                         }
                     }
@@ -160,8 +160,8 @@ public class Settings {
                     }
                     deletedSettings.add(settingName);
 
-                    if (ertebat.DEBUG) {
-                        Log.v(ertebat.LOG_TAG, "Removed setting \"" + settingName + "\"");
+                    if (Ertebat.DEBUG) {
+                        Log.v(Ertebat.LOG_TAG, "Removed setting \"" + settingName + "\"");
                     }
                 }
             }
@@ -201,8 +201,8 @@ public class Settings {
 
                 serializedSettings.put(settingName, stringValue);
             } else {
-                if (ertebat.DEBUG) {
-                    Log.w(ertebat.LOG_TAG, "Settings.serialize() called with a setting that should " +
+                if (Ertebat.DEBUG) {
+                    Log.w(Ertebat.LOG_TAG, "Settings.serialize() called with a setting that should " +
                             "have been removed: " + settingName);
                 }
             }
@@ -260,7 +260,7 @@ public class Settings {
      *   <li>
      *   The one that is used by the internal preference {@link Storage}. It is usually obtained by
      *   calling {@code toString()} on the internal representation of the setting value (see e.g.
-     *   {@link ertebat#save(android.content.SharedPreferences.Editor)}).
+     *   {@link Ertebat#save(android.content.SharedPreferences.Editor)}).
      *   </li>
      *   <li>
      *   The "pretty" version that is used by the import/export settings file (e.g. colors are

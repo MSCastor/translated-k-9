@@ -1,9 +1,9 @@
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
 
 public enum AuthType {
     /*
@@ -79,7 +79,7 @@ public enum AuthType {
         if (mResourceId == 0) {
             return name();
         } else {
-            return ertebat.app.getString(mResourceId);
+            return Ertebat.app.getString(mResourceId);
         }
     }
 }

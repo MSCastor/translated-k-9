@@ -1,21 +1,21 @@
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.util.Log;
-import com.fsck.ertebat.*;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.helper.power.TracingPowerManager;
-import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
+import com.fsck.Ertebat.*;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.helper.power.TracingPowerManager;
+import com.fsck.Ertebat.helper.power.TracingPowerManager.TracingWakeLock;
 
 import java.util.HashMap;
 
 public class PollService extends CoreService {
-    private static String START_SERVICE = "com.fsck.ertebat.service.PollService.startService";
-    private static String STOP_SERVICE = "com.fsck.ertebat.service.PollService.stopService";
+    private static String START_SERVICE = "com.fsck.Ertebat.service.PollService.startService";
+    private static String STOP_SERVICE = "com.fsck.Ertebat.service.PollService.stopService";
 
     private Listener mListener = new Listener();
 
@@ -44,27 +44,27 @@ public class PollService extends CoreService {
     @Override
     public int startService(Intent intent, int startId) {
         if (START_SERVICE.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "PollService started with startId = " + startId);
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "PollService started with startId = " + startId);
 
             MessagingController controller = MessagingController.getInstance(getApplication());
             Listener listener = (Listener)controller.getCheckMailListener();
             if (listener == null) {
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "***** PollService *****: starting new check");
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "***** PollService *****: starting new check");
                 mListener.setStartId(startId);
                 mListener.wakeLockAcquire();
                 controller.setCheckMailListener(mListener);
                 controller.checkMail(this, null, false, false, mListener);
             } else {
-                if (ertebat.DEBUG)
-                    Log.i(ertebat.LOG_TAG, "***** PollService *****: renewing WakeLock");
+                if (Ertebat.DEBUG)
+                    Log.i(Ertebat.LOG_TAG, "***** PollService *****: renewing WakeLock");
                 listener.setStartId(startId);
                 listener.wakeLockAcquire();
             }
         } else if (STOP_SERVICE.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "PollService stopping");
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "PollService stopping");
             stopSelf();
         }
 
@@ -89,7 +89,7 @@ public class PollService extends CoreService {
             TracingPowerManager pm = TracingPowerManager.getPowerManager(PollService.this);
             wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "PollService wakeLockAcquire");
             wakeLock.setReferenceCounted(false);
-            wakeLock.acquire(ertebat.WAKE_LOCK_TIMEOUT);
+            wakeLock.acquire(Ertebat.WAKE_LOCK_TIMEOUT);
 
             if (oldWakeLock != null) {
                 oldWakeLock.release();
@@ -135,8 +135,8 @@ public class PollService extends CoreService {
 
             MailService.actionReschedulePoll(PollService.this, null);
             wakeLockRelease();
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "PollService stopping with startId = " + startId);
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "PollService stopping with startId = " + startId);
 
             stopSelf(startId);
         }
@@ -144,8 +144,8 @@ public class PollService extends CoreService {
         @Override
         public void checkMailFinished(Context context, Account account) {
 
-            if (ertebat.DEBUG)
-                Log.v(ertebat.LOG_TAG, "***** PollService *****: checkMailFinished");
+            if (Ertebat.DEBUG)
+                Log.v(Ertebat.LOG_TAG, "***** PollService *****: checkMailFinished");
             release();
         }
         public int getStartId() {

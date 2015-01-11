@@ -1,11 +1,11 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.service.DatabaseUpgradeService;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.service.DatabaseUpgradeService;
+import com.top.Ertebat.mail.R;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -27,10 +27,10 @@ import android.widget.TextView;
  * <li>Activities that access an account's database call
  *     {@link #actionUpgradeDatabases(Context, Intent)} in their {@link Activity#onCreate(Bundle)}
  *     method.</li>
- * <li>{@link #actionUpgradeDatabases(Context, Intent)} will call {@link ertebat#areDatabasesUpToDate()}
+ * <li>{@link #actionUpgradeDatabases(Context, Intent)} will call {@link Ertebat#areDatabasesUpToDate()}
  *     to check if we already know whether the databases have been upgraded.</li>
- * <li>{@link ertebat#areDatabasesUpToDate()} will compare the last known database version stored in a
- *     {@link SharedPreferences} file to {@link com.fsck.ertebat.mail.store.LocalStore#DB_VERSION}. This
+ * <li>{@link Ertebat#areDatabasesUpToDate()} will compare the last known database version stored in a
+ *     {@link SharedPreferences} file to {@link com.fsck.Ertebat.mail.store.LocalStore#DB_VERSION}. This
  *     is done as an optimization because it's faster than opening all of the accounts' databases
  *     one by one.</li>
  * <li>If there was an error reading the cached database version or if it shows the databases need
@@ -54,7 +54,7 @@ import android.widget.TextView;
  * for this activity) it will appear as if {@link DatabaseUpgradeService} is performing the upgrade.
  * </p>
  */
-public class UpgradeDatabases extends ertebatActivity {
+public class UpgradeDatabases extends ErtebatActivity {
     private static final String ACTION_UPGRADE_DATABASES = "upgrade_databases";
     private static final String EXTRA_START_INTENT = "start_intent";
 
@@ -74,7 +74,7 @@ public class UpgradeDatabases extends ertebatActivity {
      *         {@code false}, if the account databases don't need upgrading.
      */
     public static boolean actionUpgradeDatabases(Context context, Intent startIntent) {
-        if (ertebat.areDatabasesUpToDate()) {
+        if (Ertebat.areDatabasesUpToDate()) {
             return false;
         }
 
@@ -105,7 +105,7 @@ public class UpgradeDatabases extends ertebatActivity {
         super.onCreate(savedInstanceState);
 
         // If the databases have already been upgraded there's no point in displaying this activity.
-        if (ertebat.areDatabasesUpToDate()) {
+        if (Ertebat.areDatabasesUpToDate()) {
             launchOriginalActivity();
             return;
         }
@@ -153,7 +153,7 @@ public class UpgradeDatabases extends ertebatActivity {
         super.onResume();
 
         // Check if the upgrade was completed while the activity was paused.
-        if (ertebat.areDatabasesUpToDate()) {
+        if (Ertebat.areDatabasesUpToDate()) {
             launchOriginalActivity();
             return;
         }

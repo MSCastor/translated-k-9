@@ -1,10 +1,10 @@
-package com.fsck.ertebat.cache;
+package com.fsck.Ertebat.cache;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fsck.ertebat.provider.EmailProvider.MessageColumns;
-import com.fsck.ertebat.provider.EmailProvider.ThreadColumns;
+import com.fsck.Ertebat.provider.EmailProvider.MessageColumns;
+import com.fsck.Ertebat.provider.EmailProvider.ThreadColumns;
 
 import android.content.Context;
 import android.database.Cursor;

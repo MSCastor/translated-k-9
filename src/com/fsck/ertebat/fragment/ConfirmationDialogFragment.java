@@ -1,4 +1,4 @@
-package com.fsck.ertebat.fragment;
+package com.fsck.Ertebat.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,7 +10,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 public class ConfirmationDialogFragment extends DialogFragment implements OnClickListener,
         OnCancelListener {
@@ -108,8 +108,8 @@ public class ConfirmationDialogFragment extends DialogFragment implements OnClic
         try {
             mListener = (ConfirmationDialogFragmentListener) activity;
         } catch (ClassCastException e) {
-            if (ertebat.DEBUG)
-                Log.d(ertebat.LOG_TAG, activity.toString() + " did not implement ConfirmationDialogFragmentListener");
+            if (Ertebat.DEBUG)
+                Log.d(Ertebat.LOG_TAG, activity.toString() + " did not implement ConfirmationDialogFragmentListener");
         }
     }
 

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import java.io.File;
 import java.util.concurrent.locks.Lock;
@@ -13,9 +13,9 @@ import android.database.sqlite.SQLiteException;
 import android.os.Build;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.MessagingException;
 
 public class LockableDatabase {
 
@@ -72,8 +72,8 @@ public class LockableDatabase {
                 return;
             }
 
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "LockableDatabase: Closing DB " + uUid + " due to unmount event on StorageProvider: " + providerId);
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "LockableDatabase: Closing DB " + uUid + " due to unmount event on StorageProvider: " + providerId);
             }
 
             try {
@@ -84,7 +84,7 @@ public class LockableDatabase {
                     unlockWrite();
                 }
             } catch (UnavailableStorageException e) {
-                Log.w(ertebat.LOG_TAG, "Unable to writelock on unmount", e);
+                Log.w(Ertebat.LOG_TAG, "Unable to writelock on unmount", e);
             }
         }
 
@@ -94,14 +94,14 @@ public class LockableDatabase {
                 return;
             }
 
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "LockableDatabase: Opening DB " + uUid + " due to mount event on StorageProvider: " + providerId);
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "LockableDatabase: Opening DB " + uUid + " due to mount event on StorageProvider: " + providerId);
             }
 
             try {
                 openOrCreateDataspace(mApplication);
             } catch (UnavailableStorageException e) {
-                Log.e(ertebat.LOG_TAG, "Unable to open DB on mount", e);
+                Log.e(Ertebat.LOG_TAG, "Unable to open DB on mount", e);
             }
         }
     }
@@ -274,7 +274,7 @@ public class LockableDatabase {
         lockRead();
         final boolean doTransaction = transactional && inTransaction.get() == null;
         try {
-            final boolean debug = ertebat.DEBUG;
+            final boolean debug = Ertebat.DEBUG;
             if (doTransaction) {
                 inTransaction.set(Boolean.TRUE);
                 mDb.beginTransaction();
@@ -296,7 +296,7 @@ public class LockableDatabase {
                     // not doing endTransaction in the same 'finally' block of unlockRead() because endTransaction() may throw an exception
                     mDb.endTransaction();
                     if (debug) {
-                        Log.v(ertebat.LOG_TAG, "LockableDatabase: Transaction ended, took " + Long.toString(System.currentTimeMillis() - begin) + "ms / " + new Exception().getStackTrace()[1].toString());
+                        Log.v(Ertebat.LOG_TAG, "LockableDatabase: Transaction ended, took " + Long.toString(System.currentTimeMillis() - begin) + "ms / " + new Exception().getStackTrace()[1].toString());
                     }
                 }
             }
@@ -315,7 +315,7 @@ public class LockableDatabase {
      */
     public void switchProvider(final String newProviderId) throws MessagingException {
         if (newProviderId.equals(mStorageProviderId)) {
-            Log.v(ertebat.LOG_TAG, "LockableDatabase: Ignoring provider switch request as they are equal: " + newProviderId);
+            Log.v(Ertebat.LOG_TAG, "LockableDatabase: Ignoring provider switch request as they are equal: " + newProviderId);
             return;
         }
 
@@ -327,7 +327,7 @@ public class LockableDatabase {
                 try {
                     mDb.close();
                 } catch (Exception e) {
-                    Log.i(ertebat.LOG_TAG, "Unable to close DB on local store migration", e);
+                    Log.i(Ertebat.LOG_TAG, "Unable to close DB on local store migration", e);
                 }
 
                 final StorageManager storageManager = getStorageManager();
@@ -385,7 +385,7 @@ public class LockableDatabase {
                 }
             } catch (SQLiteException e) {
                 // try to gracefully handle DB corruption - see issue 2537
-                Log.w(ertebat.LOG_TAG, "Unable to open DB " + databaseFile + " - removing file and retrying", e);
+                Log.w(Ertebat.LOG_TAG, "Unable to open DB " + databaseFile + " - removing file and retrying", e);
                 databaseFile.delete();
                 if (StorageManager.InternalStorageProvider.ID.equals(mStorageProviderId)) {
                     // internal storage
@@ -486,7 +486,7 @@ public class LockableDatabase {
             try {
                 deleteDatabase(storageManager.getDatabase(uUid, mStorageProviderId));
             } catch (Exception e) {
-                Log.i(ertebat.LOG_TAG, "LockableDatabase: delete(): Unable to delete backing DB file", e);
+                Log.i(Ertebat.LOG_TAG, "LockableDatabase: delete(): Unable to delete backing DB file", e);
             }
 
             if (recreate) {
@@ -510,7 +510,7 @@ public class LockableDatabase {
             deleted |= new File(database.getPath() + "-journal").delete();
         }
         if (!deleted) {
-            Log.i(ertebat.LOG_TAG,
+            Log.i(Ertebat.LOG_TAG,
                     "LockableDatabase: deleteDatabase(): No files deleted.");
         }
     }

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity.misc;
+package com.fsck.Ertebat.activity.misc;
 
 import android.net.Uri;
 import android.os.Parcel;
@@ -7,7 +7,7 @@ import android.os.Parcelable;
 /**
  * Container class for information about an attachment.
  *
- * This is used by {@link com.fsck.ertebat.activity.MessageCompose} to fetch and manage attachments.
+ * This is used by {@link com.fsck.Ertebat.activity.MessageCompose} to fetch and manage attachments.
  */
 public class Attachment implements Parcelable {
     /**

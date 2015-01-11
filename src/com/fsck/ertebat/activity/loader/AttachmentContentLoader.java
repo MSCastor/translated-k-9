@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity.loader;
+package com.fsck.Ertebat.activity.loader;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,8 +9,8 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.activity.misc.Attachment;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.activity.misc.Attachment;
 
 import org.apache.commons.io.IOUtils;
 
@@ -48,8 +48,8 @@ public class AttachmentContentLoader extends AsyncTaskLoader<Attachment> {
             File file = File.createTempFile(FILENAME_PREFIX, null, context.getCacheDir());
             file.deleteOnExit();
 
-            if (ertebat.DEBUG) {
-                Log.v(ertebat.LOG_TAG, "Saving attachment to " + file.getAbsolutePath());
+            if (Ertebat.DEBUG) {
+                Log.v(Ertebat.LOG_TAG, "Saving attachment to " + file.getAbsolutePath());
             }
 
             InputStream in = context.getContentResolver().openInputStream(mAttachment.uri);

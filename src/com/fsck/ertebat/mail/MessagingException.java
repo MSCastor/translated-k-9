@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 public class MessagingException extends Exception {
     public static final long serialVersionUID = -1;

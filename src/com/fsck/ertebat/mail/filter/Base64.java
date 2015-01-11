@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.fsck.ertebat.mail.filter;
+package com.fsck.Ertebat.mail.filter;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;

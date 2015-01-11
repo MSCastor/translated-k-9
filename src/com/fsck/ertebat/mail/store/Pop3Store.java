@@ -1,18 +1,18 @@
 
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.controller.MessageRetrievalListener;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.*;
-import com.fsck.ertebat.mail.filter.Base64;
-import com.fsck.ertebat.mail.filter.Hex;
-import com.fsck.ertebat.mail.internet.MimeMessage;
-import com.fsck.ertebat.net.ssl.TrustedSocketFactory;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.controller.MessageRetrievalListener;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.*;
+import com.fsck.Ertebat.mail.filter.Base64;
+import com.fsck.Ertebat.mail.filter.Hex;
+import com.fsck.Ertebat.mail.internet.MimeMessage;
+import com.fsck.Ertebat.net.ssl.TrustedSocketFactory;
 
 import javax.net.ssl.SSLException;
 
@@ -380,7 +380,7 @@ public class Pop3Store extends Store {
                         authExternal();
                     } else {
                         // Provide notification to user of a problem authenticating using client certificates
-                        throw new CertificateValidationException(ertebat.app.getString(R.string.auth_external_error));
+                        throw new CertificateValidationException(Ertebat.app.getString(R.string.auth_external_error));
                     }
                     break;
 
@@ -645,7 +645,7 @@ public class Pop3Store extends Store {
                         // response = "+OK msgNum msgUid"
                         String[] uidParts = response.split(" +");
                         if (uidParts.length < 3 || !"+OK".equals(uidParts[0])) {
-                            Log.e(ertebat.LOG_TAG, "ERR response: " + response);
+                            Log.e(Ertebat.LOG_TAG, "ERR response: " + response);
                             return;
                         }
                         String msgUid = uidParts[2];
@@ -703,8 +703,8 @@ public class Pop3Store extends Store {
             Set<String> unindexedUids = new HashSet<String>();
             for (String uid : uids) {
                 if (mUidToMsgMap.get(uid) == null) {
-                    if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_POP3) {
-                        Log.d(ertebat.LOG_TAG, "Need to index UID " + uid);
+                    if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_POP3) {
+                        Log.d(Ertebat.LOG_TAG, "Need to index UID " + uid);
                     }
                     unindexedUids.add(uid);
                 }
@@ -729,8 +729,8 @@ public class Pop3Store extends Store {
                     Integer msgNum = Integer.valueOf(uidParts[0]);
                     String msgUid = uidParts[1];
                     if (unindexedUids.contains(msgUid)) {
-                        if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_POP3) {
-                            Log.d(ertebat.LOG_TAG, "Got msgNum " + msgNum + " for UID " + msgUid);
+                        if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_POP3) {
+                            Log.d(Ertebat.LOG_TAG, "Got msgNum " + msgNum + " for UID " + msgUid);
                         }
 
                         Pop3Message message = mUidToMsgMap.get(msgUid);
@@ -744,8 +744,8 @@ public class Pop3Store extends Store {
         }
 
         private void indexMessage(int msgNum, Pop3Message message) {
-            if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_POP3) {
-                Log.d(ertebat.LOG_TAG, "Adding index for UID " + message.getUid() + " to msgNum " + msgNum);
+            if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_POP3) {
+                Log.d(Ertebat.LOG_TAG, "Adding index for UID " + message.getUid() + " to msgNum " + msgNum);
             }
             mMsgNumToMsgMap.put(msgNum, message);
             mUidToMsgMap.put(message.getUid(), message);
@@ -916,8 +916,8 @@ public class Pop3Store extends Store {
             // Try hard to use the TOP command if we're not asked to download the whole message.
             if (lines != -1 && (!mTopNotSupported || mCapabilities.top)) {
                 try {
-                    if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_POP3 && !mCapabilities.top) {
-                        Log.d(ertebat.LOG_TAG, "This server doesn't support the CAPA command. " +
+                    if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_POP3 && !mCapabilities.top) {
+                        Log.d(Ertebat.LOG_TAG, "This server doesn't support the CAPA command. " +
                               "Checking to see if the TOP command is supported nevertheless.");
                     }
 
@@ -931,8 +931,8 @@ public class Pop3Store extends Store {
                         // The TOP command should be supported but something went wrong.
                         throw e;
                     } else {
-                        if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_POP3) {
-                            Log.d(ertebat.LOG_TAG, "The server really doesn't support the TOP " +
+                        if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_POP3) {
+                            Log.d(Ertebat.LOG_TAG, "The server really doesn't support the TOP " +
                                   "command. Using RETR instead.");
                         }
 
@@ -1039,8 +1039,8 @@ public class Pop3Store extends Store {
                 }
             } while ((d = mIn.read()) != -1);
             String ret = sb.toString();
-            if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_POP3) {
-                Log.d(ertebat.LOG_TAG, "<<< " + ret);
+            if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_POP3) {
+                Log.d(Ertebat.LOG_TAG, "<<< " + ret);
             }
             return ret;
         }
@@ -1132,12 +1132,12 @@ public class Pop3Store extends Store {
                 open(Folder.OPEN_MODE_RW);
 
                 if (command != null) {
-                    if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_POP3) {
-                        if (sensitive && !ertebat.DEBUG_SENSITIVE) {
-                            Log.d(ertebat.LOG_TAG, ">>> "
+                    if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_POP3) {
+                        if (sensitive && !Ertebat.DEBUG_SENSITIVE) {
+                            Log.d(Ertebat.LOG_TAG, ">>> "
                                   + "[Command Hidden, Enable Sensitive Debug Logging To Show]");
                         } else {
-                            Log.d(ertebat.LOG_TAG, ">>> " + command);
+                            Log.d(Ertebat.LOG_TAG, ">>> " + command);
                         }
                     }
 
@@ -1214,7 +1214,7 @@ public class Pop3Store extends Store {
             //   }
 //         catch (MessagingException me)
 //         {
-//          Log.w(ertebat.LOG_TAG, "Could not delete non-existent message", me);
+//          Log.w(Ertebat.LOG_TAG, "Could not delete non-existent message", me);
 //         }
         }
     }

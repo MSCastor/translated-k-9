@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 import android.os.Handler;
 import android.util.Log;
@@ -94,7 +94,7 @@ public class Throttle {
     }
 
     private void debugLog(String message) {
-        Log.d(ertebat.LOG_TAG, "Throttle: [" + mName + "] " + message);
+        Log.d(Ertebat.LOG_TAG, "Throttle: [" + mName + "] " + message);
     }
 
     private boolean isCallbackScheduled() {

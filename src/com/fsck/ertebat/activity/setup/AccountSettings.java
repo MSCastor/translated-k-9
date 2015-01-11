@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.app.Dialog;
 
@@ -26,27 +26,27 @@ import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Account.FolderMode;
-import com.fsck.ertebat.Account.QuoteStyle;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.NotificationSetting;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.ChooseFolder;
-import com.fsck.ertebat.activity.ChooseIdentity;
-import com.fsck.ertebat.activity.ColorPickerDialog;
-import com.fsck.ertebat.activity.ertebatPreferenceActivity;
-import com.fsck.ertebat.activity.ManageIdentities;
-import com.fsck.ertebat.crypto.Apg;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.store.LocalStore.LocalFolder;
-import com.fsck.ertebat.mail.store.StorageManager;
-import com.fsck.ertebat.service.MailService;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Account.FolderMode;
+import com.fsck.Ertebat.Account.QuoteStyle;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.NotificationSetting;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.ChooseFolder;
+import com.fsck.Ertebat.activity.ChooseIdentity;
+import com.fsck.Ertebat.activity.ColorPickerDialog;
+import com.fsck.Ertebat.activity.ErtebatPreferenceActivity;
+import com.fsck.Ertebat.activity.ManageIdentities;
+import com.fsck.Ertebat.crypto.Apg;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalFolder;
+import com.fsck.Ertebat.mail.store.StorageManager;
+import com.fsck.Ertebat.service.MailService;
 
 
-public class AccountSettings extends ertebatPreferenceActivity {
+public class AccountSettings extends ErtebatPreferenceActivity {
     private static final String EXTRA_ACCOUNT = "account";
 
     private static final int DIALOG_COLOR_PICKER_ACCOUNT = 1;
@@ -215,7 +215,7 @@ public class AccountSettings extends ertebatPreferenceActivity {
             mIsExpungeCapable = store.isExpungeCapable();
             mIsSeenFlagSupported = store.isSeenFlagSupported();
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Could not get remote store", e);
+            Log.e(Ertebat.LOG_TAG, "Could not get remote store", e);
         }
 
         addPreferencesFromResource(R.xml.account_settings_preferences);
@@ -476,7 +476,7 @@ public class AccountSettings extends ertebatPreferenceActivity {
         mLocalStorageProvider = (ListPreference) findPreference(PREFERENCE_LOCAL_STORAGE_PROVIDER);
         {
             final Map<String, String> providers;
-            providers = StorageManager.getInstance(ertebat.app).getAvailableProviders();
+            providers = StorageManager.getInstance(Ertebat.app).getAvailableProviders();
             int i = 0;
             final String[] providerLabels = new String[providers.size()];
             final String[] providerIds = new String[providers.size()];
@@ -1028,8 +1028,8 @@ public class AccountSettings extends ertebatPreferenceActivity {
             allFolderValues = new String[folders.size() + 1];
             allFolderLabels = new String[folders.size() + 1];
 
-            allFolderValues[0] = ertebat.FOLDER_NONE;
-            allFolderLabels[0] = ertebat.FOLDER_NONE;
+            allFolderValues[0] = Ertebat.FOLDER_NONE;
+            allFolderLabels[0] = Ertebat.FOLDER_NONE;
 
             int i = 1;
             for (Folder folder : folders) {

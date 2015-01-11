@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.content.Intent;
 import android.view.ContextMenu;
@@ -11,13 +11,13 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Identity;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Identity;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
 
 public class ManageIdentities extends ChooseIdentity {
     private boolean mIdentitiesChanged = false;
-    public static final String EXTRA_IDENTITIES = "com.fsck.ertebat.EditIdentity_identities";
+    public static final String EXTRA_IDENTITIES = "com.fsck.Ertebat.EditIdentity_identities";
 
     private static final int ACTIVITY_EDIT_IDENTITY = 1;
 

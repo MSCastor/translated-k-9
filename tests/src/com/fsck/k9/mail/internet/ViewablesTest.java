@@ -1,15 +1,15 @@
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 import android.test.AndroidTestCase;
 
-import com.fsck.ertebat.activity.ertebatActivityCommon;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Message.RecipientType;
-import com.fsck.ertebat.mail.internet.MimeUtility.ViewableContainer;
+import com.fsck.Ertebat.activity.ErtebatActivityCommon;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Message.RecipientType;
+import com.fsck.Ertebat.mail.internet.MimeUtility.ViewableContainer;
 
 public class ViewablesTest extends AndroidTestCase {
 
@@ -28,7 +28,7 @@ public class ViewablesTest extends AndroidTestCase {
 
         String expectedText = bodyText;
         String expectedHtml =
-                "<pre class=\"ertebatmail\">" +
+                "<pre class=\"Ertebatmail\">" +
                 "K-9 Mail rocks :&gt;" +
                 "</pre>";
 
@@ -85,12 +85,12 @@ public class ViewablesTest extends AndroidTestCase {
                 "------------------------------------------------------------------------\r\n\r\n" +
                 bodyText2;
         String expectedHtml =
-                "<pre class=\"ertebatmail\">" +
+                "<pre class=\"Ertebatmail\">" +
                 bodyText1 +
                 "</pre>" +
                 "<p style=\"margin-top: 2.5em; margin-bottom: 1em; " +
                         "border-bottom: 1px solid #000\"></p>" +
-                "<pre class=\"ertebatmail\">" +
+                "<pre class=\"Ertebatmail\">" +
                 bodyText2 +
                 "</pre>";
 
@@ -100,7 +100,7 @@ public class ViewablesTest extends AndroidTestCase {
     }
 
     public void testTextPlusRfc822Message() throws MessagingException {
-    	ertebatActivityCommon.setLanguage(getContext(), "en");
+    	ErtebatActivityCommon.setLanguage(getContext(), "en");
         Locale.setDefault(Locale.US);
         TimeZone.setDefault(TimeZone.getTimeZone("GMT+01:00"));
 
@@ -148,7 +148,7 @@ public class ViewablesTest extends AndroidTestCase {
                 "\r\n" +
                 innerBodyText;
         String expectedHtml =
-                "<pre class=\"ertebatmail\">" +
+                "<pre class=\"Ertebatmail\">" +
                 bodyText +
                 "</pre>" +
                 "<p style=\"margin-top: 2.5em; margin-bottom: 1em; border-bottom: " +
@@ -168,7 +168,7 @@ public class ViewablesTest extends AndroidTestCase {
                 "<td>Subject</td>" +
                 "</tr>" +
                 "</table>" +
-                "<pre class=\"ertebatmail\">" +
+                "<pre class=\"Ertebatmail\">" +
                 innerBodyText +
                 "</pre>";
 

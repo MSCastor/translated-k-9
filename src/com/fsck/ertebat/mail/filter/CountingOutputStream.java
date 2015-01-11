@@ -1,4 +1,4 @@
-package com.fsck.ertebat.mail.filter;
+package com.fsck.Ertebat.mail.filter;
 
 import java.io.IOException;
 import java.io.OutputStream;

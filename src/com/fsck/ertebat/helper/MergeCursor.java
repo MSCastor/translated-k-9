@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 
 import java.util.Comparator;
 

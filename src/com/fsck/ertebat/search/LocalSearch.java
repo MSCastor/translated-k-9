@@ -1,4 +1,4 @@
-package com.fsck.ertebat.search;
+package com.fsck.Ertebat.search;
 
 import java.util.ArrayList;
 import java.util.HashSet;

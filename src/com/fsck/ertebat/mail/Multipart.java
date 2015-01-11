@@ -1,12 +1,12 @@
 
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.util.ArrayList;
 
 import org.apache.james.mime4j.util.MimeUtil;
 
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.internet.TextBody;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.internet.TextBody;
 
 public abstract class Multipart implements CompositeBody {
     protected Part mParent;

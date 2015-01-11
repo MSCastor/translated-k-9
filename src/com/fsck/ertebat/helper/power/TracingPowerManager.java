@@ -1,10 +1,10 @@
-package com.fsck.ertebat.helper.power;
+package com.fsck.Ertebat.helper.power;
 
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 import android.content.Context;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
@@ -20,8 +20,8 @@ public class TracingPowerManager {
     public static synchronized TracingPowerManager getPowerManager(Context context) {
         Context appContext = context.getApplicationContext();
         if (tracingPowerManager == null) {
-            if (ertebat.DEBUG) {
-                Log.v(ertebat.LOG_TAG, "Creating TracingPowerManager");
+            if (Ertebat.DEBUG) {
+                Log.v(Ertebat.LOG_TAG, "Creating TracingPowerManager");
             }
             tracingPowerManager = new TracingPowerManager(appContext);
         }
@@ -50,16 +50,16 @@ public class TracingPowerManager {
             tag = ntag;
             wakeLock = pm.newWakeLock(flags, tag);
             id = wakeLockId.getAndIncrement();
-            if (ertebat.DEBUG) {
-                Log.v(ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": Create");
+            if (Ertebat.DEBUG) {
+                Log.v(Ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": Create");
             }
         }
         public void acquire(long timeout) {
             synchronized (wakeLock) {
                 wakeLock.acquire(timeout);
             }
-            if (ertebat.DEBUG) {
-                Log.v(ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + " for " + timeout + " ms: acquired");
+            if (Ertebat.DEBUG) {
+                Log.v(Ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + " for " + timeout + " ms: acquired");
             }
             raiseNotification();
             if (startTime == null) {
@@ -72,8 +72,8 @@ public class TracingPowerManager {
                 wakeLock.acquire();
             }
             raiseNotification();
-            if (ertebat.DEBUG) {
-                Log.w(ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": acquired with no timeout.  K-9 Mail should not do this");
+            if (Ertebat.DEBUG) {
+                Log.w(Ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": acquired with no timeout.  K-9 Mail should not do this");
             }
             if (startTime == null) {
                 startTime = System.currentTimeMillis();
@@ -88,12 +88,12 @@ public class TracingPowerManager {
         public void release() {
             if (startTime != null) {
                 Long endTime = System.currentTimeMillis();
-                if (ertebat.DEBUG) {
-                    Log.v(ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": releasing after " + (endTime - startTime) + " ms, timeout = " + timeout + " ms");
+                if (Ertebat.DEBUG) {
+                    Log.v(Ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": releasing after " + (endTime - startTime) + " ms, timeout = " + timeout + " ms");
                 }
             } else {
-                if (ertebat.DEBUG) {
-                    Log.v(ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ", timeout = " + timeout + " ms: releasing");
+                if (Ertebat.DEBUG) {
+                    Log.v(Ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ", timeout = " + timeout + " ms: releasing");
                 }
             }
             cancelNotification();
@@ -123,11 +123,11 @@ public class TracingPowerManager {
                         public void run() {
                             if (startTime != null) {
                                 Long endTime = System.currentTimeMillis();
-                                Log.i(ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": has been active for "
+                                Log.i(Ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": has been active for "
                                       + (endTime - startTime) + " ms, timeout = " + timeout + " ms");
 
                             } else {
-                                Log.i(ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": still active, timeout = " + timeout + " ms");
+                                Log.i(Ertebat.LOG_TAG, "TracingWakeLock for tag " + tag + " / id " + id + ": still active, timeout = " + timeout + " ms");
                             }
                         }
 

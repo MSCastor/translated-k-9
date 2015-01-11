@@ -1,4 +1,4 @@
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.mail.Address;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.mail.Address;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class Contacts {
      * Array of columns to load from the database.
      *
      * Important: The _ID field is needed by
-     * {@link com.fsck.ertebat.EmailAddressAdapter} or more specificly by
+     * {@link com.fsck.Ertebat.EmailAddressAdapter} or more specificly by
      * {@link android.widget.ResourceCursorAdapter}.
      */
     protected static final String PROJECTION[] = {
@@ -313,7 +313,7 @@ public class Contacts {
                 return new ContactItem(displayName, email);
             }
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Failed to get email data", e);
+            Log.e(Ertebat.LOG_TAG, "Failed to get email data", e);
         } finally {
             Utility.closeQuietly(cursor);
         }
@@ -368,7 +368,7 @@ public class Contacts {
             Uri person = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, contactId);
             return Uri.withAppendedPath(person, ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Couldn't fetch photo for contact with email " + address, e);
+            Log.e(Ertebat.LOG_TAG, "Couldn't fetch photo for contact with email " + address, e);
             return null;
         }
     }

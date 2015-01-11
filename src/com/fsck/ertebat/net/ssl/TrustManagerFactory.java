@@ -1,10 +1,10 @@
 
-package com.fsck.ertebat.net.ssl;
+package com.fsck.Ertebat.net.ssl;
 
 import android.util.Log;
 
-import com.fsck.ertebat.mail.CertificateChainException;
-import com.fsck.ertebat.security.LocalKeyStore;
+import com.fsck.Ertebat.mail.CertificateChainException;
+import com.fsck.Ertebat.security.LocalKeyStore;
 
 import javax.net.ssl.SSLException;
 import javax.net.ssl.TrustManager;

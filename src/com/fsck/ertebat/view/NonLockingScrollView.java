@@ -15,7 +15,7 @@
  */
 
 
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import android.content.Context;
 import android.graphics.Rect;

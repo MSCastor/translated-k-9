@@ -1,4 +1,4 @@
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,10 +9,10 @@ import java.util.TreeMap;
 
 import android.content.SharedPreferences;
 
-import com.fsck.ertebat.EmailAddressValidator;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.preferences.Settings.*;
+import com.fsck.Ertebat.EmailAddressValidator;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.preferences.Settings.*;
 
 public class IdentitySettings {
     public static final Map<String, TreeMap<Integer, SettingsDescription>> SETTINGS;
@@ -85,7 +85,7 @@ public class IdentitySettings {
 
         @Override
         public Object getDefaultValue() {
-            return ertebat.app.getResources().getString(R.string.default_signature);
+            return Ertebat.app.getResources().getString(R.string.default_signature);
         }
 
         @Override

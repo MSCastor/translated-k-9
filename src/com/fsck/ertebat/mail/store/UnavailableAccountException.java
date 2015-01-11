@@ -1,6 +1,6 @@
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
-import com.fsck.ertebat.Account;
+import com.fsck.Ertebat.Account;
 
 /**
  * An {@link Account} is not

@@ -1,14 +1,14 @@
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.remotecontrol.ertebatRemoteControl;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.Account.FolderMode;
-import com.fsck.ertebat.ertebat.BACKGROUND_OPS;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.remotecontrol.ErtebatRemoteControl;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.Account.FolderMode;
+import com.fsck.Ertebat.Ertebat.BACKGROUND_OPS;
 
-import static com.fsck.ertebat.remotecontrol.ertebatRemoteControl.*;
+import static com.fsck.Ertebat.remotecontrol.ErtebatRemoteControl.*;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,10 +18,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class RemoteControlService extends CoreService {
-    private final static String RESCHEDULE_ACTION = "com.fsck.ertebat.service.RemoteControlService.RESCHEDULE_ACTION";
-    private final static String PUSH_RESTART_ACTION = "com.fsck.ertebat.service.RemoteControlService.PUSH_RESTART_ACTION";
+    private final static String RESCHEDULE_ACTION = "com.fsck.Ertebat.service.RemoteControlService.RESCHEDULE_ACTION";
+    private final static String PUSH_RESTART_ACTION = "com.fsck.Ertebat.service.RemoteControlService.PUSH_RESTART_ACTION";
 
-    private final static String SET_ACTION = "com.fsck.ertebat.service.RemoteControlService.SET_ACTION";
+    private final static String SET_ACTION = "com.fsck.Ertebat.service.RemoteControlService.SET_ACTION";
 
     public static void set(Context context, Intent i, Integer wakeLockId) {
         //  Intent i = new Intent();
@@ -35,34 +35,34 @@ public class RemoteControlService extends CoreService {
 
     @Override
     public int startService(final Intent intent, final int startId) {
-        if (ertebat.DEBUG)
-            Log.i(ertebat.LOG_TAG, "RemoteControlService started with startId = " + startId);
+        if (Ertebat.DEBUG)
+            Log.i(Ertebat.LOG_TAG, "RemoteControlService started with startId = " + startId);
         final Preferences preferences = Preferences.getPreferences(this);
 
         if (RESCHEDULE_ACTION.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "RemoteControlService requesting MailService poll reschedule");
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "RemoteControlService requesting MailService poll reschedule");
             MailService.actionReschedulePoll(this, null);
         }
         if (PUSH_RESTART_ACTION.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "RemoteControlService requesting MailService push restart");
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "RemoteControlService requesting MailService push restart");
             MailService.actionRestartPushers(this, null);
         } else if (RemoteControlService.SET_ACTION.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "RemoteControlService got request to change settings");
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "RemoteControlService got request to change settings");
             execute(getApplication(), new Runnable() {
                 public void run() {
                     try {
                         boolean needsReschedule = false;
                         boolean needsPushRestart = false;
-                        String uuid = intent.getStringExtra(ertebat_ACCOUNT_UUID);
-                        boolean allAccounts = intent.getBooleanExtra(ertebat_ALL_ACCOUNTS, false);
-                        if (ertebat.DEBUG) {
+                        String uuid = intent.getStringExtra(Ertebat_ACCOUNT_UUID);
+                        boolean allAccounts = intent.getBooleanExtra(Ertebat_ALL_ACCOUNTS, false);
+                        if (Ertebat.DEBUG) {
                             if (allAccounts) {
-                                Log.i(ertebat.LOG_TAG, "RemoteControlService changing settings for all accounts");
+                                Log.i(Ertebat.LOG_TAG, "RemoteControlService changing settings for all accounts");
                             } else {
-                                Log.i(ertebat.LOG_TAG, "RemoteControlService changing settings for account with UUID " + uuid);
+                                Log.i(Ertebat.LOG_TAG, "RemoteControlService changing settings for account with UUID " + uuid);
                             }
                         }
                         Account[] accounts = preferences.getAccounts();
@@ -70,15 +70,15 @@ public class RemoteControlService extends CoreService {
                             //warning: account may not be isAvailable()
                             if (allAccounts || account.getUuid().equals(uuid)) {
 
-                                if (ertebat.DEBUG)
-                                    Log.i(ertebat.LOG_TAG, "RemoteControlService changing settings for account " + account.getDescription());
+                                if (Ertebat.DEBUG)
+                                    Log.i(Ertebat.LOG_TAG, "RemoteControlService changing settings for account " + account.getDescription());
 
-                                String notificationEnabled = intent.getStringExtra(ertebat_NOTIFICATION_ENABLED);
-                                String ringEnabled = intent.getStringExtra(ertebat_RING_ENABLED);
-                                String vibrateEnabled = intent.getStringExtra(ertebat_VIBRATE_ENABLED);
-                                String pushClasses = intent.getStringExtra(ertebat_PUSH_CLASSES);
-                                String pollClasses = intent.getStringExtra(ertebat_POLL_CLASSES);
-                                String pollFrequency = intent.getStringExtra(ertebat_POLL_FREQUENCY);
+                                String notificationEnabled = intent.getStringExtra(Ertebat_NOTIFICATION_ENABLED);
+                                String ringEnabled = intent.getStringExtra(Ertebat_RING_ENABLED);
+                                String vibrateEnabled = intent.getStringExtra(Ertebat_VIBRATE_ENABLED);
+                                String pushClasses = intent.getStringExtra(Ertebat_PUSH_CLASSES);
+                                String pollClasses = intent.getStringExtra(Ertebat_POLL_CLASSES);
+                                String pollFrequency = intent.getStringExtra(Ertebat_POLL_FREQUENCY);
 
                                 if (notificationEnabled != null) {
                                     account.setNotifyNewMail(Boolean.parseBoolean(notificationEnabled));
@@ -107,46 +107,46 @@ public class RemoteControlService extends CoreService {
                                 account.save(Preferences.getPreferences(RemoteControlService.this));
                             }
                         }
-                        if (ertebat.DEBUG)
-                            Log.i(ertebat.LOG_TAG, "RemoteControlService changing global settings");
+                        if (Ertebat.DEBUG)
+                            Log.i(Ertebat.LOG_TAG, "RemoteControlService changing global settings");
 
-                        String backgroundOps = intent.getStringExtra(ertebat_BACKGROUND_OPERATIONS);
-                        if (ertebatRemoteControl.ertebat_BACKGROUND_OPERATIONS_ALWAYS.equals(backgroundOps)
-                                || ertebatRemoteControl.ertebat_BACKGROUND_OPERATIONS_NEVER.equals(backgroundOps)
-                                || ertebatRemoteControl.ertebat_BACKGROUND_OPERATIONS_WHEN_CHECKED_AUTO_SYNC.equals(backgroundOps)) {
+                        String backgroundOps = intent.getStringExtra(Ertebat_BACKGROUND_OPERATIONS);
+                        if (ErtebatRemoteControl.Ertebat_BACKGROUND_OPERATIONS_ALWAYS.equals(backgroundOps)
+                                || ErtebatRemoteControl.Ertebat_BACKGROUND_OPERATIONS_NEVER.equals(backgroundOps)
+                                || ErtebatRemoteControl.Ertebat_BACKGROUND_OPERATIONS_WHEN_CHECKED_AUTO_SYNC.equals(backgroundOps)) {
                             BACKGROUND_OPS newBackgroundOps = BACKGROUND_OPS.valueOf(backgroundOps);
-                            boolean needsReset = ertebat.setBackgroundOps(newBackgroundOps);
+                            boolean needsReset = Ertebat.setBackgroundOps(newBackgroundOps);
                             needsPushRestart |= needsReset;
                             needsReschedule |= needsReset;
                         }
 
-                        String theme = intent.getStringExtra(ertebat_THEME);
+                        String theme = intent.getStringExtra(Ertebat_THEME);
                         if (theme != null) {
-                            ertebat.setertebatTheme(ertebatRemoteControl.ertebat_THEME_DARK.equals(theme) ? ertebat.Theme.DARK : ertebat.Theme.LIGHT);
+                            Ertebat.setErtebatTheme(ErtebatRemoteControl.Ertebat_THEME_DARK.equals(theme) ? Ertebat.Theme.DARK : Ertebat.Theme.LIGHT);
                         }
 
                         SharedPreferences sPrefs = preferences.getPreferences();
 
                         Editor editor = sPrefs.edit();
-                        ertebat.save(editor);
+                        Ertebat.save(editor);
                         editor.commit();
 
                         if (needsReschedule) {
                             Intent i = new Intent();
-                            i.setClassName(getApplication().getPackageName(), "com.fsck.ertebat.service.RemoteControlService");
+                            i.setClassName(getApplication().getPackageName(), "com.fsck.Ertebat.service.RemoteControlService");
                             i.setAction(RESCHEDULE_ACTION);
                             long nextTime = System.currentTimeMillis() + 10000;
                             BootReceiver.scheduleIntent(RemoteControlService.this, nextTime, i);
                         }
                         if (needsPushRestart) {
                             Intent i = new Intent();
-                            i.setClassName(getApplication().getPackageName(), "com.fsck.ertebat.service.RemoteControlService");
+                            i.setClassName(getApplication().getPackageName(), "com.fsck.Ertebat.service.RemoteControlService");
                             i.setAction(PUSH_RESTART_ACTION);
                             long nextTime = System.currentTimeMillis() + 10000;
                             BootReceiver.scheduleIntent(RemoteControlService.this, nextTime, i);
                         }
                     } catch (Exception e) {
-                        Log.e(ertebat.LOG_TAG, "Could not handle ertebat_SET", e);
+                        Log.e(Ertebat.LOG_TAG, "Could not handle Ertebat_SET", e);
                         Toast toast = Toast.makeText(RemoteControlService.this, e.getMessage(), Toast.LENGTH_LONG);
                         toast.show();
                     }

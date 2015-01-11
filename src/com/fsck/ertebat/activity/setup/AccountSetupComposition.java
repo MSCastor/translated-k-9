@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,12 +9,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.ertebatActivity;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.ErtebatActivity;
 
-public class AccountSetupComposition extends ertebatActivity {
+public class AccountSetupComposition extends ErtebatActivity {
 
     private static final String EXTRA_ACCOUNT = "account";
 

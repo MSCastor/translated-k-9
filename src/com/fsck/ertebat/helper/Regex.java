@@ -19,7 +19,7 @@
  *
  */
 
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 
 import java.util.regex.Pattern;
 

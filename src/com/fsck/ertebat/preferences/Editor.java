@@ -1,7 +1,7 @@
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import android.util.Log;
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,13 +29,13 @@ public class Editor implements android.content.SharedPreferences.Editor {
             String key = entry.getKey();
             Object value = entry.getValue();
             if (key != null && value != null) {
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "Copying key '" + key + "', value '" + value + "'");
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "Copying key '" + key + "', value '" + value + "'");
                 }
                 changes.put(key, "" + value);
             } else {
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "Skipping copying key '" + key + "', value '" + value + "'");
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "Skipping copying key '" + key + "', value '" + value + "'");
                 }
             }
         }
@@ -62,14 +62,14 @@ public class Editor implements android.content.SharedPreferences.Editor {
             commitChanges();
             return true;
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Failed to save preferences", e);
+            Log.e(Ertebat.LOG_TAG, "Failed to save preferences", e);
             return false;
         }
     }
 
     public void commitChanges() {
         long startTime = System.currentTimeMillis();
-        Log.i(ertebat.LOG_TAG, "Committing preference changes");
+        Log.i(Ertebat.LOG_TAG, "Committing preference changes");
         Runnable committer = new Runnable() {
             public void run() {
                 if (removeAll) {
@@ -92,7 +92,7 @@ public class Editor implements android.content.SharedPreferences.Editor {
         };
         storage.doInTransaction(committer);
         long endTime = System.currentTimeMillis();
-        Log.i(ertebat.LOG_TAG, "Preferences commit took " + (endTime - startTime) + "ms");
+        Log.i(Ertebat.LOG_TAG, "Preferences commit took " + (endTime - startTime) + "ms");
 
     }
 

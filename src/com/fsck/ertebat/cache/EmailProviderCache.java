@@ -1,4 +1,4 @@
-package com.fsck.ertebat.cache;
+package com.fsck.Ertebat.cache;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,11 +9,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
 
-import com.fsck.ertebat.fragment.MessageListFragment;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.store.LocalStore.LocalFolder;
-import com.fsck.ertebat.mail.store.LocalStore.LocalMessage;
-import com.fsck.ertebat.provider.EmailProvider;
+import com.fsck.Ertebat.fragment.MessageListFragment;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalFolder;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalMessage;
+import com.fsck.Ertebat.provider.EmailProvider;
 
 /**
  * Cache to bridge the time needed to write (user-initiated) changes to the database.

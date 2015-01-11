@@ -1,8 +1,8 @@
 
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
-import com.fsck.ertebat.mail.Body;
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Body;
+import com.fsck.Ertebat.mail.MessagingException;
 
 import java.io.*;
 

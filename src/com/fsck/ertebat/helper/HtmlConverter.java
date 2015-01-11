@@ -1,9 +1,9 @@
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 
 import android.text.*;
 import android.text.Html.TagHandler;
 import android.util.Log;
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 import org.xml.sax.XMLReader;
 
 import java.io.IOException;
@@ -76,7 +76,7 @@ public class HtmlConverter {
             }
         }
 
-        private static final String IGNORED_ANNOTATION_KEY = "ertebat_ANNOTATION";
+        private static final String IGNORED_ANNOTATION_KEY = "Ertebat_ANNOTATION";
         private static final String IGNORED_ANNOTATION_VALUE = "hiddenSpan";
 
         /**
@@ -106,7 +106,7 @@ public class HtmlConverter {
         }
 
         /**
-         * Fetch the matching opening Annotation object and verify that it's the one added by ertebat.
+         * Fetch the matching opening Annotation object and verify that it's the one added by Ertebat.
          * @param output Spannable string we're working with.
          * @return Starting Annotation object.
          */
@@ -135,7 +135,7 @@ public class HtmlConverter {
      * <p>
      * No HTML headers or footers are added to the result.  Headers and footers
      * are added at display time in
-     * {@link com.fsck.ertebat.view#MessageWebView.setText(String) MessageWebView.setText()}
+     * {@link com.fsck.Ertebat.view#MessageWebView.setText(String) MessageWebView.setText()}
      * </p>
      *
      * @param text
@@ -168,7 +168,7 @@ public class HtmlConverter {
             }
         } catch (IOException e) {
             //Should never happen
-            Log.e(ertebat.LOG_TAG, "Could not read string to convert text to HTML:", e);
+            Log.e(Ertebat.LOG_TAG, "Could not read string to convert text to HTML:", e);
         }
 
         buff.append(htmlifyMessageFooter());
@@ -191,7 +191,7 @@ public class HtmlConverter {
      * <p>
      * No HTML headers or footers are added to the result.  Headers and footers
      * are added at display time in
-     * {@link com.fsck.ertebat.view#MessageWebView.setText(String) MessageWebView.setText()}
+     * {@link com.fsck.Ertebat.view#MessageWebView.setText(String) MessageWebView.setText()}
      * </p>
      * <p>
      * To convert to a fragment, use {@link #textToHtmlFragment(String)} .
@@ -262,7 +262,7 @@ public class HtmlConverter {
             }
         } catch (IOException e) {
             //Should never happen
-            Log.e(ertebat.LOG_TAG, "Could not read string to convert text to HTML:", e);
+            Log.e(Ertebat.LOG_TAG, "Could not read string to convert text to HTML:", e);
         }
         // Close off any quotes we may have opened.
         if (quoteDepth > 0) {
@@ -350,7 +350,7 @@ public class HtmlConverter {
     protected static final String QUOTE_COLOR_LEVEL_3 = "#8ae234";
     protected static final String QUOTE_COLOR_LEVEL_4 = "#fcaf3e";
     protected static final String QUOTE_COLOR_LEVEL_5 = "#e9b96e";
-    private static final String ertebatMAIL_CSS_CLASS = "ertebatmail";
+    private static final String ErtebatMAIL_CSS_CLASS = "Ertebatmail";
 
     /**
      * Return an HTML hex color string for a given quote level.
@@ -1266,7 +1266,7 @@ public class HtmlConverter {
     }
 
     private static String htmlifyMessageHeader() {
-        return "<pre class=\"" + ertebatMAIL_CSS_CLASS + "\">";
+        return "<pre class=\"" + ErtebatMAIL_CSS_CLASS + "\">";
     }
 
     private static String htmlifyMessageFooter() {
@@ -1286,10 +1286,10 @@ public class HtmlConverter {
      *      {@code <head>} element when messages are displayed.
      */
     public static String cssStylePre() {
-        final String font = ertebat.messageViewFixedWidthFont()
+        final String font = Ertebat.messageViewFixedWidthFont()
                 ? "monospace"
                 : "sans-serif";
-        return "<style type=\"text/css\"> pre." + ertebatMAIL_CSS_CLASS +
+        return "<style type=\"text/css\"> pre." + ErtebatMAIL_CSS_CLASS +
                 " {white-space: pre-wrap; word-wrap:break-word; " +
                 "font-family: " + font + "; margin-top: 0px}</style>";
     }

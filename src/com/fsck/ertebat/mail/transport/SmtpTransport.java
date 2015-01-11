@@ -1,21 +1,21 @@
 
-package com.fsck.ertebat.mail.transport;
+package com.fsck.Ertebat.mail.transport;
 
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.*;
-import com.fsck.ertebat.mail.Message.RecipientType;
-import com.fsck.ertebat.mail.filter.EOLConvertingOutputStream;
-import com.fsck.ertebat.mail.filter.LineWrapOutputStream;
-import com.fsck.ertebat.mail.filter.PeekableInputStream;
-import com.fsck.ertebat.mail.filter.SmtpDataStuffing;
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.store.LocalStore.LocalMessage;
-import com.fsck.ertebat.net.ssl.TrustedSocketFactory;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.*;
+import com.fsck.Ertebat.mail.Message.RecipientType;
+import com.fsck.Ertebat.mail.filter.EOLConvertingOutputStream;
+import com.fsck.Ertebat.mail.filter.LineWrapOutputStream;
+import com.fsck.Ertebat.mail.filter.PeekableInputStream;
+import com.fsck.Ertebat.mail.filter.SmtpDataStuffing;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalMessage;
+import com.fsck.Ertebat.net.ssl.TrustedSocketFactory;
 
 import javax.net.ssl.SSLException;
 
@@ -318,8 +318,8 @@ public class SmtpTransport extends Transport {
                 try {
                     mLargestAcceptableMessage = Integer.parseInt(extensions.get("SIZE"));
                 } catch (Exception e) {
-                    if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_SMTP) {
-                        Log.d(ertebat.LOG_TAG, "Tried to parse " + extensions.get("SIZE") + " and get an int", e);
+                    if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_SMTP) {
+                        Log.d(Ertebat.LOG_TAG, "Tried to parse " + extensions.get("SIZE") + " and get an int", e);
                     }
                 }
             }
@@ -369,7 +369,7 @@ public class SmtpTransport extends Transport {
                          * EXTERNAL when using client certificates. That way, the
                          * user can be notified of a problem during account setup.
                          */
-                        throw new MessagingException(ertebat.app.getString(R.string.auth_external_error));
+                        throw new MessagingException(Ertebat.app.getString(R.string.auth_external_error));
                     }
                     break;
 
@@ -451,14 +451,14 @@ public class SmtpTransport extends Transport {
                 extensions.put(pair[0].toUpperCase(Locale.US), pair.length == 1 ? "" : pair[1]);
             }
         } catch (NegativeSmtpReplyException e) {
-            if (ertebat.DEBUG) {
-                Log.v(ertebat.LOG_TAG, "Server doesn't support the EHLO command. Trying HELO...");
+            if (Ertebat.DEBUG) {
+                Log.v(Ertebat.LOG_TAG, "Server doesn't support the EHLO command. Trying HELO...");
             }
 
             try {
                 executeSimpleCommand("HELO " + host);
             } catch (NegativeSmtpReplyException e2) {
-                Log.w(ertebat.LOG_TAG, "Server doesn't support the HELO command. Continuing anyway.");
+                Log.w(Ertebat.LOG_TAG, "Server doesn't support the HELO command. Continuing anyway.");
             }
         }
         return extensions;
@@ -541,7 +541,7 @@ public class SmtpTransport extends Transport {
             // "5xx text" -responses are permanent failures
             String msg = e.getMessage();
             if (msg != null && msg.startsWith("5")) {
-                Log.w(ertebat.LOG_TAG, "handling 5xx SMTP error code as a permanent failure");
+                Log.w(Ertebat.LOG_TAG, "handling 5xx SMTP error code as a permanent failure");
                 possibleSend = false;
             }
 
@@ -595,21 +595,21 @@ public class SmtpTransport extends Transport {
             }
         }
         String ret = sb.toString();
-        if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_SMTP)
-            Log.d(ertebat.LOG_TAG, "SMTP <<< " + ret);
+        if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_SMTP)
+            Log.d(Ertebat.LOG_TAG, "SMTP <<< " + ret);
 
         return ret;
     }
 
     private void writeLine(String s, boolean sensitive) throws IOException {
-        if (ertebat.DEBUG && ertebat.DEBUG_PROTOCOL_SMTP) {
+        if (Ertebat.DEBUG && Ertebat.DEBUG_PROTOCOL_SMTP) {
             final String commandToLog;
-            if (sensitive && !ertebat.DEBUG_SENSITIVE) {
+            if (sensitive && !Ertebat.DEBUG_SENSITIVE) {
                 commandToLog = "SMTP >>> *sensitive*";
             } else {
                 commandToLog = "SMTP >>> " + s;
             }
-            Log.d(ertebat.LOG_TAG, commandToLog);
+            Log.d(Ertebat.LOG_TAG, commandToLog);
         }
 
         byte[] data = s.concat("\r\n").getBytes();

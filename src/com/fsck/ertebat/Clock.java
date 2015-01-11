@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 /**
  * A class provide the current time (like {@link System#currentTimeMillis()}).

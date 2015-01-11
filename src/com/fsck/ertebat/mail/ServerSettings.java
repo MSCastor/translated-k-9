@@ -1,9 +1,9 @@
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import com.fsck.ertebat.Account;
+import com.fsck.Ertebat.Account;
 
 /**
  * This is an abstraction to get rid of the store- and transport-specific URIs.

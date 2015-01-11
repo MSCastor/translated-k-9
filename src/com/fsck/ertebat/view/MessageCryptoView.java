@@ -1,4 +1,4 @@
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import android.content.Context;
 import android.app.Fragment;
@@ -6,14 +6,14 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.crypto.CryptoProvider;
-import com.fsck.ertebat.crypto.PgpData;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.crypto.CryptoProvider;
+import com.fsck.Ertebat.crypto.PgpData;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
 
 
 public class MessageCryptoView extends LinearLayout {
@@ -110,7 +110,7 @@ public class MessageCryptoView extends LinearLayout {
                     }
                     cryptoProvider.decrypt(mFragment, data, pgpData);
                 } catch (MessagingException me) {
-                    Log.e(ertebat.LOG_TAG, "Unable to decrypt email.", me);
+                    Log.e(Ertebat.LOG_TAG, "Unable to decrypt email.", me);
                 }
             }
         });

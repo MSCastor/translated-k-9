@@ -1,10 +1,10 @@
-package com.fsck.ertebat.mail.store;
+package com.fsck.Ertebat.mail.store;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import com.fsck.ertebat.mail.filter.PeekableInputStream;
-import com.fsck.ertebat.mail.store.ImapResponseParser.ImapList;
-import com.fsck.ertebat.mail.store.ImapResponseParser.ImapResponse;
+import com.fsck.Ertebat.mail.filter.PeekableInputStream;
+import com.fsck.Ertebat.mail.store.ImapResponseParser.ImapList;
+import com.fsck.Ertebat.mail.store.ImapResponseParser.ImapResponse;
 import junit.framework.TestCase;
 
 public class ImapResponseParserTest extends TestCase {

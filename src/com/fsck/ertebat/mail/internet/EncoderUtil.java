@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;

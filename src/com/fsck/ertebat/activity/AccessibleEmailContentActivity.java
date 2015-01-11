@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.util.ArrayList;
 
-import com.top.ertebat.mail.R;
+import com.top.Ertebat.mail.R;
 
 import android.app.ListActivity;
 import android.os.Bundle;

@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.net.ssl;
+package com.fsck.Ertebat.net.ssl;
 
 import java.net.Socket;
 import java.security.Principal;
@@ -20,10 +20,10 @@ import android.security.KeyChain;
 import android.security.KeyChainException;
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.mail.CertificateValidationException;
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.mail.CertificateValidationException;
+import com.fsck.Ertebat.mail.MessagingException;
 
 /**
  * For client certificate authentication! Provide private keys and certificates
@@ -207,10 +207,10 @@ public class KeyChainKeyManager extends X509ExtendedKeyManager {
                     return mAlias;
                 }
             }
-            Log.w(ertebat.LOG_TAG, "Client certificate " + mAlias + " not issued by any of the requested issuers");
+            Log.w(Ertebat.LOG_TAG, "Client certificate " + mAlias + " not issued by any of the requested issuers");
             return null;
         }
-        Log.w(ertebat.LOG_TAG, "Client certificate " + mAlias + " does not match any of the requested key types");
+        Log.w(Ertebat.LOG_TAG, "Client certificate " + mAlias + " does not match any of the requested key types");
         return null;
     }
 }

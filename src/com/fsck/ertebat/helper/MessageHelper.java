@@ -1,19 +1,19 @@
-package com.fsck.ertebat.helper;
+package com.fsck.Ertebat.helper;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.FolderInfoHolder;
-import com.fsck.ertebat.activity.MessageInfoHolder;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Message.RecipientType;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.FolderInfoHolder;
+import com.fsck.Ertebat.activity.MessageInfoHolder;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Message.RecipientType;
 
 public class MessageHelper {
 
@@ -34,7 +34,7 @@ public class MessageHelper {
 
     public void populate(final MessageInfoHolder target, final Message message,
                          final FolderInfoHolder folder, final Account account) {
-        final Contacts contactHelper = ertebat.showContactName() ? Contacts.getInstance(mContext) : null;
+        final Contacts contactHelper = Ertebat.showContactName() ? Contacts.getInstance(mContext) : null;
         try {
             target.message = message;
             target.compareArrival = message.getInternalDate();
@@ -77,12 +77,12 @@ public class MessageHelper {
             target.uri = "email://messages/" + account.getAccountNumber() + "/" + message.getFolder().getName() + "/" + message.getUid();
 
         } catch (MessagingException me) {
-            Log.w(ertebat.LOG_TAG, "Unable to load message info", me);
+            Log.w(Ertebat.LOG_TAG, "Unable to load message info", me);
         }
     }
 
     public CharSequence getDisplayName(Account account, Address[] fromAddrs, Address[] toAddrs) {
-        final Contacts contactHelper = ertebat.showContactName() ? Contacts.getInstance(mContext) : null;
+        final Contacts contactHelper = Ertebat.showContactName() ? Contacts.getInstance(mContext) : null;
 
         CharSequence displayName;
         if (fromAddrs.length > 0 && account.isAnIdentity(fromAddrs[0])) {

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 /**
  * Filter to search for occurences of the search-expression in any place of the
@@ -113,7 +113,7 @@ public class FolderListFilter<T> extends Filter {
                     }
                 }
             } else {
-                Log.w(ertebat.LOG_TAG, "FolderListFilter.publishResults - null search-result ");
+                Log.w(Ertebat.LOG_TAG, "FolderListFilter.publishResults - null search-result ");
             }
 
             // Send notification that the data set changed now

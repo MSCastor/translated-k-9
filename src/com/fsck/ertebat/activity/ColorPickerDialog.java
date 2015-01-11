@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.app.AlertDialog;
 import android.content.*;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.larswerkman.colorpicker.ColorPicker;
-import com.top.ertebat.mail.R;
+import com.top.Ertebat.mail.R;
 
 
 /**

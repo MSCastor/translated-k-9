@@ -1,7 +1,7 @@
 
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
-import com.fsck.ertebat.helper.Utility;
+import com.fsck.Ertebat.helper.Utility;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

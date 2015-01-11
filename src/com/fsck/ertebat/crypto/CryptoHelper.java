@@ -1,13 +1,13 @@
 
-package com.fsck.ertebat.crypto;
+package com.fsck.Ertebat.crypto;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
 
 public class CryptoHelper {
 

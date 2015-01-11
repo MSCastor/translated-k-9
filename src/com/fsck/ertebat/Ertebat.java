@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,30 +26,30 @@ import android.os.StrictMode;
 import android.text.format.Time;
 import android.util.Log;
 
-import com.fsck.ertebat.Account.SortType;
-import com.fsck.ertebat.activity.MessageCompose;
-import com.fsck.ertebat.activity.UpgradeDatabases;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.internet.BinaryTempFileBody;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.provider.UnreadWidgetProvider;
-import com.fsck.ertebat.security.LocalKeyStore;
-import com.fsck.ertebat.service.BootReceiver;
-import com.fsck.ertebat.service.MailService;
-import com.fsck.ertebat.service.ShutdownReceiver;
-import com.fsck.ertebat.service.StorageGoneReceiver;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account.SortType;
+import com.fsck.Ertebat.activity.MessageCompose;
+import com.fsck.Ertebat.activity.UpgradeDatabases;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.internet.BinaryTempFileBody;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.provider.UnreadWidgetProvider;
+import com.fsck.Ertebat.security.LocalKeyStore;
+import com.fsck.Ertebat.service.BootReceiver;
+import com.fsck.Ertebat.service.MailService;
+import com.fsck.Ertebat.service.ShutdownReceiver;
+import com.fsck.Ertebat.service.StorageGoneReceiver;
+import com.top.Ertebat.mail.R;
 
-public class ertebat extends Application {
+public class Ertebat extends Application {
     /**
-     * Components that are interested in knowing when the ertebat instance is
+     * Components that are interested in knowing when the Ertebat instance is
      * available and ready (Android invokes Application.onCreate() after other
      * components') should implement this interface and register using
-     * {@link ertebat#registerApplicationAware(ApplicationAware)}.
+     * {@link Ertebat#registerApplicationAware(ApplicationAware)}.
      */
     public static interface ApplicationAware {
         /**
@@ -64,7 +64,7 @@ public class ertebat extends Application {
 
     public static Application app = null;
     public static File tempDirectory;
-    public static final String LOG_TAG = "ertebat";
+    public static final String LOG_TAG = "Ertebat";
 
     /**
      * Name of the {@link SharedPreferences} file used to store the last known version of the
@@ -84,7 +84,7 @@ public class ertebat extends Application {
     private static final String KEY_LAST_ACCOUNT_DATABASE_VERSION = "last_account_database_version";
 
     /**
-     * Components that are interested in knowing when the ertebat instance is
+     * Components that are interested in knowing when the Ertebat instance is
      * available and ready.
      *
      * @see ApplicationAware
@@ -94,8 +94,8 @@ public class ertebat extends Application {
     /**
      * This will be {@code true} once the initialization is complete and {@link #notifyObservers()}
      * was called.
-     * Afterwards calls to {@link #registerApplicationAware(com.fsck.ertebat.ertebat.ApplicationAware)} will
-     * immediately call {@link com.fsck.ertebat.ertebat.ApplicationAware#initializeComponent(ertebat)} for the
+     * Afterwards calls to {@link #registerApplicationAware(com.fsck.Ertebat.Ertebat.ApplicationAware)} will
+     * immediately call {@link com.fsck.Ertebat.Ertebat.ApplicationAware#initializeComponent(Ertebat)} for the
      * supplied argument.
      */
     private static boolean sInitialized = false;
@@ -119,7 +119,7 @@ public class ertebat extends Application {
      * on the phone, without adb.  Set to null to disable
      */
     public static final String logFile = null;
-    //public static final String logFile = Environment.getExternalStorageDirectory() + "/ertebatmail/debug.log";
+    //public static final String logFile = Environment.getExternalStorageDirectory() + "/Ertebatmail/debug.log";
 
     /**
      * If this is enabled, various development settings will be enabled
@@ -179,7 +179,7 @@ public class ertebat extends Application {
      *
      * Feature is enabled when DEBUG == true
      */
-    public static String ERROR_FOLDER_NAME = "ertebatmail-errors";
+    public static String ERROR_FOLDER_NAME = "Ertebatmail-errors";
 
     /**
      * A reference to the {@link SharedPreferences} used for caching the last known database
@@ -315,11 +315,11 @@ public class ertebat extends Application {
      */
     public static final String FOLDER_NONE = "-NONE-";
 
-    public static final String LOCAL_UID_PREFIX = "ertebatLOCAL:";
+    public static final String LOCAL_UID_PREFIX = "ErtebatLOCAL:";
 
-    public static final String REMOTE_UID_PREFIX = "ertebatREMOTE:";
+    public static final String REMOTE_UID_PREFIX = "ErtebatREMOTE:";
 
-    public static final String IDENTITY_HEADER = "X-ertebatmail-Identity";
+    public static final String IDENTITY_HEADER = "X-Ertebatmail-Identity";
 
     /**
      * Specifies how many messages will be shown in a folder by default. This number is set
@@ -385,27 +385,27 @@ public class ertebat extends Application {
     public static class Intents {
 
         public static class EmailReceived {
-            public static final String ACTION_EMAIL_RECEIVED    = "com.fsck.ertebat.intent.action.EMAIL_RECEIVED";
-            public static final String ACTION_EMAIL_DELETED     = "com.fsck.ertebat.intent.action.EMAIL_DELETED";
-            public static final String ACTION_REFRESH_OBSERVER  = "com.fsck.ertebat.intent.action.REFRESH_OBSERVER";
-            public static final String EXTRA_ACCOUNT            = "com.fsck.ertebat.intent.extra.ACCOUNT";
-            public static final String EXTRA_FOLDER             = "com.fsck.ertebat.intent.extra.FOLDER";
-            public static final String EXTRA_SENT_DATE          = "com.fsck.ertebat.intent.extra.SENT_DATE";
-            public static final String EXTRA_FROM               = "com.fsck.ertebat.intent.extra.FROM";
-            public static final String EXTRA_TO                 = "com.fsck.ertebat.intent.extra.TO";
-            public static final String EXTRA_CC                 = "com.fsck.ertebat.intent.extra.CC";
-            public static final String EXTRA_BCC                = "com.fsck.ertebat.intent.extra.BCC";
-            public static final String EXTRA_SUBJECT            = "com.fsck.ertebat.intent.extra.SUBJECT";
-            public static final String EXTRA_FROM_SELF          = "com.fsck.ertebat.intent.extra.FROM_SELF";
+            public static final String ACTION_EMAIL_RECEIVED    = "com.fsck.Ertebat.intent.action.EMAIL_RECEIVED";
+            public static final String ACTION_EMAIL_DELETED     = "com.fsck.Ertebat.intent.action.EMAIL_DELETED";
+            public static final String ACTION_REFRESH_OBSERVER  = "com.fsck.Ertebat.intent.action.REFRESH_OBSERVER";
+            public static final String EXTRA_ACCOUNT            = "com.fsck.Ertebat.intent.extra.ACCOUNT";
+            public static final String EXTRA_FOLDER             = "com.fsck.Ertebat.intent.extra.FOLDER";
+            public static final String EXTRA_SENT_DATE          = "com.fsck.Ertebat.intent.extra.SENT_DATE";
+            public static final String EXTRA_FROM               = "com.fsck.Ertebat.intent.extra.FROM";
+            public static final String EXTRA_TO                 = "com.fsck.Ertebat.intent.extra.TO";
+            public static final String EXTRA_CC                 = "com.fsck.Ertebat.intent.extra.CC";
+            public static final String EXTRA_BCC                = "com.fsck.Ertebat.intent.extra.BCC";
+            public static final String EXTRA_SUBJECT            = "com.fsck.Ertebat.intent.extra.SUBJECT";
+            public static final String EXTRA_FROM_SELF          = "com.fsck.Ertebat.intent.extra.FROM_SELF";
         }
 
         public static class Share {
             /*
-             * We don't want to use EmailReceived.EXTRA_FROM ("com.fsck.ertebat.intent.extra.FROM")
+             * We don't want to use EmailReceived.EXTRA_FROM ("com.fsck.Ertebat.intent.extra.FROM")
              * because of different semantics (String array vs. string with comma separated
              * email addresses)
              */
-            public static final String EXTRA_FROM               = "com.fsck.ertebat.intent.extra.SENDER";
+            public static final String EXTRA_FROM               = "com.fsck.Ertebat.intent.extra.SENDER";
         }
     }
 
@@ -482,7 +482,7 @@ public class ertebat extends Application {
                 try {
                     queue.put(new Handler());
                 } catch (InterruptedException e) {
-                    Log.e(ertebat.LOG_TAG, "", e);
+                    Log.e(Ertebat.LOG_TAG, "", e);
                 }
                 Looper.loop();
             }
@@ -492,19 +492,19 @@ public class ertebat extends Application {
         try {
             final Handler storageGoneHandler = queue.take();
             registerReceiver(receiver, filter, null, storageGoneHandler);
-            Log.i(ertebat.LOG_TAG, "Registered: unmount receiver");
+            Log.i(Ertebat.LOG_TAG, "Registered: unmount receiver");
         } catch (InterruptedException e) {
-            Log.e(ertebat.LOG_TAG, "Unable to register unmount receiver", e);
+            Log.e(Ertebat.LOG_TAG, "Unable to register unmount receiver", e);
         }
 
         registerReceiver(new ShutdownReceiver(), new IntentFilter(Intent.ACTION_SHUTDOWN));
-        Log.i(ertebat.LOG_TAG, "Registered: shutdown receiver");
+        Log.i(Ertebat.LOG_TAG, "Registered: shutdown receiver");
     }
 
     public static void save(SharedPreferences.Editor editor) {
-        editor.putBoolean("enableDebugLogging", ertebat.DEBUG);
-        editor.putBoolean("enableSensitiveLogging", ertebat.DEBUG_SENSITIVE);
-        editor.putString("backgroundOperations", ertebat.backgroundOps.name());
+        editor.putBoolean("enableDebugLogging", Ertebat.DEBUG);
+        editor.putBoolean("enableSensitiveLogging", Ertebat.DEBUG_SENSITIVE);
+        editor.putString("backgroundOperations", Ertebat.backgroundOps.name());
         editor.putBoolean("animations", mAnimations);
         editor.putBoolean("gesturesEnabled", mGesturesEnabled);
         editor.putBoolean("useVolumeKeysForNavigation", mUseVolumeKeysForNavigation);
@@ -568,7 +568,7 @@ public class ertebat extends Application {
 
     @Override
     public void onCreate() {
-        if (ertebat.DEVELOPER_MODE) {
+        if (Ertebat.DEVELOPER_MODE) {
             StrictMode.enableDefaults();
         }
 
@@ -604,25 +604,25 @@ public class ertebat extends Application {
                 try {
                     Uri uri = Uri.parse("email://messages/" + account.getAccountNumber() + "/" + Uri.encode(folder) + "/" + Uri.encode(message.getUid()));
                     Intent intent = new Intent(action, uri);
-                    intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_ACCOUNT, account.getDescription());
-                    intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_FOLDER, folder);
-                    intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_SENT_DATE, message.getSentDate());
-                    intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_FROM, Address.toString(message.getFrom()));
-                    intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_TO, Address.toString(message.getRecipients(Message.RecipientType.TO)));
-                    intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_CC, Address.toString(message.getRecipients(Message.RecipientType.CC)));
-                    intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_BCC, Address.toString(message.getRecipients(Message.RecipientType.BCC)));
-                    intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_SUBJECT, message.getSubject());
-                    intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_FROM_SELF, account.isAnIdentity(message.getFrom()));
-                    ertebat.this.sendBroadcast(intent);
-                    if (ertebat.DEBUG)
-                        Log.d(ertebat.LOG_TAG, "Broadcasted: action=" + action
+                    intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_ACCOUNT, account.getDescription());
+                    intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_FOLDER, folder);
+                    intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_SENT_DATE, message.getSentDate());
+                    intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_FROM, Address.toString(message.getFrom()));
+                    intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_TO, Address.toString(message.getRecipients(Message.RecipientType.TO)));
+                    intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_CC, Address.toString(message.getRecipients(Message.RecipientType.CC)));
+                    intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_BCC, Address.toString(message.getRecipients(Message.RecipientType.BCC)));
+                    intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_SUBJECT, message.getSubject());
+                    intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_FROM_SELF, account.isAnIdentity(message.getFrom()));
+                    Ertebat.this.sendBroadcast(intent);
+                    if (Ertebat.DEBUG)
+                        Log.d(Ertebat.LOG_TAG, "Broadcasted: action=" + action
                               + " account=" + account.getDescription()
                               + " folder=" + folder
                               + " message uid=" + message.getUid()
                              );
 
                 } catch (MessagingException e) {
-                    Log.w(ertebat.LOG_TAG, "Error: action=" + action
+                    Log.w(Ertebat.LOG_TAG, "Error: action=" + action
                           + " account=" + account.getDescription()
                           + " folder=" + folder
                           + " message uid=" + message.getUid()
@@ -632,9 +632,9 @@ public class ertebat extends Application {
 
             private void updateUnreadWidget() {
                 try {
-                    UnreadWidgetProvider.updateUnreadCount(ertebat.this);
+                    UnreadWidgetProvider.updateUnreadCount(Ertebat.this);
                 } catch (Exception e) {
-                    if (ertebat.DEBUG) {
+                    if (Ertebat.DEBUG) {
                         Log.e(LOG_TAG, "Error while updating unread widget(s)", e);
                     }
                 }
@@ -642,19 +642,19 @@ public class ertebat extends Application {
 
             @Override
             public void synchronizeMailboxRemovedMessage(Account account, String folder, Message message) {
-                broadcastIntent(ertebat.Intents.EmailReceived.ACTION_EMAIL_DELETED, account, folder, message);
+                broadcastIntent(Ertebat.Intents.EmailReceived.ACTION_EMAIL_DELETED, account, folder, message);
                 updateUnreadWidget();
             }
 
             @Override
             public void messageDeleted(Account account, String folder, Message message) {
-                broadcastIntent(ertebat.Intents.EmailReceived.ACTION_EMAIL_DELETED, account, folder, message);
+                broadcastIntent(Ertebat.Intents.EmailReceived.ACTION_EMAIL_DELETED, account, folder, message);
                 updateUnreadWidget();
             }
 
             @Override
             public void synchronizeMailboxNewMessage(Account account, String folder, Message message) {
-                broadcastIntent(ertebat.Intents.EmailReceived.ACTION_EMAIL_RECEIVED, account, folder, message);
+                broadcastIntent(Ertebat.Intents.EmailReceived.ACTION_EMAIL_RECEIVED, account, folder, message);
                 updateUnreadWidget();
             }
 
@@ -665,10 +665,10 @@ public class ertebat extends Application {
                 updateUnreadWidget();
 
                 // let observers know a change occurred
-                Intent intent = new Intent(ertebat.Intents.EmailReceived.ACTION_REFRESH_OBSERVER, null);
-                intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_ACCOUNT, account.getDescription());
-                intent.putExtra(ertebat.Intents.EmailReceived.EXTRA_FOLDER, folderName);
-                ertebat.this.sendBroadcast(intent);
+                Intent intent = new Intent(Ertebat.Intents.EmailReceived.ACTION_REFRESH_OBSERVER, null);
+                intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_ACCOUNT, account.getDescription());
+                intent.putExtra(Ertebat.Intents.EmailReceived.EXTRA_FOLDER, folderName);
+                Ertebat.this.sendBroadcast(intent);
 
             }
 
@@ -698,7 +698,7 @@ public class ertebat extends Application {
         int cachedVersion = sDatabaseVersionCache.getInt(KEY_LAST_ACCOUNT_DATABASE_VERSION, 0);
 
         if (cachedVersion >= LocalStore.DB_VERSION) {
-            ertebat.setDatabasesUpToDate(false);
+            Ertebat.setDatabasesUpToDate(false);
         }
     }
 
@@ -708,7 +708,7 @@ public class ertebat extends Application {
         if (!DEBUG && sIsDebuggable && Debug.isDebuggerConnected()) {
             // If the debugger is attached, we're probably (surprise surprise) debugging something.
             DEBUG = true;
-            Log.i(ertebat.LOG_TAG, "Debugger attached; enabling debug logging.");
+            Log.i(Ertebat.LOG_TAG, "Debugger attached; enabling debug logging.");
         }
         DEBUG_SENSITIVE = sprefs.getBoolean("enableSensitiveLogging", false);
         mAnimations = sprefs.getBoolean("animations", true);
@@ -799,22 +799,22 @@ public class ertebat extends Application {
         sMessageViewSpamActionVisible = sprefs.getBoolean("messageViewSpamActionVisible", false);
 
 
-        ertebat.setertebatLanguage(sprefs.getString("language", ""));
+        Ertebat.setErtebatLanguage(sprefs.getString("language", ""));
 
         int themeValue = sprefs.getInt("theme", Theme.LIGHT.ordinal());
         // We used to save the resource ID of the theme. So convert that to the new format if
         // necessary.
         if (themeValue == Theme.DARK.ordinal() || themeValue == android.R.style.Theme) {
-            ertebat.setertebatTheme(Theme.DARK);
+            Ertebat.setErtebatTheme(Theme.DARK);
         } else {
-            ertebat.setertebatTheme(Theme.LIGHT);
+            Ertebat.setErtebatTheme(Theme.LIGHT);
         }
 
         themeValue = sprefs.getInt("messageViewTheme", Theme.USE_GLOBAL.ordinal());
-        ertebat.setertebatMessageViewThemeSetting(Theme.values()[themeValue]);
+        Ertebat.setErtebatMessageViewThemeSetting(Theme.values()[themeValue]);
         themeValue = sprefs.getInt("messageComposeTheme", Theme.USE_GLOBAL.ordinal());
-        ertebat.setertebatComposerThemeSetting(Theme.values()[themeValue]);
-        ertebat.setUseFixedMessageViewTheme(sprefs.getBoolean("fixedMessageViewTheme", true));
+        Ertebat.setErtebatComposerThemeSetting(Theme.values()[themeValue]);
+        Ertebat.setUseFixedMessageViewTheme(sprefs.getBoolean("fixedMessageViewTheme", true));
     }
 
     /**
@@ -825,13 +825,13 @@ public class ertebat extends Application {
     protected void notifyObservers() {
         synchronized (observers) {
             for (final ApplicationAware aware : observers) {
-                if (ertebat.DEBUG) {
-                    Log.v(ertebat.LOG_TAG, "Initializing observer: " + aware);
+                if (Ertebat.DEBUG) {
+                    Log.v(Ertebat.LOG_TAG, "Initializing observer: " + aware);
                 }
                 try {
                     aware.initializeComponent(this);
                 } catch (Exception e) {
-                    Log.w(ertebat.LOG_TAG, "Failure when notifying " + aware, e);
+                    Log.w(Ertebat.LOG_TAG, "Failure when notifying " + aware, e);
                 }
             }
 
@@ -841,7 +841,7 @@ public class ertebat extends Application {
     }
 
     /**
-     * Register a component to be notified when the {@link ertebat} instance is ready.
+     * Register a component to be notified when the {@link Ertebat} instance is ready.
      *
      * @param component
      *            Never <code>null</code>.
@@ -849,18 +849,18 @@ public class ertebat extends Application {
     public static void registerApplicationAware(final ApplicationAware component) {
         synchronized (observers) {
             if (sInitialized) {
-                component.initializeComponent(ertebat.app);
+                component.initializeComponent(Ertebat.app);
             } else if (!observers.contains(component)) {
                 observers.add(component);
             }
         }
     }
 
-    public static String getertebatLanguage() {
+    public static String getErtebatLanguage() {
         return language;
     }
 
-    public static void setertebatLanguage(String nlanguage) {
+    public static void setErtebatLanguage(String nlanguage) {
         language = nlanguage;
     }
 
@@ -877,41 +877,41 @@ public class ertebat extends Application {
         USE_GLOBAL
     }
 
-    public static int getertebatThemeResourceId(Theme themeId) {
-        return (themeId == Theme.LIGHT) ? R.style.Theme_ertebat_Light : R.style.Theme_ertebat_Dark;
+    public static int getErtebatThemeResourceId(Theme themeId) {
+        return (themeId == Theme.LIGHT) ? R.style.Theme_Ertebat_Light : R.style.Theme_Ertebat_Dark;
     }
 
-    public static int getertebatThemeResourceId() {
-        return getertebatThemeResourceId(theme);
+    public static int getErtebatThemeResourceId() {
+        return getErtebatThemeResourceId(theme);
     }
 
-    public static Theme getertebatMessageViewTheme() {
+    public static Theme getErtebatMessageViewTheme() {
         return messageViewTheme == Theme.USE_GLOBAL ? theme : messageViewTheme;
     }
 
-    public static Theme getertebatMessageViewThemeSetting() {
+    public static Theme getErtebatMessageViewThemeSetting() {
         return messageViewTheme;
     }
 
-    public static Theme getertebatComposerTheme() {
+    public static Theme getErtebatComposerTheme() {
         return composerTheme == Theme.USE_GLOBAL ? theme : composerTheme;
     }
 
-    public static Theme getertebatComposerThemeSetting() {
+    public static Theme getErtebatComposerThemeSetting() {
         return composerTheme;
     }
 
-    public static Theme getertebatTheme() {
+    public static Theme getErtebatTheme() {
         return theme;
     }
 
-    public static void setertebatTheme(Theme ntheme) {
+    public static void setErtebatTheme(Theme ntheme) {
         if (ntheme != Theme.USE_GLOBAL) {
             theme = ntheme;
         }
     }
 
-    public static void setertebatMessageViewThemeSetting(Theme nMessageViewTheme) {
+    public static void setErtebatMessageViewThemeSetting(Theme nMessageViewTheme) {
         messageViewTheme = nMessageViewTheme;
     }
 
@@ -919,7 +919,7 @@ public class ertebat extends Application {
         return useFixedMessageTheme;
     }
 
-    public static void setertebatComposerThemeSetting(Theme compTheme) {
+    public static void setErtebatComposerThemeSetting(Theme compTheme) {
         composerTheme = compTheme;
     }
 
@@ -935,8 +935,8 @@ public class ertebat extends Application {
     }
 
     public static boolean setBackgroundOps(BACKGROUND_OPS backgroundOps) {
-        BACKGROUND_OPS oldBackgroundOps = ertebat.backgroundOps;
-        ertebat.backgroundOps = backgroundOps;
+        BACKGROUND_OPS oldBackgroundOps = Ertebat.backgroundOps;
+        Ertebat.backgroundOps = backgroundOps;
         return backgroundOps != oldBackgroundOps;
     }
 
@@ -1250,7 +1250,7 @@ public class ertebat extends Application {
     }
 
     public static void setAttachmentDefaultPath(String attachmentDefaultPath) {
-        ertebat.mAttachmentDefaultPath = attachmentDefaultPath;
+        Ertebat.mAttachmentDefaultPath = attachmentDefaultPath;
     }
 
     public static synchronized SortType getSortType() {

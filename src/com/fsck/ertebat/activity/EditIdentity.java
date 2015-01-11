@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,18 +7,18 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Identity;
-import com.fsck.ertebat.Preferences;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Identity;
+import com.fsck.Ertebat.Preferences;
+import com.top.Ertebat.mail.R;
 
 import java.util.List;
 
-public class EditIdentity extends ertebatActivity {
+public class EditIdentity extends ErtebatActivity {
 
-    public static final String EXTRA_IDENTITY = "com.fsck.ertebat.EditIdentity_identity";
-    public static final String EXTRA_IDENTITY_INDEX = "com.fsck.ertebat.EditIdentity_identity_index";
-    public static final String EXTRA_ACCOUNT = "com.fsck.ertebat.EditIdentity_account";
+    public static final String EXTRA_IDENTITY = "com.fsck.Ertebat.EditIdentity_identity";
+    public static final String EXTRA_IDENTITY_INDEX = "com.fsck.Ertebat.EditIdentity_identity_index";
+    public static final String EXTRA_ACCOUNT = "com.fsck.Ertebat.EditIdentity_account";
 
     private Account mAccount;
     private Identity mIdentity;

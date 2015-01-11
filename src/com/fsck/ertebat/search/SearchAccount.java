@@ -1,11 +1,11 @@
-package com.fsck.ertebat.search;
+package com.fsck.Ertebat.search;
 
 import android.content.Context;
 
-import com.fsck.ertebat.BaseAccount;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.search.SearchSpecification.Attribute;
-import com.fsck.ertebat.search.SearchSpecification.Searchfield;
+import com.fsck.Ertebat.BaseAccount;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.search.SearchSpecification.Attribute;
+import com.fsck.Ertebat.search.SearchSpecification.Searchfield;
 
 /**
  * This class is basically a wrapper around a LocalSearch. It allows to expose it as

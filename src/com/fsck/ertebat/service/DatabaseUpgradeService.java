@@ -1,4 +1,4 @@
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -10,13 +10,13 @@ import android.os.PowerManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.activity.UpgradeDatabases;
-import com.fsck.ertebat.helper.power.TracingPowerManager;
-import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
-import com.fsck.ertebat.mail.store.UnavailableStorageException;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.activity.UpgradeDatabases;
+import com.fsck.Ertebat.helper.power.TracingPowerManager;
+import com.fsck.Ertebat.helper.power.TracingPowerManager.TracingWakeLock;
+import com.fsck.Ertebat.mail.store.UnavailableStorageException;
 
 /**
  * Service used to upgrade the accounts' databases and/or track the progress of the upgrade.
@@ -68,7 +68,7 @@ public class DatabaseUpgradeService extends Service {
      * Action used to start this service.
      */
     private static final String ACTION_START_SERVICE =
-            "com.fsck.ertebat.service.DatabaseUpgradeService.startService";
+            "com.fsck.Ertebat.service.DatabaseUpgradeService.startService";
 
     private static final String WAKELOCK_TAG = "DatabaseUpgradeService";
     private static final long WAKELOCK_TIMEOUT = 10 * 60 * 1000;    // 10 minutes
@@ -120,8 +120,8 @@ public class DatabaseUpgradeService extends Service {
         if (success) {
             // The service wasn't running yet.
 
-            if (ertebat.DEBUG) {
-                Log.i(ertebat.LOG_TAG, "DatabaseUpgradeService started");
+            if (Ertebat.DEBUG) {
+                Log.i(Ertebat.LOG_TAG, "DatabaseUpgradeService started");
             }
 
             acquireWakelock();
@@ -159,8 +159,8 @@ public class DatabaseUpgradeService extends Service {
     private void stopService() {
         stopSelf();
 
-        if (ertebat.DEBUG) {
-            Log.i(ertebat.LOG_TAG, "DatabaseUpgradeService stopped");
+        if (Ertebat.DEBUG) {
+            Log.i(Ertebat.LOG_TAG, "DatabaseUpgradeService stopped");
         }
 
         releaseWakelock();
@@ -199,15 +199,15 @@ public class DatabaseUpgradeService extends Service {
                 // Account.getLocalStore() is blocking and will upgrade the database if necessary
                 account.getLocalStore();
             } catch (UnavailableStorageException e) {
-                Log.e(ertebat.LOG_TAG, "Database unavailable");
+                Log.e(Ertebat.LOG_TAG, "Database unavailable");
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Error while upgrading database", e);
+                Log.e(Ertebat.LOG_TAG, "Error while upgrading database", e);
             }
 
             mProgress++;
         }
 
-        ertebat.setDatabasesUpToDate(true);
+        Ertebat.setDatabasesUpToDate(true);
         sendUpgradeCompleteBroadcast();
     }
 

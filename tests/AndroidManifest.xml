@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- package name must be unique so suffix with "tests" so package loader doesn't ignore us -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.fsck.ertebat.tests"
+          package="com.fsck.Ertebat.tests"
           android:versionCode="1"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
@@ -13,10 +13,10 @@
     </application>
     <!--
     This declares that this application uses the instrumentation test runner targeting
-    the package of com.fsck.ertebat.  To run the tests use the command:
-    "adb shell am instrument -w com.fsck.ertebat.tests/com.zutubi.android.junitreport.JUnitReportTestRunner"
+    the package of com.fsck.Ertebat.  To run the tests use the command:
+    "adb shell am instrument -w com.fsck.Ertebat.tests/com.zutubi.android.junitreport.JUnitReportTestRunner"
     -->
     <instrumentation android:name="com.zutubi.android.junitreport.JUnitReportTestRunner"
-                     android:targetPackage="com.fsck.ertebat"
-                     android:label="Tests for com.fsck.ertebat"/>
+                     android:targetPackage="com.fsck.Ertebat"
+                     android:label="Tests for com.fsck.Ertebat"/>
 </manifest>

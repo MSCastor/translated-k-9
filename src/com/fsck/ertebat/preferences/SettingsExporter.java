@@ -1,4 +1,4 @@
-package com.fsck.ertebat.preferences;
+package com.fsck.Ertebat.preferences;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,19 +20,19 @@ import android.os.Environment;
 import android.util.Log;
 import android.util.Xml;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.Store;
-import com.fsck.ertebat.mail.ServerSettings;
-import com.fsck.ertebat.mail.Transport;
-import com.fsck.ertebat.preferences.Settings.InvalidSettingValueException;
-import com.fsck.ertebat.preferences.Settings.SettingsDescription;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.Store;
+import com.fsck.Ertebat.mail.ServerSettings;
+import com.fsck.Ertebat.mail.Transport;
+import com.fsck.Ertebat.preferences.Settings.InvalidSettingValueException;
+import com.fsck.Ertebat.preferences.Settings.SettingsDescription;
 
 
 public class SettingsExporter {
-    private static final String EXPORT_FILENAME = "settings.ertebats";
+    private static final String EXPORT_FILENAME = "settings.Ertebats";
 
     /**
      * File format version number.
@@ -45,7 +45,7 @@ public class SettingsExporter {
      */
     public static final int FILE_FORMAT_VERSION = 1;
 
-    public static final String ROOT_ELEMENT = "ertebatsettings";
+    public static final String ROOT_ELEMENT = "Ertebatsettings";
     public static final String VERSION_ATTRIBUTE = "version";
     public static final String FILE_FORMAT_ATTRIBUTE = "format";
     public static final String GLOBAL_ELEMENT = "global";
@@ -102,7 +102,7 @@ public class SettingsExporter {
                 try {
                     os.close();
                 } catch (IOException ioe) {
-                    Log.w(ertebat.LOG_TAG, "Couldn't close exported settings file: " + filename);
+                    Log.w(Ertebat.LOG_TAG, "Couldn't close exported settings file: " + filename);
                 }
             }
         }
@@ -125,7 +125,7 @@ public class SettingsExporter {
             serializer.attribute(null, FILE_FORMAT_ATTRIBUTE,
                     Integer.toString(FILE_FORMAT_VERSION));
 
-            Log.i(ertebat.LOG_TAG, "Exporting preferences");
+            Log.i(Ertebat.LOG_TAG, "Exporting preferences");
 
             Preferences preferences = Preferences.getPreferences(context);
             SharedPreferences storage = preferences.getPreferences();
@@ -187,12 +187,12 @@ public class SettingsExporter {
                     String outputValue = setting.toPrettyString(value);
                     writeKeyValue(serializer, key, outputValue);
                 } catch (InvalidSettingValueException e) {
-                    Log.w(ertebat.LOG_TAG, "Global setting \"" + key  + "\" has invalid value \"" +
+                    Log.w(Ertebat.LOG_TAG, "Global setting \"" + key  + "\" has invalid value \"" +
                             valueString + "\" in preference storage. This shouldn't happen!");
                 }
             } else {
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "Couldn't find key \"" + key + "\" in preference storage." +
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "Couldn't find key \"" + key + "\" in preference storage." +
                             "Using default value.");
                 }
 
@@ -345,7 +345,7 @@ public class SettingsExporter {
                         String pretty = setting.toPrettyString(value);
                         writeKeyValue(serializer, keyPart, pretty);
                     } catch (InvalidSettingValueException e) {
-                        Log.w(ertebat.LOG_TAG, "Account setting \"" + keyPart  + "\" (" +
+                        Log.w(Ertebat.LOG_TAG, "Account setting \"" + keyPart  + "\" (" +
                                 account.getDescription() + ") has invalid value \"" + valueString +
                                 "\" in preference storage. This shouldn't happen!");
                     }
@@ -440,7 +440,7 @@ public class SettingsExporter {
                         String outputValue = setting.toPrettyString(value);
                         writeKeyValue(serializer, identityKey, outputValue);
                     } catch (InvalidSettingValueException e) {
-                        Log.w(ertebat.LOG_TAG, "Identity setting \"" + identityKey +
+                        Log.w(Ertebat.LOG_TAG, "Identity setting \"" + identityKey +
                                 "\" has invalid value \"" + valueString +
                                 "\" in preference storage. This shouldn't happen!");
                     }
@@ -492,7 +492,7 @@ public class SettingsExporter {
                         String outputValue = setting.toPrettyString(value);
                         writeKeyValue(serializer, folderKey, outputValue);
                     } catch (InvalidSettingValueException e) {
-                        Log.w(ertebat.LOG_TAG, "Folder setting \"" + folderKey +
+                        Log.w(Ertebat.LOG_TAG, "Folder setting \"" + folderKey +
                                 "\" has invalid value \"" + valueString +
                                 "\" in preference storage. This shouldn't happen!");
                     }

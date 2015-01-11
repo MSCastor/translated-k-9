@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,15 +9,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.Accounts;
-import com.fsck.ertebat.activity.ertebatActivity;
-import com.fsck.ertebat.helper.HtmlConverter;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.Accounts;
+import com.fsck.Ertebat.activity.ErtebatActivity;
+import com.fsck.Ertebat.helper.HtmlConverter;
 
 /**
  * Displays a welcome message when no accounts have been created yet.
  */
-public class WelcomeMessage extends ertebatActivity implements OnClickListener{
+public class WelcomeMessage extends ErtebatActivity implements OnClickListener{
 
     public static void showWelcomeMessage(Context context) {
         Intent intent = new Intent(context, WelcomeMessage.class);

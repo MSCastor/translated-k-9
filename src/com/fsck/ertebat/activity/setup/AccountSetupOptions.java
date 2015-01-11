@@ -1,5 +1,5 @@
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.Spinner;
 
-import com.fsck.ertebat.*;
-import com.fsck.ertebat.activity.ertebatActivity;
-import com.fsck.ertebat.mail.Store;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.*;
+import com.fsck.Ertebat.activity.ErtebatActivity;
+import com.fsck.Ertebat.mail.Store;
+import com.top.Ertebat.mail.R;
 
-public class AccountSetupOptions extends ertebatActivity implements OnClickListener {
+public class AccountSetupOptions extends ErtebatActivity implements OnClickListener {
     private static final String EXTRA_ACCOUNT = "account";
 
     private static final String EXTRA_MAKE_DEFAULT = "makeDefault";
@@ -117,7 +117,7 @@ public class AccountSetupOptions extends ertebatActivity implements OnClickListe
             Store store = mAccount.getRemoteStore();
             isPushCapable = store.isPushCapable();
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Could not get remote store", e);
+            Log.e(Ertebat.LOG_TAG, "Could not get remote store", e);
         }
 
 
@@ -150,7 +150,7 @@ public class AccountSetupOptions extends ertebatActivity implements OnClickListe
                 getIntent().getBooleanExtra(EXTRA_MAKE_DEFAULT, false)) {
             Preferences.getPreferences(this).setDefaultAccount(mAccount);
         }
-        ertebat.setServicesEnabled(this);
+        Ertebat.setServicesEnabled(this);
         AccountSetupNames.actionSetNames(this, mAccount);
         finish();
     }

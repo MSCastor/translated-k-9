@@ -1,14 +1,14 @@
-package com.fsck.ertebat.service;
+package com.fsck.Ertebat.service;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 public class PushService extends CoreService {
-    private static String START_SERVICE = "com.fsck.ertebat.service.PushService.startService";
-    private static String STOP_SERVICE = "com.fsck.ertebat.service.PushService.stopService";
+    private static String START_SERVICE = "com.fsck.Ertebat.service.PushService.startService";
+    private static String STOP_SERVICE = "com.fsck.Ertebat.service.PushService.stopService";
 
     public static void startService(Context context) {
         Intent i = new Intent();
@@ -30,11 +30,11 @@ public class PushService extends CoreService {
     public int startService(Intent intent, int startId) {
         int startFlag = START_STICKY;
         if (START_SERVICE.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "PushService started with startId = " + startId);
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "PushService started with startId = " + startId);
         } else if (STOP_SERVICE.equals(intent.getAction())) {
-            if (ertebat.DEBUG)
-                Log.i(ertebat.LOG_TAG, "PushService stopping with startId = " + startId);
+            if (Ertebat.DEBUG)
+                Log.i(Ertebat.LOG_TAG, "PushService stopping with startId = " + startId);
             stopSelf(startId);
             startFlag = START_NOT_STICKY;
         }

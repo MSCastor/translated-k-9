@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.util.ArrayList;
 
@@ -10,11 +10,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.service.NotificationActionService;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.service.NotificationActionService;
+import com.top.Ertebat.mail.R;
 
 public class NotificationDeleteConfirmation extends Activity {
     private final static String EXTRA_ACCOUNT = "account";
@@ -38,8 +38,8 @@ public class NotificationDeleteConfirmation extends Activity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        setTheme(ertebat.getertebatTheme() == ertebat.Theme.LIGHT ?
-                R.style.Theme_ertebat_Dialog_Translucent_Light : R.style.Theme_ertebat_Dialog_Translucent_Dark);
+        setTheme(Ertebat.getErtebatTheme() == Ertebat.Theme.LIGHT ?
+                R.style.Theme_Ertebat_Dialog_Translucent_Light : R.style.Theme_Ertebat_Dialog_Translucent_Dark);
 
         final Preferences preferences = Preferences.getPreferences(this);
         final Intent intent = getIntent();
@@ -49,7 +49,7 @@ public class NotificationDeleteConfirmation extends Activity {
 
         if (mAccount == null || mMessageRefs == null || mMessageRefs.isEmpty()) {
             finish();
-        } else if (!ertebat.confirmDeleteFromNotification()) {
+        } else if (!Ertebat.confirmDeleteFromNotification()) {
             triggerDelete();
             finish();
         } else {

@@ -1,18 +1,18 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Folder;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Folder;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
 
 import java.util.StringTokenizer;
 
@@ -62,8 +62,8 @@ public class MessageReference implements Parcelable {
                     }
                 }
 
-                if (ertebat.DEBUG)
-                    Log.d(ertebat.LOG_TAG, "Thawed " + toString());
+                if (Ertebat.DEBUG)
+                    Log.d(Ertebat.LOG_TAG, "Thawed " + toString());
             } else {
                 throw new MessagingException("Invalid MessageReference in " + identity + " identity.");
             }
@@ -71,7 +71,7 @@ public class MessageReference implements Parcelable {
     }
 
     /**
-     * Serialize this MessageReference for storing in a ertebat identity.  This is a colon-delimited base64 string.
+     * Serialize this MessageReference for storing in a Ertebat identity.  This is a colon-delimited base64 string.
      *
      * @return Serialized string.
      */
@@ -138,16 +138,16 @@ public class MessageReference implements Parcelable {
                     if (message != null) {
                         return message;
                     } else {
-                        Log.d(ertebat.LOG_TAG, "Could not restore message, uid " + uid + " is unknown.");
+                        Log.d(Ertebat.LOG_TAG, "Could not restore message, uid " + uid + " is unknown.");
                     }
                 } else {
-                    Log.d(ertebat.LOG_TAG, "Could not restore message, folder " + folderName + " is unknown.");
+                    Log.d(Ertebat.LOG_TAG, "Could not restore message, folder " + folderName + " is unknown.");
                 }
             } else {
-                Log.d(ertebat.LOG_TAG, "Could not restore message, account " + accountUuid + " is unknown.");
+                Log.d(Ertebat.LOG_TAG, "Could not restore message, account " + accountUuid + " is unknown.");
             }
         } catch (MessagingException e) {
-            Log.w(ertebat.LOG_TAG, "Could not retrieve message for reference.", e);
+            Log.w(Ertebat.LOG_TAG, "Could not retrieve message for reference.", e);
         }
 
         return null;

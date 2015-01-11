@@ -2,7 +2,7 @@
  *
  */
 
-package com.fsck.ertebat.activity.setup;
+package com.fsck.Ertebat.activity.setup;
 
 import android.widget.Spinner;
 

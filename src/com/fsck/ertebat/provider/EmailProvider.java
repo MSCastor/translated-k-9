@@ -1,22 +1,22 @@
-package com.fsck.ertebat.provider;
+package com.fsck.Ertebat.provider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.cache.EmailProviderCacheCursor;
-import com.fsck.ertebat.helper.StringUtils;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.store.LocalStore;
-import com.fsck.ertebat.mail.store.LockableDatabase;
-import com.fsck.ertebat.mail.store.LockableDatabase.DbCallback;
-import com.fsck.ertebat.mail.store.LockableDatabase.WrappedException;
-import com.fsck.ertebat.mail.store.UnavailableStorageException;
-import com.fsck.ertebat.search.SqlQueryBuilder;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.cache.EmailProviderCacheCursor;
+import com.fsck.Ertebat.helper.StringUtils;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.store.LocalStore;
+import com.fsck.Ertebat.mail.store.LockableDatabase;
+import com.fsck.Ertebat.mail.store.LockableDatabase.DbCallback;
+import com.fsck.Ertebat.mail.store.LockableDatabase.WrappedException;
+import com.fsck.Ertebat.mail.store.UnavailableStorageException;
+import com.fsck.Ertebat.search.SqlQueryBuilder;
 
 import android.content.ContentProvider;
 import android.content.ContentResolver;
@@ -43,7 +43,7 @@ import android.net.Uri;
 public class EmailProvider extends ContentProvider {
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
-    public static final String AUTHORITY = "com.fsck.ertebat.provider.email";
+    public static final String AUTHORITY = "com.fsck.Ertebat.provider.email";
 
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 

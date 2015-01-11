@@ -1,4 +1,4 @@
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -8,9 +8,9 @@ import android.view.KeyEvent;
 import android.webkit.WebSettings;
 import android.widget.Toast;
 
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.helper.HtmlConverter;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.helper.HtmlConverter;
 
 public class MessageWebView extends RigidWebView {
 
@@ -55,7 +55,7 @@ public class MessageWebView extends RigidWebView {
         this.setScrollBarStyle(SCROLLBARS_INSIDE_OVERLAY);
         this.setLongClickable(true);
 
-        if (ertebat.getertebatMessageViewTheme() == ertebat.Theme.DARK) {
+        if (Ertebat.getErtebatMessageViewTheme() == Ertebat.Theme.DARK) {
             // Black theme should get a black webview background
             // we'll set the background of the messages on load
             this.setBackgroundColor(0xff000000);
@@ -68,7 +68,7 @@ public class MessageWebView extends RigidWebView {
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setUseWideViewPort(true);
-        if (ertebat.autofitWidth()) {
+        if (Ertebat.autofitWidth()) {
             webSettings.setLoadWithOverviewMode(true);
         }
 
@@ -83,7 +83,7 @@ public class MessageWebView extends RigidWebView {
 
         setOverScrollMode(OVER_SCROLL_NEVER);
 
-        webSettings.setTextZoom(ertebat.getFontSizes().getMessageViewContentAsPercent());
+        webSettings.setTextZoom(Ertebat.getFontSizes().getMessageViewContentAsPercent());
 
         // Disable network images by default.  This is overridden by preferences.
         blockNetworkData(true);
@@ -115,7 +115,7 @@ public class MessageWebView extends RigidWebView {
     public void setText(String text) {
      // Include a meta tag so the WebView will not use a fixed viewport width of 980 px
         String content = "<html><head><meta name=\"viewport\" content=\"width=device-width\"/>";
-        if (ertebat.getertebatMessageViewTheme() == ertebat.Theme.DARK)  {
+        if (Ertebat.getErtebatMessageViewTheme() == Ertebat.Theme.DARK)  {
             content += "<style type=\"text/css\">" +
                    "* { background: black ! important; color: #F3F3F3 !important }" +
                    ":link, :link * { color: #CCFF33 !important }" +
@@ -139,7 +139,7 @@ public class MessageWebView extends RigidWebView {
             shiftPressEvent.dispatch(this, null, null);
             Toast.makeText(getContext() , R.string.select_text_now, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Exception in emulateShiftHeld()", e);
+            Log.e(Ertebat.LOG_TAG, "Exception in emulateShiftHeld()", e);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.text.format.DateUtils;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.AccountStats;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.service.MailService;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.AccountStats;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.service.MailService;
+import com.top.Ertebat.mail.R;
 
 public class ActivityListener extends MessagingListener {
     private Account mAccount = null;

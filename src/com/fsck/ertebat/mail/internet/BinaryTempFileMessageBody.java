@@ -1,4 +1,4 @@
-package com.fsck.ertebat.mail.internet;
+package com.fsck.Ertebat.mail.internet;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,8 +7,8 @@ import java.io.OutputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.james.mime4j.util.MimeUtil;
 
-import com.fsck.ertebat.mail.CompositeBody;
-import com.fsck.ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.CompositeBody;
+import com.fsck.Ertebat.mail.MessagingException;
 
 /**
  * A {@link BinaryTempFileBody} extension containing a body of type

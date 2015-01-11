@@ -1,11 +1,11 @@
-package com.fsck.ertebat.crypto;
+package com.fsck.Ertebat.crypto;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.app.Fragment;
 
-import com.fsck.ertebat.mail.Message;
+import com.fsck.Ertebat.mail.Message;
 
 /**
  * A CryptoProvider provides functionalities such as encryption, decryption, digital signatures.

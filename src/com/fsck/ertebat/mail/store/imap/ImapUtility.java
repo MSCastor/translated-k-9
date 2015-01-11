@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package com.fsck.ertebat.mail.store.imap;
+package com.fsck.Ertebat.mail.store.imap;
 
 import android.util.Log;
 
-import com.fsck.ertebat.ertebat;
+import com.fsck.Ertebat.Ertebat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,12 +101,12 @@ public class ImapUtility {
                             }
                         }
                     } else {
-                        Log.d(ertebat.LOG_TAG, "Invalid range: " + range);
+                        Log.d(Ertebat.LOG_TAG, "Invalid range: " + range);
                     }
                 }
             }
         } catch (NumberFormatException e) {
-            Log.d(ertebat.LOG_TAG, "Invalid range value: " + range, e);
+            Log.d(Ertebat.LOG_TAG, "Invalid range value: " + range, e);
         }
 
         return list;
@@ -122,7 +122,7 @@ public class ImapUtility {
             // do nothing
         }
 
-        Log.d(ertebat.LOG_TAG, "Invalid UID value: " + number);
+        Log.d(Ertebat.LOG_TAG, "Invalid UID value: " + number);
 
         return false;
     }

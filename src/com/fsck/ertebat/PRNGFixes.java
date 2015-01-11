@@ -8,7 +8,7 @@
  * freely, as long as the origin is not misrepresented.
  */
 
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 import android.os.Build;
 import android.os.Process;

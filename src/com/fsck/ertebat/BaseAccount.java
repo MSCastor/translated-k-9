@@ -1,4 +1,4 @@
-package com.fsck.ertebat;
+package com.fsck.Ertebat;
 
 public interface BaseAccount {
     public String getEmail();

@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 
 import java.io.ByteArrayInputStream;
@@ -67,50 +67,50 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.Account.MessageFormat;
-import com.fsck.ertebat.Account.QuoteStyle;
-import com.fsck.ertebat.EmailAddressAdapter;
-import com.fsck.ertebat.EmailAddressValidator;
-import com.fsck.ertebat.FontSizes;
-import com.fsck.ertebat.Identity;
-import com.fsck.ertebat.ertebat;
-import com.fsck.ertebat.Preferences;
-import com.fsck.ertebat.activity.loader.AttachmentContentLoader;
-import com.fsck.ertebat.activity.loader.AttachmentInfoLoader;
-import com.fsck.ertebat.activity.misc.Attachment;
-import com.fsck.ertebat.controller.MessagingController;
-import com.fsck.ertebat.controller.MessagingListener;
-import com.fsck.ertebat.crypto.CryptoProvider;
-import com.fsck.ertebat.crypto.OpenPgpApiHelper;
-import com.fsck.ertebat.crypto.PgpData;
-import com.fsck.ertebat.fragment.ProgressDialogFragment;
-import com.fsck.ertebat.helper.ContactItem;
-import com.fsck.ertebat.helper.Contacts;
-import com.fsck.ertebat.helper.HtmlConverter;
-import com.fsck.ertebat.helper.IdentityHelper;
-import com.fsck.ertebat.helper.StringUtils;
-import com.fsck.ertebat.helper.Utility;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.Body;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.Message.RecipientType;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.Multipart;
-import com.fsck.ertebat.mail.Part;
-import com.fsck.ertebat.mail.internet.MimeBodyPart;
-import com.fsck.ertebat.mail.internet.MimeHeader;
-import com.fsck.ertebat.mail.internet.MimeMessage;
-import com.fsck.ertebat.mail.internet.MimeMultipart;
-import com.fsck.ertebat.mail.internet.MimeUtility;
-import com.fsck.ertebat.mail.internet.TextBody;
-import com.fsck.ertebat.mail.internet.TextBodyBuilder;
-import com.fsck.ertebat.mail.store.LocalStore.LocalAttachmentBody;
-import com.fsck.ertebat.mail.store.LocalStore.TempFileBody;
-import com.fsck.ertebat.mail.store.LocalStore.TempFileMessageBody;
-import com.fsck.ertebat.view.MessageWebView;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.Account.MessageFormat;
+import com.fsck.Ertebat.Account.QuoteStyle;
+import com.fsck.Ertebat.EmailAddressAdapter;
+import com.fsck.Ertebat.EmailAddressValidator;
+import com.fsck.Ertebat.FontSizes;
+import com.fsck.Ertebat.Identity;
+import com.fsck.Ertebat.Ertebat;
+import com.fsck.Ertebat.Preferences;
+import com.fsck.Ertebat.activity.loader.AttachmentContentLoader;
+import com.fsck.Ertebat.activity.loader.AttachmentInfoLoader;
+import com.fsck.Ertebat.activity.misc.Attachment;
+import com.fsck.Ertebat.controller.MessagingController;
+import com.fsck.Ertebat.controller.MessagingListener;
+import com.fsck.Ertebat.crypto.CryptoProvider;
+import com.fsck.Ertebat.crypto.OpenPgpApiHelper;
+import com.fsck.Ertebat.crypto.PgpData;
+import com.fsck.Ertebat.fragment.ProgressDialogFragment;
+import com.fsck.Ertebat.helper.ContactItem;
+import com.fsck.Ertebat.helper.Contacts;
+import com.fsck.Ertebat.helper.HtmlConverter;
+import com.fsck.Ertebat.helper.IdentityHelper;
+import com.fsck.Ertebat.helper.StringUtils;
+import com.fsck.Ertebat.helper.Utility;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.Body;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.Message.RecipientType;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.Multipart;
+import com.fsck.Ertebat.mail.Part;
+import com.fsck.Ertebat.mail.internet.MimeBodyPart;
+import com.fsck.Ertebat.mail.internet.MimeHeader;
+import com.fsck.Ertebat.mail.internet.MimeMessage;
+import com.fsck.Ertebat.mail.internet.MimeMultipart;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.mail.internet.TextBody;
+import com.fsck.Ertebat.mail.internet.TextBodyBuilder;
+import com.fsck.Ertebat.mail.store.LocalStore.LocalAttachmentBody;
+import com.fsck.Ertebat.mail.store.LocalStore.TempFileBody;
+import com.fsck.Ertebat.mail.store.LocalStore.TempFileMessageBody;
+import com.fsck.Ertebat.view.MessageWebView;
+import com.top.Ertebat.mail.R;
 
 import org.apache.james.mime4j.codec.EncoderUtil;
 import org.apache.james.mime4j.util.MimeUtil;
@@ -122,7 +122,7 @@ import org.openintents.openpgp.OpenPgpError;
 import org.openintents.openpgp.util.OpenPgpApi;
 import org.openintents.openpgp.util.OpenPgpServiceConnection;
 
-public class MessageCompose extends ertebatActivity implements OnClickListener,
+public class MessageCompose extends ErtebatActivity implements OnClickListener,
         ProgressDialogFragment.CancelListener {
 
     private static final int DIALOG_SAVE_OR_DISCARD_DRAFT_MESSAGE = 1;
@@ -133,41 +133,41 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
 
     private static final long INVALID_DRAFT_ID = MessagingController.INVALID_MESSAGE_ID;
 
-    private static final String ACTION_COMPOSE = "com.fsck.ertebat.intent.action.COMPOSE";
-    private static final String ACTION_REPLY = "com.fsck.ertebat.intent.action.REPLY";
-    private static final String ACTION_REPLY_ALL = "com.fsck.ertebat.intent.action.REPLY_ALL";
-    private static final String ACTION_FORWARD = "com.fsck.ertebat.intent.action.FORWARD";
-    private static final String ACTION_EDIT_DRAFT = "com.fsck.ertebat.intent.action.EDIT_DRAFT";
+    private static final String ACTION_COMPOSE = "com.fsck.Ertebat.intent.action.COMPOSE";
+    private static final String ACTION_REPLY = "com.fsck.Ertebat.intent.action.REPLY";
+    private static final String ACTION_REPLY_ALL = "com.fsck.Ertebat.intent.action.REPLY_ALL";
+    private static final String ACTION_FORWARD = "com.fsck.Ertebat.intent.action.FORWARD";
+    private static final String ACTION_EDIT_DRAFT = "com.fsck.Ertebat.intent.action.EDIT_DRAFT";
 
     private static final String EXTRA_ACCOUNT = "account";
     private static final String EXTRA_MESSAGE_BODY  = "messageBody";
     private static final String EXTRA_MESSAGE_REFERENCE = "message_reference";
 
     private static final String STATE_KEY_ATTACHMENTS =
-        "com.fsck.ertebat.activity.MessageCompose.attachments";
+        "com.fsck.Ertebat.activity.MessageCompose.attachments";
     private static final String STATE_KEY_CC_SHOWN =
-        "com.fsck.ertebat.activity.MessageCompose.ccShown";
+        "com.fsck.Ertebat.activity.MessageCompose.ccShown";
     private static final String STATE_KEY_BCC_SHOWN =
-        "com.fsck.ertebat.activity.MessageCompose.bccShown";
+        "com.fsck.Ertebat.activity.MessageCompose.bccShown";
     private static final String STATE_KEY_QUOTED_TEXT_MODE =
-        "com.fsck.ertebat.activity.MessageCompose.QuotedTextShown";
+        "com.fsck.Ertebat.activity.MessageCompose.QuotedTextShown";
     private static final String STATE_KEY_SOURCE_MESSAGE_PROCED =
-        "com.fsck.ertebat.activity.MessageCompose.stateKeySourceMessageProced";
-    private static final String STATE_KEY_DRAFT_ID = "com.fsck.ertebat.activity.MessageCompose.draftId";
-    private static final String STATE_KEY_HTML_QUOTE = "com.fsck.ertebat.activity.MessageCompose.HTMLQuote";
+        "com.fsck.Ertebat.activity.MessageCompose.stateKeySourceMessageProced";
+    private static final String STATE_KEY_DRAFT_ID = "com.fsck.Ertebat.activity.MessageCompose.draftId";
+    private static final String STATE_KEY_HTML_QUOTE = "com.fsck.Ertebat.activity.MessageCompose.HTMLQuote";
     private static final String STATE_IDENTITY_CHANGED =
-        "com.fsck.ertebat.activity.MessageCompose.identityChanged";
+        "com.fsck.Ertebat.activity.MessageCompose.identityChanged";
     private static final String STATE_IDENTITY =
-        "com.fsck.ertebat.activity.MessageCompose.identity";
+        "com.fsck.Ertebat.activity.MessageCompose.identity";
     private static final String STATE_PGP_DATA = "pgpData";
-    private static final String STATE_IN_REPLY_TO = "com.fsck.ertebat.activity.MessageCompose.inReplyTo";
-    private static final String STATE_REFERENCES = "com.fsck.ertebat.activity.MessageCompose.references";
-    private static final String STATE_KEY_READ_RECEIPT = "com.fsck.ertebat.activity.MessageCompose.messageReadReceipt";
-    private static final String STATE_KEY_DRAFT_NEEDS_SAVING = "com.fsck.ertebat.activity.MessageCompose.mDraftNeedsSaving";
+    private static final String STATE_IN_REPLY_TO = "com.fsck.Ertebat.activity.MessageCompose.inReplyTo";
+    private static final String STATE_REFERENCES = "com.fsck.Ertebat.activity.MessageCompose.references";
+    private static final String STATE_KEY_READ_RECEIPT = "com.fsck.Ertebat.activity.MessageCompose.messageReadReceipt";
+    private static final String STATE_KEY_DRAFT_NEEDS_SAVING = "com.fsck.Ertebat.activity.MessageCompose.mDraftNeedsSaving";
     private static final String STATE_KEY_FORCE_PLAIN_TEXT =
-            "com.fsck.ertebat.activity.MessageCompose.forcePlainText";
+            "com.fsck.Ertebat.activity.MessageCompose.forcePlainText";
     private static final String STATE_KEY_QUOTED_TEXT_FORMAT =
-            "com.fsck.ertebat.activity.MessageCompose.quotedTextFormat";
+            "com.fsck.Ertebat.activity.MessageCompose.quotedTextFormat";
     private static final String STATE_KEY_NUM_ATTACHMENTS_LOADING = "numAttachmentsLoading";
     private static final String STATE_KEY_WAITING_FOR_ATTACHMENTS = "waitingForAttachments";
 
@@ -416,7 +416,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
     private EmailAddressAdapter mAddressAdapter;
     private Validator mAddressValidator;
 
-    private FontSizes mFontSizes = ertebat.getFontSizes();
+    private FontSizes mFontSizes = Ertebat.getFontSizes();
     private ContextThemeWrapper mThemeContext;
 
 
@@ -526,10 +526,10 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
         }
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
-        if (ertebat.getertebatComposerThemeSetting() != ertebat.Theme.USE_GLOBAL) {
+        if (Ertebat.getErtebatComposerThemeSetting() != Ertebat.Theme.USE_GLOBAL) {
             // theme the whole content according to the theme (except the action bar)
             mThemeContext = new ContextThemeWrapper(this,
-                    ertebat.getertebatThemeResourceId(ertebat.getertebatComposerTheme()));
+                    Ertebat.getErtebatThemeResourceId(Ertebat.getErtebatComposerTheme()));
             View v = ((LayoutInflater) mThemeContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).
                     inflate(R.layout.message_compose, null);
             TypedValue outValue = new TypedValue();
@@ -547,8 +547,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
         mMessageReference = intent.getParcelableExtra(EXTRA_MESSAGE_REFERENCE);
         mSourceMessageBody = intent.getStringExtra(EXTRA_MESSAGE_BODY);
 
-        if (ertebat.DEBUG && mSourceMessageBody != null) {
-            Log.d(ertebat.LOG_TAG, "Composing message with explicitly specified message body.");
+        if (Ertebat.DEBUG && mSourceMessageBody != null) {
+            Log.d(Ertebat.LOG_TAG, "Composing message with explicitly specified message body.");
         }
 
         final String accountUuid = (mMessageReference != null) ?
@@ -764,7 +764,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                 mAction = Action.EDIT_DRAFT;
             } else {
                 // This shouldn't happen
-                Log.w(ertebat.LOG_TAG, "MessageCompose was started with an unsupported action");
+                Log.w(Ertebat.LOG_TAG, "MessageCompose was started with an unsupported action");
                 mAction = Action.COMPOSE;
             }
         }
@@ -1194,7 +1194,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             String waitingFor = savedInstanceState.getString(STATE_KEY_WAITING_FOR_ATTACHMENTS);
             mWaitingForAttachments = WaitingAction.valueOf(waitingFor);
         } catch (Exception e) {
-            Log.w(ertebat.LOG_TAG, "Couldn't read value \" + STATE_KEY_WAITING_FOR_ATTACHMENTS +" +
+            Log.w(Ertebat.LOG_TAG, "Couldn't read value \" + STATE_KEY_WAITING_FOR_ATTACHMENTS +" +
                     "\" from saved instance state", e);
         }
 
@@ -1411,7 +1411,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             message.setHeader("Return-Receipt-To", from.toEncodedString());
         }
 
-        if (!ertebat.hideUserAgent()) {
+        if (!Ertebat.hideUserAgent()) {
             message.setHeader("User-Agent", getString(R.string.message_header_mua));
         }
 
@@ -1483,7 +1483,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
         // If this is a draft, add metadata for thawing.
         if (isDraft) {
             // Add the identity to the message.
-            message.addHeader(ertebat.IDENTITY_HEADER, buildIdentityHeader(body, bodyPlain));
+            message.addHeader(Ertebat.IDENTITY_HEADER, buildIdentityHeader(body, bodyPlain));
         }
 
         return message;
@@ -1653,13 +1653,13 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
 
         uri.appendQueryParameter(IdentityField.QUOTED_TEXT_MODE.value(), mQuotedTextMode.name());
 
-        String ertebatidentity = IDENTITY_VERSION_1 + uri.build().getEncodedQuery();
+        String Ertebatidentity = IDENTITY_VERSION_1 + uri.build().getEncodedQuery();
 
-        if (ertebat.DEBUG) {
-            Log.d(ertebat.LOG_TAG, "Generated identity: " + ertebatidentity);
+        if (Ertebat.DEBUG) {
+            Log.d(Ertebat.LOG_TAG, "Generated identity: " + Ertebatidentity);
         }
 
-        return ertebatidentity;
+        return Ertebatidentity;
     }
 
     /**
@@ -1673,8 +1673,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
     private Map<IdentityField, String> parseIdentityHeader(final String identityString) {
         Map<IdentityField, String> identity = new HashMap<IdentityField, String>();
 
-        if (ertebat.DEBUG) {
-            Log.d(ertebat.LOG_TAG, "Decoding identity: " + identityString);
+        if (Ertebat.DEBUG) {
+            Log.d(Ertebat.LOG_TAG, "Decoding identity: " + identityString);
         }
 
         if (identityString == null || identityString.length() < 1) {
@@ -1693,8 +1693,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                 }
             }
 
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "Decoded identity: " + identity.toString());
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "Decoded identity: " + identity.toString());
             }
 
             // Sanity check our Integers so that recipients of this result don't have to.
@@ -1703,15 +1703,15 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                     try {
                         Integer.parseInt(identity.get(key));
                     } catch (NumberFormatException e) {
-                        Log.e(ertebat.LOG_TAG, "Invalid " + key.name() + " field in identity: " + identity.get(key));
+                        Log.e(Ertebat.LOG_TAG, "Invalid " + key.name() + " field in identity: " + identity.get(key));
                     }
                 }
             }
         } else {
             // Legacy identity
 
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "Got a saved legacy identity: " + identityString);
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "Got a saved legacy identity: " + identityString);
             }
             StringTokenizer tokenizer = new StringTokenizer(identityString, ":", false);
 
@@ -1721,7 +1721,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                 try {
                     identity.put(IdentityField.LENGTH, Integer.valueOf(bodyLengthS).toString());
                 } catch (Exception e) {
-                    Log.e(ertebat.LOG_TAG, "Unable to parse bodyLength '" + bodyLengthS + "'");
+                    Log.e(Ertebat.LOG_TAG, "Unable to parse bodyLength '" + bodyLengthS + "'");
                 }
             }
             if (tokenizer.hasMoreTokens()) {
@@ -1873,8 +1873,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
         sendMessage();
 
         if (mMessageReference != null && mMessageReference.flag != null) {
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "Setting referenced message (" + mMessageReference.folderName + ", " + mMessageReference.uid + ") flag to " + mMessageReference.flag);
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "Setting referenced message (" + mMessageReference.folderName + ", " + mMessageReference.uid + ") flag to " + mMessageReference.flag);
             }
 
             final Account account = Preferences.getPreferences(this).getAccount(mMessageReference.accountUuid);
@@ -1894,7 +1894,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
         try {
             is = new ByteArrayInputStream(text.getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            Log.e(ertebat.LOG_TAG, "UnsupportedEncodingException.", e);
+            Log.e(Ertebat.LOG_TAG, "UnsupportedEncodingException.", e);
         }
         return is;
     }
@@ -1934,14 +1934,14 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                     try {
                         final String output = os.toString("UTF-8");
 
-                        if (ertebat.DEBUG)
+                        if (Ertebat.DEBUG)
                             Log.d(OpenPgpApi.TAG, "result: " + os.toByteArray().length +
                                     " str=" + output);
 
                         mPgpData.setEncryptedData(output);
                         onSend();
                     } catch (UnsupportedEncodingException e) {
-                        Log.e(ertebat.LOG_TAG, "UnsupportedEncodingException", e);
+                        Log.e(Ertebat.LOG_TAG, "UnsupportedEncodingException", e);
                     }
 
                     break;
@@ -1952,7 +1952,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                         startIntentSenderForResult(pi.getIntentSender(),
                                 requestCode, null, 0, 0, 0);
                     } catch (SendIntentException e) {
-                        Log.e(ertebat.LOG_TAG, "SendIntentException", e);
+                        Log.e(Ertebat.LOG_TAG, "SendIntentException", e);
                     }
                     break;
                 }
@@ -1970,8 +1970,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
 
             @Override
             public void run() {
-                Log.e(ertebat.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
-                Log.e(ertebat.LOG_TAG, "OpenPGP Error Message:" + error.getMessage());
+                Log.e(Ertebat.LOG_TAG, "OpenPGP Error ID:" + error.getErrorId());
+                Log.e(Ertebat.LOG_TAG, "OpenPGP Error Message:" + error.getMessage());
 
                 Toast.makeText(MessageCompose.this,
                         getString(R.string.openpgp_error) + " " + error.getMessage(),
@@ -2288,10 +2288,10 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                     }
                     return;
                 }
-                if (ertebat.DEBUG) {
+                if (Ertebat.DEBUG) {
                     List<String> emails = contact.emailAddresses;
                     for (int i = 0; i < emails.size(); i++) {
-                        Log.v(ertebat.LOG_TAG, "email[" + i + "]: " + emails.get(i));
+                        Log.v(Ertebat.LOG_TAG, "email[" + i + "]: " + emails.get(i));
                     }
                 }
 
@@ -2353,8 +2353,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
 
     private void onAccountChosen(Account account, Identity identity) {
         if (!mAccount.equals(account)) {
-            if (ertebat.DEBUG) {
-                Log.v(ertebat.LOG_TAG, "Switching account from " + mAccount + " to " + account);
+            if (Ertebat.DEBUG) {
+                Log.v(Ertebat.LOG_TAG, "Switching account from " + mAccount + " to " + account);
             }
 
             // on draft edit, make sure we don't keep previous message UID
@@ -2373,14 +2373,14 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                 // actual account switch
                 mAccount = account;
 
-                if (ertebat.DEBUG) {
-                    Log.v(ertebat.LOG_TAG, "Account switch, saving new draft in new account");
+                if (Ertebat.DEBUG) {
+                    Log.v(Ertebat.LOG_TAG, "Account switch, saving new draft in new account");
                 }
                 saveMessage();
 
                 if (previousDraftId != INVALID_DRAFT_ID) {
-                    if (ertebat.DEBUG) {
-                        Log.v(ertebat.LOG_TAG, "Account switch, deleting draft from previous account: "
+                    if (Ertebat.DEBUG) {
+                        Log.v(Ertebat.LOG_TAG, "Account switch, deleting draft from previous account: "
                               + previousDraftId);
                     }
                     MessagingController.getInstance(getApplication()).deleteDraft(previousAccount,
@@ -2704,9 +2704,9 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                 .create();
             case DIALOG_CHOOSE_IDENTITY:
                 Context context = new ContextThemeWrapper(this,
-                        (ertebat.getertebatTheme() == ertebat.Theme.LIGHT) ?
-                        R.style.Theme_ertebat_Dialog_Light :
-                        R.style.Theme_ertebat_Dialog_Dark);
+                        (Ertebat.getErtebatTheme() == Ertebat.Theme.LIGHT) ?
+                        R.style.Theme_Ertebat_Dialog_Light :
+                        R.style.Theme_Ertebat_Dialog_Dark);
                 Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle(R.string.send_as);
                 final IdentityAdapter adapter = new IdentityAdapter(context);
@@ -2792,7 +2792,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                     break;
                 }
                 default: {
-                    Log.w(ertebat.LOG_TAG, "processSourceMessage() called with unsupported action");
+                    Log.w(Ertebat.LOG_TAG, "processSourceMessage() called with unsupported action");
                     break;
                 }
             }
@@ -2801,7 +2801,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
              * Let the user continue composing their message even if we have a problem processing
              * the source message. Log it as an error, though.
              */
-            Log.e(ertebat.LOG_TAG, "Error while processing source message: ", me);
+            Log.e(Ertebat.LOG_TAG, "Error while processing source message: ", me);
         } finally {
             mSourceMessageProcessed = true;
             mDraftNeedsSaving = false;
@@ -2855,8 +2855,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             }
 
         } else {
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "could not get Message-ID.");
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "could not get Message-ID.");
             }
         }
 
@@ -2914,8 +2914,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             mInReplyTo = message.getMessageId();
             mReferences = mInReplyTo;
         } else {
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "could not get Message-ID.");
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "could not get Message-ID.");
             }
         }
 
@@ -2970,39 +2970,39 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
 
         // Decode the identity header when loading a draft.
         // See buildIdentityHeader(TextBody) for a detailed description of the composition of this blob.
-        Map<IdentityField, String> ertebatidentity = new HashMap<IdentityField, String>();
-        if (message.getHeader(ertebat.IDENTITY_HEADER) != null && message.getHeader(ertebat.IDENTITY_HEADER).length > 0 && message.getHeader(ertebat.IDENTITY_HEADER)[0] != null) {
-            ertebatidentity = parseIdentityHeader(message.getHeader(ertebat.IDENTITY_HEADER)[0]);
+        Map<IdentityField, String> Ertebatidentity = new HashMap<IdentityField, String>();
+        if (message.getHeader(Ertebat.IDENTITY_HEADER) != null && message.getHeader(Ertebat.IDENTITY_HEADER).length > 0 && message.getHeader(Ertebat.IDENTITY_HEADER)[0] != null) {
+            Ertebatidentity = parseIdentityHeader(message.getHeader(Ertebat.IDENTITY_HEADER)[0]);
         }
 
         Identity newIdentity = new Identity();
-        if (ertebatidentity.containsKey(IdentityField.SIGNATURE)) {
+        if (Ertebatidentity.containsKey(IdentityField.SIGNATURE)) {
             newIdentity.setSignatureUse(true);
-            newIdentity.setSignature(ertebatidentity.get(IdentityField.SIGNATURE));
+            newIdentity.setSignature(Ertebatidentity.get(IdentityField.SIGNATURE));
             mSignatureChanged = true;
         } else {
             newIdentity.setSignatureUse(message.getFolder().getAccount().getSignatureUse());
             newIdentity.setSignature(mIdentity.getSignature());
         }
 
-        if (ertebatidentity.containsKey(IdentityField.NAME)) {
-            newIdentity.setName(ertebatidentity.get(IdentityField.NAME));
+        if (Ertebatidentity.containsKey(IdentityField.NAME)) {
+            newIdentity.setName(Ertebatidentity.get(IdentityField.NAME));
             mIdentityChanged = true;
         } else {
             newIdentity.setName(mIdentity.getName());
         }
 
-        if (ertebatidentity.containsKey(IdentityField.EMAIL)) {
-            newIdentity.setEmail(ertebatidentity.get(IdentityField.EMAIL));
+        if (Ertebatidentity.containsKey(IdentityField.EMAIL)) {
+            newIdentity.setEmail(Ertebatidentity.get(IdentityField.EMAIL));
             mIdentityChanged = true;
         } else {
             newIdentity.setEmail(mIdentity.getEmail());
         }
 
-        if (ertebatidentity.containsKey(IdentityField.ORIGINAL_MESSAGE)) {
+        if (Ertebatidentity.containsKey(IdentityField.ORIGINAL_MESSAGE)) {
             mMessageReference = null;
             try {
-                String originalMessage = ertebatidentity.get(IdentityField.ORIGINAL_MESSAGE);
+                String originalMessage = Ertebatidentity.get(IdentityField.ORIGINAL_MESSAGE);
                 MessageReference messageReference = new MessageReference(originalMessage);
 
                 // Check if this is a valid account in our database
@@ -3012,21 +3012,21 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                     mMessageReference = messageReference;
                 }
             } catch (MessagingException e) {
-                Log.e(ertebat.LOG_TAG, "Could not decode message reference in identity.", e);
+                Log.e(Ertebat.LOG_TAG, "Could not decode message reference in identity.", e);
             }
         }
 
         int cursorPosition = 0;
-        if (ertebatidentity.containsKey(IdentityField.CURSOR_POSITION)) {
+        if (Ertebatidentity.containsKey(IdentityField.CURSOR_POSITION)) {
             try {
-                cursorPosition = Integer.valueOf(ertebatidentity.get(IdentityField.CURSOR_POSITION)).intValue();
+                cursorPosition = Integer.valueOf(Ertebatidentity.get(IdentityField.CURSOR_POSITION)).intValue();
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Could not parse cursor position for MessageCompose; continuing.", e);
+                Log.e(Ertebat.LOG_TAG, "Could not parse cursor position for MessageCompose; continuing.", e);
             }
         }
 
-        if (ertebatidentity.containsKey(IdentityField.QUOTED_TEXT_MODE)) {
-            showQuotedTextMode = ertebatidentity.get(IdentityField.QUOTED_TEXT_MODE);
+        if (Ertebatidentity.containsKey(IdentityField.QUOTED_TEXT_MODE)) {
+            showQuotedTextMode = Ertebatidentity.get(IdentityField.QUOTED_TEXT_MODE);
         }
 
         mIdentity = newIdentity;
@@ -3034,23 +3034,23 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
         updateSignature();
         updateFrom();
 
-        Integer bodyLength = ertebatidentity.get(IdentityField.LENGTH) != null
-                             ? Integer.valueOf(ertebatidentity.get(IdentityField.LENGTH))
+        Integer bodyLength = Ertebatidentity.get(IdentityField.LENGTH) != null
+                             ? Integer.valueOf(Ertebatidentity.get(IdentityField.LENGTH))
                              : 0;
-        Integer bodyOffset = ertebatidentity.get(IdentityField.OFFSET) != null
-                             ? Integer.valueOf(ertebatidentity.get(IdentityField.OFFSET))
+        Integer bodyOffset = Ertebatidentity.get(IdentityField.OFFSET) != null
+                             ? Integer.valueOf(Ertebatidentity.get(IdentityField.OFFSET))
                              : 0;
-        Integer bodyFooterOffset = ertebatidentity.get(IdentityField.FOOTER_OFFSET) != null
-                ? Integer.valueOf(ertebatidentity.get(IdentityField.FOOTER_OFFSET))
+        Integer bodyFooterOffset = Ertebatidentity.get(IdentityField.FOOTER_OFFSET) != null
+                ? Integer.valueOf(Ertebatidentity.get(IdentityField.FOOTER_OFFSET))
                 : null;
-        Integer bodyPlainLength = ertebatidentity.get(IdentityField.PLAIN_LENGTH) != null
-                ? Integer.valueOf(ertebatidentity.get(IdentityField.PLAIN_LENGTH))
+        Integer bodyPlainLength = Ertebatidentity.get(IdentityField.PLAIN_LENGTH) != null
+                ? Integer.valueOf(Ertebatidentity.get(IdentityField.PLAIN_LENGTH))
                 : null;
-        Integer bodyPlainOffset = ertebatidentity.get(IdentityField.PLAIN_OFFSET) != null
-                ? Integer.valueOf(ertebatidentity.get(IdentityField.PLAIN_OFFSET))
+        Integer bodyPlainOffset = Ertebatidentity.get(IdentityField.PLAIN_OFFSET) != null
+                ? Integer.valueOf(Ertebatidentity.get(IdentityField.PLAIN_OFFSET))
                 : null;
-        mQuoteStyle = ertebatidentity.get(IdentityField.QUOTE_STYLE) != null
-                ? QuoteStyle.valueOf(ertebatidentity.get(IdentityField.QUOTE_STYLE))
+        mQuoteStyle = Ertebatidentity.get(IdentityField.QUOTE_STYLE) != null
+                ? QuoteStyle.valueOf(Ertebatidentity.get(IdentityField.QUOTE_STYLE))
                 : mAccount.getQuoteStyle();
 
 
@@ -3063,8 +3063,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
 
         // Always respect the user's current composition format preference, even if the
         // draft was saved in a different format.
-        // TODO - The current implementation doesn't allow a user in HTML mode to edit a draft that wasn't saved with ertebatmail.
-        String messageFormatString = ertebatidentity.get(IdentityField.MESSAGE_FORMAT);
+        // TODO - The current implementation doesn't allow a user in HTML mode to edit a draft that wasn't saved with Ertebatmail.
+        String messageFormatString = Ertebatidentity.get(IdentityField.MESSAGE_FORMAT);
 
         MessageFormat messageFormat = null;
         if (messageFormatString != null) {
@@ -3092,13 +3092,13 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             if (part != null) { // Shouldn't happen if we were the one who saved it.
                 mQuotedTextFormat = SimpleMessageFormat.HTML;
                 String text = MimeUtility.getTextFromPart(part);
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "Loading message with offset " + bodyOffset + ", length " + bodyLength + ". Text length is " + text.length() + ".");
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "Loading message with offset " + bodyOffset + ", length " + bodyLength + ". Text length is " + text.length() + ".");
                 }
 
                 if (bodyOffset + bodyLength > text.length()) {
                     // The draft was edited outside of K-9 Mail?
-                    Log.d(ertebat.LOG_TAG, "The identity field from the draft contains an invalid LENGTH/OFFSET");
+                    Log.d(Ertebat.LOG_TAG, "The identity field from the draft contains an invalid LENGTH/OFFSET");
                     bodyOffset = 0;
                     bodyLength = 0;
                 }
@@ -3130,14 +3130,14 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             mQuotedTextFormat = SimpleMessageFormat.TEXT;
             processSourceMessageText(message, bodyOffset, bodyLength, true);
         } else {
-            Log.e(ertebat.LOG_TAG, "Unhandled message format.");
+            Log.e(Ertebat.LOG_TAG, "Unhandled message format.");
         }
 
         // Set the cursor position if we have it.
         try {
             mMessageContentView.setSelection(cursorPosition);
         } catch (Exception e) {
-            Log.e(ertebat.LOG_TAG, "Could not set cursor position in MessageCompose; ignoring.", e);
+            Log.e(Ertebat.LOG_TAG, "Could not set cursor position in MessageCompose; ignoring.", e);
         }
 
         showOrHideQuotedText(quotedMode);
@@ -3157,8 +3157,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
         Part textPart = MimeUtility.findFirstPartByMimeType(message, "text/plain");
         if (textPart != null) {
             String text = MimeUtility.getTextFromPart(textPart);
-            if (ertebat.DEBUG) {
-                Log.d(ertebat.LOG_TAG, "Loading message with offset " + bodyOffset + ", length " + bodyLength + ". Text length is " + text.length() + ".");
+            if (Ertebat.DEBUG) {
+                Log.d(Ertebat.LOG_TAG, "Loading message with offset " + bodyOffset + ", length " + bodyLength + ". Text length is " + text.length() + ".");
             }
 
             // If we had a body length (and it was valid), separate the composition from the quoted text
@@ -3188,7 +3188,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                     mQuotedText.setCharacters(quotedText);
                 } catch (IndexOutOfBoundsException e) {
                     // Invalid bodyOffset or bodyLength.  The draft was edited outside of K-9 Mail?
-                    Log.d(ertebat.LOG_TAG, "The identity field from the draft contains an invalid bodyOffset/bodyLength");
+                    Log.d(Ertebat.LOG_TAG, "The identity field from the draft contains an invalid bodyOffset/bodyLength");
                     if (viewMessageContent) {
                         mMessageContentView.setCharacters(text);
                     }
@@ -3257,7 +3257,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                         end.add(blockquoteEnd.start());
                     }
                     if (start.size() != end.size()) {
-                        Log.d(ertebat.LOG_TAG, "There are " + start.size() + " <blockquote> tags, but " +
+                        Log.d(Ertebat.LOG_TAG, "There are " + start.size() + " <blockquote> tags, but " +
                                 end.size() + " </blockquote> tags. Refusing to strip.");
                     } else if (start.size() > 0) {
                         // Ignore quoted signatures in blockquotes.
@@ -3309,7 +3309,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                     content = htmlSerialized.getAsString(node, "UTF8");
                 } catch (java.io.IOException ioe) {
                     // Can't imagine this happening.
-                    Log.e(ertebat.LOG_TAG, "Problem cleaning quoted message.", ioe);
+                    Log.e(Ertebat.LOG_TAG, "Problem cleaning quoted message.", ioe);
                 }
             }
 
@@ -3356,16 +3356,16 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             // HTML takes precedence, then text.
             part = MimeUtility.findFirstPartByMimeType(message, "text/html");
             if (part != null) {
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "getBodyTextFromMessage: HTML requested, HTML found.");
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "getBodyTextFromMessage: HTML requested, HTML found.");
                 }
                 return MimeUtility.getTextFromPart(part);
             }
 
             part = MimeUtility.findFirstPartByMimeType(message, "text/plain");
             if (part != null) {
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "getBodyTextFromMessage: HTML requested, text found.");
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "getBodyTextFromMessage: HTML requested, text found.");
                 }
                 return HtmlConverter.textToHtml(MimeUtility.getTextFromPart(part));
             }
@@ -3373,16 +3373,16 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             // Text takes precedence, then html.
             part = MimeUtility.findFirstPartByMimeType(message, "text/plain");
             if (part != null) {
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "getBodyTextFromMessage: Text requested, text found.");
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "getBodyTextFromMessage: Text requested, text found.");
                 }
                 return MimeUtility.getTextFromPart(part);
             }
 
             part = MimeUtility.findFirstPartByMimeType(message, "text/html");
             if (part != null) {
-                if (ertebat.DEBUG) {
-                    Log.d(ertebat.LOG_TAG, "getBodyTextFromMessage: Text requested, HTML found.");
+                if (Ertebat.DEBUG) {
+                    Log.d(Ertebat.LOG_TAG, "getBodyTextFromMessage: Text requested, HTML found.");
                 }
                 return HtmlConverter.htmlToText(MimeUtility.getTextFromPart(part));
             }
@@ -3450,8 +3450,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             hasBodyTag = true;
         }
 
-        if (ertebat.DEBUG) {
-            Log.d(ertebat.LOG_TAG, "Open: hasHtmlTag:" + hasHtmlTag + " hasHeadTag:" + hasHeadTag + " hasBodyTag:" + hasBodyTag);
+        if (Ertebat.DEBUG) {
+            Log.d(Ertebat.LOG_TAG, "Open: hasHtmlTag:" + hasHtmlTag + " hasHeadTag:" + hasHeadTag + " hasBodyTag:" + hasBodyTag);
         }
 
         // Given our inspections, let's figure out where to start our content.
@@ -3503,8 +3503,8 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             hasBodyEndTag = true;
         }
 
-        if (ertebat.DEBUG) {
-            Log.d(ertebat.LOG_TAG, "Close: hasHtmlEndTag:" + hasHtmlEndTag + " hasBodyEndTag:" + hasBodyEndTag);
+        if (Ertebat.DEBUG) {
+            Log.d(Ertebat.LOG_TAG, "Close: hasHtmlEndTag:" + hasHtmlEndTag + " hasBodyEndTag:" + hasBodyEndTag);
         }
 
         // Now figure out where to put our footer.
@@ -3562,7 +3562,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                         } catch (MessagingException e) {
                             // Hm, if we couldn't populate the UI after source reprocessing, let's just delete it?
                             showOrHideQuotedText(QuotedTextMode.HIDE);
-                            Log.e(ertebat.LOG_TAG, "Could not re-process source message; deleting quoted text to be safe.", e);
+                            Log.e(Ertebat.LOG_TAG, "Could not re-process source message; deleting quoted text to be safe.", e);
                         }
                         updateMessageFormat();
                     } else {
@@ -3690,7 +3690,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             try {
                 message = createMessage(false);  // isDraft = true
             } catch (MessagingException me) {
-                Log.e(ertebat.LOG_TAG, "Failed to create new message for send or save.", me);
+                Log.e(Ertebat.LOG_TAG, "Failed to create new message for send or save.", me);
                 throw new RuntimeException("Failed to create a new message for send or save.", me);
             }
 
@@ -3699,7 +3699,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
                 mContacts.markAsContacted(message.getRecipients(RecipientType.CC));
                 mContacts.markAsContacted(message.getRecipients(RecipientType.BCC));
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Failed to mark contact as contacted.", e);
+                Log.e(Ertebat.LOG_TAG, "Failed to mark contact as contacted.", e);
             }
 
             MessagingController.getInstance(getApplication()).sendMessage(mAccount, message, null);
@@ -3723,7 +3723,7 @@ public class MessageCompose extends ertebatActivity implements OnClickListener,
             try {
                 message = createMessage(true);  // isDraft = true
             } catch (MessagingException me) {
-                Log.e(ertebat.LOG_TAG, "Failed to create new message for send or save.", me);
+                Log.e(Ertebat.LOG_TAG, "Failed to create new message for send or save.", me);
                 throw new RuntimeException("Failed to create a new message for send or save.", me);
             }
 

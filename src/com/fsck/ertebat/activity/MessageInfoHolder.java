@@ -1,7 +1,7 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import java.util.Date;
-import com.fsck.ertebat.mail.Message;
+import com.fsck.Ertebat.mail.Message;
 
 public class MessageInfoHolder {
     public String date;

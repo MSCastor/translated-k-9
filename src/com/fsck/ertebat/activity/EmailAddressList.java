@@ -1,4 +1,4 @@
-package com.fsck.ertebat.activity;
+package com.fsck.Ertebat.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.fsck.ertebat.helper.ContactItem;
-import com.top.ertebat.mail.R;
+import com.fsck.Ertebat.helper.ContactItem;
+import com.top.Ertebat.mail.R;
 
-public class EmailAddressList extends ertebatListActivity implements OnItemClickListener {
+public class EmailAddressList extends ErtebatListActivity implements OnItemClickListener {
     public static final String EXTRA_CONTACT_ITEM = "contact";
     public static final String EXTRA_EMAIL_ADDRESS = "emailAddress";
 

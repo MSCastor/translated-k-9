@@ -1,4 +1,4 @@
-package com.fsck.ertebat.view;
+package com.fsck.Ertebat.view;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -20,20 +20,20 @@ import android.widget.LinearLayout;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.fsck.ertebat.FontSizes;
-import com.fsck.ertebat.ertebat;
-import com.top.ertebat.mail.R;
-import com.fsck.ertebat.activity.misc.ContactPictureLoader;
-import com.fsck.ertebat.helper.ContactPicture;
-import com.fsck.ertebat.helper.Contacts;
-import com.fsck.ertebat.Account;
-import com.fsck.ertebat.helper.MessageHelper;
-import com.fsck.ertebat.helper.StringUtils;
-import com.fsck.ertebat.mail.Address;
-import com.fsck.ertebat.mail.Flag;
-import com.fsck.ertebat.mail.Message;
-import com.fsck.ertebat.mail.MessagingException;
-import com.fsck.ertebat.mail.internet.MimeUtility;
+import com.fsck.Ertebat.FontSizes;
+import com.fsck.Ertebat.Ertebat;
+import com.top.Ertebat.mail.R;
+import com.fsck.Ertebat.activity.misc.ContactPictureLoader;
+import com.fsck.Ertebat.helper.ContactPicture;
+import com.fsck.Ertebat.helper.Contacts;
+import com.fsck.Ertebat.Account;
+import com.fsck.Ertebat.helper.MessageHelper;
+import com.fsck.Ertebat.helper.StringUtils;
+import com.fsck.Ertebat.mail.Address;
+import com.fsck.Ertebat.mail.Flag;
+import com.fsck.Ertebat.mail.Message;
+import com.fsck.Ertebat.mail.MessagingException;
+import com.fsck.Ertebat.mail.internet.MimeUtility;
 
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -58,7 +58,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
     private View mForwardedIcon;
     private Message mMessage;
     private Account mAccount;
-    private FontSizes mFontSizes = ertebat.getFontSizes();
+    private FontSizes mFontSizes = Ertebat.getFontSizes();
     private Contacts mContacts;
     private SavedState mSavedState;
 
@@ -148,7 +148,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
                 final Address senderEmail = mMessage.getFrom()[0];
                 mContacts.createContact(senderEmail);
             } catch (Exception e) {
-                Log.e(ertebat.LOG_TAG, "Couldn't create contact", e);
+                Log.e(Ertebat.LOG_TAG, "Couldn't create contact", e);
             }
         }
     }
@@ -217,7 +217,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
     }
 
     public void populate(final Message message, final Account account) throws MessagingException {
-        final Contacts contacts = ertebat.showContactName() ? mContacts : null;
+        final Contacts contacts = Ertebat.showContactName() ? mContacts : null;
         final CharSequence from = Address.toFriendly(message.getFrom(), contacts);
         final CharSequence to = Address.toFriendly(message.getRecipients(Message.RecipientType.TO), contacts);
         final CharSequence cc = Address.toFriendly(message.getRecipients(Message.RecipientType.CC), contacts);
@@ -252,7 +252,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
         mMessage = message;
         mAccount = account;
 
-        if (ertebat.showContactPicture()) {
+        if (Ertebat.showContactPicture()) {
             mContactBadge.setVisibility(View.VISIBLE);
             mContactsPictureLoader = ContactPicture.getContactPictureLoader(mContext);
         }  else {
@@ -275,7 +275,7 @@ public class MessageHeader extends LinearLayout implements OnClickListener {
                 | DateUtils.FORMAT_SHOW_YEAR);
         mDateView.setText(dateTime);
 
-        if (ertebat.showContactPicture()) {
+        if (Ertebat.showContactPicture()) {
             if (counterpartyAddress != null) {
                 mContactBadge.assignContactFromEmail(counterpartyAddress.getAddress(), true);
                 mContactsPictureLoader.loadContactPicture(counterpartyAddress, mContactBadge);

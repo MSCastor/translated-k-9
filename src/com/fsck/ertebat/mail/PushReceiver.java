@@ -1,8 +1,8 @@
-package com.fsck.ertebat.mail;
+package com.fsck.Ertebat.mail;
 
 import java.util.List;
 
-import com.fsck.ertebat.helper.power.TracingPowerManager.TracingWakeLock;
+import com.fsck.Ertebat.helper.power.TracingPowerManager.TracingWakeLock;
 
 import android.content.Context;
 
