@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!--=== App-specific strings =============================================================-->
   <!--This should make it easier for forks to change the branding-->
@@ -40,7 +40,7 @@
 Το K-9 δεν υποστηρίζει τους περισσότερους δωρεάν λογαριασμούς Hotmail και, όπως οι περισσότεροι email clients, έχει θεματάκια όταν μιλάει με το Microsoft Exchange.
 </p><p>
 Αναφέρετε προβλήματα, προτείνετε νέα χαρακτηριστικά και υποβάλετε ερωτήματα στο
-<a href=\"http://k9mail.googlecode.com/\">http://k9mail.googlecode.com/</a>.
+<a href=\"http://ertebatmail.googlecode.com/\">http://ertebatmail.googlecode.com/</a>.
 </p>
     ]]></string>
   <!--Default signature-->

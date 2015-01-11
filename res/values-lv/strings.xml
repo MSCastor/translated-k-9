@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!--=== App-specific strings =============================================================-->
   <!--This should make it easier for forks to change the branding-->
@@ -42,7 +42,7 @@ Lūdzu ņemiet vērā, ka K-9 neatbalsta lielāko daļu Hotmail kontu un līdzī
 īsti labi nesaprotas ar Microsoft Exchange.
 </p><p>
 Lūdzu sūtiet kļūdu ziņojumus, iesakiet uzlabojumus un uzdodiet jautājumus
-<a href=\"http://k9mail.googlecode.com/\">http://k9mail.googlecode.com/</a>.
+<a href=\"http://ertebatmail.googlecode.com/\">http://ertebatmail.googlecode.com/</a>.
 </p>
 ]]></string>
   <!--Default signature-->

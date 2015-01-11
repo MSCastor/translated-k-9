@@ -52,7 +52,7 @@ public class PullToRefreshGridView extends PullToRefreshAdapterViewBase<GridView
 	protected final GridView createRefreshableView(Context context, AttributeSet attrs) {
 		final GridView gv;
 		if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-			gv = new InternalGridViewSDK9(context, attrs);
+			gv = new InternalGridViewSDertebat(context, attrs);
 		} else {
 			gv = new InternalGridView(context, attrs);
 		}
@@ -80,9 +80,9 @@ public class PullToRefreshGridView extends PullToRefreshAdapterViewBase<GridView
 	}
 
 	@TargetApi(9)
-	final class InternalGridViewSDK9 extends InternalGridView {
+	final class InternalGridViewSDertebat extends InternalGridView {
 
-		public InternalGridViewSDK9(Context context, AttributeSet attrs) {
+		public InternalGridViewSDertebat(Context context, AttributeSet attrs) {
 			super(context, attrs);
 		}
 

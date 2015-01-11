@@ -205,7 +205,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 	protected ListView createListView(Context context, AttributeSet attrs) {
 		final ListView lv;
 		if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-			lv = new InternalListViewSDK9(context, attrs);
+			lv = new InternalListViewSDertebat(context, attrs);
 		} else {
 			lv = new InternalListView(context, attrs);
 		}
@@ -254,9 +254,9 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 	}
 
 	@TargetApi(9)
-	final class InternalListViewSDK9 extends InternalListView {
+	final class InternalListViewSDertebat extends InternalListView {
 
-		public InternalListViewSDK9(Context context, AttributeSet attrs) {
+		public InternalListViewSDertebat(Context context, AttributeSet attrs) {
 			super(context, attrs);
 		}
 

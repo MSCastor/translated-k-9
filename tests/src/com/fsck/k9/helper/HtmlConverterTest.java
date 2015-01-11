@@ -1,4 +1,4 @@
-package com.fsck.k9.helper;
+package com.fsck.ertebat.helper;
 
 import junit.framework.TestCase;
 
@@ -8,7 +8,7 @@ import java.io.FileWriter;
 
 public class HtmlConverterTest extends TestCase {
     // Useful if you want to write stuff to a file for debugging in a browser.
-    private static final boolean WRITE_TO_FILE = Boolean.parseBoolean(System.getProperty("k9.htmlConverterTest.writeToFile", "false"));
+    private static final boolean WRITE_TO_FILE = Boolean.parseBoolean(System.getProperty("ertebat.htmlConverterTest.writeToFile", "false"));
     private static final String OUTPUT_FILE = "C:/temp/parse.html";
 
     public void testTextQuoteToHtmlBlockquote() {
@@ -25,7 +25,7 @@ public class HtmlConverterTest extends TestCase {
             ">> Guess!";
         String result = HtmlConverter.textToHtml(message);
         writeToFile(result);
-        assertEquals("<pre class=\"k9mail\">"
+        assertEquals("<pre class=\"ertebatmail\">"
             + "Panama!<br />"
             + "<br />"
             + "Bob Barker &lt;bob@aol.com&gt; wrote:<br />"
@@ -59,7 +59,7 @@ public class HtmlConverterTest extends TestCase {
             "> :)";
         String result = HtmlConverter.textToHtml(message);
         writeToFile(result);
-        assertEquals("<pre class=\"k9mail\">"
+        assertEquals("<pre class=\"ertebatmail\">"
                 + "*facepalm*<br />"
                 + "<br />"
                 + "Bob Barker &lt;bob@aol.com&gt; wrote:<br />"
@@ -93,7 +93,7 @@ public class HtmlConverterTest extends TestCase {
             ">>>>>> six";
         String result = HtmlConverter.textToHtml(message);
         writeToFile(result);
-        assertEquals("<pre class=\"k9mail\">"
+        assertEquals("<pre class=\"ertebatmail\">"
                 + "zero<br />"
                 + "<blockquote class=\"gmail_quote\" style=\"margin: 0pt 0pt 1ex 0.8ex; border-left: 1px solid #729fcf; padding-left: 1ex;\">"
                 +   " one<br />"
@@ -141,7 +141,7 @@ public class HtmlConverterTest extends TestCase {
                 + "  baz\r\n";
         String result = HtmlConverter.textToHtml(message);
         writeToFile(result);
-        assertEquals("<pre class=\"k9mail\">"
+        assertEquals("<pre class=\"ertebatmail\">"
                 + "foo<br />"
                 + " bar<br />"
                 + "  baz<br />"
@@ -157,7 +157,7 @@ public class HtmlConverterTest extends TestCase {
                 + "  > \r\n";
         String result = HtmlConverter.textToHtml(message);
         writeToFile(result);
-        assertEquals("<pre class=\"k9mail\">"
+        assertEquals("<pre class=\"ertebatmail\">"
                 + " <br />"
                 + "  &amp;<br />"
                 + "    <br />"
