@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_revision_url"></string>
+    <string name="app_webpage_url"></string>
+    <string name="message_header_mua">ایمیل ارتباط</string>
+
+    <!-- Licenses - translating legal stuff should be left to experts -->
+    <string name="app_htmlcleaner_license"></string>
+</resources>
