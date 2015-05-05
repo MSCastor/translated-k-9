@@ -195,13 +195,13 @@
     <string name="notification_bg_send_title">ارسال پیام</string>
     <string name="notification_bg_title_separator">:</string>
 
-    <string name="special_mailbox_name_inbox">صندوق پستی</string>
-    <string name="special_mailbox_name_outbox">صندوق ارسال</string>
-    <string name="special_mailbox_name_drafts">پیش نویس ها</string>
-    <string name="special_mailbox_name_trash">حذفیات</string>
-    <string name="special_mailbox_name_sent">ارسال شده ها</string>
-    <string name="special_mailbox_name_archive">آرشیو</string>
-    <string name="special_mailbox_name_spam">هرز نامه ها</string>
+    <string name="special_mailbox_name_inbox">Inbox</string>
+    <string name="special_mailbox_name_outbox">Outbox</string>
+    <string name="special_mailbox_name_drafts">Drafts</string>
+    <string name="special_mailbox_name_trash">Trash</string>
+    <string name="special_mailbox_name_sent">Sent</string>
+    <string name="special_mailbox_name_archive">Archive</string>
+    <string name="special_mailbox_name_spam">Junk</string>
 
     <string name="special_mailbox_name_drafts_fmt"><xliff:g id="folder">%s</xliff:g> (پیش نویس ها)</string>
     <string name="special_mailbox_name_trash_fmt"><xliff:g id="folder">%s</xliff:g> (حذفیات)</string>
@@ -257,7 +257,7 @@
     <string name="message_view_show_more_attachments_action">بیشتر...</string>
     <string name="message_view_fetching_attachment_toast">دریافت ضمائم</string>
     <string name="message_view_no_viewer">برنامه ای برای نمایش <xliff:g id="mimetype">%s</xliff:g>پیدا نشد</string>
-    <string name="message_view_download_remainder">اعلام پایان دانلود</string>
+    <string name="message_view_download_remainder">دانلود کامل پیام</string>
     <string name="message_view_downloading">در حال دانلود...</string>
 
     <!-- NOTE: The following message refers to strings with id account_setup_incoming_save_all_headers_label and account_setup_incoming_title -->

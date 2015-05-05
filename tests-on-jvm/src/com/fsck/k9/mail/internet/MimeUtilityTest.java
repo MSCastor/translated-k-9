@@ -1,9 +1,9 @@
-package com.fsck.Ertebat.mail.internet;
+package com.top.Ertebat.mail.internet;
 
 import java.util.Locale;
 
-import com.fsck.Ertebat.Ertebat;
-import com.fsck.Ertebat.mail.MessagingException;
+import com.top.Ertebat.Ertebat;
+import com.top.Ertebat.mail.MessagingException;
 
 import junit.framework.TestCase;
 

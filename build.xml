@@ -84,7 +84,7 @@
 
     <!-- out folders for a parent project if this project is an instrumentation project -->
     <property name="rclib" value="${out.dir}/ErtebatRemoteControl.jar" />
-    <property name="rcdir" value="com/fsck/Ertebat/remotecontrol/**" />
+    <property name="rcdir" value="com/top/Ertebat/remotecontrol/**" />
 
     <property name="changelog-path-src" value="res/xml/changelog_master.xml" />
 
@@ -322,7 +322,7 @@
 
     <target name="astyle">
         <exec executable="astyle" failonerror="true">
-            <arg line="--style=java --indent=spaces=4 --indent-switches --max-instatement-indent=40 --add-brackets --convert-tabs --unpad-paren --pad-header --pad-oper --suffix=none --recursive 'src/com/fsck/Ertebat/*.java' 'tests/src/com/fsck/Ertebat/*.java'" />
+            <arg line="--style=java --indent=spaces=4 --indent-switches --max-instatement-indent=40 --add-brackets --convert-tabs --unpad-paren --pad-header --pad-oper --suffix=none --recursive 'src/com/top/Ertebat/*.java' 'tests/src/com/top/Ertebat/*.java'" />
         </exec>
     </target>
 

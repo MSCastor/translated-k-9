@@ -1,4 +1,4 @@
-package com.fsck.Ertebat.mail.internet;
+package com.top.Ertebat.mail.internet;
 
 import junit.framework.TestCase;
 

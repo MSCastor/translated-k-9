@@ -1,15 +1,15 @@
-package com.fsck.Ertebat.mail.internet;
+package com.top.Ertebat.mail.internet;
 
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 import android.test.AndroidTestCase;
 
-import com.fsck.Ertebat.activity.ErtebatActivityCommon;
-import com.fsck.Ertebat.mail.Address;
-import com.fsck.Ertebat.mail.MessagingException;
-import com.fsck.Ertebat.mail.Message.RecipientType;
-import com.fsck.Ertebat.mail.internet.MimeUtility.ViewableContainer;
+import com.top.Ertebat.activity.ErtebatActivityCommon;
+import com.top.Ertebat.mail.Address;
+import com.top.Ertebat.mail.MessagingException;
+import com.top.Ertebat.mail.Message.RecipientType;
+import com.top.Ertebat.mail.internet.MimeUtility.ViewableContainer;
 
 public class ViewablesTest extends AndroidTestCase {
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="22001"
-    android:versionName="5.001" package="com.top.Ertebat.mail"
+    android:versionCode="1"
+    android:versionName="1.0" package="com.top.Ertebat"
     >
     <uses-sdk
        android:minSdkVersion="15"
@@ -29,30 +29,30 @@
 
     <uses-permission android:name="org.thialfihar.android.apg.permission.READ_KEY_DETAILS" />
 
-    <permission android:name="com.fsck.Ertebat.permission.READ_ATTACHMENT"
+    <permission android:name="com.top.Ertebat.permission.READ_ATTACHMENT"
                 android:permissionGroup="android.permission-group.MESSAGES"
                 android:protectionLevel="dangerous"
                 android:label="@string/read_attachment_label"
                 android:description="@string/read_attachment_desc"/>
-    <uses-permission android:name="com.fsck.Ertebat.permission.READ_ATTACHMENT"/>
-    <permission android:name="com.fsck.Ertebat.permission.REMOTE_CONTROL"
+    <uses-permission android:name="com.top.Ertebat.permission.READ_ATTACHMENT"/>
+    <permission android:name="com.top.Ertebat.permission.REMOTE_CONTROL"
                  android:permissionGroup="android.permission-group.MESSAGES"
                  android:protectionLevel="dangerous"
                  android:label="@string/remote_control_label"
                  android:description="@string/remote_control_desc"/>
-    <uses-permission android:name="com.fsck.Ertebat.permission.REMOTE_CONTROL"/>
-    <permission android:name="com.fsck.Ertebat.permission.READ_MESSAGES"
+    <uses-permission android:name="com.top.Ertebat.permission.REMOTE_CONTROL"/>
+    <permission android:name="com.top.Ertebat.permission.READ_MESSAGES"
                 android:permissionGroup="android.permission-group.MESSAGES"
                 android:protectionLevel="dangerous"
                 android:label="@string/read_messages_label"
                 android:description="@string/read_messages_desc"/>
-    <uses-permission android:name="com.fsck.Ertebat.permission.READ_MESSAGES"/>
-    <permission android:name="com.fsck.Ertebat.permission.DELETE_MESSAGES"
+    <uses-permission android:name="com.top.Ertebat.permission.READ_MESSAGES"/>
+    <permission android:name="com.top.Ertebat.permission.DELETE_MESSAGES"
                 android:permissionGroup="android.permission-group.MESSAGES"
                 android:protectionLevel="dangerous"
                 android:label="@string/delete_messages_label"
                 android:description="@string/delete_messages_desc"/>
-    <uses-permission android:name="com.fsck.Ertebat.permission.DELETE_MESSAGES"/>
+    <uses-permission android:name="com.top.Ertebat.permission.DELETE_MESSAGES"/>
     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
     <application
         android:icon="@drawable/icon"
@@ -88,7 +88,7 @@
             android:name=".activity.setup.Prefs"
             android:label="@string/prefs_title"
             android:configChanges="locale"
-            android:taskAffinity="com.fsck.Ertebat.activity.setup.Prefs"
+            android:taskAffinity="com.top.Ertebat.activity.setup.Prefs"
             android:screenOrientation="sensorLandscape"
             android:excludeFromRecents="true"
             >
@@ -338,19 +338,19 @@
                 <action android:name="com.android.sync.SYNC_CONN_STATUS_CHANGED" />
             </intent-filter>
               <intent-filter>
-                <action android:name="com.fsck.Ertebat.service.BroadcastReceiver.scheduleIntent"/>
+                <action android:name="com.top.Ertebat.service.BroadcastReceiver.scheduleIntent"/>
             </intent-filter>
         </receiver>
         <receiver android:name=".service.RemoteControlReceiver"
                android:enabled="true"
-               android:permission="com.fsck.Ertebat.permission.REMOTE_CONTROL"
+               android:permission="com.top.Ertebat.permission.REMOTE_CONTROL"
                >
                <intent-filter>
-                 <action android:name="com.fsck.Ertebat.ErtebatRemoteControl.set"/>
+                 <action android:name="com.top.Ertebat.ErtebatRemoteControl.set"/>
 
              </intent-filter>
              <intent-filter>
-                <action android:name="com.fsck.Ertebat.ErtebatRemoteControl.requestAccounts"/>
+                <action android:name="com.top.Ertebat.ErtebatRemoteControl.requestAccounts"/>
 
              </intent-filter>
          </receiver>
@@ -358,7 +358,7 @@
               android:enabled="true"
               >
               <intent-filter>
-                <action android:name="com.fsck.Ertebat.service.CoreReceiver.wakeLockRelease"/>
+                <action android:name="com.top.Ertebat.service.CoreReceiver.wakeLockRelease"/>
             </intent-filter>
         </receiver>
         <receiver android:name=".service.StorageReceiver"
@@ -407,7 +407,7 @@ otherwise it would make K-9 start at the wrong time
          <service
               android:name=".service.RemoteControlService"
               android:enabled="true"
-              android:permission="com.fsck.Ertebat.permission.REMOTE_CONTROL"
+              android:permission="com.top.Ertebat.permission.REMOTE_CONTROL"
              >
           </service>
          <service
@@ -417,24 +417,24 @@ otherwise it would make K-9 start at the wrong time
          </service>
         <provider
             android:name=".provider.AttachmentProvider"
-            android:authorities="com.fsck.Ertebat.attachmentprovider"
+            android:authorities="com.top.Ertebat.attachmentprovider"
             android:multiprocess="true"
             android:grantUriPermissions="true"
-            android:readPermission="com.fsck.Ertebat.permission.READ_ATTACHMENT"
+            android:readPermission="com.top.Ertebat.permission.READ_ATTACHMENT"
             android:exported="true"
             />
         <provider
             android:name=".provider.MessageProvider"
-            android:authorities="com.fsck.Ertebat.messageprovider"
+            android:authorities="com.top.Ertebat.messageprovider"
             android:multiprocess="true"
             android:grantUriPermissions="true"
-            android:readPermission="com.fsck.Ertebat.permission.READ_MESSAGES"
-            android:writePermission="com.fsck.Ertebat.permission.DELETE_MESSAGES"
+            android:readPermission="com.top.Ertebat.permission.READ_MESSAGES"
+            android:writePermission="com.top.Ertebat.permission.DELETE_MESSAGES"
             android:exported="true"
             />
         <provider
             android:name=".provider.EmailProvider"
-            android:authorities="com.fsck.Ertebat.provider.email"
+            android:authorities="com.top.Ertebat.provider.email"
             android:exported="false"
             />
 

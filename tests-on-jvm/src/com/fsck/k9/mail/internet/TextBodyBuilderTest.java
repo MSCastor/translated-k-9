@@ -1,4 +1,4 @@
-package com.fsck.Ertebat.mail.internet;
+package com.top.Ertebat.mail.internet;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -6,8 +6,8 @@ import static org.junit.Assert.*;
 import org.junit.experimental.theories.*;
 import org.junit.runner.RunWith;
 
-import com.fsck.Ertebat.Account.QuoteStyle;
-import com.fsck.Ertebat.activity.InsertableHtmlContent;
+import com.top.Ertebat.Account.QuoteStyle;
+import com.top.Ertebat.activity.InsertableHtmlContent;
 
 class TestingTextBodyBuilder extends TextBodyBuilder {
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.fsck.Ertebat.mail.store.imap;
+package com.top.Ertebat.mail.store.imap;
 
 import java.util.List;
 import android.test.MoreAsserts;

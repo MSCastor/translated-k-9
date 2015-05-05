@@ -1,4 +1,4 @@
-package com.fsck.Ertebat.mail;
+package com.top.Ertebat.mail;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,15 +11,15 @@ import org.apache.james.mime4j.util.MimeUtil;
 
 import android.test.AndroidTestCase;
 
-import com.fsck.Ertebat.mail.Message.RecipientType;
-import com.fsck.Ertebat.mail.internet.BinaryTempFileBody;
-import com.fsck.Ertebat.mail.internet.BinaryTempFileMessageBody;
-import com.fsck.Ertebat.mail.internet.MimeBodyPart;
-import com.fsck.Ertebat.mail.internet.MimeHeader;
-import com.fsck.Ertebat.mail.internet.MimeMessage;
-import com.fsck.Ertebat.mail.internet.MimeMultipart;
-import com.fsck.Ertebat.mail.internet.MimeUtility;
-import com.fsck.Ertebat.mail.internet.TextBody;
+import com.top.Ertebat.mail.Message.RecipientType;
+import com.top.Ertebat.mail.internet.BinaryTempFileBody;
+import com.top.Ertebat.mail.internet.BinaryTempFileMessageBody;
+import com.top.Ertebat.mail.internet.MimeBodyPart;
+import com.top.Ertebat.mail.internet.MimeHeader;
+import com.top.Ertebat.mail.internet.MimeMessage;
+import com.top.Ertebat.mail.internet.MimeMultipart;
+import com.top.Ertebat.mail.internet.MimeUtility;
+import com.top.Ertebat.mail.internet.TextBody;
 
 public class MessageTest extends AndroidTestCase {
 

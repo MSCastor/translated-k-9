@@ -1,8 +1,8 @@
-package com.fsck.Ertebat.net.ssl;
+package com.top.Ertebat.net.ssl;
 
 import javax.net.ssl.X509TrustManager;
 
-import com.fsck.Ertebat.security.LocalKeyStore;
+import com.top.Ertebat.security.LocalKeyStore;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
